@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="windows_fxml.LoginController">
+<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../View/BlueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="windows_fxml.LoginController">
    <top>
-      <AnchorPane prefHeight="99.0" prefWidth="1024.0" style="-fx-background-color: #376bc5;" BorderPane.alignment="CENTER">
+      <AnchorPane minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" style="-fx-background-color: #376bc5;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="391.0" layoutY="17.0" text="RTTR-Master" textFill="#41cfeb" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="17.0">
                <font>
@@ -66,26 +72,66 @@
       <AnchorPane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="646.0" prefWidth="705.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label layoutX="14.0" layoutY="6.0" text="Реестр заявок" />
-            <TableView layoutX="14.0" layoutY="23.0" prefHeight="458.0" prefWidth="935.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
+            <Label layoutX="14.0" layoutY="5.0" text="Реестр заявок: " textFill="#376bc5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TableView layoutX="7.0" layoutY="25.0" prefHeight="621.0" prefWidth="679.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
               <columns>
-                <TableColumn prefWidth="63.0" text="№ заявки" />
-                <TableColumn prefWidth="212.0" text="Техника" />
+                <TableColumn prefWidth="63.0" text="№&#10;заявки" />
+                <TableColumn prefWidth="212.0" text="Техника на ремонт" />
+                  <TableColumn prefWidth="107.0" text="Дата&#10;регистрации&#10;заявки" />
+                  <TableColumn prefWidth="286.0" style="fx-font-color: blue;" text="Описание проблемы" />
               </columns>
             </TableView>
+            <RadioButton layoutX="278.0" layoutY="6.0" mnemonicParsing="false" text="Отработанные заявки" textFill="#376bc5">
+               <toggleGroup>
+                  <ToggleGroup fx:id="reqGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="118.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Активные заявки" textFill="#376bc5" toggleGroup="$reqGroup" />
          </children>
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="646.0" prefWidth="327.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label layoutY="9.0" text="Детали заявки" />
+            <Label layoutX="13.0" layoutY="9.0" text="Детали заявки" textFill="#376bc5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="9.0" layoutY="33.0" text="№ заявки" textFill="#376bc5" />
+            <TextField layoutX="8.0" layoutY="50.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <Label layoutX="11.0" layoutY="75.0" text="Техника на ремонт" textFill="#376bc5" />
+            <TextField layoutX="8.0" layoutY="92.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <Label layoutX="12.0" layoutY="117.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
+            <TextArea layoutX="7.0" layoutY="260.0" prefHeight="67.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <Label layoutX="10.0" layoutY="243.0" text="Описание проблемы" textFill="#376bc5" />
+            <Pane layoutX="2.0" layoutY="332.0" prefHeight="155.0" prefWidth="325.0" style="-fx-background-color: #FAFAFA;">
+               <children>
+                  <Label layoutX="9.0" layoutY="-1.0" text="Дата и время проведения заявки" textFill="#376bc5" />
+                  <TextArea layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+                  <Label layoutX="9.0" layoutY="42.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
+                  <TextField layoutX="6.0" layoutY="16.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+               </children>
+            </Pane>
+            <Label layoutX="10.0" layoutY="159.0" text="Материально-ответственное лицо" textFill="#376bc5" />
+            <TextField layoutX="7.0" layoutY="176.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <Label layoutX="10.0" layoutY="201.0" text="Ответственный за ремонт" textFill="#376bc5" />
+            <TextField layoutX="8.0" layoutY="218.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <TextField layoutX="8.0" layoutY="134.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <Button layoutX="10.0" layoutY="511.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Button" />
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </AnchorPane>
    </right>
    <bottom>
-      <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="10.0" prefWidth="1024.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
