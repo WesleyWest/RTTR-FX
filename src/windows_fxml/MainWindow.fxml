@@ -28,7 +28,7 @@
                </font>
             </Label>
             <Label layoutX="479.0" layoutY="54.0" prefHeight="18.0" prefWidth="198.0" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
-            <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" style="-fx-background-color: #57a8d7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Файл">
                   <items>
@@ -81,10 +81,10 @@
             </Label>
             <TableView layoutX="7.0" layoutY="25.0" prefHeight="621.0" prefWidth="679.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
               <columns>
-                <TableColumn prefWidth="63.0" text="№&#10;заявки" />
+                <TableColumn maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="№&#10;заявки" />
                 <TableColumn prefWidth="212.0" text="Техника на ремонт" />
-                  <TableColumn prefWidth="107.0" text="Дата&#10;регистрации&#10;заявки" />
-                  <TableColumn prefWidth="286.0" style="fx-font-color: blue;" text="Описание проблемы" />
+                  <TableColumn maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="Дата&#10;регистрации&#10;заявки" />
+                  <TableColumn prefWidth="289.0" style="fx-font-color: blue;" text="Описание проблемы" />
               </columns>
             </TableView>
             <RadioButton layoutX="278.0" layoutY="6.0" mnemonicParsing="false" text="Отработанные заявки" textFill="#376bc5">
@@ -105,18 +105,18 @@
                </font>
             </Label>
             <Label layoutX="9.0" layoutY="33.0" text="№ заявки" textFill="#376bc5" />
-            <TextField layoutX="8.0" layoutY="50.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <TextField layoutX="8.0" layoutY="50.0" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" text="asdhsadg" />
             <Label layoutX="11.0" layoutY="75.0" text="Техника на ремонт" textFill="#376bc5" />
-            <TextField layoutX="8.0" layoutY="92.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+            <TextField layoutX="8.0" layoutY="92.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" text="sadgsah" />
             <Label layoutX="12.0" layoutY="117.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
             <TextArea layoutX="7.0" layoutY="260.0" prefHeight="67.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
             <Label layoutX="10.0" layoutY="243.0" text="Описание проблемы" textFill="#376bc5" />
             <Pane layoutX="2.0" layoutY="332.0" prefHeight="155.0" prefWidth="325.0" style="-fx-background-color: #FAFAFA;">
                <children>
                   <Label layoutX="9.0" layoutY="-1.0" text="Дата и время проведения заявки" textFill="#376bc5" />
-                  <TextArea layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+                  <TextArea layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" text="asdfsadgasdfg" />
                   <Label layoutX="9.0" layoutY="42.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
-                  <TextField layoutX="6.0" layoutY="16.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
+                  <TextField layoutX="6.0" layoutY="16.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" text="asdgasdhsdfh" />
                </children>
             </Pane>
             <Label layoutX="10.0" layoutY="159.0" text="Материально-ответственное лицо" textFill="#376bc5" />
@@ -124,7 +124,8 @@
             <Label layoutX="10.0" layoutY="201.0" text="Ответственный за ремонт" textFill="#376bc5" />
             <TextField layoutX="8.0" layoutY="218.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
             <TextField layoutX="8.0" layoutY="134.0" prefHeight="25.0" prefWidth="307.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #57a8d7; -fx-border-radius: 5;" />
-            <Button layoutX="10.0" layoutY="511.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Button" />
+            <Button layoutX="9.0" layoutY="487.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Добавить заявку" />
+            <Button layoutX="9.0" layoutY="518.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Редактировать заявку" />
          </children>
          <opaqueInsets>
             <Insets />

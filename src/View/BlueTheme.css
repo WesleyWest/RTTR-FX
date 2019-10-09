@@ -1,17 +1,20 @@
-.root{
+.root {
     -fx-text-fill: #376bc5;
 }
+
 .table-view {
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
 
 }
-.table-view .column-header-background .label{
+
+.table-view .column-header-background .label {
     -fx-background-color: transparent;
     -fx-text-fill: #376bc5;
-    -fx-alignment: CENTER;
+    -fx-text-alignment: CENTER;
 }
-.table-view .column-header-background .nested-column-header .table-column{
+
+.table-view .column-header-background .nested-column-header .table-column {
     -fx-background-color: #92c9ee;
     -fx-border-color: #376bc5;
     -fx-border-width: 0 1 0 0;
@@ -26,29 +29,80 @@
     -fx-background-color: #c7dcee;
 }
 
-.menu-bar .container .menu .label .text {
-    -fx-fill: white;
+.menu-bar .label .text {
+    -fx-fill: #d2e7f9;
 }
-.menu-bar .container .menu:openvertically{
-    -fx-border-width: 0;
+
+.menu-bar {
+    -fx-background-color: #57a8d7;
 }
+
 .menu:hover {
     -fx-background-color: #376bc5;
 }
+
+.menu-item .label .text {
+    -fx-fill: #d2e7f9;
+}
+
+.context-menu {
+    -fx-background-color: #57a8d7;
+    -fx-border-color: #376bc5;
+    -fx-border-width: 1 1 1 1;
+}
+
 .menu-item {
     -fx-padding: 5 5 5 5;
-    -fx-background-color: #77c2ee;
 }
+
 .menu-item:focused {
     -fx-background-color: #376bc5;
 }
 
-.separator{
-    -fx-background-color: #FAFAFA;
+.menu-item:focused .label .text {
+    -fx-background-color: #376bc5;
+    -fx-fill: #d2e7f9;
 }
-.separator .line{
+
+.separator {
+    /*-fx-background-color: #FAFAFA;*/
+}
+
+.separator .line {
     -fx-border-style: solid;
     -fx-border-width: 0 1 1 0;
-    -fx-border-color: #FAFAFA;
+    -fx-border-color: #376bc5;
+}
 
+
+.button {
+    -fx-background-color: #57a8d7,
+    linear-gradient(#eaf6fd, #a7d9f5);
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 3, 2, 1;
+    -fx-padding: 3 10 3 10;
+    -fx-text-fill: #376bc5;
+    -fx-font-size: 11px;
+}
+
+.button:hover {
+    -fx-background-color: #57a8d7,
+    linear-gradient(#a7d9f5, #eaf6fd);
+}
+
+.button:pressed {
+    -fx-background-color: #57a8d7,
+    linear-gradient(#8bb7d3, #c8d4db);
+}
+
+.text-field {
+    -fx-text-fill: #233d7b;
+}
+
+.text-area {
+    -fx-text-fill: #233d7b;
+}
+
+.password-field {
+    -fx-text-fill: #233d7b;
 }
