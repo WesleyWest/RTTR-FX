@@ -1,7 +1,5 @@
-package windows_fxml;
+package Windows.Login;
 
-import javafx.concurrent.Task;
-import javafx.concurrent.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -47,19 +45,28 @@ public class LoginController {
         animCheckingUser(true);
         getUsersFromDB();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         String userName = loginTextField.getText();
         String userPassword = passwordField.getText();
-        alert.setTitle("RTTR-Master");
-        alert.setHeaderText(null);
+
+        if(userName.length()==0 || userPassword.length()==0){
+            showAlert("Заполните все поля.");
+        }
         if (!(userFound(userName, userPassword))) {
-            alert.setContentText("Пользователь не найден");
-            alert.showAndWait();
+            showAlert("Пользователь не найден.");
             animCheckingUser(false);
         } else {
 
         }
 
+    }
+
+    private void showAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("RTTR-Master");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 
     private void animCheckingUser(boolean direction) {

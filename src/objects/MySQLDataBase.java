@@ -1,7 +1,7 @@
 package objects;
 
 import conf.Configs;
-import windows_fxml.LoginController;
+import Windows.Login.LoginController;
 
 import java.sql.*;
 import java.util.ArrayList;
