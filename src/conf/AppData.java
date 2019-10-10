@@ -1,6 +1,9 @@
 package conf;
 
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import objects.Employees.Division;
 import objects.Employees.Employee;
 import objects.Employees.Position;
@@ -16,8 +19,8 @@ public class AppData {
     private static User user=null;
     private static MySQLDataBase db=null;
 
-    private static ObservableList<Role> roles;
-    private static ObservableList<User> users;
+    private static ObservableList<Role> roles=null;
+    private static ObservableList<User> users=null;
 
     private static ObservableList<Position> positions;
     private static ObservableList<Division> divisions;
@@ -116,5 +119,18 @@ public class AppData {
 
     public static void setRequests(ObservableList<Request> requests) {
         AppData.requests = requests;
+    }
+
+    public static void showAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+        stage.getIcons().add(new Image("resources/main.png"));
+
+        alert.setTitle("RTTR-Master");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 }

@@ -2,23 +2,21 @@ package objects;
 
 import objects.Technic.Technic;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Request {
     private Integer ID;
     private Technic technic;
-    private Date OpenDate;
-    private Date CloseDate;
+    private Timestamp OpenDate;
+    private Timestamp CloseDate;
     private String problemDescription;
     private String decisionDescription;
 
-    public Request(Integer ID, Technic technic, Date openDate, Date closeDate, String problemDescription, String decisionDescription) {
+    public Request(Integer ID, Technic technic, Timestamp openDate) {
         this.ID = ID;
         this.technic = technic;
         OpenDate = openDate;
-        CloseDate = closeDate;
-        this.problemDescription = problemDescription;
-        this.decisionDescription = decisionDescription;
     }
 
     public Integer getID() {
@@ -37,19 +35,19 @@ public class Request {
         this.technic = technic;
     }
 
-    public Date getOpenDate() {
+    public Timestamp getOpenDate() {
         return OpenDate;
     }
 
-    public void setOpenDate(Date openDate) {
+    public void setOpenDate(Timestamp openDate) {
         OpenDate = openDate;
     }
 
-    public Date getCloseDate() {
+    public Timestamp getCloseDate() {
         return CloseDate;
     }
 
-    public void setCloseDate(Date closeDate) {
+    public void setCloseDate(Timestamp closeDate) {
         CloseDate = closeDate;
     }
 

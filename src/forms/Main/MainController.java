@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import objects.Request;
+
+import java.util.Date;
 
 public class MainController extends AppData {
 
@@ -45,19 +48,19 @@ public class MainController extends AppData {
     private MenuItem aboutMenuItem;
 
     @FXML
-    private TableView<?> mainTableView;
+    private TableView<Request> mainTableView;
 
     @FXML
-    private TableColumn<?, ?> idTableColumn;
+    private TableColumn<Request, Integer> idTableColumn;
 
     @FXML
-    private TableColumn<?, ?> technicTableColumn;
+    private TableColumn<Request, String> technicTableColumn;
 
     @FXML
-    private TableColumn<?, ?> dateTableColumn;
+    private TableColumn<Request, Date> dateTableColumn;
 
     @FXML
-    private TableColumn<?, ?> descriptionTableColumn;
+    private TableColumn<Request, String> descriptionTableColumn;
 
     @FXML
     private ToggleGroup reqGroup;
@@ -87,7 +90,7 @@ public class MainController extends AppData {
     private TextArea problemDescriptionTextArea;
 
     @FXML
-    private Pane closedReqestsFieldsPane;
+    private Pane closedRequestsFieldsPane;
 
     @FXML
     private TextField dateTimeClosedRequestTextField;
@@ -112,20 +115,20 @@ public class MainController extends AppData {
 
     @FXML
     void initialize() {
-        closedReqestsFieldsPane.setVisible(false);
+        closedRequestsFieldsPane.setVisible(false);
         informLabel.setText("["+getUser().getUserRole()+"] "+getUser().getUserName());
 
     }
 
     @FXML
     void ClosedRequestsRadioButtonClick(ActionEvent event) {
-        closedReqestsFieldsPane.setVisible(true);
+        closedRequestsFieldsPane.setVisible(true);
 
     }
 
     @FXML
     void ActiveRequestsRadioButtton(ActionEvent event) {
-        closedReqestsFieldsPane.setVisible(false);
+        closedRequestsFieldsPane.setVisible(false);
 
     }
 

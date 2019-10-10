@@ -116,7 +116,7 @@
             <TextField fx:id="repairerTextField" layoutX="8.0" layoutY="218.0" prefHeight="25.0" prefWidth="307.0" />
             <Label layoutX="10.0" layoutY="243.0" text="Описание проблемы" textFill="#376bc5" />
             <TextArea fx:id="problemDescriptionTextArea" layoutX="7.0" layoutY="260.0" prefHeight="67.0" prefWidth="307.0" />
-            <Pane fx:id="closedReqestsFieldsPane" layoutX="2.0" layoutY="332.0" prefHeight="155.0" prefWidth="325.0" style="-fx-background-color: #FAFAFA;">
+            <Pane fx:id="closedRequestsFieldsPane" layoutX="2.0" layoutY="332.0" prefHeight="155.0" prefWidth="325.0" style="-fx-background-color: #FAFAFA;">
                <children>
                   <Label layoutX="9.0" layoutY="-1.0" text="Дата и время проведения заявки" textFill="#376bc5" />
                   <TextField fx:id="dateTimeClosedRequestTextField" layoutX="6.0" layoutY="16.0" prefHeight="25.0" prefWidth="307.0" />

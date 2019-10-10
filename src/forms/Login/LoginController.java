@@ -8,13 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.MySQLDataBase;
 import objects.Users.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class LoginController extends AppData{
 
@@ -61,6 +61,7 @@ public class LoginController extends AppData{
 
         } else if (!(userFound(userName, userPassword))) {
             showAlert("Пользователь не найден.");
+
         } else {
 
             openMainWindow(event);
@@ -79,6 +80,7 @@ public class LoginController extends AppData{
             stage.setTitle("RTTR-Master (Requests to Technics Repair)");
             stage.setMinHeight(768);
             stage.setMinWidth(1024);
+            stage.getIcons().add(new Image("resources/main.png"));
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
@@ -90,13 +92,6 @@ public class LoginController extends AppData{
         }
     }
 
-    private void showAlert(String text) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("RTTR-Master");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.showAndWait();
-    }
 
     private void getUsersFromDB() {
         setDb(new MySQLDataBase(this));
