@@ -1,4 +1,4 @@
-package objects;
+package objects.Users;
 
 public class User {
     private int userID;

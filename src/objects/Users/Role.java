@@ -1,4 +1,4 @@
-package objects;
+package objects.Users;
 
 import java.util.Arrays;
 import java.util.HashSet;

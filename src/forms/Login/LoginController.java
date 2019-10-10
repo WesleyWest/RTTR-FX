@@ -11,12 +11,12 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.MySQLDataBase;
-import objects.User;
+import objects.Users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoginController {
+public class LoginController extends AppData{
 
     @FXML
     private Button exitButton;
@@ -31,27 +31,26 @@ public class LoginController {
     private PasswordField passwordField;
 
 
-    private MySQLDataBase db = null;
-    private ArrayList<User> users = null;
 
     @FXML
     void initialize() {
         loginTextField.setText("Stas");
         passwordField.setText("123");
 
+
     }
 
     @FXML
     void exitButtonClick(ActionEvent event) {
-        if (db != null) db.close();
+        if(getDb() != null) getDb().close();
         System.exit(0);
     }
 
 
     @FXML
     void loginButtonClick(ActionEvent event) {
-        animCheckingUser(true);
-        if(users==null )getUsersFromDB();
+
+        if(getUsers()==null ) getUsersFromDB();
 
 
         String userName = loginTextField.getText();
@@ -62,9 +61,8 @@ public class LoginController {
 
         } else if (!(userFound(userName, userPassword))) {
             showAlert("Пользователь не найден.");
-            animCheckingUser(false);
         } else {
-            AppData.setDb(db);
+
             openMainWindow(event);
         }
 
@@ -100,19 +98,15 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    private void animCheckingUser(boolean direction) {
-
-    }
-
     private void getUsersFromDB() {
-        db = new MySQLDataBase(this);
-        db.open();
-        db.setRoleNamesFromDB();
-        users = db.readUsersFromDB();
+        setDb(new MySQLDataBase(this));
+        getDb().open();
+        getDb().setRoleNamesFromDB();
+        setUsers(getDb().readUsersFromDB());
     }
 
     private boolean userFound(String userName, String userPassword) {
-        for (User user : users) {
+        for (User user : getUsers()) {
             if (userName.equals(user.getUserName()) && userPassword.equals(user.getUserPassword())) {
                 AppData.setUser(user);
                 return true;

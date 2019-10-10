@@ -1,11 +1,34 @@
 package conf;
 
+import javafx.collections.ObservableList;
+import objects.Employees.Division;
+import objects.Employees.Employee;
+import objects.Employees.Position;
 import objects.MySQLDataBase;
-import objects.User;
+import objects.Request;
+import objects.Technic.TechicType;
+import objects.Technic.Technic;
+import objects.Technic.TechnicStatus;
+import objects.Users.Role;
+import objects.Users.User;
 
 public class AppData {
-    private static User user;
-    private static MySQLDataBase db;
+    private static User user=null;
+    private static MySQLDataBase db=null;
+
+    private static ObservableList<Role> roles;
+    private static ObservableList<User> users;
+
+    private static ObservableList<Position> positions;
+    private static ObservableList<Division> divisions;
+    private static ObservableList<Employee> employees;
+
+
+    private static ObservableList<TechicType> types;
+    private static ObservableList<TechnicStatus> statuses;
+    private static ObservableList<Technic> technic;
+
+    private static ObservableList<Request> requests;
 
     public static User getUser() {
         return user;
@@ -21,5 +44,77 @@ public class AppData {
 
     public static void setDb(MySQLDataBase db) {
         AppData.db = db;
+    }
+
+    public static ObservableList<Role> getRoles() {
+        return roles;
+    }
+
+    public static void setRoles(ObservableList<Role> roles) {
+        AppData.roles = roles;
+    }
+
+    public static ObservableList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ObservableList<User> users) {
+        AppData.users = users;
+    }
+
+    public static ObservableList<Position> getPositions() {
+        return positions;
+    }
+
+    public static void setPositions(ObservableList<Position> positions) {
+        AppData.positions = positions;
+    }
+
+    public static ObservableList<Division> getDivisions() {
+        return divisions;
+    }
+
+    public static void setDivisions(ObservableList<Division> divisions) {
+        AppData.divisions = divisions;
+    }
+
+    public static ObservableList<Employee> getEmployees() {
+        return employees;
+    }
+
+    public static void setEmployees(ObservableList<Employee> employees) {
+        AppData.employees = employees;
+    }
+
+    public static ObservableList<TechicType> getTypes() {
+        return types;
+    }
+
+    public static void setTypes(ObservableList<TechicType> types) {
+        AppData.types = types;
+    }
+
+    public static ObservableList<TechnicStatus> getStatuses() {
+        return statuses;
+    }
+
+    public static void setStatuses(ObservableList<TechnicStatus> statuses) {
+        AppData.statuses = statuses;
+    }
+
+    public static ObservableList<Technic> getTechnic() {
+        return technic;
+    }
+
+    public static void setTechnic(ObservableList<Technic> technic) {
+        AppData.technic = technic;
+    }
+
+    public static ObservableList<Request> getRequests() {
+        return requests;
+    }
+
+    public static void setRequests(ObservableList<Request> requests) {
+        AppData.requests = requests;
     }
 }

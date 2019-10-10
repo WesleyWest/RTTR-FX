@@ -2,6 +2,10 @@ package objects;
 
 import conf.Configs;
 import forms.Login.LoginController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import objects.Users.Role;
+import objects.Users.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,7 +61,7 @@ public class MySQLDataBase extends Configs {
 
     }
 
-    public ArrayList<User> readUsersFromDB() {
+    public ObservableList<User> readUsersFromDB() {
 
         ArrayList<User> tmp = new ArrayList<>();
         try {
@@ -84,7 +88,8 @@ public class MySQLDataBase extends Configs {
             opened = false;
         }
         System.out.println("Users was read...");
-        return tmp;
+        ObservableList<User> users = FXCollections.observableArrayList(tmp);
+        return users;
     }
 
 

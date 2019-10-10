@@ -1,11 +1,12 @@
 package forms.Main;
 
+import conf.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
-public class MainController {
+public class MainController extends AppData {
 
     @FXML
     private MenuItem createReportMenuItem;
@@ -112,6 +113,7 @@ public class MainController {
     @FXML
     void initialize() {
         closedReqestsFieldsPane.setVisible(false);
+        informLabel.setText("["+getUser().getUserRole()+"] "+getUser().getUserName());
 
     }
 
