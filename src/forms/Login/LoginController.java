@@ -1,4 +1,4 @@
-package Windows.Login;
+package forms.Login;
 
 import conf.AppData;
 import javafx.event.ActionEvent;

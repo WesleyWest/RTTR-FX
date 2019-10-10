@@ -1,7 +1,7 @@
 package objects;
 
 import conf.Configs;
-import Windows.Login.LoginController;
+import forms.Login.LoginController;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package Windows.Main;
+package forms.Main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

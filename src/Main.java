@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-            Parent root = FXMLLoader.load(getClass().getResource("Windows/Login/LoginWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("forms/Login/LoginWindow.fxml"));
             primaryStage.setTitle("RTTR-Master");
             primaryStage.setResizable(false);
             primaryStage.setScene(new Scene(root, 465, 328));
