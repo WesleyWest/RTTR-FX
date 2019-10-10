@@ -6,4 +6,6 @@ public class Configs {
     protected String dbUser="root";
     protected String dbPass="diamond";
     protected String dbSchema ="rttr-base";
+
 }
+

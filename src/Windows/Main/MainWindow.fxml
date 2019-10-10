@@ -34,7 +34,7 @@
                   <items>
                     <MenuItem fx:id="createReportMenuItem" mnemonicParsing="false" text="Создать отчёт" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Закрыть" />
+                        <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#exitFromApp" text="Выход" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="Заявки">
@@ -87,17 +87,17 @@
                   <TableColumn fx:id="descriptionTableColumn" prefWidth="289.0" style="fx-font-color: blue;" text="Описание проблемы" />
               </columns>
             </TableView>
-            <RadioButton layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#closedRequestsRadioButton" text="Отработанные заявки" textFill="#376bc5">
+            <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Отработанные заявки" textFill="#2e9e51">
                <toggleGroup>
                   <ToggleGroup fx:id="reqGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#activeRequestsRadioButtton" selected="true" text="Активные заявки" textFill="#376bc5" toggleGroup="$reqGroup" />
+            <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtton" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
          </children>
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane prefHeight="646.0" prefWidth="327.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER_LEFT">
+      <AnchorPane prefHeight="610.0" prefWidth="327.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Label layoutX="9.0" layoutY="9.0" text="Детали заявки:" textFill="#376bc5">
                <font>
@@ -124,10 +124,10 @@
                   <TextArea fx:id="worksDescriptionTextField" layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" />
                </children>
             </Pane>
-            <Button fx:id="addRequestButton" layoutX="9.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Добавить заявку" />
-            <Button fx:id="editrequestButton" layoutX="165.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Редактировать заявку" />
-            <Button fx:id="closeRequestButton" layoutX="9.0" layoutY="519.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="306.0" text="Провести заявку" />
-            <Button fx:id="exitButton" layoutX="166.0" layoutY="620.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Выход" />
+            <Button fx:id="addRequestButton" layoutX="9.0" layoutY="475.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="149.0" text="Добавить заявку" />
+            <Button fx:id="editrequestButton" layoutX="165.0" layoutY="475.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Редактировать заявку" />
+            <Button fx:id="closeRequestButton" layoutX="9.0" layoutY="519.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="306.0" text="Провести заявку" />
+            <Button fx:id="exitButton" layoutX="166.0" layoutY="591.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -135,9 +135,9 @@
       </AnchorPane>
    </right>
    <bottom>
-      <AnchorPane prefHeight="19.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="20.0" prefWidth="1024.0" style="-fx-background-color: #d2e7f9;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="infomLabel" layoutX="13.0" text="    " textFill="#376bc5" />
+            <Label fx:id="informLabel" layoutX="13.0" text="    " textFill="#376bc5" />
          </children></AnchorPane>
    </bottom>
 </BorderPane>

@@ -2,14 +2,7 @@ package Windows.Main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 public class MainController {
@@ -18,7 +11,7 @@ public class MainController {
     private MenuItem createReportMenuItem;
 
     @FXML
-    private MenuItem closeMenuItem;
+    private MenuItem exitMenuItem;
 
     @FXML
     private MenuItem addRequestMenuItem;
@@ -69,6 +62,12 @@ public class MainController {
     private ToggleGroup reqGroup;
 
     @FXML
+    private RadioButton closedRequestsRadioButton;
+
+    @FXML
+    private RadioButton activeRequestsRadioButtton;
+
+    @FXML
     private TextField idTextField;
 
     @FXML
@@ -108,16 +107,28 @@ public class MainController {
     private Button exitButton;
 
     @FXML
-    private Label infomLabel;
+    private Label informLabel;
 
     @FXML
-    void activeRequestsRadioButtton(ActionEvent event) {
+    void initialize() {
+        closedReqestsFieldsPane.setVisible(false);
 
     }
 
     @FXML
-    void closedRequestsRadioButton(ActionEvent event) {
+    void ClosedRequestsRadioButtonClick(ActionEvent event) {
+        closedReqestsFieldsPane.setVisible(true);
 
     }
 
+    @FXML
+    void ActiveRequestsRadioButtton(ActionEvent event) {
+        closedReqestsFieldsPane.setVisible(false);
+
+    }
+
+    @FXML
+    void exitFromApp(ActionEvent event){
+        System.exit(0);
+    }
 }

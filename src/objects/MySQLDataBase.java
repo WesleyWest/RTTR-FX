@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class MySQLDataBase extends Configs {
 
-    private class Roles {
+    private class tmpRoles {
         String roleCode;
         String roleName;
 
-        public Roles(String roleCode, String roleName) {
+        public tmpRoles(String roleCode, String roleName) {
             this.roleCode = roleCode;
             this.roleName = roleName;
         }
@@ -32,7 +32,7 @@ public class MySQLDataBase extends Configs {
     }
 
     public void setRoleNamesFromDB() {
-        ArrayList<Roles> tmp = new ArrayList<Roles>();
+        ArrayList<tmpRoles> tmp = new ArrayList<tmpRoles>();
         try {
             Statement statement = connection.createStatement();
             String query =
@@ -42,16 +42,16 @@ public class MySQLDataBase extends Configs {
                             "ORDER BY role_code ";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                String roleCode= rs.getString("role_code");
+                String roleCode = rs.getString("role_code");
                 String roleName = rs.getString("role_name");
-                Role.setRoleNameByCode(roleCode,roleName);
+                Role.setRoleNameByCode(roleCode, roleName);
             }
             rs.close();
             statement.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            opened=false;
+            opened = false;
         }
         System.out.println("Role names was set...");
 
@@ -80,8 +80,8 @@ public class MySQLDataBase extends Configs {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            System.out.println("SQL exception: "+e.getLocalizedMessage());
-            opened=false;
+            System.out.println("SQL exception: " + e.getLocalizedMessage());
+            opened = false;
         }
         System.out.println("Users was read...");
         return tmp;
@@ -96,11 +96,11 @@ public class MySQLDataBase extends Configs {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(connectionString, dbUser, dbPass);
             System.out.println("Connected successfully to: " + connectionString);
-            opened=true;
+            opened = true;
         } catch (ClassNotFoundException e) {
-            System.out.println("Class not found: "+ e.getLocalizedMessage());
+            System.out.println("Class not found: " + e.getLocalizedMessage());
         } catch (SQLException e) {
-            System.out.println("SQL exception: "+e.getLocalizedMessage());
+            System.out.println("SQL exception: " + e.getLocalizedMessage());
         }
     }
 
