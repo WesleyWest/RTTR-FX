@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="2019-10-09">
-      <change afterPath="$PROJECT_DIR$/src/objects/Employees/Division.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Employees/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Employees/Position.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Technic/TechicType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Technic/Technic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/Technic/TechnicStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RTTR-FX/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/View/BlueTheme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/objects/MySQLDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RTTR-FX/objects/MySQLDataBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/objects/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/objects/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/windows/Login/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/windows/Login/LoginWindow.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/windows/Main/MainController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RTTR-FX/windows/Main/MainWindow.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/conf/AppData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/conf/AppData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Login/LoginWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Login/LoginWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Main/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Main/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/MySQLDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/MySQLDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Users/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/BlueTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/BlueTheme.css" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="2019-10-09" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -175,7 +147,7 @@
         <entry file="file://$PROJECT_DIR$/src/forms/Main/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="239">
-              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+              <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -302,25 +274,6 @@
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="forms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="forms" type="462c0819:PsiDirectoryNode" />
-              <item name="Main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -480,7 +433,7 @@
       <workItem from="1570098330338" duration="17432000" />
       <workItem from="1570418158850" duration="40000000" />
       <workItem from="1570616791376" duration="57000" />
-      <workItem from="1570616886426" duration="9930000" />
+      <workItem from="1570616886426" duration="10198000" />
     </task>
     <task id="LOCAL-00001" summary="2019-10-08">
       <created>1570590656736</created>
@@ -517,19 +470,25 @@
       <option name="project" value="LOCAL" />
       <updated>1570677147967</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="2019-10-09">
+      <created>1570688340826</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1570688340826</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74750000" />
+    <option name="totallyTimeSpent" value="75018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="-8" width="1865" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.12060573" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.12060573" />
       <window_info id="Structure" order="3" weight="0.25" />
       <window_info id="Favorites" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
@@ -537,7 +496,7 @@
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3296146" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3296146" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.3296146" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -897,7 +856,7 @@
     <entry file="file://$PROJECT_DIR$/src/forms/Main/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
-          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
