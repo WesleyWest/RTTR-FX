@@ -15,7 +15,7 @@
 
 .table-view-active .column-header-background .nested-column-header .table-column {
     -fx-background-color: #c46461,
-    linear-gradient(#eac1b9, #d17470);
+    linear-gradient(#d17470, #eac1b9, #d17470,);
     -fx-border-color: #992b2b;
     -fx-border-width: 0 1 0 0;
 }
@@ -79,7 +79,7 @@
 
 .button {
     -fx-background-color: #57a8d7,
-    linear-gradient(#eaf6fd, #a7d9f5);
+    linear-gradient(#a7d9f5,#eaf6fd, #a7d9f5);
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 3, 2, 1;
     -fx-padding: 3 10 3 10;
@@ -96,7 +96,7 @@
 }
 .button:pressed {
     -fx-background-color: #57a8d7,
-    linear-gradient(#a7d9f5, #eaf6fd);
+    linear-gradient(#eaf6fd,#a7d9f5,#eaf6fd);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.6) , 3, 0.0 , 0 , 1 );
 }
 
@@ -105,6 +105,10 @@
     -fx-background-size: 100% 100%;
 }
 
+.main-label .text{
+    -fx-fill: linear-gradient(#eaf6fd,#a7d9f5,#eaf6fd);
+
+}
 
 .text-field {
     -fx-text-fill: #233d7b;

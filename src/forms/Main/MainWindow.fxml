@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -16,16 +17,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../themes/BlueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
    <top>
       <AnchorPane minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" style="-fx-background-color: #376bc5;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="391.0" layoutY="17.0" text="RTTR-Master" textFill="#41cfeb" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="17.0">
+            <Label layoutX="391.0" layoutY="17.0" styleClass="main-label" text="RTTR-Master" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="17.0">
                <font>
                   <Font name="Eras Bold ITC" size="38.0" />
                </font>
+               <textFill>
+                  <LinearGradient cycleMethod="REPEAT" endX="0.12380952380952381" endY="0.9666666666666667" startX="0.12857142857142856" startY="0.04285714285714287">
+                     <stops>
+                        <Stop color="#3845d8" />
+                        <Stop color="#3845d8" offset="0.007662835249042145" />
+                        <Stop color="#fcfcfc" offset="0.36781609195402276" />
+                        <Stop color="#3845d8" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Label layoutX="479.0" layoutY="54.0" prefHeight="18.0" prefWidth="198.0" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
             <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -65,7 +78,14 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Button layoutX="941.0" layoutY="14.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="75.0" styleClass="user-button" />
+            <Button layoutX="950.0" layoutY="17.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="52.0" styleClass="user-button">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu></Button>
          </children>
       </AnchorPane>
    </top>
@@ -80,7 +100,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" prefHeight="611.0" prefWidth="679.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
+            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" prefHeight="611.0" prefWidth="679.0" styleClass="table-view-active" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
               <columns>
                 <TableColumn fx:id="idTableColumn" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="№&#10;заявки" />
                 <TableColumn fx:id="technicTableColumn" prefWidth="212.0" text="Техника на ремонт" />

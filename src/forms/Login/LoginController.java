@@ -92,7 +92,6 @@ public class LoginController extends AppData{
         }
     }
 
-
     private void getUsersFromDB() {
         setDb(new MySQLDataBase(this));
         getDb().open();
