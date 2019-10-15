@@ -17,8 +17,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../themes/BlueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
@@ -29,18 +27,8 @@
                <font>
                   <Font name="Eras Bold ITC" size="38.0" />
                </font>
-               <textFill>
-                  <LinearGradient cycleMethod="REPEAT" endX="0.12380952380952381" endY="0.9666666666666667" startX="0.12857142857142856" startY="0.04285714285714287">
-                     <stops>
-                        <Stop color="#3845d8" />
-                        <Stop color="#3845d8" offset="0.007662835249042145" />
-                        <Stop color="#fcfcfc" offset="0.36781609195402276" />
-                        <Stop color="#3845d8" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
             </Label>
-            <Label layoutX="479.0" layoutY="54.0" prefHeight="18.0" prefWidth="198.0" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+            <Label layoutX="477.0" layoutY="54.0" prefHeight="18.0" prefWidth="198.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
             <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Файл">
@@ -108,17 +96,17 @@
                   <TableColumn fx:id="descriptionTableColumn" prefWidth="289.0" style="fx-font-color: blue;" text="Описание проблемы" />
               </columns>
             </TableView>
-            <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Отработанные заявки" textFill="#2e9e51">
+            <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Закрытые заявки" textFill="#2e9e51">
                <toggleGroup>
                   <ToggleGroup fx:id="reqGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtton" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
+            <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtonClick" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
          </children>
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane prefHeight="610.0" prefWidth="327.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER_LEFT">
+      <AnchorPane prefHeight="610.0" prefWidth="327.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Label layoutX="9.0" layoutY="9.0" text="Детали заявки:" textFill="#376bc5">
                <font>
@@ -145,10 +133,10 @@
                   <TextArea fx:id="worksDescriptionTextField" layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" />
                </children>
             </Pane>
-            <Button fx:id="addRequestButton" layoutX="9.0" layoutY="475.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="149.0" text="Добавить заявку" />
+            <Button fx:id="addRequestButton" defaultButton="true" layoutX="9.0" layoutY="475.0" mnemonicParsing="false" onAction="#AddRequestButtonClick" prefHeight="35.0" prefWidth="149.0" text="Добавить заявку" />
             <Button fx:id="editrequestButton" layoutX="165.0" layoutY="475.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Редактировать заявку" />
             <Button fx:id="closeRequestButton" layoutX="9.0" layoutY="519.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="306.0" text="Провести заявку" />
-            <Button fx:id="exitButton" layoutX="166.0" layoutY="591.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
+            <Button fx:id="exitButton" cancelButton="true" layoutX="166.0" layoutY="591.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
          </children>
          <opaqueInsets>
             <Insets />

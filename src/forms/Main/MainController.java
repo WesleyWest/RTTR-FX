@@ -123,12 +123,17 @@ public class MainController extends AppData {
     @FXML
     void ClosedRequestsRadioButtonClick(ActionEvent event) {
         closedRequestsFieldsPane.setVisible(true);
-
+                mainTableView.getStyleClass().set(1,"table-view-closed");
     }
 
     @FXML
-    void ActiveRequestsRadioButtton(ActionEvent event) {
+    void ActiveRequestsRadioButtonClick(ActionEvent event) {
         closedRequestsFieldsPane.setVisible(false);
+        mainTableView.getStyleClass().set(1,"table-view-active");
+    }
+
+    @FXML
+    void AddRequestButtonClick(ActionEvent event){
 
     }
 
