@@ -1,6 +1,8 @@
 package objects.Users;
 
-public class User {
+import conf.ObjectInterface;
+
+public class User implements ObjectInterface {
     private int userID;
     private String userName;
     private String userPassword;
@@ -17,7 +19,7 @@ public class User {
         this.userUndeletable = userUndeletable;
     }
 
-    public int getUserID() {
+    public Integer getID() {
         return userID;
     }
 

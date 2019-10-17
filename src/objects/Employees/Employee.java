@@ -1,8 +1,9 @@
 package objects.Employees;
 
+import conf.ObjectInterface;
 import objects.Users.User;
 
-public class Employee {
+public class Employee implements ObjectInterface {
     private Integer id;
     private String lastName;
     private String name;
@@ -21,7 +22,7 @@ public class Employee {
         this.user = user;
     }
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 

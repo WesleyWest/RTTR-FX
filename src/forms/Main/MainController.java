@@ -1,12 +1,15 @@
 package forms.Main;
 
 import conf.AppData;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import objects.Employees.Position;
 import objects.Request;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainController extends AppData {
@@ -117,6 +120,12 @@ public class MainController extends AppData {
     void initialize() {
         closedRequestsFieldsPane.setVisible(false);
         informLabel.setText("["+getUser().getUserRole()+"] "+getUser().getUserName());
+        setPositions(getDb().readPositionsFromDB());
+        setDivisions(getDb().readDivisionsFromDB());
+        setEmployees(getDb().readEmployeesFromDB());
+        setTypes(getDb().readSimpleDataFromDB("technic_types","Technic types"));
+        setStatuses(getDb().readSimpleDataFromDB("technic_statuses","Technic statuses"));
+
 
     }
 

@@ -1,6 +1,8 @@
 package objects.Employees;
 
-public class Division {
+import conf.ObjectInterface;
+
+public class Division implements ObjectInterface {
     private Integer id;
     private String code;
     private String description;
@@ -11,7 +13,7 @@ public class Division {
         this.description = description;
     }
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 
@@ -34,4 +36,6 @@ public class Division {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

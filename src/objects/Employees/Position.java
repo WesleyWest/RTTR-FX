@@ -1,6 +1,8 @@
 package objects.Employees;
 
-public class Position {
+import conf.ObjectInterface;
+
+public class Position implements ObjectInterface {
     private Integer id;
     private String position;
 
@@ -9,7 +11,7 @@ public class Position {
         this.position = position;
     }
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 
@@ -24,4 +26,5 @@ public class Position {
     public void setPosition(String position) {
         this.position = position;
     }
+
 }

@@ -16,11 +16,11 @@ import objects.Users.Role;
 import objects.Users.User;
 
 public class AppData {
-    private static User user=null;
-    private static MySQLDataBase db=null;
+    private static User user = null;
+    private static MySQLDataBase db = null;
 
-    private static ObservableList<Role> roles=null;
-    private static ObservableList<User> users=null;
+    private static ObservableList<Role> roles = null;
+    private static ObservableList<User> users = null;
 
     private static ObservableList<Position> positions;
     private static ObservableList<Division> divisions;
@@ -132,5 +132,12 @@ public class AppData {
         alert.setHeaderText(null);
         alert.setContentText(text);
         alert.showAndWait();
+    }
+
+    public static <T extends ObjectInterface> T getObjectByID(ObservableList<T> list, int ID) {
+        for (T t : list) {
+            if (t.getID() == ID) return t;
+        }
+        return null;
     }
 }

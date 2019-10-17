@@ -1,27 +1,10 @@
 package objects.Technic;
 
-public class TechnicStatus {
-    private String status;
-    private String description;
+import conf.TechnicInterface;
 
-    public TechnicStatus(String status, String description) {
-        this.status = status;
-        this.description = description;
-    }
+public class TechnicStatus extends TechnicInterface {
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public TechnicStatus(Integer id, String description) {
+        super(id, description);
     }
 }

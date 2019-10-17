@@ -1,8 +1,9 @@
 package objects.Technic;
 
+import conf.ObjectInterface;
 import objects.Employees.Employee;
 
-public class Technic {
+public class Technic implements ObjectInterface {
     private Integer id;
     private TechnicStatus status;
     private TechnicType type;
@@ -17,7 +18,7 @@ public class Technic {
         this.repairer = repairer;
     }
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 
