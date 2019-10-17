@@ -1,10 +1,10 @@
 package objects.Technic;
 
-public class TechicType {
+public class TechnicType {
     private String type;
     private String description;
 
-    public TechicType(String type, String description) {
+    public TechnicType(String type, String description) {
         this.type = type;
         this.description = description;
     }

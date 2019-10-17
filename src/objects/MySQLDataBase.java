@@ -1,5 +1,6 @@
 package objects;
 
+import conf.AppData;
 import conf.Configs;
 import forms.Login.LoginController;
 import javafx.collections.FXCollections;
@@ -54,7 +55,7 @@ public class MySQLDataBase extends Configs {
             statement.close();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            AppData.showAlert(e.getMessage());
             opened = false;
         }
         System.out.println("Role names was set...");
@@ -84,7 +85,7 @@ public class MySQLDataBase extends Configs {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            System.out.println("SQL exception: " + e.getLocalizedMessage());
+            AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
         System.out.println("Users was read...");
@@ -103,9 +104,9 @@ public class MySQLDataBase extends Configs {
             System.out.println("Connected successfully to: " + connectionString);
             opened = true;
         } catch (ClassNotFoundException e) {
-            System.out.println("Class not found: " + e.getLocalizedMessage());
+            AppData.showAlert("Class not found: " + e.getLocalizedMessage());
         } catch (SQLException e) {
-            System.out.println("SQL exception: " + e.getLocalizedMessage());
+            AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
         }
     }
 
@@ -114,7 +115,7 @@ public class MySQLDataBase extends Configs {
             connection.close();
             System.out.println("Connection to database is closed...");
         } catch (SQLException e) {
-            System.out.println(e.getLocalizedMessage());
+            AppData.showAlert(e.getLocalizedMessage());
         }
     }
 }

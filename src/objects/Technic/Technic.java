@@ -5,11 +5,11 @@ import objects.Employees.Employee;
 public class Technic {
     private Integer id;
     private TechnicStatus status;
-    private TechicType type;
+    private TechnicType type;
     private Employee owner;
     private Employee repairer;
 
-    public Technic(Integer id, TechnicStatus status, TechicType type, Employee owner, Employee repairer) {
+    public Technic(Integer id, TechnicStatus status, TechnicType type, Employee owner, Employee repairer) {
         this.id = id;
         this.status = status;
         this.type = type;
@@ -33,11 +33,11 @@ public class Technic {
         this.status = status;
     }
 
-    public TechicType getType() {
+    public TechnicType getType() {
         return type;
     }
 
-    public void setType(TechicType type) {
+    public void setType(TechnicType type) {
         this.type = type;
     }
 

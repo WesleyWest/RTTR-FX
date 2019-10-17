@@ -63,7 +63,6 @@ public class LoginController extends AppData{
             showAlert("Пользователь не найден.");
 
         } else {
-
             openMainWindow(event);
         }
 

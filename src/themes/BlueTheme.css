@@ -17,6 +17,7 @@
     -fx-background-color: transparent;
     -fx-text-fill: #992b2b;
 }
+
 .table-view-active .column-header-background .nested-column-header .table-column {
     -fx-background-color: linear-gradient(#d17470, #eac1b9, #d17470);
     -fx-border-color: #992b2b;
@@ -29,14 +30,10 @@
 }
 
 .table-view-active .placeholder {
-    -fx-background-color: #ead5c9;
+    -fx-background-color: #ead6d3;
     -fx-border-color: #992b2b;
     -fx-border-width: 0 1 1 1;
 }
-
-
-
-
 
 .table-view-closed .column-header-background .label {
     -fx-background-color: transparent;
@@ -44,7 +41,7 @@
 }
 
 .table-view-closed .column-header-background .nested-column-header .table-column {
-    -fx-background-color: linear-gradient(#5bbf5d, #d7ffcf, #5bbf5d);
+    -fx-background-color: linear-gradient(#7ed17c, #d7ffcf, #7ed17c);
     -fx-border-color: #397e39;
     -fx-border-width: 0 1 0 0;
 }
@@ -55,7 +52,7 @@
 }
 
 .table-view-closed .placeholder {
-    -fx-background-color: #d7ffcf;
+    -fx-background-color: #deffd9;
     -fx-border-color: #397e39;
     -fx-border-width: 0 1 1 1;
 }
@@ -109,7 +106,7 @@
 
 .button {
     -fx-background-color: #61a4ee,
-    linear-gradient(#a7d9f5,#eaf6fd, #a7d9f5);
+    linear-gradient(#a7d9f5, #eaf6fd, #a7d9f5);
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 3, 2, 1;
     -fx-padding: 3 10 3 10;
@@ -119,29 +116,30 @@
 }
 
 .button:hover {
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 150, 0.6), 5, 0.0, 0, 1);
 }
-.button:focused{
+
+.button:focused {
     -fx-border-color: black;
     -fx-border-width: 1;
-    -fx-border-radius: 5;
     -fx-border-style: dotted;
 
 }
+
 .button:pressed {
     -fx-background-color: #57a8d7,
-    linear-gradient(#eaf6fd,#a7d9f5,#eaf6fd);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.6) , 3, 0.0 , 0 , 1 );
+    linear-gradient(#eaf6fd, #a7d9f5, #eaf6fd);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 150, 0.6), 3, 0.0, 0, 1);
     -fx-label-padding: 2 0 0 2;
 }
 
-.user-button{
+.user-button {
     -fx-background-image: url('../resources/userid.png');
     -fx-background-size: 100% 100%;
 }
 
-.main-label .text{
-    -fx-fill: linear-gradient(#6c98d3,#eaf6fd, #6c98d3);
+.main-label .text {
+    -fx-fill: linear-gradient(#6c98d3, #eaf6fd, #6c98d3);
 }
 
 .text-field {

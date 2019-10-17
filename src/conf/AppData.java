@@ -9,7 +9,7 @@ import objects.Employees.Employee;
 import objects.Employees.Position;
 import objects.MySQLDataBase;
 import objects.Request;
-import objects.Technic.TechicType;
+import objects.Technic.TechnicType;
 import objects.Technic.Technic;
 import objects.Technic.TechnicStatus;
 import objects.Users.Role;
@@ -27,7 +27,7 @@ public class AppData {
     private static ObservableList<Employee> employees;
 
 
-    private static ObservableList<TechicType> types;
+    private static ObservableList<TechnicType> types;
     private static ObservableList<TechnicStatus> statuses;
     private static ObservableList<Technic> technic;
 
@@ -89,11 +89,11 @@ public class AppData {
         AppData.employees = employees;
     }
 
-    public static ObservableList<TechicType> getTypes() {
+    public static ObservableList<TechnicType> getTypes() {
         return types;
     }
 
-    public static void setTypes(ObservableList<TechicType> types) {
+    public static void setTypes(ObservableList<TechnicType> types) {
         AppData.types = types;
     }
 
