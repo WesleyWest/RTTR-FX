@@ -7,15 +7,20 @@ import java.sql.Timestamp;
 public class Request {
     private Integer ID;
     private Technic technic;
-    private Timestamp OpenDate;
-    private Timestamp CloseDate;
+    private Timestamp openDate;
+    private Timestamp closeDate;
     private String problemDescription;
     private String decisionDescription;
+    private boolean status;
 
-    public Request(Integer ID, Technic technic, Timestamp openDate) {
+    public Request(Integer ID, Technic technic, Timestamp openDate, Timestamp closeDate, String problemDescription, String decisionDescription, boolean status) {
         this.ID = ID;
         this.technic = technic;
-        OpenDate = openDate;
+        this.openDate = openDate;
+        this.closeDate = closeDate;
+        this.problemDescription = problemDescription;
+        this.decisionDescription = decisionDescription;
+        this.status = status;
     }
 
     public Integer getID() {
@@ -35,19 +40,19 @@ public class Request {
     }
 
     public Timestamp getOpenDate() {
-        return OpenDate;
+        return openDate;
     }
 
     public void setOpenDate(Timestamp openDate) {
-        OpenDate = openDate;
+        this.openDate = openDate;
     }
 
     public Timestamp getCloseDate() {
-        return CloseDate;
+        return closeDate;
     }
 
     public void setCloseDate(Timestamp closeDate) {
-        CloseDate = closeDate;
+        this.closeDate = closeDate;
     }
 
     public String getProblemDescription() {
@@ -64,5 +69,13 @@ public class Request {
 
     public void setDecisionDescription(String decisionDescription) {
         this.decisionDescription = decisionDescription;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

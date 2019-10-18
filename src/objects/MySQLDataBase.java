@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class MySQLDataBase extends Configs {
 
 
-
     private class tmpRoles {
         String roleCode;
         String roleName;
@@ -49,7 +48,7 @@ public class MySQLDataBase extends Configs {
             Statement statement = connection.createStatement();
             String query =
                     "SELECT * " +
-                            "FROM "+ tableName+
+                            "FROM " + tableName +
                             " ORDER BY 1";
 
             ResultSet rs = statement.executeQuery(query);
@@ -64,7 +63,7 @@ public class MySQLDataBase extends Configs {
             AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
-        System.out.println(objectName+" was read...");
+        System.out.println(objectName + " was read...");
         ObservableList<T> objects = FXCollections.observableArrayList(tmp);
         return objects;
     }
@@ -221,7 +220,7 @@ public class MySQLDataBase extends Configs {
                 Employee owner = AppData.getObjectByID(AppData.getEmployees(), e_owner);
                 Employee repairer = AppData.getObjectByID(AppData.getEmployees(), e_repairer);
 
-                tmp.add(new Technic(id,name,details,status,type,owner,repairer));
+                tmp.add(new Technic(id, name, details, status, type, owner, repairer));
             }
             rs.close();
             statement.close();
@@ -239,10 +238,45 @@ public class MySQLDataBase extends Configs {
         return technic;
     }
 
-    public ObservableList<Request> readActiveRequestsFromDB() {
+    public ObservableList<Request> readRequestsFromDB(boolean isClosed) {
 
+        ArrayList<Request> tmp = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query =
+                    "SELECT * " +
+                            " FROM requests " +
+                            " WHERE request_status=" + ((isClosed) ? 1 : 0)+
+                            " ORDER BY 1 ";
 
-        return null;
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int id = rs.getInt("request_id");
+                int tecnicID = rs.getInt("request_technic_id");
+                Timestamp openTime = rs.getTimestamp("request_open_date");
+                Timestamp closeTime = rs.getTimestamp("request_close_date");
+                String problemDescription = rs.getString("request_problem_description");
+                String decisionDescription = rs.getString("request_decision_description");
+                boolean status = rs.getBoolean("request_status");
+
+                Technic technic = AppData.getObjectByID(AppData.getTechnic(), tecnicID);
+
+                tmp.add(new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status));
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
+            opened = false;
+        }
+
+        System.out.println("Requests was read...");
+        System.out.println("---------------------");
+        System.out.println();
+
+        ObservableList<Request> requests = FXCollections.observableArrayList(tmp);
+
+        return requests;
     }
 
     public void open() {

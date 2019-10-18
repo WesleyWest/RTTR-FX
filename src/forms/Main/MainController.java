@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import objects.Employees.Division;
-import objects.Employees.Position;
 import objects.Request;
-import objects.Technic.TechnicType;
 
 import java.util.Date;
 
@@ -120,7 +117,7 @@ public class MainController extends AppData {
     void initialize() {
         closedRequestsFieldsPane.setVisible(false);
         informLabel.setText("[" + getUser().getUserRole() + "] " + getUser().getUserName());
-        getDb().readActiveRequestsFromDB();
+        setRequests(getDb().readRequestsFromDB(false));
     }
 
     @FXML
