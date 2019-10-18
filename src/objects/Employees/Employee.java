@@ -1,18 +1,19 @@
 package objects.Employees;
 
-import conf.ObjectInterface;
+import conf.AbstractObject;
+import conf.SimpleObject;
 import objects.Users.User;
 
-public class Employee implements ObjectInterface {
+public class Employee extends AbstractObject {
     private Integer id;
     private String lastName;
     private String name;
     private String middleName;
-    private Position position;
+    private SimpleObject position;
     private Division division;
     private User user;
 
-    public Employee(Integer id, String lastName, String name, String middleName, Position position, Division division, User user) {
+    public Employee(Integer id, String lastName, String name, String middleName, SimpleObject position, Division division, User user) {
         this.id = id;
         this.lastName = lastName;
         this.name = name;
@@ -54,11 +55,11 @@ public class Employee implements ObjectInterface {
         this.middleName = middleName;
     }
 
-    public Position getPosition() {
+    public SimpleObject getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
+    public void setPosition(SimpleObject position) {
         this.position = position;
     }
 
@@ -76,5 +77,18 @@ public class Employee implements ObjectInterface {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", position=" + position +
+                ", division=" + division +
+                ", user=" + user +
+                '}';
     }
 }

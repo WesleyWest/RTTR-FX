@@ -1,8 +1,8 @@
 package objects.Users;
 
-import conf.ObjectInterface;
+import conf.AbstractObject;
 
-public class User implements ObjectInterface {
+public class User extends AbstractObject {
     private int userID;
     private String userName;
     private String userPassword;

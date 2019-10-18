@@ -3,7 +3,6 @@ package objects;
 import objects.Technic.Technic;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Request {
     private Integer ID;

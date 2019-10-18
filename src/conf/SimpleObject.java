@@ -1,10 +1,10 @@
 package conf;
 
-public class TechnicInterface implements ObjectInterface {
+public class SimpleObject<T> extends AbstractObject {
     private Integer id;
     String description;
 
-    public TechnicInterface(Integer id, String description) {
+    public SimpleObject(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -23,5 +23,10 @@ public class TechnicInterface implements ObjectInterface {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return getID()+": "+getDescription();
     }
 }

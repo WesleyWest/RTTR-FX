@@ -1,41 +1,17 @@
 package objects.Employees;
 
-import conf.ObjectInterface;
+import conf.SimpleObject;
 
-public class Division implements ObjectInterface {
-    private Integer id;
+public class Division extends SimpleObject {
+
     private String code;
-    private String description;
 
-    public Division(Integer id, String code, String description) {
-        this.id = id;
-        this.code = code;
-        this.description = description;
+    public Division(Integer id, String description, String code) {
+        super(id, description);
+        this.code=code;
     }
 
-    public Integer getID() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 
 }

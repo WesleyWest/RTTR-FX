@@ -1,15 +1,15 @@
 package forms.Main;
 
 import conf.AppData;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import objects.Employees.Division;
 import objects.Employees.Position;
 import objects.Request;
+import objects.Technic.TechnicType;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class MainController extends AppData {
@@ -119,35 +119,29 @@ public class MainController extends AppData {
     @FXML
     void initialize() {
         closedRequestsFieldsPane.setVisible(false);
-        informLabel.setText("["+getUser().getUserRole()+"] "+getUser().getUserName());
-        setPositions(getDb().readPositionsFromDB());
-        setDivisions(getDb().readDivisionsFromDB());
-        setEmployees(getDb().readEmployeesFromDB());
-        setTypes(getDb().readSimpleDataFromDB("technic_types","Technic types"));
-        setStatuses(getDb().readSimpleDataFromDB("technic_statuses","Technic statuses"));
-
-
+        informLabel.setText("[" + getUser().getUserRole() + "] " + getUser().getUserName());
+        getDb().readActiveRequestsFromDB();
     }
 
     @FXML
     void ClosedRequestsRadioButtonClick(ActionEvent event) {
         closedRequestsFieldsPane.setVisible(true);
-                mainTableView.getStyleClass().set(1,"table-view-closed");
+        mainTableView.getStyleClass().set(1, "table-view-closed");
     }
 
     @FXML
     void ActiveRequestsRadioButtonClick(ActionEvent event) {
         closedRequestsFieldsPane.setVisible(false);
-        mainTableView.getStyleClass().set(1,"table-view-active");
+        mainTableView.getStyleClass().set(1, "table-view-active");
     }
 
     @FXML
-    void AddRequestButtonClick(ActionEvent event){
+    void AddRequestButtonClick(ActionEvent event) {
 
     }
 
     @FXML
-    void exitFromApp(ActionEvent event){
+    void exitFromApp(ActionEvent event) {
         System.exit(0);
     }
 }

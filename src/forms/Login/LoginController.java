@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,7 +18,7 @@ import objects.Users.User;
 
 import java.io.IOException;
 
-public class LoginController extends AppData{
+public class LoginController extends AppData {
 
     @FXML
     private Button exitButton;
@@ -31,7 +33,6 @@ public class LoginController extends AppData{
     private PasswordField passwordField;
 
 
-
     @FXML
     void initialize() {
         loginTextField.setText("Stas");
@@ -42,7 +43,7 @@ public class LoginController extends AppData{
 
     @FXML
     void exitButtonClick(ActionEvent event) {
-        if(getDb() != null) getDb().close();
+        if (getDb() != null) getDb().close();
         System.exit(0);
     }
 
@@ -50,8 +51,7 @@ public class LoginController extends AppData{
     @FXML
     void loginButtonClick(ActionEvent event) {
 
-        if(getUsers()==null ) getUsersFromDB();
-
+        if (getUsers() == null) getUsersFromDB();
 
         String userName = loginTextField.getText();
         String userPassword = passwordField.getText();
@@ -63,6 +63,15 @@ public class LoginController extends AppData{
             showAlert("Пользователь не найден.");
 
         } else {
+
+            setDivisions(getDb().readDivisionsFromDB());
+            setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
+            setEmployees(getDb().readEmployeesFromDB());
+
+            setTypes(getDb().readSimpleObjectsListFromDB("technic_types", "Technic types"));
+            setStatuses(getDb().readSimpleObjectsListFromDB("technic_statuses", "Technic statuses"));
+            setTechnic(getDb().readTechnicFromDB());
+
             openMainWindow(event);
         }
 
@@ -71,7 +80,7 @@ public class LoginController extends AppData{
     private void openMainWindow(ActionEvent event) {
         try {
             Node source = (Node) event.getSource();
-            Stage oldStage  = (Stage) source.getScene().getWindow();
+            Stage oldStage = (Stage) source.getScene().getWindow();
             oldStage.close();
 
             Stage stage = new Stage();
@@ -92,7 +101,7 @@ public class LoginController extends AppData{
     }
 
     private void getUsersFromDB() {
-        setDb(new MySQLDataBase(this));
+        setDb(new MySQLDataBase());
         getDb().open();
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());

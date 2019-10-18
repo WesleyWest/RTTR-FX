@@ -1,30 +1,9 @@
 package objects.Employees;
 
-import conf.ObjectInterface;
+import conf.SimpleObject;
 
-public class Position implements ObjectInterface {
-    private Integer id;
-    private String position;
-
-    public Position(Integer id, String position) {
-        this.id = id;
-        this.position = position;
+public class Position extends SimpleObject {
+    public Position(Integer id, String description) {
+        super(id, description);
     }
-
-    public Integer getID() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
 }

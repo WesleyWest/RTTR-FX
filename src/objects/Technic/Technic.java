@@ -1,22 +1,29 @@
 package objects.Technic;
 
-import conf.ObjectInterface;
+import conf.AbstractObject;
+import conf.SimpleObject;
 import objects.Employees.Employee;
 
-public class Technic implements ObjectInterface {
+public class Technic extends AbstractObject {
     private Integer id;
-    private TechnicStatus status;
-    private TechnicType type;
+    private String name;
+    private String details;
+    private SimpleObject<TechnicStatus> status;
+    private SimpleObject<TechnicType> type;
     private Employee owner;
     private Employee repairer;
 
-    public Technic(Integer id, TechnicStatus status, TechnicType type, Employee owner, Employee repairer) {
+    public Technic(Integer id, String name, String details, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner, Employee repairer) {
         this.id = id;
+        this.name = name;
+        this.details = details;
         this.status = status;
         this.type = type;
         this.owner = owner;
         this.repairer = repairer;
     }
+
+
 
     public Integer getID() {
         return id;
@@ -26,19 +33,35 @@ public class Technic implements ObjectInterface {
         this.id = id;
     }
 
-    public TechnicStatus getStatus() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public SimpleObject<TechnicStatus> getStatus() {
         return status;
     }
 
-    public void setStatus(TechnicStatus status) {
+    public void setStatus(SimpleObject<TechnicStatus> status) {
         this.status = status;
     }
 
-    public TechnicType getType() {
+    public SimpleObject<TechnicType> getType() {
         return type;
     }
 
-    public void setType(TechnicType type) {
+    public void setType(SimpleObject<TechnicType> type) {
         this.type = type;
     }
 
@@ -58,3 +81,8 @@ public class Technic implements ObjectInterface {
         this.repairer = repairer;
     }
 }
+
+
+
+
+
