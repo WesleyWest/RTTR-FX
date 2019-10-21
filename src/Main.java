@@ -1,3 +1,4 @@
+import conf.AppData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,14 +15,17 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-            Parent root = FXMLLoader.load(getClass().getResource("forms/Login/LoginWindow.fxml"));
-            primaryStage.setTitle("RTTR-Master");
-            primaryStage.getIcons().add(new Image("resources/main.png"));
-            primaryStage.setResizable(false);
-            primaryStage.setScene(new Scene(root, 465, 328));
-            primaryStage.show();
-        }
-
+        AppData.setPathCSS("/themes/BlueTheme.css");
+        Parent root = FXMLLoader.load(getClass().getResource("forms/Login/LoginWindow.fxml"));
+        primaryStage.setTitle("RTTR-Master");
+        primaryStage.getIcons().add(new Image("resources/main.png"));
+        primaryStage.setResizable(false);
+        Scene scene = new Scene(root, 465, 328);
+        scene.getStylesheets().add(AppData.getPathCSS());
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     }
+
+
+}

@@ -19,16 +19,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../themes/BlueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
+<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
    <top>
       <AnchorPane minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" style="-fx-background-color: #376bc5;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="391.0" layoutY="17.0" styleClass="main-label" text="RTTR-Master" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="17.0">
+            <Label layoutX="391.0" layoutY="18.0" styleClass="main-label" text="RTTR-Master">
                <font>
                   <Font name="Eras Bold ITC" size="38.0" />
                </font>
             </Label>
-            <Label layoutX="477.0" layoutY="54.0" prefHeight="18.0" prefWidth="198.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+            <Label layoutX="477.0" layoutY="54.0" prefHeight="18.0" prefWidth="161.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
             <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Файл">
@@ -66,7 +66,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Button layoutX="950.0" layoutY="17.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="52.0" styleClass="user-button">
+            <Button layoutX="950.0" layoutY="17.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="52.0" styleClass="user-button" AnchorPane.rightAnchor="22.0">
                <contextMenu>
                   <ContextMenu>
                     <items>
@@ -88,12 +88,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" prefHeight="611.0" prefWidth="679.0" styleClass="table-view-active" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
+            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" prefHeight="611.0" prefWidth="679.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
               <columns>
                 <TableColumn fx:id="idTableColumn" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="№&#10;заявки" />
-                <TableColumn fx:id="technicTableColumn" prefWidth="212.0" text="Техника на ремонт" />
-                  <TableColumn fx:id="dateTableColumn" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="Дата&#10;регистрации&#10;заявки" />
-                  <TableColumn fx:id="descriptionTableColumn" prefWidth="289.0" style="fx-font-color: blue;" text="Описание проблемы" />
+                <TableColumn fx:id="technicTableColumn" prefWidth="202.0" text="Техника на ремонт" />
+                  <TableColumn fx:id="dateTableColumn" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Дата&#10;регистрации&#10;заявки" />
+                  <TableColumn fx:id="descriptionTableColumn" prefWidth="257.0" style="fx-font-color: blue;" text="Описание проблемы" />
               </columns>
             </TableView>
             <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Закрытые заявки" textFill="#2e9e51">
@@ -133,10 +133,14 @@
                   <TextArea fx:id="worksDescriptionTextField" layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" />
                </children>
             </Pane>
-            <Button fx:id="addRequestButton" defaultButton="true" layoutX="9.0" layoutY="475.0" mnemonicParsing="false" onAction="#AddRequestButtonClick" prefHeight="35.0" prefWidth="149.0" text="Добавить заявку" />
-            <Button fx:id="editrequestButton" layoutX="165.0" layoutY="475.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Редактировать заявку" />
-            <Button fx:id="closeRequestButton" layoutX="9.0" layoutY="519.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="306.0" text="Провести заявку" />
-            <Button fx:id="exitButton" cancelButton="true" layoutX="166.0" layoutY="591.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
+            <AnchorPane layoutX="9.0" layoutY="475.0" AnchorPane.bottomAnchor="10.0">
+               <children>
+                  <Button fx:id="addRequestButton" defaultButton="true" mnemonicParsing="false" onAction="#AddRequestButtonClick" prefHeight="35.0" prefWidth="149.0" text="Добавить заявку" />
+                  <Button fx:id="editrequestButton" layoutX="156.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Редактировать заявку" />
+                  <Button fx:id="closeRequestButton" layoutY="44.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="306.0" text="Провести заявку" />
+                  <Button fx:id="exitButton" cancelButton="true" layoutX="157.0" layoutY="116.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
+               </children>
+            </AnchorPane>
          </children>
          <opaqueInsets>
             <Insets />
@@ -144,7 +148,7 @@
       </AnchorPane>
    </right>
    <bottom>
-      <AnchorPane prefHeight="20.0" prefWidth="1024.0" style="-fx-background-color: #d2e7f9;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="20.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="informLabel" layoutX="13.0" text="    " textFill="#376bc5" />
          </children></AnchorPane>

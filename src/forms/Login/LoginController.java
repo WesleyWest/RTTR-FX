@@ -37,13 +37,12 @@ public class LoginController extends AppData {
     void initialize() {
         loginTextField.setText("Stas");
         passwordField.setText("123");
-
-
     }
 
     @FXML
     void exitButtonClick(ActionEvent event) {
-        if (getDb() != null) getDb().close();
+        if (getDb() != null)
+            if(getDb().isOpen()) getDb().close();
         System.exit(0);
     }
 
@@ -58,12 +57,9 @@ public class LoginController extends AppData {
 
         if (userName.length() == 0 || userPassword.length() == 0) {
             showAlert("Заполните все поля.");
-
         } else if (!(userFound(userName, userPassword))) {
             showAlert("Пользователь не найден.");
-
         } else {
-
             setDivisions(getDb().readDivisionsFromDB());
             setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
             setEmployees(getDb().readEmployeesFromDB());
@@ -86,15 +82,15 @@ public class LoginController extends AppData {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../Main/MainWindow.fxml"));
             stage.setTitle("RTTR-Master (Requests to Technics Repair)");
-            stage.setMinHeight(768);
-            stage.setMinWidth(1024);
+            stage.setMinWidth(1044);
+            stage.setMinHeight(808);
             stage.getIcons().add(new Image("resources/main.png"));
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root,1024,768);
+            scene.getStylesheets().add(getPathCSS());
+            stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.show();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

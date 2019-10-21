@@ -9,11 +9,14 @@ import objects.Employees.Employee;
 import objects.Employees.Position;
 import objects.MySQLDataBase;
 import objects.Request;
-import objects.Technic.TechnicType;
 import objects.Technic.Technic;
 import objects.Technic.TechnicStatus;
+import objects.Technic.TechnicType;
 import objects.Users.Role;
 import objects.Users.User;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class AppData {
     private static User user = null;
@@ -33,6 +36,15 @@ public class AppData {
 
     private static ObservableList<Request> requests;
 
+    private static String pathCSS="";
+
+    public static String getPathCSS() {
+        return pathCSS;
+    }
+
+    public static void setPathCSS(String pathCSS) {
+        AppData.pathCSS = pathCSS;
+    }
 
     public static ObservableList<SimpleObject<Position>> getPositions() {
         return positions;
@@ -138,13 +150,22 @@ public class AppData {
     }
 
     public static <T extends AbstractObject> T getObjectByID(ObservableList<T> list, int ID) {
-
         for (T element : list) {
             if (element.getID() == ID) {
                 return element;
             }
         }
         return null;
+    }
+
+    public static void printInLog(String str) {
+        if (str.length() != 0) {
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+
+            System.out.println(timeStamp + ": " + str);
+        } else {
+            System.out.println();
+        }
     }
 
 }

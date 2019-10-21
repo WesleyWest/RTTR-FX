@@ -31,16 +31,17 @@ public class Request {
         this.ID = ID;
     }
 
-    public Technic getTechnic() {
-        return technic;
+    public String getTechnic() {
+        return technic.getName();
     }
 
     public void setTechnic(Technic technic) {
         this.technic = technic;
     }
 
-    public Timestamp getOpenDate() {
-        return openDate;
+    public String getOpenDate() {
+        String openDateStr=openDate.toString();
+        return openDateStr.substring(0,openDateStr.length()-5);
     }
 
     public void setOpenDate(Timestamp openDate) {

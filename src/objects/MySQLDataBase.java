@@ -63,7 +63,7 @@ public class MySQLDataBase extends Configs {
             AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
-        System.out.println(objectName + " was read...");
+        AppData.printInLog(objectName + " was read...");
         ObservableList<T> objects = FXCollections.observableArrayList(tmp);
         return objects;
     }
@@ -90,7 +90,7 @@ public class MySQLDataBase extends Configs {
             AppData.showAlert(e.getMessage());
             opened = false;
         }
-        System.out.println("Roles was set...");
+        AppData.printInLog("Roles was set...");
 
     }
 
@@ -120,9 +120,9 @@ public class MySQLDataBase extends Configs {
             AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
-        System.out.println("Users was read...");
-        System.out.println("---------------------");
-        System.out.println();
+        AppData.printInLog("Users was read...");
+        AppData.printInLog("---------------------");
+        AppData.printInLog("");
         ObservableList<User> users = FXCollections.observableArrayList(tmp);
         return users;
     }
@@ -141,7 +141,7 @@ public class MySQLDataBase extends Configs {
                 int id = rs.getInt("division_id");
                 String code = rs.getString("division_code");
                 String description = rs.getString("division_description");
-//                System.out.println(id+": ["+code+"] "+description);
+//                AppData.printInLog(id+": ["+code+"] "+description);
                 tmp.add(new Division(id, code, description));
             }
             rs.close();
@@ -150,7 +150,7 @@ public class MySQLDataBase extends Configs {
             AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
-        System.out.println("Employee divisions was read...");
+        AppData.printInLog("Employee divisions was read...");
         ObservableList<Division> divisions = FXCollections.observableArrayList(tmp);
         return divisions;
     }
@@ -186,9 +186,9 @@ public class MySQLDataBase extends Configs {
             AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
-        System.out.println("Employees was read...");
-        System.out.println("---------------------");
-        System.out.println();
+        AppData.printInLog("Employees was read...");
+        AppData.printInLog("---------------------");
+        AppData.printInLog("");
 
         ObservableList<Employee> employees = FXCollections.observableArrayList(tmp);
 
@@ -229,9 +229,9 @@ public class MySQLDataBase extends Configs {
             opened = false;
         }
 
-        System.out.println("Technic was read...");
-        System.out.println("---------------------");
-        System.out.println();
+        AppData.printInLog("Technic was read...");
+        AppData.printInLog("---------------------");
+        AppData.printInLog("");
 
         ObservableList<Technic> technic = FXCollections.observableArrayList(tmp);
 
@@ -270,9 +270,9 @@ public class MySQLDataBase extends Configs {
             opened = false;
         }
 
-        System.out.println("Requests was read...");
-        System.out.println("---------------------");
-        System.out.println();
+        AppData.printInLog("Requests was read...");
+        AppData.printInLog("---------------------");
+        AppData.printInLog("");
 
         ObservableList<Request> requests = FXCollections.observableArrayList(tmp);
 
@@ -282,13 +282,13 @@ public class MySQLDataBase extends Configs {
     public void open() {
         try {
             String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbSchema;
-            System.out.println("Trying to connect to the DB...");
+            AppData.printInLog("Trying to connect to the DB...");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(connectionString, dbUser, dbPass);
-            System.out.println("Connected successfully to: " + connectionString);
-            System.out.println("---------------------");
-            System.out.println();
+            AppData.printInLog("Connected successfully to: " + connectionString);
+            AppData.printInLog("---------------------");
+            AppData.printInLog("");
             opened = true;
         } catch (ClassNotFoundException e) {
             AppData.showAlert("Class not found: " + e.getLocalizedMessage());
@@ -300,7 +300,7 @@ public class MySQLDataBase extends Configs {
     public void close() {
         try {
             connection.close();
-            System.out.println("Connection to database is closed...");
+            AppData.printInLog("Connection to database is closed...");
         } catch (SQLException e) {
             AppData.showAlert(e.getLocalizedMessage());
         }

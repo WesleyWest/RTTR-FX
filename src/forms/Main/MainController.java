@@ -4,9 +4,11 @@ import conf.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import objects.Request;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class MainController extends AppData {
@@ -57,7 +59,7 @@ public class MainController extends AppData {
     private TableColumn<Request, String> technicTableColumn;
 
     @FXML
-    private TableColumn<Request, Date> dateTableColumn;
+    private TableColumn<Request, String> dateTableColumn;
 
     @FXML
     private TableColumn<Request, String> descriptionTableColumn;
@@ -113,22 +115,47 @@ public class MainController extends AppData {
     @FXML
     private Label informLabel;
 
+
     @FXML
     void initialize() {
+        mainTableView.getStyleClass().add("table-view-active");
+//        mainTableView.setRowFactory();
         closedRequestsFieldsPane.setVisible(false);
         informLabel.setText("[" + getUser().getUserRole() + "] " + getUser().getUserName());
-        setRequests(getDb().readRequestsFromDB(false));
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
+        technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("openDate"));
+        descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("problemDescription"));
+
+        idTableColumn.getStyleClass().add("CENTER");
+        dateTableColumn.getStyleClass().add("center");
+
+        mainTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
+        changeTableView(false);
+        mainTableView.requestFocus();
     }
+
+    private void changeTableView(boolean isClosed) {
+        setRequests(getDb().readRequestsFromDB(isClosed));
+        mainTableView.setItems(getRequests());
+        mainTableView.getSelectionModel().select(0);
+    }
+
 
     @FXML
     void ClosedRequestsRadioButtonClick(ActionEvent event) {
         closedRequestsFieldsPane.setVisible(true);
+        changeTableView(true);
+
         mainTableView.getStyleClass().set(1, "table-view-closed");
     }
 
     @FXML
     void ActiveRequestsRadioButtonClick(ActionEvent event) {
         closedRequestsFieldsPane.setVisible(false);
+        changeTableView(false);
         mainTableView.getStyleClass().set(1, "table-view-active");
     }
 
@@ -139,6 +166,7 @@ public class MainController extends AppData {
 
     @FXML
     void exitFromApp(ActionEvent event) {
+        getDb().close();
         System.exit(0);
     }
 }
