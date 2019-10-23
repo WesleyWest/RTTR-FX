@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `technic_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technic_types` (
-  `technic_type` varchar(20) NOT NULL,
+  `technic_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `technic_description` varchar(120) NOT NULL,
-  PRIMARY KEY (`technic_type`),
-  UNIQUE KEY `type_UNIQUE` (`technic_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`technic_type_id`),
+  UNIQUE KEY `type_UNIQUE` (`technic_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `technic_types` (
 
 LOCK TABLES `technic_types` WRITE;
 /*!40000 ALTER TABLE `technic_types` DISABLE KEYS */;
+INSERT INTO `technic_types` VALUES (1,'Системный блок'),(2,'Монитор'),(3,'Клавиатура'),(4,'Манипулятор \"мышь\"'),(5,'Принтер'),(6,'Сканер'),(7,'МФУ'),(8,'Коммуникационное оборудование'),(9,'Прочее'),(10,'Телефония');
 /*!40000 ALTER TABLE `technic_types` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-10 12:19:57
+-- Dump completed on 2019-10-23 17:40:36

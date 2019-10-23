@@ -16,19 +16,25 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
    <top>
       <AnchorPane minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" style="-fx-background-color: #376bc5;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="391.0" layoutY="18.0" styleClass="main-label" text="RTTR-Master">
-               <font>
-                  <Font name="Eras Bold ITC" size="38.0" />
-               </font>
-            </Label>
-            <Label layoutX="477.0" layoutY="54.0" prefHeight="18.0" prefWidth="161.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+            <Pane layoutX="436.0" layoutY="18.0">
+               <children>
+                  <Label styleClass="main-label" text="RTTR-Master">
+                     <font>
+                        <Font name="Eras Bold ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="82.0" layoutY="37.0" prefHeight="18.0" prefWidth="161.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+               </children>
+            </Pane>
             <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Файл">
@@ -66,7 +72,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Button layoutX="950.0" layoutY="17.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="52.0" styleClass="user-button" AnchorPane.rightAnchor="22.0">
+            <Button fx:id="userButton" layoutX="950.0" layoutY="17.0" mnemonicParsing="false" onAction="#userButtonClick" prefHeight="47.0" prefWidth="52.0" styleClass="user-button" AnchorPane.rightAnchor="22.0">
                <contextMenu>
                   <ContextMenu>
                     <items>
@@ -81,19 +87,19 @@
       <AnchorPane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <AnchorPane prefHeight="628.0" prefWidth="692.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER_LEFT">
+      <AnchorPane prefHeight="636.0" prefWidth="1044.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Label layoutX="14.0" layoutY="5.0" text="Реестр заявок: " textFill="#376bc5">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" prefHeight="611.0" prefWidth="679.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0">
+            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" maxWidth="932.0" onKeyReleased="#mainTableViewKeyReleased" prefHeight="611.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="25.0">
               <columns>
                 <TableColumn fx:id="idTableColumn" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="№&#10;заявки" />
                 <TableColumn fx:id="technicTableColumn" prefWidth="202.0" text="Техника на ремонт" />
                   <TableColumn fx:id="dateTableColumn" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Дата&#10;регистрации&#10;заявки" />
-                  <TableColumn fx:id="descriptionTableColumn" prefWidth="257.0" style="fx-font-color: blue;" text="Описание проблемы" />
+                  <TableColumn fx:id="descriptionTableColumn" prefWidth="257.0" text="Описание проблемы" />
               </columns>
             </TableView>
             <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Закрытые заявки" textFill="#2e9e51">
@@ -102,55 +108,65 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtonClick" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
+            <AnchorPane layoutX="660.0" layoutY="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-13.0" AnchorPane.topAnchor="16.0">
+               <children>
+                  <Label layoutX="123.0" layoutY="6.0" text="Детали заявки:" textFill="#376bc5">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="296.0" layoutY="19.0" text="№ заявки" textFill="#376bc5" />
+                  <TextField fx:id="idTextField" editable="false" layoutX="266.0" layoutY="35.0" prefHeight="25.0" prefWidth="84.0" />
+                  <Label layoutX="2.0" layoutY="145.0" text="Техника на ремонт" textFill="#376bc5" />
+                  <TextField fx:id="technicField" editable="false" layoutY="160.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="1.0" layoutY="103.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
+                  <TextField fx:id="requestOpenTimeField" editable="false" layoutY="118.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="1.0" layoutY="186.0" text="Материально-ответственное лицо" textFill="#376bc5" />
+                  <TextField fx:id="ownerTextField" editable="false" layoutY="202.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutY="229.0" text="Ответственный за ремонт" textFill="#376bc5" />
+                  <TextField fx:id="repairerTextField" editable="false" layoutY="244.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutY="270.0" text="Описание проблемы" textFill="#376bc5" />
+                  <AnchorPane fx:id="closedRequestsAnchorPane" layoutX="1.0" layoutY="346.0" prefHeight="161.0" prefWidth="351.0">
+                     <children>
+                        <Label layoutY="44.0" text="Дата и время закрытия заявки" textFill="#376bc5" />
+                        <TextField fx:id="requestCloseTimeField" editable="false" layoutX="-1.0" layoutY="59.0" prefHeight="25.0" prefWidth="350.0" />
+                        <Label layoutY="86.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
+                        <TextArea fx:id="worksDescriptionTextArea" editable="false" layoutX="-1.0" layoutY="101.0" prefHeight="60.0" prefWidth="350.0" />
+                        <Label layoutX="1.0" layoutY="2.0" text="Сотрудник, закрывший заявку" textFill="#376bc5" />
+                        <TextField fx:id="closerTextField" editable="false" layoutX="-1.0" layoutY="17.0" prefHeight="25.0" prefWidth="350.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="-1.0" layoutY="499.0" prefHeight="122.0" prefWidth="350.0" AnchorPane.bottomAnchor="-1.0">
+                     <children>
+                        <Button fx:id="addRequestButton" defaultButton="true" layoutY="11.0" mnemonicParsing="false" onAction="#AddRequestButtonClick" prefHeight="33.0" prefWidth="170.0" text="Добавить заявку" />
+                        <Button fx:id="editrequestButton" disable="true" layoutX="179.0" layoutY="11.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="172.0" text="Редактировать заявку" />
+                        <Button fx:id="closeRequestButton" layoutY="49.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="351.0" text="Провести заявку" />
+                        <Button fx:id="exitButton" cancelButton="true" layoutX="178.0" layoutY="89.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="33.0" prefWidth="173.0" text="Выход" />
+                     </children>
+                  </AnchorPane>
+                  <TextArea fx:id="problemDescriptionTextArea" editable="false" layoutY="286.0" prefHeight="60.0" prefWidth="350.0" />
+                  <Label layoutX="1.0" layoutY="61.0" text="Автор заявки" textFill="#376bc5" />
+                  <TextField fx:id="authorTextField" editable="false" layoutY="77.0" prefHeight="25.0" prefWidth="350.0" />
+               </children>
+            </AnchorPane>
+            <VBox fx:id="popOverVBox" layoutX="769.0" layoutY="218.0" />
          </children>
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane prefHeight="610.0" prefWidth="327.0" BorderPane.alignment="CENTER_LEFT">
+      <HBox BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="9.0" layoutY="9.0" text="Детали заявки:" textFill="#376bc5">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="9.0" layoutY="33.0" text="№ заявки" textFill="#376bc5" />
-            <TextField fx:id="idTextField" layoutX="8.0" layoutY="50.0" prefHeight="25.0" prefWidth="75.0" />
-            <Label layoutX="11.0" layoutY="75.0" text="Техника на ремонт" textFill="#376bc5" />
-            <TextField fx:id="techinc" layoutX="8.0" layoutY="92.0" prefHeight="25.0" prefWidth="307.0" />
-            <Label layoutX="12.0" layoutY="117.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
-            <TextField fx:id="dateTimeTextField" layoutX="8.0" layoutY="134.0" prefHeight="25.0" prefWidth="307.0" />
-            <Label layoutX="10.0" layoutY="159.0" text="Материально-ответственное лицо" textFill="#376bc5" />
-            <TextField fx:id="ownerTextField" layoutX="7.0" layoutY="176.0" prefHeight="25.0" prefWidth="307.0" />
-            <Label layoutX="10.0" layoutY="201.0" text="Ответственный за ремонт" textFill="#376bc5" />
-            <TextField fx:id="repairerTextField" layoutX="8.0" layoutY="218.0" prefHeight="25.0" prefWidth="307.0" />
-            <Label layoutX="10.0" layoutY="243.0" text="Описание проблемы" textFill="#376bc5" />
-            <TextArea fx:id="problemDescriptionTextArea" layoutX="7.0" layoutY="260.0" prefHeight="67.0" prefWidth="307.0" />
-            <Pane fx:id="closedRequestsFieldsPane" layoutX="2.0" layoutY="332.0" prefHeight="155.0" prefWidth="325.0" style="-fx-background-color: #FAFAFA;">
-               <children>
-                  <Label layoutX="9.0" layoutY="-1.0" text="Дата и время проведения заявки" textFill="#376bc5" />
-                  <TextField fx:id="dateTimeClosedRequestTextField" layoutX="6.0" layoutY="16.0" prefHeight="25.0" prefWidth="307.0" />
-                  <Label layoutX="9.0" layoutY="42.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
-                  <TextArea fx:id="worksDescriptionTextField" layoutX="6.0" layoutY="59.0" prefHeight="67.0" prefWidth="307.0" />
-               </children>
-            </Pane>
-            <AnchorPane layoutX="9.0" layoutY="475.0" AnchorPane.bottomAnchor="10.0">
-               <children>
-                  <Button fx:id="addRequestButton" defaultButton="true" mnemonicParsing="false" onAction="#AddRequestButtonClick" prefHeight="35.0" prefWidth="149.0" text="Добавить заявку" />
-                  <Button fx:id="editrequestButton" layoutX="156.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Редактировать заявку" />
-                  <Button fx:id="closeRequestButton" layoutY="44.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="306.0" text="Провести заявку" />
-                  <Button fx:id="exitButton" cancelButton="true" layoutX="157.0" layoutY="116.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
-               </children>
-            </AnchorPane>
+            <AnchorPane HBox.hgrow="ALWAYS" />
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </AnchorPane>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </HBox>
    </right>
    <bottom>
       <AnchorPane prefHeight="20.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="informLabel" layoutX="13.0" text="    " textFill="#376bc5" />
+            <Label fx:id="informLabel" layoutX="13.0" layoutY="1.0" text="    " textFill="#376bc5" />
          </children></AnchorPane>
    </bottom>
 </BorderPane>

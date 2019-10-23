@@ -2,6 +2,7 @@ package objects.Employees;
 
 import conf.AbstractObject;
 import conf.SimpleObject;
+import javafx.collections.ObservableList;
 import objects.Users.User;
 
 public class Employee extends AbstractObject {
@@ -21,6 +22,19 @@ public class Employee extends AbstractObject {
         this.position = position;
         this.division = division;
         this.user = user;
+    }
+
+    public static String getFullEmployeeDescription(Employee employee) {
+        return employee.position.getDescription() + " " + employee.division.getDescription() +
+                " " + employee.lastName + " " + employee.name + " " + employee.getMiddleName();
+    }
+
+    public static Employee getEmployeeByUserID (ObservableList<Employee> employees, int userID){
+        for (Employee employee : employees) {
+            if (employee.getUser().getID()==userID) return employee;
+        }
+
+        return null;
     }
 
     public Integer getID() {
@@ -48,7 +62,11 @@ public class Employee extends AbstractObject {
     }
 
     public String getMiddleName() {
-        return middleName;
+        if (middleName != null) {
+            return middleName;
+        } else {
+            return "";
+        }
     }
 
     public void setMiddleName(String middleName) {

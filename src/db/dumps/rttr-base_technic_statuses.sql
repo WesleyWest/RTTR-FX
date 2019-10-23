@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `technic_statuses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technic_statuses` (
-  `technic_status` varchar(20) NOT NULL,
-  `technic_status_description` varchar(45) NOT NULL,
-  PRIMARY KEY (`technic_status`),
-  UNIQUE KEY `status_UNIQUE` (`technic_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='	';
+  `technic_status_id` int(11) NOT NULL AUTO_INCREMENT,
+  `technic_status_description` varchar(128) NOT NULL,
+  PRIMARY KEY (`technic_status_id`),
+  UNIQUE KEY `status_UNIQUE` (`technic_status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='	';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `technic_statuses` (
 
 LOCK TABLES `technic_statuses` WRITE;
 /*!40000 ALTER TABLE `technic_statuses` DISABLE KEYS */;
+INSERT INTO `technic_statuses` VALUES (1,'в работе'),(2,'готово к работе'),(3,'неисправно'),(4,'списано');
 /*!40000 ALTER TABLE `technic_statuses` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-10 12:19:57
+-- Dump completed on 2019-10-23 17:40:36

@@ -23,24 +23,24 @@ DROP TABLE IF EXISTS `technic`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technic` (
-  `technic_id` int(11) NOT NULL,
+  `technic_id` int(11) NOT NULL AUTO_INCREMENT,
   `technic_name` varchar(128) NOT NULL,
   `technic_details` varchar(256) DEFAULT NULL,
-  `technic_status` varchar(20) NOT NULL,
-  `technic_type` varchar(20) NOT NULL,
+  `technic_status_id` int(11) NOT NULL,
+  `technic_type_id` int(11) NOT NULL,
   `technic_owner` int(11) NOT NULL,
   `technic_repairer` int(11) DEFAULT NULL,
   PRIMARY KEY (`technic_id`),
   UNIQUE KEY `id_UNIQUE` (`technic_id`),
-  KEY `status_key_idx` (`technic_status`),
-  KEY `technic_type_key_idx` (`technic_type`),
   KEY `fk_technic_employees1_idx` (`technic_owner`),
   KEY `fk_technic_employees2_idx` (`technic_repairer`),
+  KEY `fk_techinc_status_idx` (`technic_status_id`),
+  KEY `fk_technic_type_idx` (`technic_type_id`),
+  CONSTRAINT `fk_techinc_status` FOREIGN KEY (`technic_status_id`) REFERENCES `technic_statuses` (`technic_status_id`),
   CONSTRAINT `fk_technic_employees1` FOREIGN KEY (`technic_owner`) REFERENCES `employees` (`employee_id`),
   CONSTRAINT `fk_technic_employees2` FOREIGN KEY (`technic_repairer`) REFERENCES `employees` (`employee_id`),
-  CONSTRAINT `status_key` FOREIGN KEY (`technic_status`) REFERENCES `technic_statuses` (`technic_status`),
-  CONSTRAINT `technic_type_key` FOREIGN KEY (`technic_type`) REFERENCES `technic_types` (`technic_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_technic_type` FOREIGN KEY (`technic_type_id`) REFERENCES `technic_types` (`technic_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,6 +49,7 @@ CREATE TABLE `technic` (
 
 LOCK TABLES `technic` WRITE;
 /*!40000 ALTER TABLE `technic` DISABLE KEYS */;
+INSERT INTO `technic` VALUES (1,'Acer 3120pro','Системный блок Acer',1,1,3,3),(2,'Philips 243S','LED IPS Монитор',1,2,4,3),(3,'Cisco 7911','IP телефон',3,10,5,3),(4,'Genius XX','Колонки',4,9,6,3),(5,'Delux','Наушники',1,9,5,3),(6,'Dell E2213Hb','Монитор Dell',2,2,4,4);
 /*!40000 ALTER TABLE `technic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-10 12:19:58
+-- Dump completed on 2019-10-23 17:40:37

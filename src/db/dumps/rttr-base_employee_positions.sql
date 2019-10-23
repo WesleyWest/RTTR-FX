@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `employee_positions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee_positions` (
-  `id_employee_position` int(11) NOT NULL AUTO_INCREMENT,
-  `employee_position` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`id_employee_position`),
-  UNIQUE KEY `id_employee_position_UNIQUE` (`id_employee_position`),
-  UNIQUE KEY `employee_position_UNIQUE` (`employee_position`)
+  `position_id` int(11) NOT NULL AUTO_INCREMENT,
+  `position_name` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`position_id`),
+  UNIQUE KEY `id_employee_position_UNIQUE` (`position_id`),
+  UNIQUE KEY `employee_position_UNIQUE` (`position_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-10 12:19:56
+-- Dump completed on 2019-10-23 17:40:35

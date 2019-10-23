@@ -18,9 +18,11 @@ import objects.Users.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MySQLDataBase extends Configs {
+
 
 
     private class tmpRoles {
@@ -195,6 +197,8 @@ public class MySQLDataBase extends Configs {
         return employees;
     }
 
+
+
     public ObservableList<Technic> readTechnicFromDB() {
         ArrayList<Technic> tmp = new ArrayList<>();
         try {
@@ -246,7 +250,7 @@ public class MySQLDataBase extends Configs {
             String query =
                     "SELECT * " +
                             " FROM requests " +
-                            " WHERE request_status=" + ((isClosed) ? 1 : 0)+
+                            " WHERE request_status=" + ((isClosed) ? 1 : 0) +
                             " ORDER BY 1 ";
 
             ResultSet rs = statement.executeQuery(query);
@@ -258,11 +262,16 @@ public class MySQLDataBase extends Configs {
                 String problemDescription = rs.getString("request_problem_description");
                 String decisionDescription = rs.getString("request_decision_description");
                 boolean status = rs.getBoolean("request_status");
+                int authorID=rs.getInt("request_author_id");
+                int closerID=rs.getInt("request_closer_id");
 
                 Technic technic = AppData.getObjectByID(AppData.getTechnic(), tecnicID);
+                User author = AppData.getObjectByID(AppData.getUsers(),authorID);
+                User closer = AppData.getObjectByID(AppData.getUsers(),closerID);
 
-                tmp.add(new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status));
+                tmp.add(new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, author,closer));
             }
+
             rs.close();
             statement.close();
         } catch (SQLException e) {

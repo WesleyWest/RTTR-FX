@@ -23,16 +23,19 @@ DROP TABLE IF EXISTS `requests`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `requests` (
-  `requests_id` int(11) NOT NULL AUTO_INCREMENT,
+  `request_id` int(11) NOT NULL AUTO_INCREMENT,
   `request_technic_id` int(11) NOT NULL,
   `request_open_date` datetime NOT NULL,
-  `request_close_date` datetime NOT NULL,
+  `request_close_date` datetime DEFAULT NULL,
   `request_problem_description` varchar(512) NOT NULL,
-  `requests_decision_description` varchar(512) DEFAULT NULL,
-  PRIMARY KEY (`requests_id`),
-  UNIQUE KEY `requests_id_UNIQUE` (`requests_id`),
-  KEY `technic_key_idx` (`request_technic_id`),
-  CONSTRAINT `technic_key` FOREIGN KEY (`request_technic_id`) REFERENCES `technic` (`technic_id`)
+  `request_decision_description` varchar(512) DEFAULT NULL,
+  `request_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'If 0 then the request is active. If 1 then the request is closed.',
+  `request_author_id` int(11) NOT NULL,
+  `request_closer_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`request_id`),
+  UNIQUE KEY `requests_id_UNIQUE` (`request_id`),
+  KEY `fk_technic_idx` (`request_technic_id`),
+  CONSTRAINT `fk_technic` FOREIGN KEY (`request_technic_id`) REFERENCES `technic` (`technic_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,6 +45,7 @@ CREATE TABLE `requests` (
 
 LOCK TABLES `requests` WRITE;
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
+INSERT INTO `requests` VALUES (1,1,'2019-10-17 10:15:00',NULL,'Не включается, идёт дым',NULL,0,10,NULL),(2,2,'2019-10-14 13:25:00','2019-10-15 09:22:00','Изображение плывёт','Изображение приплыло',1,11,12),(3,5,'2019-10-11 11:32:00',NULL,'Оборван провод',NULL,0,10,NULL),(4,3,'2019-10-21 11:21:00','2019-10-11 17:32:00','Нехорошо пахнет','Побрызгали дезодорантом',1,12,11);
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-10 12:19:58
+-- Dump completed on 2019-10-23 17:40:37

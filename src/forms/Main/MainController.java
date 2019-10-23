@@ -2,14 +2,17 @@ package forms.Main;
 
 import conf.AppData;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import objects.Employees.Employee;
 import objects.Request;
-
-import java.sql.Timestamp;
-import java.util.Date;
+import objects.Technic.Technic;
+import org.controlsfx.control.PopOver;
 
 public class MainController extends AppData {
 
@@ -77,10 +80,13 @@ public class MainController extends AppData {
     private TextField idTextField;
 
     @FXML
-    private TextField techinc;
+    private TextField technicField;
 
     @FXML
-    private TextField dateTimeTextField;
+    private TextField requestOpenTimeField;
+
+    @FXML
+    private TextField authorTextField;
 
     @FXML
     private TextField ownerTextField;
@@ -92,14 +98,12 @@ public class MainController extends AppData {
     private TextArea problemDescriptionTextArea;
 
     @FXML
-    private Pane closedRequestsFieldsPane;
+    private TextField requestCloseTimeField;
 
     @FXML
-    private TextField dateTimeClosedRequestTextField;
-
+    private TextArea worksDescriptionTextArea;
     @FXML
-    private TextArea worksDescriptionTextField;
-
+    private TextField closerTextField;
     @FXML
     private Button addRequestButton;
 
@@ -113,51 +117,120 @@ public class MainController extends AppData {
     private Button exitButton;
 
     @FXML
+    private Button userButton;
+
+    @FXML
     private Label informLabel;
 
+    @FXML
+    private AnchorPane closedRequestsAnchorPane;
+
+    @FXML
+    private VBox popOverVBox;
+
+    private PopOver popOver;
+
+    Request selectedRecord;
 
     @FXML
     void initialize() {
+        mainTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                mainTableViewKeyReleased(event);
+            }
+//                if (event.getClickCount() == 2) {
+//                    mainEditButton.fire();
+//                }
+
+        });
+
+        Employee emp = Employee.getEmployeeByUserID(getEmployees(), getUser().getID());
+        Label lbl1 = new Label("\n   Логин: " + getUser().getUserName());
+        Label lbl2 = new Label("\n   Роль : " + getUser().getUserRole().getRoleName());
+        Label lbl3 = new Label("\n   Ф.И.О : " + emp.getLastName() + " " + emp.getName() + " " + emp.getMiddleName() + "   ");
+        Label lbl4 = new Label("\n   Звание: " + emp.getPosition().getDescription() + "        ");
+        Label lbl5 = new Label("\n   Подразделение: " + emp.getDivision().getDescription() + "\n      ");
+        VBox vBox = new VBox(lbl1, lbl2, lbl3, lbl4, lbl5);
+
+        popOver = new PopOver(vBox);
+        popOver.setArrowLocation(PopOver.ArrowLocation.TOP_RIGHT);
+
+        Stage popUp = new Stage();
+
+        closedRequestsAnchorPane.setVisible(false);
+
         mainTableView.getStyleClass().add("table-view-active");
-//        mainTableView.setRowFactory();
-        closedRequestsFieldsPane.setVisible(false);
-        informLabel.setText("[" + getUser().getUserRole() + "] " + getUser().getUserName());
+
         idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
         technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("openDate"));
         descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("problemDescription"));
 
-        idTableColumn.getStyleClass().add("CENTER");
-        dateTableColumn.getStyleClass().add("center");
-
         mainTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-
         changeTableView(false);
-        mainTableView.requestFocus();
+
+        informLabel.setText("Количество открытых заявок: " + getRequests().size());
     }
 
     private void changeTableView(boolean isClosed) {
         setRequests(getDb().readRequestsFromDB(isClosed));
         mainTableView.setItems(getRequests());
         mainTableView.getSelectionModel().select(0);
+        setFieldsValues();
+        mainTableView.requestFocus();
+    }
+
+    private void setFieldsValues() {
+
+        selectedRecord = mainTableView.getSelectionModel().getSelectedItem();
+        idTextField.setText(selectedRecord.getID().toString());
+
+        Employee author = Employee.getEmployeeByUserID(getEmployees(), selectedRecord.getAuthor().getID());
+        authorTextField.setText(Employee.getFullEmployeeDescription(author));
+
+        Technic technic = selectedRecord.getTechnicAsObject();
+        technicField.setText(technic.getType().getDescription() + " " + technic.getName());
+
+        requestOpenTimeField.setText(selectedRecord.getOpenDate());
+
+        Employee owner = selectedRecord.getTechnicAsObject().getOwner();
+        ownerTextField.setText(Employee.getFullEmployeeDescription(owner));
+
+        Employee repairer = selectedRecord.getTechnicAsObject().getRepairer();
+        repairerTextField.setText(Employee.getFullEmployeeDescription(repairer));
+
+        problemDescriptionTextArea.clear();
+        problemDescriptionTextArea.appendText(selectedRecord.getProblemDescription());
+
+
+        if (selectedRecord.getStatus()) {
+            Employee closer = Employee.getEmployeeByUserID(getEmployees(), selectedRecord.getCloser().getID());
+
+            closerTextField.setText(Employee.getFullEmployeeDescription(closer));
+            requestCloseTimeField.setText(selectedRecord.getCloseDate());
+            worksDescriptionTextArea.clear();
+            worksDescriptionTextArea.appendText(selectedRecord.getDecisionDescription());
+        }
     }
 
 
     @FXML
     void ClosedRequestsRadioButtonClick(ActionEvent event) {
-        closedRequestsFieldsPane.setVisible(true);
-        changeTableView(true);
-
+        closedRequestsAnchorPane.setVisible(true);
         mainTableView.getStyleClass().set(1, "table-view-closed");
+        changeTableView(true);
+        informLabel.setText("Количество закрытых заявок: " + getRequests().size());
     }
 
     @FXML
     void ActiveRequestsRadioButtonClick(ActionEvent event) {
-        closedRequestsFieldsPane.setVisible(false);
-        changeTableView(false);
+        closedRequestsAnchorPane.setVisible(false);
         mainTableView.getStyleClass().set(1, "table-view-active");
+        changeTableView(false);
+        informLabel.setText("Количество открытых заявок: " + getRequests().size());
     }
+
 
     @FXML
     void AddRequestButtonClick(ActionEvent event) {
@@ -168,5 +241,19 @@ public class MainController extends AppData {
     void exitFromApp(ActionEvent event) {
         getDb().close();
         System.exit(0);
+    }
+
+    @FXML
+    void mainTableViewKeyReleased(Event event) {
+        setFieldsValues();
+    }
+
+    @FXML
+    void userButtonClick(ActionEvent event) {
+        if (!popOver.isShowing()) {
+            popOver.show(userButton);
+        } else {
+            popOver.hide();
+        }
     }
 }

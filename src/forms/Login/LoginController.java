@@ -15,7 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.MySQLDataBase;
 import objects.Users.User;
-
 import java.io.IOException;
 
 public class LoginController extends AppData {
@@ -35,14 +34,14 @@ public class LoginController extends AppData {
 
     @FXML
     void initialize() {
-        loginTextField.setText("Stas");
+        loginTextField.setText("Wesley");
         passwordField.setText("123");
     }
 
     @FXML
     void exitButtonClick(ActionEvent event) {
         if (getDb() != null)
-            if(getDb().isOpen()) getDb().close();
+            if (getDb().isOpen()) getDb().close();
         System.exit(0);
     }
 
@@ -59,6 +58,8 @@ public class LoginController extends AppData {
             showAlert("Заполните все поля.");
         } else if (!(userFound(userName, userPassword))) {
             showAlert("Пользователь не найден.");
+        } else if (!getUser().isActive()) {
+            showAlert("Учётная запись не активна.");
         } else {
             setDivisions(getDb().readDivisionsFromDB());
             setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
@@ -70,7 +71,6 @@ public class LoginController extends AppData {
 
             openMainWindow(event);
         }
-
     }
 
     private void openMainWindow(ActionEvent event) {
@@ -85,7 +85,7 @@ public class LoginController extends AppData {
             stage.setMinWidth(1044);
             stage.setMinHeight(808);
             stage.getIcons().add(new Image("resources/main.png"));
-            Scene scene = new Scene(root,1024,768);
+            Scene scene = new Scene(root, 1024, 768);
             scene.getStylesheets().add(getPathCSS());
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
@@ -105,7 +105,8 @@ public class LoginController extends AppData {
 
     private boolean userFound(String userName, String userPassword) {
         for (User user : getUsers()) {
-            if (userName.equals(user.getUserName()) && userPassword.equals(user.getUserPassword())) {
+            if (userName.toLowerCase().equals(user.getUserName().toLowerCase())
+                    && userPassword.equals(user.getUserPassword())) {
                 AppData.setUser(user);
                 return true;
             }
