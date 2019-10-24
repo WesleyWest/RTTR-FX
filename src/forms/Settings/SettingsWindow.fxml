@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
+   <top>
+      <AnchorPane minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" style="-fx-background-color: #376bc5;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="436.0" layoutY="18.0">
+               <children>
+                  <Label styleClass="main-label" text="RTTR-Master">
+                     <font>
+                        <Font name="Eras Bold ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="82.0" layoutY="37.0" prefHeight="18.0" prefWidth="161.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+               </children>
+            </Pane>
+            <MenuBar layoutY="87.0" prefHeight="25.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Файл">
+                  <items>
+                    <MenuItem fx:id="createReportMenuItem" mnemonicParsing="false" text="Создать отчёт" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#exitFromApp" text="Выход" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Заявки">
+                    <items>
+                      <MenuItem fx:id="addRequestMenuItem" mnemonicParsing="false" text="Добавить заявку" />
+                        <MenuItem fx:id="editRequestMenuItem" mnemonicParsing="false" text="Редактировать заявку" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="closeRequestMenuItem" mnemonicParsing="false" text="Провести заявку" />
+                    </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Настройки">
+                  <items>
+                    <MenuItem fx:id="settingsMenuItem" mnemonicParsing="false" text="Общие настройки" />
+                        <MenuItem fx:id="usersMenuItem" mnemonicParsing="false" text="Пользователи" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="divisionsMenuItem" mnemonicParsing="false" text="Подразделения" />
+                        <MenuItem fx:id="employeesMenuItem" mnemonicParsing="false" text="Сотрудники" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="technicMenuitem" mnemonicParsing="false" text="Техника" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                  <items>
+                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" text="Помощь" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" text="О программе" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Button fx:id="userButton" layoutX="950.0" layoutY="17.0" mnemonicParsing="false" onAction="#userButtonClick" prefHeight="47.0" prefWidth="52.0" styleClass="user-button" AnchorPane.rightAnchor="22.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu></Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <AnchorPane prefHeight="636.0" prefWidth="1044.0" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <Label layoutX="14.0" layoutY="5.0" text="Реестр заявок: " textFill="#376bc5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" maxWidth="932.0" onKeyReleased="#mainTableViewKeyReleased" prefHeight="601.0" prefWidth="932.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="25.0">
+              <columns>
+                <TableColumn fx:id="idTableColumn" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="№&#10;заявки" />
+                <TableColumn fx:id="technicTableColumn" prefWidth="202.0" text="Техника на ремонт" />
+                  <TableColumn fx:id="dateTableColumn" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Дата&#10;регистрации&#10;заявки" />
+                  <TableColumn fx:id="descriptionTableColumn" prefWidth="257.0" text="Описание проблемы" />
+              </columns>
+            </TableView>
+            <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Закрытые заявки" textFill="#2e9e51">
+               <toggleGroup>
+                  <ToggleGroup fx:id="reqGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtonClick" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
+            <AnchorPane layoutX="723.0" layoutY="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="16.0">
+               <children>
+                  <Label layoutX="123.0" layoutY="6.0" text="Детали заявки:" textFill="#376bc5">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="296.0" layoutY="19.0" text="№ заявки" textFill="#376bc5" />
+                  <TextField fx:id="idTextField" editable="false" layoutX="266.0" layoutY="35.0" prefHeight="25.0" prefWidth="84.0" />
+                  <Label layoutX="2.0" layoutY="59.0" text="Техника на ремонт" textFill="#376bc5" />
+                  <TextField fx:id="technicField" editable="false" layoutY="76.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="2.0" layoutY="101.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
+                  <TextField fx:id="requestOpenTimeField" editable="false" layoutY="118.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="1.0" layoutY="143.0" text="Материально-ответственное лицо" textFill="#376bc5" />
+                  <TextField fx:id="ownerTextField" editable="false" layoutY="160.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutY="185.0" text="Ответственный за ремонт" textFill="#376bc5" />
+                  <TextField fx:id="repairerTextField" editable="false" layoutY="202.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="2.0" layoutY="227.0" text="Описание проблемы" textFill="#376bc5" />
+                  <AnchorPane fx:id="closedRequestsAnchorPane" layoutY="310.0">
+                     <children>
+                        <Label text="Дата и время закрытия заявки" textFill="#376bc5" />
+                        <TextField fx:id="requestCloseTimeField" editable="false" layoutY="17.0" prefHeight="25.0" prefWidth="350.0" />
+                        <Label layoutX="2.0" layoutY="42.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
+                        <TextArea fx:id="worksDescriptionTextArea" editable="false" layoutY="59.0" prefHeight="67.0" prefWidth="350.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="432.0" prefHeight="188.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0">
+                     <children>
+                        <Button fx:id="addRequestButton" defaultButton="true" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#AddRequestButtonClick" prefHeight="35.0" prefWidth="170.0" text="Добавить заявку" />
+                        <Button fx:id="editrequestButton" layoutX="179.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Редактировать заявку" />
+                        <Button fx:id="closeRequestButton" layoutX="1.0" layoutY="58.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="349.0" text="Провести заявку" />
+                        <Button fx:id="exitButton" cancelButton="true" layoutX="200.0" layoutY="150.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="35.0" prefWidth="149.0" text="Выход" />
+                     </children>
+                  </AnchorPane>
+                  <TextArea fx:id="problemDescriptionTextArea" editable="false" layoutY="244.0" prefHeight="67.0" prefWidth="350.0" />
+               </children>
+            </AnchorPane>
+            <VBox fx:id="popOverVBox" layoutX="769.0" layoutY="218.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane HBox.hgrow="ALWAYS" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </right>
+   <bottom>
+      <AnchorPane prefHeight="20.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="informLabel" layoutX="13.0" text="    " textFill="#376bc5" />
+         </children></AnchorPane>
+   </bottom>
+</BorderPane>
