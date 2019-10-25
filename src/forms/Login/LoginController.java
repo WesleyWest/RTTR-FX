@@ -11,8 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import objects.MySQLDataBase;
 import objects.Users.User;
 import java.io.IOException;
@@ -31,11 +33,16 @@ public class LoginController extends AppData {
     @FXML
     private PasswordField passwordField;
 
+    @FXML
+    private AnchorPane mainAnchorPane;
+
 
     @FXML
     void initialize() {
         loginTextField.setText("Wesley");
         passwordField.setText("123");
+
+        mainAnchorPane.getStyleClass().add("anchor-pane-in-tab");
     }
 
     @FXML
@@ -78,19 +85,9 @@ public class LoginController extends AppData {
             Node source = (Node) event.getSource();
             Stage oldStage = (Stage) source.getScene().getWindow();
             oldStage.close();
-
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../Main/MainWindow.fxml"));
-            stage.setTitle("RTTR-Master (Requests to Technics Repair)");
-            stage.setMinWidth(1044);
-            stage.setMinHeight(808);
-            stage.getIcons().add(new Image("resources/main.png"));
-            Scene scene = new Scene(root, 1024, 768);
-            scene.getStylesheets().add(getPathCSS());
-            stage.setScene(scene);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-            stage.show();
+            AppData.setOwner(((Node) event.getSource()).getScene().getWindow());
+            AppData.openCustomWindow(event, root, 1044,768, Modality.WINDOW_MODAL,true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,6 +110,8 @@ public class LoginController extends AppData {
         }
         return false;
     }
+
+
 
 
 }

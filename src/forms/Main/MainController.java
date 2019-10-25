@@ -4,15 +4,20 @@ import conf.AppData;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.Employees.Employee;
 import objects.Request;
 import objects.Technic.Technic;
 import org.controlsfx.control.PopOver;
+
+import java.io.IOException;
 
 public class MainController extends AppData {
 
@@ -102,8 +107,10 @@ public class MainController extends AppData {
 
     @FXML
     private TextArea worksDescriptionTextArea;
+
     @FXML
     private TextField closerTextField;
+
     @FXML
     private Button addRequestButton;
 
@@ -124,6 +131,8 @@ public class MainController extends AppData {
 
     @FXML
     private AnchorPane closedRequestsAnchorPane;
+    @FXML
+    private AnchorPane mainAnchorPane;
 
     @FXML
     private VBox popOverVBox;
@@ -144,6 +153,8 @@ public class MainController extends AppData {
 
         });
 
+
+        System.out.println("Style class: "+mainAnchorPane.getStyleClass());
         Employee emp = Employee.getEmployeeByUserID(getEmployees(), getUser().getID());
         Label lbl1 = new Label("\n   Логин: " + getUser().getUserName());
         Label lbl2 = new Label("\n   Роль : " + getUser().getUserRole().getRoleName());
@@ -155,11 +166,13 @@ public class MainController extends AppData {
         popOver = new PopOver(vBox);
         popOver.setArrowLocation(PopOver.ArrowLocation.TOP_RIGHT);
 
-        Stage popUp = new Stage();
-
         closedRequestsAnchorPane.setVisible(false);
 
         mainTableView.getStyleClass().add("table-view-active");
+        mainAnchorPane.getStyleClass().add("anchor-pane-in-tab");
+        activeRequestsRadioButtton.getStyleClass().add("radio-button-active");
+        closedRequestsRadioButton.getStyleClass().add("radio-button-closed");
+
 
         idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
         technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
@@ -206,7 +219,6 @@ public class MainController extends AppData {
 
         if (selectedRecord.getStatus()) {
             Employee closer = Employee.getEmployeeByUserID(getEmployees(), selectedRecord.getCloser().getID());
-
             closerTextField.setText(Employee.getFullEmployeeDescription(closer));
             requestCloseTimeField.setText(selectedRecord.getCloseDate());
             worksDescriptionTextArea.clear();
@@ -256,4 +268,15 @@ public class MainController extends AppData {
             popOver.hide();
         }
     }
+
+    @FXML
+    void settingMenuItemClick(ActionEvent event){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../Settings/SettingsWindow.fxml"));
+            AppData.openCustomWindow(event, root,840,610, Modality.APPLICATION_MODAL,false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

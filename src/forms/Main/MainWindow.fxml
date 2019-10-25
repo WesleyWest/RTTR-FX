@@ -16,7 +16,6 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -54,13 +53,13 @@
                   </Menu>
                 <Menu mnemonicParsing="false" text="Настройки">
                   <items>
-                    <MenuItem fx:id="settingsMenuItem" mnemonicParsing="false" text="Общие настройки" />
-                        <MenuItem fx:id="usersMenuItem" mnemonicParsing="false" text="Пользователи" />
+                    <MenuItem fx:id="settingsMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Общие настройки" />
+                        <MenuItem fx:id="usersMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Пользователи" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="divisionsMenuItem" mnemonicParsing="false" text="Подразделения" />
-                        <MenuItem fx:id="employeesMenuItem" mnemonicParsing="false" text="Сотрудники" />
+                        <MenuItem fx:id="divisionsMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Подразделения" />
+                        <MenuItem fx:id="employeesMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Сотрудники" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="technicMenuitem" mnemonicParsing="false" text="Техника" />
+                        <MenuItem fx:id="technicMenuitem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Техника" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Помощь">
@@ -83,18 +82,15 @@
          </children>
       </AnchorPane>
    </top>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
-   </left>
    <center>
-      <AnchorPane prefHeight="636.0" prefWidth="1044.0" BorderPane.alignment="CENTER_LEFT">
+      <AnchorPane fx:id="mainAnchorPane" prefHeight="636.0" prefWidth="1022.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Label layoutX="14.0" layoutY="5.0" text="Реестр заявок: " textFill="#376bc5">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" maxWidth="932.0" onKeyReleased="#mainTableViewKeyReleased" prefHeight="611.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="25.0">
+            <TableView fx:id="mainTableView" layoutX="7.0" layoutY="25.0" maxWidth="932.0" onKeyReleased="#mainTableViewKeyReleased" prefHeight="611.0" prefWidth="647.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="25.0">
               <columns>
                 <TableColumn fx:id="idTableColumn" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="№&#10;заявки" />
                 <TableColumn fx:id="technicTableColumn" prefWidth="202.0" text="Техника на ремонт" />
@@ -102,13 +98,13 @@
                   <TableColumn fx:id="descriptionTableColumn" prefWidth="257.0" text="Описание проблемы" />
               </columns>
             </TableView>
-            <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Закрытые заявки" textFill="#2e9e51">
+            <RadioButton fx:id="closedRequestsRadioButton" layoutX="278.0" layoutY="5.0" mnemonicParsing="false" onAction="#ClosedRequestsRadioButtonClick" text="Закрытые заявки" textFill="#2e9e51">
                <toggleGroup>
                   <ToggleGroup fx:id="reqGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtonClick" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
-            <AnchorPane layoutX="660.0" layoutY="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-13.0" AnchorPane.topAnchor="16.0">
+            <RadioButton fx:id="activeRequestsRadioButtton" layoutX="118.0" layoutY="5.0" mnemonicParsing="false" onAction="#ActiveRequestsRadioButtonClick" selected="true" text="Активные заявки" textFill="#c43737" toggleGroup="$reqGroup" />
+            <AnchorPane layoutX="664.0" layoutY="21.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="21.0">
                <children>
                   <Label layoutX="123.0" layoutY="6.0" text="Детали заявки:" textFill="#376bc5">
                      <font>
@@ -151,18 +147,11 @@
             </AnchorPane>
             <VBox fx:id="popOverVBox" layoutX="769.0" layoutY="218.0" />
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </AnchorPane>
    </center>
-   <right>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane HBox.hgrow="ALWAYS" />
-         </children>
-         <BorderPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </BorderPane.margin>
-      </HBox>
-   </right>
    <bottom>
       <AnchorPane prefHeight="20.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>

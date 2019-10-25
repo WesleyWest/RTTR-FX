@@ -1,10 +1,7 @@
 package objects;
 
 import conf.AppData;
-import conf.Configs;
 import conf.SimpleObject;
-import forms.Login.LoginController;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import objects.Employees.Division;
@@ -18,12 +15,8 @@ import objects.Users.User;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
-
-public class MySQLDataBase extends Configs {
-
-
+public class MySQLDataBase extends AppData {
 
     private class tmpRoles {
         String roleCode;
@@ -290,11 +283,11 @@ public class MySQLDataBase extends Configs {
 
     public void open() {
         try {
-            String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbSchema;
+            String connectionString = "jdbc:mysql://" + getDbHost() + ":" + getDbPort() + "/" + getDbSchema();
             AppData.printInLog("Trying to connect to the DB...");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(connectionString, dbUser, dbPass);
+            connection = DriverManager.getConnection(connectionString, getDbUser(), getDbPass());
             AppData.printInLog("Connected successfully to: " + connectionString);
             AppData.printInLog("---------------------");
             AppData.printInLog("");

@@ -1,9 +1,15 @@
 package conf;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import objects.Employees.Division;
 import objects.Employees.Employee;
 import objects.Employees.Position;
@@ -15,6 +21,13 @@ import objects.Technic.TechnicType;
 import objects.Users.Role;
 import objects.Users.User;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -36,7 +49,55 @@ public class AppData {
 
     private static ObservableList<Request> requests;
 
-    private static String pathCSS="";
+    private static Window owner;
+
+    private static String filePath = "src/conf/settings.dat";
+    private static String dbHost;
+    private static String dbPort;
+    private static String dbUser;
+    private static String dbPass;
+    private static String dbSchema;
+    private static String pathCSS;
+
+    public static String getDbHost() {
+        return dbHost;
+    }
+
+    public static void setDbHost(String dbHost) {
+        AppData.dbHost = dbHost;
+    }
+
+    public static String getDbPort() {
+        return dbPort;
+    }
+
+    public static void setDbPort(String dbPort) {
+        AppData.dbPort = dbPort;
+    }
+
+    public static String getDbUser() {
+        return dbUser;
+    }
+
+    public static void setDbUser(String dbUser) {
+        AppData.dbUser = dbUser;
+    }
+
+    public static String getDbPass() {
+        return dbPass;
+    }
+
+    public static void setDbPass(String dbPass) {
+        AppData.dbPass = dbPass;
+    }
+
+    public static String getDbSchema() {
+        return dbSchema;
+    }
+
+    public static void setDbSchema(String dbSchema) {
+        AppData.dbSchema = dbSchema;
+    }
 
     public static String getPathCSS() {
         return pathCSS;
@@ -44,6 +105,14 @@ public class AppData {
 
     public static void setPathCSS(String pathCSS) {
         AppData.pathCSS = pathCSS;
+    }
+
+    public static Window getOwner() {
+        return owner;
+    }
+
+    public static void setOwner(Window owner) {
+        AppData.owner = owner;
     }
 
     public static ObservableList<SimpleObject<Position>> getPositions() {
@@ -168,4 +237,53 @@ public class AppData {
         }
     }
 
-}
+    public static void openCustomWindow(ActionEvent event, Parent root, int width, int height, Modality modality, boolean resizable) {
+        Stage stage = new Stage();
+        stage.setTitle("RTTR-Master (Requests to Technics Repair)");
+        stage.setMinWidth(width);
+        System.out.println("width = " + stage.getMinWidth());
+        stage.setMinHeight(height);
+        stage.setResizable(resizable);
+        stage.getIcons().add(new Image("resources/main.png"));
+        Scene scene = new Scene(root, width, height);
+        scene.getStylesheets().add(getPathCSS());
+        stage.setScene(scene);
+        stage.initModality(modality);
+        stage.initOwner(getOwner());
+        stage.show();
+    }
+
+    public static void readSettingsFromFile() {
+        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get(filePath)))) {
+            setDbHost((String)in.readObject());
+            setDbPort((String)in.readObject());
+            setDbUser((String)in.readObject());
+            setDbPass((String)in.readObject());
+            setDbSchema((String)in.readObject());
+            setPathCSS((String)in.readObject());
+            System.out.println("File (" + new File(filePath).getAbsolutePath() + ") was loaded successfully.");
+        } catch (IOException e) {
+            System.out.println("Something wrong with the <" + filePath + ">: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+        public static void writeDefaultSettingsToFile () {
+            try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get(filePath)))) {
+                out.writeObject("localhost");
+                out.writeObject("3306");
+                out.writeObject("root");
+                out.writeObject("diamond");
+                out.writeObject("rttr-base");
+                out.writeObject("/themes/BlueTheme.css");
+                out.close();
+                System.out.println("The file was successfully saved.");
+            } catch (IOException e) {
+                System.out.println("File can't be opened. Program terminates.");
+                e.printStackTrace();
+            }
+        }
+    }
