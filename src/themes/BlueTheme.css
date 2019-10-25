@@ -243,6 +243,7 @@
 .text-field {
     -fx-text-fill: #233d7b;
     -fx-background-color: #FAFAFA;
+    -fx-background-radius: 5;
     -fx-border-color: #57a8d7;
     -fx-border-radius: 5;
 }
@@ -250,6 +251,7 @@
 .text-area {
     -fx-text-fill: #233d7b;
     -fx-background-color: #FAFAFA;
+    -fx-background-radius: 5;
     -fx-border-color: #57a8d7;
     -fx-border-radius: 5
 }
@@ -257,6 +259,7 @@
 .password-field {
     -fx-text-fill: #233d7b;
     -fx-background-color: #FAFAFA;
+    -fx-background-radius: 5;
     -fx-border-color: #57a8d7;
     -fx-border-radius: 5
 }

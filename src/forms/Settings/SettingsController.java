@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -24,6 +25,9 @@ public class SettingsController {
 
     @FXML
     private TextField passwordTextField;
+
+    @FXML
+    private ComboBox themeComboBox;
 
     @FXML
     private Button exitButton;
@@ -51,6 +55,7 @@ public class SettingsController {
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0,"anchor-pane-in-tab");
         }
+
     }
 
     @FXML

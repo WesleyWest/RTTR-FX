@@ -2,7 +2,6 @@ package conf;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -25,7 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -237,13 +235,12 @@ public class AppData {
         }
     }
 
-    public static void openCustomWindow(ActionEvent event, Parent root, int width, int height, Modality modality, boolean resizable) {
+    public static void openCustomWindow(ActionEvent event, Parent root, int width, int height, Modality modality, boolean isWindowResizable) {
         Stage stage = new Stage();
         stage.setTitle("RTTR-Master (Requests to Technics Repair)");
         stage.setMinWidth(width);
-        System.out.println("width = " + stage.getMinWidth());
         stage.setMinHeight(height);
-        stage.setResizable(resizable);
+        stage.setResizable(isWindowResizable);
         stage.getIcons().add(new Image("resources/main.png"));
         Scene scene = new Scene(root, width, height);
         scene.getStylesheets().add(getPathCSS());
