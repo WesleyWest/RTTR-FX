@@ -28,7 +28,6 @@ public class Main extends Application {
         scene.getStylesheets().add(AppData.getPathCSS());
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
 

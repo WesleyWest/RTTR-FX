@@ -250,6 +250,7 @@ public class AppData {
         return null;
     }
 
+
     public static void printInLog(String str) {
         if (str.length() != 0) {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());

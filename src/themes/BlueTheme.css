@@ -25,29 +25,33 @@
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
 }
 
-.radio-button .radio {
-    -fx-background-color: #74a9dd;
+.toggle-button {
+    -fx-background-color: #61a4ee,
+    linear-gradient(#a7d9f5, #eaf6fd, #a7d9f5);
 }
 
-.radio-button .text {
+.toggle-button .text {
     -fx-fill: #376bc5;
 }
 
-.radio-button-active:selected .radio .dot {
-    -fx-background-color: #c43737;
+.toggle-button-active:selected {
+    -fx-background-color: #c43737,
+    linear-gradient(#d17470, #eac1b9, #d17470);
+}
+.toggle-button-active:selected .text{
+    -fx-fill: #992b2b;
+    -fx-font-weight: Bold;
 }
 
-.radio-button-active:selected .text {
-    -fx-fill: #c43737;
+.toggle-button-closed:selected {
+    -fx-background-color: #2d9348,
+    linear-gradient(#7ed17c, #d7ffcf, #7ed17c);
+}
+.toggle-button-closed:selected .text{
+    -fx-fill: #397e39;
+    -fx-font-weight: Bold;
 }
 
-.radio-button-closed:selected .radio .dot {
-    -fx-background-color: #2d9348;
-}
-
-.radio-button-closed:selected .text {
-    -fx-fill: #2d9348;
-}
 
 .tab-pane .tab-header-area .tab-label {
     -fx-font-family: System;

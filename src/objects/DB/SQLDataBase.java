@@ -299,13 +299,13 @@ public class SQLDataBase extends AppData {
                 int tecnicID = rs.getInt("request_technic_id");
 
                 String timeStr = rs.getString("request_open_date");
-                Timestamp openTime = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(timeStr).getTime());
+                Timestamp openTime = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(timeStr).getTime());
                 timeStr = rs.getString("request_close_date");
 
                 Timestamp closeTime=null;
 
                 if (status) {
-                    closeTime = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(timeStr).getTime());
+                    closeTime = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(timeStr).getTime());
                 }
 
                 String problemDescription = rs.getString("request_problem_description");

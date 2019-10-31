@@ -75,10 +75,10 @@ public class MainController extends AppData {
     private ToggleGroup reqGroup;
 
     @FXML
-    private RadioButton closedRequestsRadioButton;
+    private ToggleButton closedRequestsToggleButton;
 
     @FXML
-    private RadioButton activeRequestsRadioButtton;
+    private ToggleButton activeRequestsToggleButtton;
 
     @FXML
     private TextField idTextField;
@@ -168,8 +168,9 @@ public class MainController extends AppData {
 
         mainTableView.getStyleClass().add("table-view-active");
         mainAnchorPane.getStyleClass().add("anchor-pane-main");
-        activeRequestsRadioButtton.getStyleClass().add("radio-button-active");
-        closedRequestsRadioButton.getStyleClass().add("radio-button-closed");
+
+        activeRequestsToggleButtton.getStyleClass().add("toggle-button-active");
+        closedRequestsToggleButton.getStyleClass().add("toggle-button-closed");
 
 
         idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
@@ -226,7 +227,7 @@ public class MainController extends AppData {
 
 
     @FXML
-    void ClosedRequestsRadioButtonClick(ActionEvent event) {
+    void closedRequestsToggleButtonClick(ActionEvent event) {
         closedRequestsAnchorPane.setVisible(true);
         mainTableView.getStyleClass().set(1, "table-view-closed");
         changeTableView(true);
@@ -234,7 +235,7 @@ public class MainController extends AppData {
     }
 
     @FXML
-    void ActiveRequestsRadioButtonClick(ActionEvent event) {
+    void activeRequestsToggleButtonClick(ActionEvent event) {
         closedRequestsAnchorPane.setVisible(false);
         mainTableView.getStyleClass().set(1, "table-view-active");
         changeTableView(false);
