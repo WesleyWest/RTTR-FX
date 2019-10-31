@@ -1,7 +1,7 @@
 package objects.Technic;
 
-import conf.AbstractObject;
-import conf.SimpleObject;
+import objects.AbstractObject;
+import objects.SimpleObject;
 import objects.Employees.Employee;
 
 public class Technic extends AbstractObject {

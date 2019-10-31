@@ -1,6 +1,6 @@
 package objects.Employees;
 
-import conf.SimpleObject;
+import objects.SimpleObject;
 
 public class Division extends SimpleObject {
 

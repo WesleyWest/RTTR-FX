@@ -1,6 +1,6 @@
 package objects.Technic;
 
-import conf.SimpleObject;
+import objects.SimpleObject;
 
 public class TechnicStatus extends SimpleObject {
 

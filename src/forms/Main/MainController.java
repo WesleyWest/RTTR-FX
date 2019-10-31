@@ -1,6 +1,6 @@
 package forms.Main;
 
-import conf.AppData;
+import objects.AppData;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import objects.Employees.Employee;
 import objects.Request;
 import objects.Technic.Technic;
@@ -154,7 +153,6 @@ public class MainController extends AppData {
         });
 
 
-        System.out.println("Style class: "+mainAnchorPane.getStyleClass());
         Employee emp = Employee.getEmployeeByUserID(getEmployees(), getUser().getID());
         Label lbl1 = new Label("\n   Логин: " + getUser().getUserName());
         Label lbl2 = new Label("\n   Роль : " + getUser().getUserRole().getRoleName());
@@ -169,7 +167,7 @@ public class MainController extends AppData {
         closedRequestsAnchorPane.setVisible(false);
 
         mainTableView.getStyleClass().add("table-view-active");
-        mainAnchorPane.getStyleClass().add("anchor-pane-in-tab");
+        mainAnchorPane.getStyleClass().add("anchor-pane-main");
         activeRequestsRadioButtton.getStyleClass().add("radio-button-active");
         closedRequestsRadioButton.getStyleClass().add("radio-button-closed");
 

@@ -1,4 +1,4 @@
-import conf.AppData;
+import objects.AppData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,13 +15,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        private static String dbHost="localhost";
-//        private static String dbPort="3306";
-//        private static String dbUser="root";
-//        private static String dbPass="diamond";
-//        private static String dbSchema ="rttr-base";
-//        private static String pathCSS="";
-
 //        AppData.writeDefaultSettingsToFile();
 //        System.exit(0);
 

@@ -1,6 +1,6 @@
 package forms.Login;
 
-import conf.AppData;
+import objects.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import objects.MySQLDataBase;
+import objects.DB.MySQLDataBase;
+import objects.DB.SQLDataBaseFactory;
 import objects.Users.User;
 
 import java.io.IOException;
@@ -40,13 +41,13 @@ public class LoginController extends AppData {
         loginTextField.setText("Wesley");
         passwordField.setText("123");
 
-        mainAnchorPane.getStyleClass().add("anchor-pane-in-tab");
+        mainAnchorPane.getStyleClass().add("anchor-pane-main");
     }
 
     @FXML
     void exitButtonClick(ActionEvent event) {
         if (getDb() != null)
-            if (getDb().isOpen()) getDb().close();
+            if (getDb().isOpened()) getDb().close();
         System.exit(0);
     }
 
@@ -92,7 +93,7 @@ public class LoginController extends AppData {
     }
 
     private void getUsersFromDB() {
-        setDb(new MySQLDataBase());
+        setDb(SQLDataBaseFactory.getSQLDataBaseByType(getSQLDataBaseType()));
         getDb().open();
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());

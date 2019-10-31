@@ -4,6 +4,7 @@ import objects.Technic.Technic;
 import objects.Users.User;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Request {
     private Integer ID;

@@ -1,7 +1,7 @@
 package objects.Employees;
 
-import conf.AbstractObject;
-import conf.SimpleObject;
+import objects.AbstractObject;
+import objects.SimpleObject;
 import javafx.collections.ObservableList;
 import objects.Users.User;
 

@@ -1,6 +1,6 @@
 package objects.Users;
 
-import conf.AbstractObject;
+import objects.AbstractObject;
 
 public class User extends AbstractObject {
     private int userID;
