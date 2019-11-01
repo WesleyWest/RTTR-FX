@@ -4,10 +4,8 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -34,55 +32,10 @@
             <content>
               <AnchorPane fx:id="settingsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="850.0" styleClass="anchor-pane-in-tab">
                      <children>
-                        <Pane layoutX="14.0" layoutY="87.0" prefHeight="247.0" prefWidth="578.0">
-                           <children>
-                              <Label layoutX="444.0" text="Порт:" textFill="#376bc5" />
-                              <Label layoutX="1.0" layoutY="57.0" text="Имя базы данных (schema):" textFill="#376bc5" />
-                              <Label layoutX="1.0" text="Адрес сервера MySQL:" textFill="#376bc5" />
-                              <TextField fx:id="mySQLHostTextField" layoutY="17.0" prefHeight="32.0" prefWidth="435.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </TextField>
-                              <TextField fx:id="mySQLPortTextField" layoutX="444.0" layoutY="17.0" prefHeight="32.0" prefWidth="134.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </TextField>
-                              <TextField fx:id="mySQLSchemaTextField" layoutY="74.0" prefHeight="32.0" prefWidth="435.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </TextField>
-                              <Label layoutX="1.0" layoutY="135.0" text="Имя пользователя MySQL:" textFill="#376bc5" />
-                              <TextField fx:id="MySQLLoginTextField" layoutY="151.0" prefHeight="32.0" prefWidth="435.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </TextField>
-                              <Label layoutX="1.0" layoutY="184.0" text="Пароль пользователя MySQL:" textFill="#376bc5" />
-                              <PasswordField fx:id="MySQLPasswordTextField" layoutY="200.0" prefHeight="32.0" prefWidth="435.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </PasswordField>
-                              <Pane layoutX="194.0" layoutY="104.0" prefHeight="62.0" prefWidth="578.0">
-                                 <children>
-                                    <Label layoutX="1.0" text="Путь к базе SQLite" textFill="#376bc5" />
-                                    <TextField fx:id="SQLitePathTODBTextField" layoutY="17.0" prefHeight="32.0" prefWidth="435.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </TextField>
-                                    <Button cancelButton="true" layoutX="439.0" layoutY="17.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="41.0" text="..." />
-                                 </children>
-                              </Pane>
-                           </children>
-                        </Pane>
                         <Label layoutX="14.0" layoutY="349.0" text="Цветовая схема интерфейса" textFill="#376bc5" />
                         <Label layoutX="14.0" layoutY="14.0" text="Тип базы данных" textFill="#376bc5" />
                         <ComboBox fx:id="chooseDBComboBox" layoutX="14.0" layoutY="31.0" prefHeight="32.0" prefWidth="435.0" />
-                        <ComboBox fx:id="chooseDBComboBox1" layoutX="14.0" layoutY="366.0" prefHeight="32.0" prefWidth="435.0" />
+                        <ComboBox fx:id="themeComboBox" layoutX="14.0" layoutY="366.0" prefHeight="32.0" prefWidth="435.0" />
                      </children>
                   </AnchorPane>
             </content>

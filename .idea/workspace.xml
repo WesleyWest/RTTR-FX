@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2019-10-31">
-      <change afterPath="$PROJECT_DIR$/src/objects/idReturnable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/SettingsWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/AbstractObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/AppData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/AppData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Employees/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Employees/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/SimpleObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/SimpleObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Technic/Technic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Technic/Technic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/themes/BlueTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/BlueTheme.css" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/forms/Main/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="173" selection-start-line="173" selection-end-line="173" />
+            <state relative-caret-position="418">
+              <caret line="274" column="30" lean-forward="true" selection-start-line="274" selection-start-column="30" selection-end-line="274" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7483#7484#0" expanded="true" />
@@ -88,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+            <state relative-caret-position="272">
+              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,20 +117,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/objects/AppData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-517">
-              <caret line="251" selection-start-line="251" selection-end-line="251" />
+            <state relative-caret-position="207">
+              <caret line="262" column="23" selection-start-line="262" selection-start-column="23" selection-end-line="262" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="300" column="34" lean-forward="true" selection-start-line="300" selection-start-column="34" selection-end-line="300" selection-end-column="34" />
+            <state relative-caret-position="435">
+              <caret line="301" column="19" selection-start-line="301" selection-start-column="19" selection-end-line="301" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -286,19 +275,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="forms" type="462c0819:PsiDirectoryNode" />
               <item name="Settings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-              <item name="DB" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
@@ -488,7 +464,7 @@
       <workItem from="1571831040562" duration="17768000" />
       <workItem from="1571976963224" duration="15782000" />
       <workItem from="1572244609902" duration="3225000" />
-      <workItem from="1572407893250" duration="27652000" />
+      <workItem from="1572407893250" duration="30729000" />
     </task>
     <task id="LOCAL-00001" summary="2019-10-08">
       <created>1570590656736</created>
@@ -665,11 +641,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572522188439</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="version from 2019-10-31">
+      <created>1572590120997</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1572590120997</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243220000" />
+    <option name="totallyTimeSpent" value="246297000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="-8" width="1865" height="1096" extended-state="6" />
@@ -677,7 +660,7 @@
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.18604651" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.18604651" />
       <window_info id="Structure" order="3" weight="0.25" />
       <window_info id="Favorites" order="4" />
       <window_info anchor="bottom" id="Duplicate detector" weight="0.3296146" />
@@ -686,7 +669,7 @@
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3296146" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3204868" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.3204868" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.3995943" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -1017,35 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Main/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7483#7484#0" expanded="true" />
-            <element signature="e#7516#7517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/AppData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-517">
-          <caret line="251" selection-start-line="251" selection-end-line="251" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1065,8 +1019,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme.css">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="301" column="19" selection-start-line="301" selection-start-column="19" selection-end-line="301" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/Main/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="300" column="34" lean-forward="true" selection-start-line="300" selection-start-column="34" selection-end-line="300" selection-end-column="34" />
+          <caret line="274" column="30" lean-forward="true" selection-start-line="274" selection-start-column="30" selection-end-line="274" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7483#7484#0" expanded="true" />
+            <element signature="e#7516#7517#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/AppData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="262" column="23" selection-start-line="262" selection-start-column="23" selection-end-line="262" selection-end-column="23" />
         </state>
       </provider>
     </entry>
