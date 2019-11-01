@@ -1,11 +1,11 @@
 package objects.Employees;
 
-import objects.AbstractObject;
+import objects.idReturnable;
 import objects.SimpleObject;
 import javafx.collections.ObservableList;
 import objects.Users.User;
 
-public class Employee extends AbstractObject {
+public class Employee implements idReturnable {
     private Integer id;
     private String lastName;
     private String name;
@@ -14,7 +14,7 @@ public class Employee extends AbstractObject {
     private Division division;
     private User user;
 
-    public Employee(Integer id, String lastName, String name, String middleName, SimpleObject position, Division division, User user) {
+    public Employee(Integer id, String lastName, String name, String middleName, SimpleObject<Position> position, Division division, User user) {
         this.id = id;
         this.lastName = lastName;
         this.name = name;
@@ -33,7 +33,6 @@ public class Employee extends AbstractObject {
         for (Employee employee : employees) {
             if (employee.getUser().getID()==userID) return employee;
         }
-
         return null;
     }
 

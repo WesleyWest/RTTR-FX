@@ -1,8 +1,8 @@
 package objects.Users;
 
-import objects.AbstractObject;
+import objects.idReturnable;
 
-public class User extends AbstractObject {
+public class User implements idReturnable {
     private int userID;
     private String userName;
     private String userPassword;

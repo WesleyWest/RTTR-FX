@@ -13,7 +13,6 @@ import objects.DB.SQLDataBase;
 import objects.Employees.Division;
 import objects.Employees.Employee;
 import objects.Employees.Position;
-import objects.DB.MySQLDataBase;
 import objects.Technic.Technic;
 import objects.Technic.TechnicStatus;
 import objects.Technic.TechnicType;
@@ -241,7 +240,7 @@ public class AppData {
         alert.showAndWait();
     }
 
-    public static <T extends AbstractObject> T getObjectByID(ObservableList<T> list, int ID) {
+    public static <T extends idReturnable> T getObjectByID(ObservableList<T> list, int ID) {
         for (T element : list) {
             if (element.getID() == ID) {
                 return element;

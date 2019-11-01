@@ -1,5 +1,6 @@
 package forms.Settings;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,23 +9,30 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import objects.DB.SQLDataBaseFactory;
 
 public class SettingsController {
 
     @FXML
-    private TextField hostTextField;
+    private ComboBox chooseDBComboBox;
 
     @FXML
-    private TextField portTextField1;
+    private TextField mySQLHostTextField;
 
     @FXML
-    private TextField schemaTextField2;
+    private TextField mySQLPortTextField;
 
     @FXML
-    private TextField loginTextField21;
+    private TextField mySQLSchemaTextField;
 
     @FXML
-    private TextField passwordTextField;
+    private TextField MySQLLoginTextField;
+
+    @FXML
+    private TextField MySQLPasswordTextField;
+
+    @FXML
+    private TextField SQLitePathTODBTextField;
 
     @FXML
     private ComboBox themeComboBox;
@@ -49,13 +57,18 @@ public class SettingsController {
     @FXML
     private AnchorPane technicAnchorPane;
 
+    ObservableList<String> dbTypes;
+    ObservableList<String> interfaceColorThemes;
+
     @FXML
     void initialize() {
         AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0,"anchor-pane-in-tab");
         }
-
+        dbTypes= SQLDataBaseFactory.getDBTypesList();
+        chooseDBComboBox.getItems().addAll(dbTypes);
+//        chooseDBComboBox.getItems().
     }
 
     @FXML

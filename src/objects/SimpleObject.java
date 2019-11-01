@@ -1,6 +1,6 @@
 package objects;
 
-public class SimpleObject<T> extends AbstractObject {
+public class SimpleObject<T> implements idReturnable {
     private Integer id;
     String description;
 

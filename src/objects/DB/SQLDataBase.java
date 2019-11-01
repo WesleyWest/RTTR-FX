@@ -182,7 +182,6 @@ public class SQLDataBase extends AppData {
                 int id = rs.getInt("division_id");
                 String code = rs.getString("division_code");
                 String description = rs.getString("division_description");
-//                AppData.printInLog(id+": ["+code+"] "+description);
                 tmp.add(new Division(id, code, description));
             }
             rs.close();

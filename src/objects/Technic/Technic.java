@@ -1,10 +1,10 @@
 package objects.Technic;
 
-import objects.AbstractObject;
+import objects.idReturnable;
 import objects.SimpleObject;
 import objects.Employees.Employee;
 
-public class Technic extends AbstractObject {
+public class Technic implements idReturnable {
     private Integer id;
     private String name;
     private String details;

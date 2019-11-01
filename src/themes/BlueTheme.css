@@ -18,7 +18,7 @@
 .anchor-pane-in-tab {
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
     -fx-border-color: #376bc5;
-    -fx-border-width: 1 0 1 0;
+    -fx-border-width: 1 0 0 0;
 }
 
 .anchor-pane-main {
@@ -212,10 +212,6 @@
     -fx-fill: #d2e7f9;
 }
 
-.separator {
-    /*-fx-background-color: #FAFAFA;*/
-}
-
 .separator .line {
     -fx-border-style: solid;
     -fx-border-width: 0 1 1 0;
@@ -253,6 +249,16 @@
 .user-button {
     -fx-background-image: url('../resources/userid.png');
     -fx-background-size: 100% 100%;
+    -fx-background-color: transparent;
+}
+.user-button:pressed {
+    -fx-background-image: url('../resources/userid.png');
+    -fx-background-size: 98% 98%;
+    -fx-background-color: transparent;
+}
+
+.user-button:focused {
+    -fx-border-color: transparent;
 }
 
 .main-label .text {
@@ -283,24 +289,18 @@
     -fx-border-radius: 5
 }
 
-.combo-box:editable .text-field{
-    -fx-text-fill: #233d7b;
+.combo-box {
     -fx-background-color: #FAFAFA;
-    -fx-background-radius: 5 0 0 5;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 1 1 1 1;
     -fx-border-color: #57a8d7;
-    -fx-border-radius: 5 0 0 5
+    -fx-border-radius: 5 5 5 5;
 }
 
-.combo-box:editable {
-    -fx-background-color: #FAFAFA;
-    -fx-background-radius: 5 0 0 5;
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-}
-.combo-box:editable .arrow-button{
+.combo-box .arrow-button{
     -fx-background-color: #a7d9f5;
     -fx-background-radius: 0 5 5 0;
     -fx-border-color: #57a8d7;
-    -fx-border-width: 1 1 1 0;
-    -fx-border-radius:  0 5 5 0
+    -fx-border-width: 0 0 0 1;
 }
+
