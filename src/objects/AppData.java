@@ -229,11 +229,8 @@ public class AppData {
 
     public static void showAlert(String text) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-
         stage.getIcons().add(new Image("resources/main.png"));
-
         alert.setTitle("RTTR-Master");
         alert.setHeaderText(null);
         alert.setContentText(text);

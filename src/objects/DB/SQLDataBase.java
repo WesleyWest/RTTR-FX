@@ -36,13 +36,11 @@ public class SQLDataBase extends AppData {
     private String connectionString;
     private String className;
 
-
     public void open() {
         try {
             AppData.printInLog("Trying to connect to the DB...");
             Class.forName(className);
             connection = DriverManager.getConnection(connectionString, getDbUser(), getDbPass());
-
             AppData.printInLog("Connected successfully to: " + connectionString);
             AppData.printInLog("---------------------");
             AppData.printInLog("");
@@ -132,7 +130,6 @@ public class SQLDataBase extends AppData {
             opened = false;
         }
         AppData.printInLog("Roles was set...");
-
     }
 
     public ObservableList<User> readUsersFromDB() {

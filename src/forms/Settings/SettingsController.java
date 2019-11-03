@@ -8,7 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import objects.AppData;
 import objects.DB.SQLDataBaseFactory;
 
 public class SettingsController {
@@ -57,18 +59,25 @@ public class SettingsController {
     @FXML
     private AnchorPane technicAnchorPane;
 
-    ObservableList<String> dbTypes;
-    ObservableList<String> interfaceColorThemes;
-
     @FXML
     void initialize() {
         AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
         for (AnchorPane pane : panes) {
-            pane.getStyleClass().add(0,"anchor-pane-in-tab");
+            pane.getStyleClass().add(0, "anchor-pane-in-tab");
         }
-        dbTypes= SQLDataBaseFactory.getDBTypesList();
-        chooseDBComboBox.getItems().addAll(dbTypes);
-//        chooseDBComboBox.getItems().
+
+        chooseDBComboBox.setItems(SQLDataBaseFactory.getDBTypesList());
+
+        chooseDBComboBox.getSelectionModel().select(
+                chooseDBComboBox.getItems().indexOf(AppData.getSQLDataBaseType())
+        );
+
+        DBSettingsPaneFactory factory = new DBSettingsPaneFactory();
+        Pane dbSettingsPane = factory.getPaneByDBType(AppData.getSQLDataBaseType());
+        settingsAnchorPane.getChildren().add(dbSettingsPane);
+        dbSettingsPane.setLayoutX(10);
+        dbSettingsPane.setLayoutY(40);
+
     }
 
     @FXML
