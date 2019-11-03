@@ -59,25 +59,42 @@ public class SettingsController {
     @FXML
     private AnchorPane technicAnchorPane;
 
+    private SQLDataBaseFactory factory;
+    Pane dbSettingsPane = null;
+
     @FXML
     void initialize() {
         AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0, "anchor-pane-in-tab");
         }
-
-        chooseDBComboBox.setItems(SQLDataBaseFactory.getDBTypesList());
-
+        factory = new SQLDataBaseFactory();
+        chooseDBComboBox.setItems(factory.getDBTypesList());
         chooseDBComboBox.getSelectionModel().select(
                 chooseDBComboBox.getItems().indexOf(AppData.getSQLDataBaseType())
         );
 
-        DBSettingsPaneFactory factory = new DBSettingsPaneFactory();
-        Pane dbSettingsPane = factory.getPaneByDBType(AppData.getSQLDataBaseType());
-        settingsAnchorPane.getChildren().add(dbSettingsPane);
-        dbSettingsPane.setLayoutX(10);
-        dbSettingsPane.setLayoutY(40);
+        setDBSettingsPane();
 
+    }
+
+    private void setDBSettingsPane() {
+        if (settingsAnchorPane.getChildren().indexOf(dbSettingsPane) != 0) {
+            settingsAnchorPane.getChildren().remove(dbSettingsPane);
+        }
+        dbSettingsPane = factory.getPaneByDBType(AppData.getSQLDataBaseType());
+        if (dbSettingsPane != null) {
+            settingsAnchorPane.getChildren().add(dbSettingsPane);
+            dbSettingsPane.setLayoutX(14);
+            dbSettingsPane.setLayoutY(70);
+        }
+
+    }
+
+    @FXML
+    void chooseDBComboBoxClick(ActionEvent event) {
+        AppData.setSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
+        setDBSettingsPane();
     }
 
     @FXML

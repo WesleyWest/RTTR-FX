@@ -1,6 +1,5 @@
 package forms.Login;
 
-import objects.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import objects.DB.MySQLDataBase;
+import objects.AppData;
 import objects.DB.SQLDataBaseFactory;
 import objects.Users.User;
 
@@ -84,16 +83,17 @@ public class LoginController extends AppData {
             Node source = (Node) event.getSource();
             Stage oldStage = (Stage) source.getScene().getWindow();
             oldStage.close();
+
             Parent root = FXMLLoader.load(getClass().getResource("../Main/MainWindow.fxml"));
             AppData.setOwner(((Node) event.getSource()).getScene().getWindow());
-            AppData.openCustomWindow(event, root, 1044,768, Modality.WINDOW_MODAL,true);
+            AppData.openCustomWindow(event, root, 1044, 768, Modality.WINDOW_MODAL, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void getUsersFromDB() {
-        setDb(SQLDataBaseFactory.getSQLDataBaseByType(getSQLDataBaseType()));
+        setDb(new SQLDataBaseFactory().getSQLDataBaseByType(getSQLDataBaseType()));
         getDb().open();
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());
@@ -109,8 +109,6 @@ public class LoginController extends AppData {
         }
         return false;
     }
-
-
 
 
 }
