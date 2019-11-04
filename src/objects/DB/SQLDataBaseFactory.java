@@ -1,12 +1,12 @@
 package objects.DB;
 
+import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
+import forms.Settings.DBSettingsPanes.MySQL.MySQLSettingsPaneController;
+import forms.Settings.DBSettingsPanes.SQLite.SQLiteSettingsPaneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
-import objects.AppData;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,17 +29,23 @@ public class SQLDataBaseFactory {
         return FXCollections.observableArrayList(result);
     }
 
-    public Pane getPaneByDBType(String type) {
-        try {
-            switch (type) {
-                case "MySQL":
-                    return (Pane) FXMLLoader.load(getClass().getResource("../../forms/Settings/SettingsPaneMySQL.fxml"));
-                case "SQLite":
-                    return (Pane) FXMLLoader.load(getClass().getResource("../../forms/Settings/SettingsPaneSQLite.fxml"));
-            }
+    public FXMLLoader getPaneByDBType(String type) {
+        switch (type) {
+            case "MySQL":
+                return new FXMLLoader(getClass().getResource("../../forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPane.fxml"));
+            case "SQLite":
+                return new FXMLLoader(getClass().getResource("../../forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPane.fxml"));
+        }
+        return null;
+    }
 
-        } catch (IOException e) {
-            AppData.showAlert("IOException: " + e.getLocalizedMessage());
+    public DBSettingsPaneController getDBSettingsControllerByType(String type) {
+
+        switch (type) {
+            case "MySQL":
+                return new MySQLSettingsPaneController();
+            case "SQLite":
+                return new SQLiteSettingsPaneController();
         }
         return null;
     }

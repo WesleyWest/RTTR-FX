@@ -4,6 +4,7 @@
       <root url="jar://$PROJECT_DIR$/src/libraries/controlsfx-8.40.12.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/libraries/mysql-connector-java-8.0.17.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/libraries/sqlite-jdbc-3.27.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libraries/ini4j-0.5.4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

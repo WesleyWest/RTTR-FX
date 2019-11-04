@@ -34,6 +34,11 @@
     -fx-fill: #376bc5;
 }
 
+.toggle-button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 150, 0.6), 5, 0.0, 0, 1);
+}
+
+
 .toggle-button-active:selected {
     -fx-background-color: #c43737,
     linear-gradient(#d17470, #eac1b9, #d17470);

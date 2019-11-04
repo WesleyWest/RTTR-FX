@@ -228,6 +228,10 @@ public class MainController extends AppData {
 
     @FXML
     void closedRequestsToggleButtonClick(ActionEvent event) {
+        if (!closedRequestsToggleButton.isSelected()) {
+            closedRequestsToggleButton.setSelected(true);
+            return;
+        }
         closedRequestsAnchorPane.setVisible(true);
         mainTableView.getStyleClass().set(1, "table-view-closed");
         changeTableView(true);
@@ -236,6 +240,10 @@ public class MainController extends AppData {
 
     @FXML
     void activeRequestsToggleButtonClick(ActionEvent event) {
+        if (!activeRequestsToggleButtton.isSelected()) {
+            activeRequestsToggleButtton.setSelected(true);
+            return;
+        }
         closedRequestsAnchorPane.setVisible(false);
         mainTableView.getStyleClass().set(1, "table-view-active");
         changeTableView(false);
