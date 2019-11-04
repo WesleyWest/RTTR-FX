@@ -18,12 +18,9 @@ import objects.Technic.TechnicStatus;
 import objects.Technic.TechnicType;
 import objects.Users.Role;
 import objects.Users.User;
+import org.ini4j.Wini;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -47,55 +44,23 @@ public class AppData {
 
     private static Window owner;
 
-    private static String filePath = "src/conf/settings.dat";
-    private static String dbHost;
-    private static String dbPort;
-    private static String dbUser;
-    private static String dbPass;
-    private static String dbSchema;
+    private static String settingsFilePath = "src/conf/settings.ini";
+    private static String themeName;
     private static String pathCSS;
     private static String SQLDataBaseType;
-    private static String pathToSQLiteDB;
 
+    private static Wini iniFile;
 
-    public static String getDbHost() {
-        return dbHost;
+    public static Wini getIniFile() {
+        return iniFile;
     }
 
-    public static void setDbHost(String dbHost) {
-        AppData.dbHost = dbHost;
+    public static String getThemeName() {
+        return themeName;
     }
 
-    public static String getDbPort() {
-        return dbPort;
-    }
-
-    public static void setDbPort(String dbPort) {
-        AppData.dbPort = dbPort;
-    }
-
-    public static String getDbUser() {
-        return dbUser;
-    }
-
-    public static void setDbUser(String dbUser) {
-        AppData.dbUser = dbUser;
-    }
-
-    public static String getDbPass() {
-        return dbPass;
-    }
-
-    public static void setDbPass(String dbPass) {
-        AppData.dbPass = dbPass;
-    }
-
-    public static String getDbSchema() {
-        return dbSchema;
-    }
-
-    public static void setDbSchema(String dbSchema) {
-        AppData.dbSchema = dbSchema;
+    public static void setThemeName(String themeName) {
+        AppData.themeName = themeName;
     }
 
     public static String getPathCSS() {
@@ -122,21 +87,14 @@ public class AppData {
         AppData.db = db;
     }
 
-    public static String getFilePath() {
-        return filePath;
+    public static String getSettingsFilePath() {
+        return settingsFilePath;
     }
 
-    public static void setFilePath(String filePath) {
-        AppData.filePath = filePath;
+    public static void setSettingsFilePath(String settingsFilePath) {
+        AppData.settingsFilePath = settingsFilePath;
     }
 
-    public static String getPathToSQLiteDB() {
-        return pathToSQLiteDB;
-    }
-
-    public static void setPathToSQLiteDB(String pathToSQLiteDB) {
-        AppData.pathToSQLiteDB = pathToSQLiteDB;
-    }
 
     public static Window getOwner() {
         return owner;
@@ -177,6 +135,7 @@ public class AppData {
     public static void setUser(User user) {
         AppData.user = user;
     }
+
     public static ObservableList<Role> getRoles() {
         return roles;
     }
@@ -273,43 +232,39 @@ public class AppData {
     }
 
     public static void readSettingsFromFile() {
-        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get(filePath)))) {
-            setSQLDataBaseType((String)in.readObject());
-            setDbHost((String)in.readObject());
-            setDbPort((String)in.readObject());
-            setDbUser((String)in.readObject());
-            setDbPass((String)in.readObject());
-            setDbSchema((String)in.readObject());
-            setPathToSQLiteDB((String)in.readObject());
-            setPathCSS((String)in.readObject());
+        try {
+            iniFile = new Wini(new File(String.valueOf(Paths.get(settingsFilePath))));
+            setThemeName(iniFile.get("MAIN","Active theme"));
+            setSQLDataBaseType(iniFile.get("MAIN","DB type"));
+            System.out.println(getThemeName());
 
-            System.out.println("File (" + new File(filePath).getAbsolutePath() + ") was loaded successfully.");
-        } catch (IOException e) {
-            System.out.println("Something wrong with the <" + filePath + ">: " + e.getMessage());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File (" + new File(settingsFilePath).getAbsolutePath() + ") was loaded successfully.");
         } catch (Exception e) {
+            System.out.println("Something wrong with the <" + settingsFilePath + ">: " + e.getMessage());
+        }
+
+    }
+
+
+    public static void writeDefaultSettingsToFile() {
+        try {
+            Wini iniFile = new Wini(new File(String.valueOf(Paths.get(settingsFilePath))));
+            iniFile.clear();
+            iniFile.add("THEMES", "Blue theme", new File(String.valueOf(Paths.get("src/themes/BlueTheme.css"))));
+            iniFile.add("THEMES", "Dark theme", new File(String.valueOf(Paths.get("src/themes/DarkTheme.css"))));
+            iniFile.add("MAIN", "DB type", "SQLITE");
+            iniFile.add("MAIN", "Active theme", "Blue Theme");
+            iniFile.add("SQLITE", "Path to file", new File(String.valueOf(Paths.get("src/db/rttr-base.db"))).getAbsolutePath());
+            iniFile.add("MYSQL", "Host", "localhost");
+            iniFile.add("MYSQL", "Port", "3306");
+            iniFile.add("MYSQL", "Schema", "rttr-base");
+            iniFile.add("MYSQL", "Login", "root");
+            iniFile.add("MYSQL", "Password", "diamond");
+            iniFile.store();
+            System.out.println("The file was successfully saved.");
+        } catch (Exception e) {
+            System.out.println("File can't be opened. Program terminates.");
             e.printStackTrace();
         }
     }
-
-        public static void writeDefaultSettingsToFile () {
-
-            try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get(filePath)))) {
-                out.writeObject("SQLite");
-//                out.writeObject("MySQL");
-                out.writeObject("localhost");
-                out.writeObject("3306");
-                out.writeObject("root");
-                out.writeObject("diamond");
-                out.writeObject("rttr-base");
-                out.writeObject("src/db/rttr-base.db");
-                out.writeObject("/themes/BlueTheme.css");
-                out.close();
-                System.out.println("The file was successfully saved.");
-            } catch (IOException e) {
-                System.out.println("File can't be opened. Program terminates.");
-                e.printStackTrace();
-            }
-        }
-    }
+}

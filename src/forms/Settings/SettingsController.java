@@ -1,14 +1,12 @@
 package forms.Settings;
 
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,24 +19,6 @@ public class SettingsController {
 
     @FXML
     private ComboBox chooseDBComboBox;
-
-    @FXML
-    private TextField mySQLHostTextField;
-
-    @FXML
-    private TextField mySQLPortTextField;
-
-    @FXML
-    private TextField mySQLSchemaTextField;
-
-    @FXML
-    private TextField MySQLLoginTextField;
-
-    @FXML
-    private TextField MySQLPasswordTextField;
-
-    @FXML
-    private TextField SQLitePathTODBTextField;
 
     @FXML
     private ComboBox themeComboBox;
@@ -80,12 +60,8 @@ public class SettingsController {
         );
 
         setDBSettingsPane();
-//        setInfoInController();
 
-    }
 
-    private void setInfoInController() {
-        controller.setInformation("sssssdas");
     }
 
     private void setDBSettingsPane() {
@@ -104,14 +80,7 @@ public class SettingsController {
         if (dbSettingsPane != null) {
             settingsAnchorPane.getChildren().add(dbSettingsPane);
             dbSettingsPane.setLayoutX(14);
-            dbSettingsPane.setLayoutY(70);
-            controller.setInformation(  AppData.getDbHost()+"&"+
-                                        AppData.getDbPort()+"&"+
-                                        AppData.getDbSchema()+"&"+
-                                        AppData.getDbUser()+"&"+
-                                        AppData.getDbPass()+"&");
-        }
-
+            dbSettingsPane.setLayoutY(70);}
     }
 
     @FXML

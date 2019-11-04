@@ -10,12 +10,12 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
     private TextField SQLitePathTODBTextField;
 
     @Override
-    public void setInformation(String info) {
-        SQLitePathTODBTextField.setText(info);
+    public void setInformation() {
+
     }
 
     @Override
-    public String getInformation() {
-        return null;
+    public void getInformation() {
+
     }
 }

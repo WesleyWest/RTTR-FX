@@ -19,6 +19,7 @@ public class Main extends Application {
 //        System.exit(0);
 
         AppData.readSettingsFromFile();
+        System.exit(0);
         Parent root = FXMLLoader.load(getClass().getResource("forms/Login/LoginWindow.fxml"));
 
         primaryStage.setTitle("RTTR-Master");

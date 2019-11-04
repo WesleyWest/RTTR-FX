@@ -40,7 +40,7 @@ public class SQLDataBase extends AppData {
         try {
             AppData.printInLog("Trying to connect to the DB...");
             Class.forName(className);
-            connection = DriverManager.getConnection(connectionString, getDbUser(), getDbPass());
+            connection = DriverManager.getConnection(connectionString, "root", "diamond");
             AppData.printInLog("Connected successfully to: " + connectionString);
             AppData.printInLog("---------------------");
             AppData.printInLog("");

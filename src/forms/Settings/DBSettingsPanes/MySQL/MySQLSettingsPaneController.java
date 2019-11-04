@@ -35,26 +35,14 @@ public class MySQLSettingsPaneController implements DBSettingsPaneController {
     }
 
     @Override
-    public void setInformation(String info) {
+    public void setInformation() {
 
 
-        String value = "";
-        int count = 0;
-        for (int i = 0; i < info.length(); i++) {
-            if (info.charAt(i) != '&') {
-                value+=info.charAt(i);
-            } else {
-                fields[count].setText(value);
-                count++;
-                value="";
-            }
-
-        }
 
     }
 
     @Override
-    public String getInformation() {
-        return null;
+    public void getInformation() {
+
     }
 }
