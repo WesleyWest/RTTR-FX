@@ -1,52 +1,57 @@
 package objects.DB;
 
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
-import forms.Settings.DBSettingsPanes.MySQL.MySQLSettingsPaneController;
-import forms.Settings.DBSettingsPanes.SQLite.SQLiteSettingsPaneController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import objects.AppData;
+import objects.DB.types.SQLiteDataBase;
+import objects.DB.types.MySQLDataBase;
+import objects.DBType;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class SQLDataBaseFactory {
+public class SQLDataBaseFactory extends AppData {
 
-    public SQLDataBase getSQLDataBaseByType(String type) {
-        switch (type) {
-            case "MySQL":
-                return new MySQLDataBase();
-            case "SQLite":
-                return new SQLiteDataBase();
+
+
+    public SQLDataBase getSQLDataBaseByType(String typeName) {
+        for (DBType type : getDbTypes()) {
+            if (type.getName().toUpperCase().equals(typeName.toUpperCase())) {
+                try {
+                    Class<?> dbClass = Class.forName("objects.DB.types."+type.getClassName());
+                    SQLDataBase sqlDataBase = (SQLDataBase) dbClass.newInstance();
+                    return sqlDataBase;
+                } catch (ClassNotFoundException e) {
+                    showAlert("Class not found: "+e.getLocalizedMessage());
+                } catch (InstantiationException e) {
+                    showAlert("Can't instant object: "+e.getLocalizedMessage());
+                } catch (IllegalAccessException e) {
+                    showAlert("Illegal access exception: "+e.getLocalizedMessage());
+                }
+            }
         }
         return null;
     }
 
-    public ObservableList<String> getDBTypesList() {
-        List<String> result = new ArrayList<>();
-        result.add("MySQL");
-        result.add("SQLite");
-        return FXCollections.observableArrayList(result);
-    }
-
-    public FXMLLoader getPaneByDBType(String type) {
-        switch (type) {
-            case "MySQL":
-                return new FXMLLoader(getClass().getResource("../../forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPane.fxml"));
-            case "SQLite":
-                return new FXMLLoader(getClass().getResource("../../forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPane.fxml"));
+    public FXMLLoader getPaneByDBType(String typeName) {
+        for (DBType type : getDbTypes()) {
+            if (type.getName().toUpperCase().equals(typeName.toUpperCase())) {
+                return new FXMLLoader(getClass().getResource(type.getPathToFXML()));
+            }
         }
         return null;
     }
 
-    public DBSettingsPaneController getDBSettingsControllerByType(String type) {
-
-        switch (type) {
-            case "MySQL":
-                return new MySQLSettingsPaneController();
-            case "SQLite":
-                return new SQLiteSettingsPaneController();
+    public DBSettingsPaneController getDBSettingsControllerByType(String typeName) {
+        for (DBType type : getDbTypes()) {
+            if (type.getName().toUpperCase().equals(typeName.toUpperCase())) {
+                try {
+                    Class<?> controllerClass = Class.forName(type.getPaneControllerClassName());
+                    return (DBSettingsPaneController) controllerClass.newInstance();
+                } catch (Exception e) {
+                    showAlert(e.getLocalizedMessage());
+                }
+            }
         }
         return null;
     }
+
 }

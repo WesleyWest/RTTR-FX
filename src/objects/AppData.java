@@ -23,6 +23,7 @@ import org.ini4j.Wini;
 import java.io.File;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AppData {
@@ -47,12 +48,32 @@ public class AppData {
     private static String settingsFilePath = "src/conf/settings.ini";
     private static String themeName;
     private static String pathCSS;
-    private static String SQLDataBaseType;
+
+    private static ArrayList<ColorTheme> themes = new ArrayList<>();
+    private static ArrayList<DBType> dbTypes = new ArrayList<>();
+
+    private static String activeSQLDataBaseType;
 
     private static Wini iniFile;
 
     public static Wini getIniFile() {
         return iniFile;
+    }
+
+    public static ArrayList<ColorTheme> getThemes() {
+        return themes;
+    }
+
+    public static void setThemes(ArrayList<ColorTheme> themes) {
+        AppData.themes = themes;
+    }
+
+    public static ArrayList<DBType> getDbTypes() {
+        return dbTypes;
+    }
+
+    public static void setDbTypes(ArrayList<DBType> dbTypes) {
+        AppData.dbTypes = dbTypes;
     }
 
     public static String getThemeName() {
@@ -71,12 +92,12 @@ public class AppData {
         AppData.pathCSS = pathCSS;
     }
 
-    public static String getSQLDataBaseType() {
-        return SQLDataBaseType;
+    public static String getActiveSQLDataBaseType() {
+        return activeSQLDataBaseType;
     }
 
-    public static void setSQLDataBaseType(String SQLDataBaseType) {
-        AppData.SQLDataBaseType = SQLDataBaseType;
+    public static void setActiveSQLDataBaseType(String activeSQLDataBaseType) {
+        AppData.activeSQLDataBaseType = activeSQLDataBaseType;
     }
 
     public static SQLDataBase getDb() {
@@ -235,8 +256,22 @@ public class AppData {
         try {
             iniFile = new Wini(new File(String.valueOf(Paths.get(settingsFilePath))));
             setThemeName(iniFile.get("MAIN","Active theme"));
-            setSQLDataBaseType(iniFile.get("MAIN","DB type"));
-            System.out.println(getThemeName());
+            for (String key : iniFile.get("THEMES").keySet()) {
+                themes.add(new ColorTheme(key,iniFile.get("THEMES",key)));
+                if (key.equals(getThemeName())){
+                    setPathCSS(iniFile.get("THEMES",key));
+                }
+            }
+
+            for (String key : iniFile.get("DBTYPES").keySet()) {
+                String name = key;
+                String className= iniFile.get("DBTYPES",key);
+                String pathToFXML = iniFile.get(name.toUpperCase(),"Path to FXML");
+                String paneControllerClassName = iniFile.get(name.toUpperCase(),"PaneController ClassName");
+                DBType type = new DBType(name,className,pathToFXML,paneControllerClassName);
+                dbTypes.add(type);
+            }
+            setActiveSQLDataBaseType(iniFile.get("MAIN","Active DB type"));
 
             System.out.println("File (" + new File(settingsFilePath).getAbsolutePath() + ") was loaded successfully.");
         } catch (Exception e) {
@@ -252,7 +287,7 @@ public class AppData {
             iniFile.clear();
             iniFile.add("THEMES", "Blue theme", new File(String.valueOf(Paths.get("src/themes/BlueTheme.css"))));
             iniFile.add("THEMES", "Dark theme", new File(String.valueOf(Paths.get("src/themes/DarkTheme.css"))));
-            iniFile.add("MAIN", "DB type", "SQLITE");
+            iniFile.add("MAIN", "Active DB type", "SQLITE");
             iniFile.add("MAIN", "Active theme", "Blue Theme");
             iniFile.add("SQLITE", "Path to file", new File(String.valueOf(Paths.get("src/db/rttr-base.db"))).getAbsolutePath());
             iniFile.add("MYSQL", "Host", "localhost");

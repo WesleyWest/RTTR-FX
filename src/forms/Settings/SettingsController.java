@@ -1,6 +1,7 @@
 package forms.Settings;
 
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +12,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import objects.AppData;
+import objects.ColorTheme;
 import objects.DB.SQLDataBaseFactory;
+import objects.DBType;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SettingsController {
 
@@ -46,6 +50,8 @@ public class SettingsController {
     private SQLDataBaseFactory factory;
     Pane dbSettingsPane = null;
     DBSettingsPaneController controller = null;
+    ArrayList<String> dbTypesStr;
+    ArrayList<String> themesStr;
 
     @FXML
     void initialize() {
@@ -53,22 +59,36 @@ public class SettingsController {
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0, "anchor-pane-in-tab");
         }
+
         factory = new SQLDataBaseFactory();
-        chooseDBComboBox.setItems(factory.getDBTypesList());
+
+        dbTypesStr = new ArrayList<String>();
+        for (DBType type : AppData.getDbTypes()) {
+            dbTypesStr.add(type.getName());
+        }
+        chooseDBComboBox.setItems(FXCollections.observableArrayList(dbTypesStr));
         chooseDBComboBox.getSelectionModel().select(
-                chooseDBComboBox.getItems().indexOf(AppData.getSQLDataBaseType())
+                chooseDBComboBox.getItems().indexOf(AppData.getActiveSQLDataBaseType())
         );
 
+        themesStr = new ArrayList<String>();
+        for(ColorTheme theme: AppData.getThemes()){
+            themesStr.add(theme.getName());
+        }
+        themeComboBox.setItems(FXCollections.observableArrayList(themesStr));
+        themeComboBox.getSelectionModel().select(
+                themeComboBox.getItems().indexOf(AppData.getThemeName())
+        );
+
+
         setDBSettingsPane();
-
-
     }
 
     private void setDBSettingsPane() {
         if (settingsAnchorPane.getChildren().indexOf(dbSettingsPane) != 0) {
             settingsAnchorPane.getChildren().remove(dbSettingsPane);
         }
-        FXMLLoader loader = factory.getPaneByDBType(AppData.getSQLDataBaseType());
+        FXMLLoader loader = factory.getPaneByDBType(AppData.getActiveSQLDataBaseType());
         try {
             dbSettingsPane = loader.load();
             controller = loader.getController();
@@ -80,12 +100,14 @@ public class SettingsController {
         if (dbSettingsPane != null) {
             settingsAnchorPane.getChildren().add(dbSettingsPane);
             dbSettingsPane.setLayoutX(14);
-            dbSettingsPane.setLayoutY(70);}
+            dbSettingsPane.setLayoutY(70);
+            controller.setInformation();
+        }
     }
 
     @FXML
     void chooseDBComboBoxClick(ActionEvent event) {
-        AppData.setSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
+        AppData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
         setDBSettingsPane();
     }
 

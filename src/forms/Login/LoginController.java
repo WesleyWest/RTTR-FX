@@ -93,7 +93,7 @@ public class LoginController extends AppData {
     }
 
     private void getUsersFromDB() {
-        setDb(new SQLDataBaseFactory().getSQLDataBaseByType(getSQLDataBaseType()));
+        setDb(new SQLDataBaseFactory().getSQLDataBaseByType(getActiveSQLDataBaseType()));
         getDb().open();
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());

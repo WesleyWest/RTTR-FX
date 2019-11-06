@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class Main extends Application {
 //        System.exit(0);
 
         AppData.readSettingsFromFile();
-        System.exit(0);
+//        System.exit(0);
         Parent root = FXMLLoader.load(getClass().getResource("forms/Login/LoginWindow.fxml"));
 
         primaryStage.setTitle("RTTR-Master");

@@ -4,6 +4,7 @@ import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import objects.AppData;
 
 public class MySQLSettingsPaneController implements DBSettingsPaneController {
     @FXML
@@ -26,19 +27,15 @@ public class MySQLSettingsPaneController implements DBSettingsPaneController {
 
     @FXML
     void initialize() {
-        fields = new TextField[]
-               {mySQLHostTextField,
-                mySQLPortTextField,
-                mySQLSchemaTextField,
-                mySQLLoginTextField,
-                mySQLPasswordTextField};
     }
 
     @Override
     public void setInformation() {
-
-
-
+        mySQLHostTextField.setText(AppData.getIniFile().get("MYSQL","Host"));
+        mySQLPortTextField.setText(AppData.getIniFile().get("MYSQL","Port"));
+        mySQLSchemaTextField.setText(AppData.getIniFile().get("MYSQL","Schema"));
+        mySQLLoginTextField.setText(AppData.getIniFile().get("MYSQL","Login"));
+        mySQLPasswordTextField.setText(AppData.getIniFile().get("MYSQL","Password"));
     }
 
     @Override
