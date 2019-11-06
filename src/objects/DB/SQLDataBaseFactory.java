@@ -3,14 +3,10 @@ package objects.DB;
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
 import javafx.fxml.FXMLLoader;
 import objects.AppData;
-import objects.DB.types.SQLiteDataBase;
-import objects.DB.types.MySQLDataBase;
 import objects.DBType;
 
 
 public class SQLDataBaseFactory extends AppData {
-
-
 
     public SQLDataBase getSQLDataBaseByType(String typeName) {
         for (DBType type : getDbTypes()) {
@@ -46,8 +42,12 @@ public class SQLDataBaseFactory extends AppData {
                 try {
                     Class<?> controllerClass = Class.forName(type.getPaneControllerClassName());
                     return (DBSettingsPaneController) controllerClass.newInstance();
-                } catch (Exception e) {
-                    showAlert(e.getLocalizedMessage());
+                } catch (ClassNotFoundException e) {
+                    showAlert("Class not found: "+e.getLocalizedMessage());
+                } catch (InstantiationException e) {
+                    showAlert("Can't instant object: "+e.getLocalizedMessage());
+                } catch (IllegalAccessException e) {
+                    showAlert("Illegal access exception: "+e.getLocalizedMessage());
                 }
             }
         }

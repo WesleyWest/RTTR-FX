@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -11,32 +10,32 @@
       <Label layoutX="444.0" text="Порт:" textFill="#376bc5" />
       <Label layoutX="1.0" layoutY="57.0" text="Имя базы данных (schema):" textFill="#376bc5" />
       <Label layoutX="1.0" text="Адрес сервера MySQL:" textFill="#376bc5" />
-      <TextField fx:id="mySQLHostTextField" layoutY="17.0" prefHeight="32.0" prefWidth="435.0">
+      <TextField fx:id="mySQLHostField" layoutY="17.0" prefHeight="32.0" prefWidth="435.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="mySQLPortTextField" layoutX="444.0" layoutY="17.0" prefHeight="32.0" prefWidth="134.0">
+      <TextField fx:id="mySQLPortField" layoutX="444.0" layoutY="17.0" prefHeight="32.0" prefWidth="134.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="mySQLSchemaTextField" layoutY="74.0" prefHeight="32.0" prefWidth="435.0">
+      <TextField fx:id="mySQLSchemaField" layoutY="74.0" prefHeight="32.0" prefWidth="435.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
       <Label layoutX="1.0" layoutY="135.0" text="Имя пользователя MySQL:" textFill="#376bc5" />
-      <TextField fx:id="mySQLLoginTextField" layoutY="151.0" prefHeight="32.0" prefWidth="435.0">
+      <TextField fx:id="mySQLLoginField" layoutY="151.0" prefHeight="32.0" prefWidth="435.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
       <Label layoutX="1.0" layoutY="184.0" text="Пароль пользователя MySQL:" textFill="#376bc5" />
-      <PasswordField fx:id="mySQLPasswordTextField" layoutY="200.0" prefHeight="32.0" prefWidth="435.0">
+      <TextField fx:id="mySQLPasswordField" layoutY="201.0" prefHeight="32.0" prefWidth="435.0">
          <font>
             <Font size="15.0" />
          </font>
-      </PasswordField>
+      </TextField>
    </children>
 </Pane>

@@ -16,6 +16,7 @@ import objects.DB.SQLDataBaseFactory;
 import objects.Users.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginController extends AppData {
 
@@ -94,7 +95,12 @@ public class LoginController extends AppData {
 
     private void getUsersFromDB() {
         setDb(new SQLDataBaseFactory().getSQLDataBaseByType(getActiveSQLDataBaseType()));
-        getDb().open();
+        try {
+            getDb().open();
+        } catch (Exception e) {
+
+        }
+
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());
     }

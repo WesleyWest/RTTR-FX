@@ -6,14 +6,28 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="62.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.DBSettingsPanes.SQLite.SQLiteSettingsPaneController">
+<Pane prefHeight="177.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.DBSettingsPanes.SQLite.SQLiteSettingsPaneController">
    <children>
       <Label layoutX="1.0" text="Путь к базе SQLite" textFill="#376bc5" />
-      <TextField fx:id="sqLitePathTODBTextField" layoutY="17.0" prefHeight="32.0" prefWidth="435.0">
+      <TextField fx:id="sqLitePathTODBField" layoutY="17.0" prefHeight="32.0" prefWidth="435.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button cancelButton="true" layoutX="439.0" layoutY="17.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="41.0" text="..." />
+      <Button fx:id="openFileDialogButton" cancelButton="true" layoutX="443.0" layoutY="17.0" mnemonicParsing="false" onAction="#openFileDialog" prefHeight="32.0" prefWidth="41.0" text="..." />
+      <Button fx:id="testConnectionButton" cancelButton="true" layoutX="490.0" layoutY="17.0" mnemonicParsing="false" onAction="#testConnection" prefHeight="32.0" prefWidth="77.0" text="Тест" />
+      <Label fx:id="connectionStatusLabel" layoutX="1.0" layoutY="51.0" prefHeight="17.0" prefWidth="565.0" text="  " textFill="#376bc5" />
+      <Label layoutX="1.0" layoutY="73.0" text="Логин (если необходим):" textFill="#376bc5" />
+      <TextField fx:id="sqLiteLoginField" layoutY="90.0" prefHeight="32.0" prefWidth="435.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="1.0" layoutY="122.0" text="Пароль (если необходим):" textFill="#376bc5" />
+      <TextField fx:id="sqLitePasswordField" layoutY="139.0" prefHeight="32.0" prefWidth="435.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>

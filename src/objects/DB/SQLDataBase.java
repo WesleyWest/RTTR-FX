@@ -54,7 +54,7 @@ public class SQLDataBase extends AppData {
         this.password = password;
     }
 
-    public void open() {
+    public void open() throws ClassNotFoundException, SQLException {
         try {
             AppData.printInLog("Trying to connect to the DB...");
             Class.forName(className);
@@ -65,8 +65,10 @@ public class SQLDataBase extends AppData {
             opened = true;
         } catch (ClassNotFoundException e) {
             AppData.showAlert("Class not found: " + e.getLocalizedMessage());
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
             AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
+            throw new SQLException();
         }
     }
 

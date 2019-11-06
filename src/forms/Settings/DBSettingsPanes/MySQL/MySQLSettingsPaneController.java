@@ -2,25 +2,24 @@ package forms.Settings.DBSettingsPanes.MySQL;
 
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import objects.AppData;
 
 public class MySQLSettingsPaneController implements DBSettingsPaneController {
     @FXML
-    private TextField mySQLHostTextField;
+    private TextField mySQLHostField;
 
     @FXML
-    private TextField mySQLPortTextField;
+    private TextField mySQLPortField;
 
     @FXML
-    private TextField mySQLSchemaTextField;
+    private TextField mySQLSchemaField;
 
     @FXML
-    private TextField mySQLLoginTextField;
+    private TextField mySQLLoginField;
 
     @FXML
-    private PasswordField mySQLPasswordTextField;
+    private TextField mySQLPasswordField;
 
     private TextField[] fields;
 
@@ -31,11 +30,11 @@ public class MySQLSettingsPaneController implements DBSettingsPaneController {
 
     @Override
     public void setInformation() {
-        mySQLHostTextField.setText(AppData.getIniFile().get("MYSQL","Host"));
-        mySQLPortTextField.setText(AppData.getIniFile().get("MYSQL","Port"));
-        mySQLSchemaTextField.setText(AppData.getIniFile().get("MYSQL","Schema"));
-        mySQLLoginTextField.setText(AppData.getIniFile().get("MYSQL","Login"));
-        mySQLPasswordTextField.setText(AppData.getIniFile().get("MYSQL","Password"));
+        mySQLHostField.setText(AppData.getIniFile().get("MYSQL","Host"));
+        mySQLPortField.setText(AppData.getIniFile().get("MYSQL","Port"));
+        mySQLSchemaField.setText(AppData.getIniFile().get("MYSQL","Schema"));
+        mySQLLoginField.setText(AppData.getIniFile().get("MYSQL","Login"));
+        mySQLPasswordField.setText(AppData.getIniFile().get("MYSQL","Password"));
     }
 
     @Override

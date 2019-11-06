@@ -3,17 +3,6 @@
     -fx-background-color: #FAFAFA;
 }
 
-.table-row-cell:selected .table-cell:odd {
-    -fx-background-color: #376bc5;
-    -fx-text-fill: white;
-    -fx-border-color: #376bc5;
-}
-
-.table-row-cell:selected .table-cell {
-    -fx-background-color: #376bc5;
-    -fx-text-fill: white;
-    -fx-border-color: #376bc5;
-}
 
 .anchor-pane-in-tab {
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
@@ -43,7 +32,8 @@
     -fx-background-color: #c43737,
     linear-gradient(#d17470, #eac1b9, #d17470);
 }
-.toggle-button-active:selected .text{
+
+.toggle-button-active:selected .text {
     -fx-fill: #992b2b;
     -fx-font-weight: Bold;
 }
@@ -52,7 +42,8 @@
     -fx-background-color: #2d9348,
     linear-gradient(#7ed17c, #d7ffcf, #7ed17c);
 }
-.toggle-button-closed:selected .text{
+
+.toggle-button-closed:selected .text {
     -fx-fill: #397e39;
     -fx-font-weight: Bold;
 }
@@ -77,18 +68,16 @@
     -fx-border-color: #376bc5;
     -fx-border-radius: 5 5 0 0;
     -fx-border-insets: 1, 1, 1, 1;
-    /*-fx-border-width: 1 1 0 1;*/
     -fx-border-width: 0;
 }
 
 .tab-pane .tab-header-area .headers-region .tab:selected {
     -fx-background-color: #7cb6e3;
     -fx-background-radius: 5 5 0 0;
-    -fx-focus-color:  transparent;
+    -fx-focus-color: transparent;
 }
 
 .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
-    /*-fx-border-color: transparent;*/
     -fx-border-color: black;
     -fx-border-width: 1;
     -fx-border-style: dotted;
@@ -96,6 +85,18 @@
 
 .tab-pane .tab-header-area .headers-region .tab:selected .tab-label {
     -fx-text-fill: White;
+}
+
+.table-row-cell:selected .table-cell:odd {
+    -fx-background-color: #376bc5;
+    -fx-text-fill: white;
+    -fx-border-color: #376bc5;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-background-color: #376bc5;
+    -fx-text-fill: white;
+    -fx-border-color: #376bc5;
 }
 
 .table-view {
@@ -256,6 +257,7 @@
     -fx-background-size: 100% 100%;
     -fx-background-color: transparent;
 }
+
 .user-button:pressed {
     -fx-background-image: url('../resources/userid.png');
     -fx-background-size: 98% 98%;
@@ -302,10 +304,22 @@
     -fx-border-radius: 5 5 5 5;
 }
 
-.combo-box .arrow-button{
+.combo-box .arrow-button {
     -fx-background-color: #a7d9f5;
     -fx-background-radius: 0 5 5 0;
     -fx-border-color: #57a8d7;
     -fx-border-width: 0 0 0 1;
 }
 
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #a7d9f5;
+    -fx-text-fill: -fx-text-inner-color;
+}
+.combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: #376bc5;
+    -fx-text-fill: white;
+}
+.combo-box-popup .list-view .list-cell:selected:hover {
+    -fx-background-color: #6681b7;
+    -fx-text-fill: white;
+}
