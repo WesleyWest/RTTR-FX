@@ -13,7 +13,6 @@ import objects.Technic.TechnicStatus;
 import objects.Technic.TechnicType;
 import objects.Users.Role;
 import objects.Users.User;
-
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,22 +53,20 @@ public class SQLDataBase extends AppData {
         this.password = password;
     }
 
-    public void open() throws ClassNotFoundException, SQLException {
+    public void open() {
         try {
             AppData.printInLog("Trying to connect to the DB...");
             Class.forName(className);
-                        connection = DriverManager.getConnection(connectionString, getLogin(), getPassword());
+            opened = true;
+
+        } catch (ClassNotFoundException e) {
+            AppData.showAlert("Class not found exception: " + e.getLocalizedMessage());
+        } finally {
             AppData.printInLog("Connected successfully to: " + connectionString);
             AppData.printInLog("---------------------");
             AppData.printInLog("");
-            opened = true;
-        } catch (ClassNotFoundException e) {
-            AppData.showAlert("Class not found: " + e.getLocalizedMessage());
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
-            throw new SQLException();
         }
+
     }
 
     public void close() {
@@ -83,6 +80,10 @@ public class SQLDataBase extends AppData {
 
     public void setConnectionString(String connectionString) {
         this.connectionString = connectionString;
+    }
+
+    public String getConnectionString() {
+        return connectionString;
     }
 
     public void setClassName(String className) {
@@ -248,10 +249,8 @@ public class SQLDataBase extends AppData {
         AppData.printInLog("");
 
         ObservableList<Employee> employees = FXCollections.observableArrayList(tmp);
-
         return employees;
     }
-
 
     public ObservableList<Technic> readTechnicFromDB() {
         ArrayList<Technic> tmp = new ArrayList<>();
@@ -318,7 +317,7 @@ public class SQLDataBase extends AppData {
                 Timestamp openTime = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(timeStr).getTime());
                 timeStr = rs.getString("request_close_date");
 
-                Timestamp closeTime=null;
+                Timestamp closeTime = null;
 
                 if (status) {
                     closeTime = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(timeStr).getTime());
@@ -333,7 +332,7 @@ public class SQLDataBase extends AppData {
                 User author = AppData.getObjectByID(AppData.getUsers(), authorID);
                 User closer = AppData.getObjectByID(AppData.getUsers(), closerID);
 
-                Request req =new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, author, closer);
+                Request req = new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, author, closer);
                 tmp.add(req);
             }
 

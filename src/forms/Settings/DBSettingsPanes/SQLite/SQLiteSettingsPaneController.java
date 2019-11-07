@@ -1,8 +1,8 @@
 package forms.Settings.DBSettingsPanes.SQLite;
 
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
+import forms.Settings.SettingsController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -15,18 +15,11 @@ import objects.AppData;
 import objects.DB.types.SQLiteDataBase;
 
 import java.io.File;
-import java.sql.SQLException;
 
 public class SQLiteSettingsPaneController implements DBSettingsPaneController {
 
     @FXML
     private TextField sqLitePathTODBField;
-
-    @FXML
-    private TextField sqLiteLoginField;
-
-    @FXML
-    private TextField sqLitePasswordField;
 
     @FXML
     private Button openFileDialogButton;
@@ -37,9 +30,12 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
     @FXML
     private Label connectionStatusLabel;
 
+    private SettingsController parentController;
+
 
     @FXML
     void openFileDialog(ActionEvent event) {
+        connectionStatusLabel.setText("");
         FileChooser fileChooser = new FileChooser();
         File file = new File((sqLitePathTODBField.getText()));
         fileChooser.setInitialDirectory(file.getParentFile());
@@ -49,9 +45,13 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
         Stage stage = (Stage) source.getScene().getWindow();
 
         File sqLiteDBFile = fileChooser.showOpenDialog(stage);
+
         if (sqLiteDBFile != null) {
             sqLitePathTODBField.setText(sqLiteDBFile.getAbsolutePath());
         }
+
+        parentController.calcModifiedDataHash();
+        parentController.checkHashes();
     }
 
     @FXML
@@ -59,10 +59,12 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
         SQLiteDataBase.setPathToFile(sqLitePathTODBField.getText());
         SQLiteDataBase testSQLiteDB = new SQLiteDataBase();
         try {
+
             testSQLiteDB.open();
             connectionStatusLabel.setTextFill(Paint.valueOf("green"));
             connectionStatusLabel.setText("Соединение успешно установлено.");
             testSQLiteDB.close();
+
         } catch (Exception e) {
             connectionStatusLabel.setTextFill(Paint.valueOf("red"));
             connectionStatusLabel.setText("Соединение установить не удалось.");
@@ -74,12 +76,21 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
         String path = AppData.getIniFile().get("SQLITE", "Path to file");
         File file = new File(path);
         sqLitePathTODBField.setText(file.getAbsolutePath());
-        sqLiteLoginField.setText(AppData.getIniFile().get("SQLITE", "Login"));
-        sqLitePasswordField.setText(AppData.getIniFile().get("SQLITE", "Password"));
     }
 
     @Override
     public void getInformation() {
 
+    }
+
+    @Override
+    public int getDataHash() {
+        int tmpHash = sqLitePathTODBField.getText().hashCode();
+        return tmpHash;
+    }
+
+    @Override
+    public void setParentController(SettingsController parentController) {
+        this.parentController=parentController;
     }
 }

@@ -23,19 +23,14 @@ public class SettingsController {
 
     @FXML
     private ComboBox chooseDBComboBox;
-
     @FXML
     private ComboBox themeComboBox;
-
     @FXML
     private Button exitButton;
-
     @FXML
     private Button applyButton;
-
     @FXML
     private Button OKButton;
-
     @FXML
     private AnchorPane settingsAnchorPane;
     @FXML
@@ -49,12 +44,15 @@ public class SettingsController {
 
     private SQLDataBaseFactory factory;
     Pane dbSettingsPane = null;
-    DBSettingsPaneController controller = null;
+    DBSettingsPaneController dbSettingsPaneController = null;
     ArrayList<String> dbTypesStr;
     ArrayList<String> themesStr;
+    private DBSettingsPaneController childController;
+    private int referenceDataHash, modifiedDataHash;
 
     @FXML
     void initialize() {
+
         AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0, "anchor-pane-in-tab");
@@ -62,7 +60,26 @@ public class SettingsController {
 
         factory = new SQLDataBaseFactory();
 
-        dbTypesStr = new ArrayList<String>();
+        setChooseComboBoxValues();
+        setThemesComboBoxValues();
+        setDBSettingsPane();
+        referenceDataHash = createHash();
+    }
+
+
+    private void setThemesComboBoxValues() {
+        themesStr = new ArrayList<>();
+        for (ColorTheme theme : AppData.getThemes()) {
+            themesStr.add(theme.getName());
+        }
+        themeComboBox.setItems(FXCollections.observableArrayList(themesStr));
+        themeComboBox.getSelectionModel().select(
+                themeComboBox.getItems().indexOf(AppData.getThemeName())
+        );
+    }
+
+    private void setChooseComboBoxValues() {
+        dbTypesStr = new ArrayList<>();
         for (DBType type : AppData.getDbTypes()) {
             dbTypesStr.add(type.getName());
         }
@@ -70,18 +87,6 @@ public class SettingsController {
         chooseDBComboBox.getSelectionModel().select(
                 chooseDBComboBox.getItems().indexOf(AppData.getActiveSQLDataBaseType())
         );
-
-        themesStr = new ArrayList<String>();
-        for(ColorTheme theme: AppData.getThemes()){
-            themesStr.add(theme.getName());
-        }
-        themeComboBox.setItems(FXCollections.observableArrayList(themesStr));
-        themeComboBox.getSelectionModel().select(
-                themeComboBox.getItems().indexOf(AppData.getThemeName())
-        );
-
-
-        setDBSettingsPane();
     }
 
     private void setDBSettingsPane() {
@@ -91,7 +96,8 @@ public class SettingsController {
         FXMLLoader loader = factory.getPaneByDBType(AppData.getActiveSQLDataBaseType());
         try {
             dbSettingsPane = loader.load();
-            controller = loader.getController();
+            dbSettingsPaneController = loader.getController();
+            dbSettingsPaneController.setParentController(this);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,7 +107,7 @@ public class SettingsController {
             settingsAnchorPane.getChildren().add(dbSettingsPane);
             dbSettingsPane.setLayoutX(14);
             dbSettingsPane.setLayoutY(70);
-            controller.setInformation();
+            dbSettingsPaneController.setInformation();
         }
     }
 
@@ -109,6 +115,8 @@ public class SettingsController {
     void chooseDBComboBoxClick(ActionEvent event) {
         AppData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
         setDBSettingsPane();
+        calcModifiedDataHash();
+        checkHashes();
     }
 
     @FXML
@@ -116,6 +124,33 @@ public class SettingsController {
         Node source = (Node) event.getSource();
         Stage oldStage = (Stage) source.getScene().getWindow();
         oldStage.close();
+    }
+
+    @FXML
+    void themeComboBoxClick(ActionEvent event) {
+        AppData.setThemeName((String) themeComboBox.getSelectionModel().getSelectedItem());
+        calcModifiedDataHash();
+        checkHashes();
+    }
+
+    private int createHash() {
+        return AppData.getThemeName().hashCode() +
+                AppData.getActiveSQLDataBaseType().hashCode() +
+                dbSettingsPaneController.getDataHash();
+    }
+
+    public void calcModifiedDataHash(){
+        modifiedDataHash = createHash();
+    }
+
+    public void checkHashes() {
+        if (referenceDataHash != modifiedDataHash) {
+            applyButton.setDisable(false);
+            OKButton.setDisable(false);
+        } else {
+            applyButton.setDisable(true);
+            OKButton.setDisable(true);
+        }
     }
 
 
