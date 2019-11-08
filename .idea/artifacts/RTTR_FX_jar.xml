@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RTTR-FX:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RTTR_FX_jar</output-path>
+    <root id="archive" name="RTTR-FX.jar">
+      <element id="module-output" name="RTTR-FX" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/libraries/controlsfx-8.40.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/libraries/mysql-connector-java-8.0.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/libraries/sqlite-jdbc-3.27.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/libraries/ini4j-0.5.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

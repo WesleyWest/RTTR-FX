@@ -147,7 +147,7 @@
 }
 
 .table-view-active .cell:odd {
-    -fx-background-color: #e6d2cf;
+    -fx-background-color: #e3cfcc;
     -fx-text-fill: #671C1C;
 }
 
@@ -179,7 +179,7 @@
 }
 
 .table-view-closed .cell:odd {
-    -fx-background-color: #dbfbd6;
+    -fx-background-color: #d0f1cb;
     -fx-text-fill: #234723;
 }
 
@@ -316,10 +316,10 @@
     -fx-text-fill: -fx-text-inner-color;
 }
 .combo-box-popup .list-view .list-cell:selected {
-    -fx-background-color: #376bc5;
+    -fx-background-color: #6681b7;
     -fx-text-fill: white;
 }
 .combo-box-popup .list-view .list-cell:selected:hover {
-    -fx-background-color: #6681b7;
+    -fx-background-color: #376bc5;
     -fx-text-fill: white;
 }

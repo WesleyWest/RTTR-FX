@@ -2,9 +2,19 @@ package forms.Settings.DBSettingsPanes;
 
 import forms.Settings.SettingsController;
 
-public interface DBSettingsPaneController {
-    public void setInformation();
-    public void getInformation();
-    public int getDataHash();
-    public void setParentController(SettingsController parentController);
+public abstract class DBSettingsPaneController {
+
+    private SettingsController parentController;
+
+    public abstract void setInformation();
+    public abstract void saveInformation();
+    public abstract int getDataHash();
+
+    public void setParentController(SettingsController parentController) {
+        this.parentController = parentController;
+    }
+
+    public SettingsController getParentController() {
+        return parentController;
+    }
 }

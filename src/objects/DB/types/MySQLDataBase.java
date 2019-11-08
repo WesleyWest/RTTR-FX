@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQLDataBase extends SQLDataBase {
-    public MySQLDataBase() {
+    public MySQLDataBase() throws SQLException {
         String host = getIniFile().get("MYSQL","Host");
         String port = getIniFile().get("MYSQL","Port");
         String schema = getIniFile().get("MYSQL","Schema");
@@ -18,7 +18,8 @@ public class MySQLDataBase extends SQLDataBase {
         try {
             setConnection(DriverManager.getConnection(getConnectionString(),getLogin(),getPassword()));
         } catch (SQLException e) {
-            AppData.showAlert("SQL exception: " + e.getLocalizedMessage());
+            AppData.showAlert("SQL exception by connection: " + e.getLocalizedMessage());
+            throw new SQLException();
         }
         setClassName("com.mysql.cj.jdbc.Driver");
     }

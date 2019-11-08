@@ -1,7 +1,6 @@
 package forms.Settings.DBSettingsPanes.SQLite;
 
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
-import forms.Settings.SettingsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,7 +15,7 @@ import objects.DB.types.SQLiteDataBase;
 
 import java.io.File;
 
-public class SQLiteSettingsPaneController implements DBSettingsPaneController {
+public class SQLiteSettingsPaneController extends DBSettingsPaneController {
 
     @FXML
     private TextField sqLitePathTODBField;
@@ -30,7 +29,7 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
     @FXML
     private Label connectionStatusLabel;
 
-    private SettingsController parentController;
+
 
 
     @FXML
@@ -50,25 +49,23 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
             sqLitePathTODBField.setText(sqLiteDBFile.getAbsolutePath());
         }
 
-        parentController.calcModifiedDataHash();
-        parentController.checkHashes();
+        getParentController().calcModifiedDataHash();
+        getParentController().checkHashes();
     }
 
     @FXML
-    void testConnection(ActionEvent event) {
+    void testButtonClick(ActionEvent event) {
+        String tmpPathToFile = SQLiteDataBase.getPathToFile();
         SQLiteDataBase.setPathToFile(sqLitePathTODBField.getText());
         SQLiteDataBase testSQLiteDB = new SQLiteDataBase();
-        try {
-
-            testSQLiteDB.open();
+        if (testSQLiteDB.testConnection()) {
             connectionStatusLabel.setTextFill(Paint.valueOf("green"));
             connectionStatusLabel.setText("Соединение успешно установлено.");
-            testSQLiteDB.close();
-
-        } catch (Exception e) {
+        } else {
             connectionStatusLabel.setTextFill(Paint.valueOf("red"));
             connectionStatusLabel.setText("Соединение установить не удалось.");
         }
+        SQLiteDataBase.setPathToFile(tmpPathToFile);
     }
 
     @Override
@@ -79,7 +76,7 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
     }
 
     @Override
-    public void getInformation() {
+    public void saveInformation() {
 
     }
 
@@ -89,8 +86,4 @@ public class SQLiteSettingsPaneController implements DBSettingsPaneController {
         return tmpHash;
     }
 
-    @Override
-    public void setParentController(SettingsController parentController) {
-        this.parentController=parentController;
-    }
 }

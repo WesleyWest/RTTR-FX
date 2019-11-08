@@ -45,9 +45,7 @@ public class SettingsController {
     private SQLDataBaseFactory factory;
     Pane dbSettingsPane = null;
     DBSettingsPaneController dbSettingsPaneController = null;
-    ArrayList<String> dbTypesStr;
-    ArrayList<String> themesStr;
-    private DBSettingsPaneController childController;
+    ArrayList<String> dbTypesStr, themesStr;
     private int referenceDataHash, modifiedDataHash;
 
     @FXML
@@ -66,6 +64,32 @@ public class SettingsController {
         referenceDataHash = createHash();
     }
 
+    @FXML
+    void chooseDBComboBoxClick(ActionEvent event) {
+        AppData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
+        setDBSettingsPane();
+        calcModifiedDataHash();
+        checkHashes();
+    }
+
+    @FXML
+    void exitButtonClick(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage oldStage = (Stage) source.getScene().getWindow();
+        oldStage.close();
+    }
+
+    @FXML
+    void themeComboBoxClick(ActionEvent event) {
+        AppData.setThemeName((String) themeComboBox.getSelectionModel().getSelectedItem());
+        calcModifiedDataHash();
+        checkHashes();
+    }
+
+    @FXML
+    void applyButtonClick(ActionEvent event) {
+        applyChanges();
+    }
 
     private void setThemesComboBoxValues() {
         themesStr = new ArrayList<>();
@@ -93,12 +117,12 @@ public class SettingsController {
         if (settingsAnchorPane.getChildren().indexOf(dbSettingsPane) != 0) {
             settingsAnchorPane.getChildren().remove(dbSettingsPane);
         }
+
         FXMLLoader loader = factory.getPaneByDBType(AppData.getActiveSQLDataBaseType());
         try {
             dbSettingsPane = loader.load();
             dbSettingsPaneController = loader.getController();
             dbSettingsPaneController.setParentController(this);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -111,35 +135,17 @@ public class SettingsController {
         }
     }
 
-    @FXML
-    void chooseDBComboBoxClick(ActionEvent event) {
-        AppData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
-        setDBSettingsPane();
-        calcModifiedDataHash();
-        checkHashes();
+    void applyChanges() {
+
     }
 
-    @FXML
-    void exitButtonClick(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage oldStage = (Stage) source.getScene().getWindow();
-        oldStage.close();
-    }
-
-    @FXML
-    void themeComboBoxClick(ActionEvent event) {
-        AppData.setThemeName((String) themeComboBox.getSelectionModel().getSelectedItem());
-        calcModifiedDataHash();
-        checkHashes();
-    }
-
-    private int createHash() {
+    int createHash() {
         return AppData.getThemeName().hashCode() +
                 AppData.getActiveSQLDataBaseType().hashCode() +
                 dbSettingsPaneController.getDataHash();
     }
 
-    public void calcModifiedDataHash(){
+    public void calcModifiedDataHash() {
         modifiedDataHash = createHash();
     }
 

@@ -15,7 +15,7 @@
          </font>
       </TextField>
       <Button fx:id="openFileDialogButton" cancelButton="true" layoutX="443.0" layoutY="17.0" mnemonicParsing="false" onAction="#openFileDialog" prefHeight="32.0" prefWidth="41.0" text="..." />
-      <Button fx:id="testConnectionButton" cancelButton="true" layoutX="490.0" layoutY="17.0" mnemonicParsing="false" onAction="#testConnection" prefHeight="32.0" prefWidth="77.0" text="Тест" />
+      <Button fx:id="testConnectionButton" cancelButton="true" layoutX="490.0" layoutY="17.0" mnemonicParsing="false" onAction="#testButtonClick" prefHeight="32.0" prefWidth="77.0" text="Тест" />
       <Label fx:id="connectionStatusLabel" layoutX="1.0" layoutY="51.0" prefHeight="17.0" prefWidth="565.0" text="  " textFill="#376bc5" />
    </children>
 </Pane>
