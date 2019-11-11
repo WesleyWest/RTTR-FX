@@ -99,13 +99,13 @@ public class MainController extends AppData {
     private TextField repairerTextField;
 
     @FXML
-    private TextArea problemDescriptionTextArea;
+    private TextField problemDescriptionTextField;
 
     @FXML
     private TextField requestCloseTimeField;
 
     @FXML
-    private TextArea worksDescriptionTextArea;
+    private TextField worksDescriptionTextField;
 
     @FXML
     private TextField closerTextField;
@@ -130,8 +130,18 @@ public class MainController extends AppData {
 
     @FXML
     private AnchorPane closedRequestsAnchorPane;
+
     @FXML
     private AnchorPane mainAnchorPane;
+
+    @FXML
+    private AnchorPane headerAnchorPane;
+
+    @FXML
+    private Label headerLabelBig;
+
+    @FXML
+    private Label headerLabelSmall;
 
     @FXML
     private VBox popOverVBox;
@@ -166,12 +176,7 @@ public class MainController extends AppData {
 
         closedRequestsAnchorPane.setVisible(false);
 
-        mainTableView.getStyleClass().add("table-view-active");
-        mainAnchorPane.getStyleClass().add("anchor-pane-main");
-
-        activeRequestsToggleButtton.getStyleClass().add("toggle-button-active");
-        closedRequestsToggleButton.getStyleClass().add("toggle-button-closed");
-
+        applyCSS();
 
         idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
         technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
@@ -183,6 +188,20 @@ public class MainController extends AppData {
         changeTableView(false);
 
         informLabel.setText("Количество открытых заявок: " + getRequests().size());
+    }
+
+    private void applyCSS() {
+        headerLabelBig.getStyleClass().set(0,"label-header-big");
+        headerLabelSmall.getStyleClass().set(0,"label-header-small");
+
+        headerAnchorPane.getStyleClass().add("anchor-pane-header");
+        mainAnchorPane.getStyleClass().add("anchor-pane-main");
+
+        mainTableView.getStyleClass().add("table-view-active");
+
+        activeRequestsToggleButtton.getStyleClass().add("toggle-button-active");
+        closedRequestsToggleButton.getStyleClass().add("toggle-button-closed");
+
     }
 
     private void changeTableView(boolean isClosed) {
@@ -212,16 +231,13 @@ public class MainController extends AppData {
         Employee repairer = selectedRecord.getTechnicAsObject().getRepairer();
         repairerTextField.setText(Employee.getFullEmployeeDescription(repairer));
 
-        problemDescriptionTextArea.clear();
-        problemDescriptionTextArea.appendText(selectedRecord.getProblemDescription());
-
+        problemDescriptionTextField.setText(selectedRecord.getProblemDescription());
 
         if (selectedRecord.getStatus()) {
             Employee closer = Employee.getEmployeeByUserID(getEmployees(), selectedRecord.getCloser().getID());
             closerTextField.setText(Employee.getFullEmployeeDescription(closer));
             requestCloseTimeField.setText(selectedRecord.getCloseDate());
-            worksDescriptionTextArea.clear();
-            worksDescriptionTextArea.appendText(selectedRecord.getDecisionDescription());
+            worksDescriptionTextField.setText(selectedRecord.getDecisionDescription());
         }
     }
 

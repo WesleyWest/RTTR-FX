@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -35,13 +36,28 @@ public class LoginController extends AppData {
     @FXML
     private AnchorPane mainAnchorPane;
 
+    @FXML
+    private AnchorPane headerAnchorPane;
+
+    @FXML
+    private Label headerLabelBig;
+
+    @FXML
+    private Label headerLabelSmall;
 
     @FXML
     void initialize() {
         loginTextField.setText("Wesley");
         passwordField.setText("123");
 
+        applyCSS();
+    }
+
+    private void applyCSS() {
         mainAnchorPane.getStyleClass().add("anchor-pane-main");
+        headerAnchorPane.getStyleClass().add("anchor-pane-header");
+        headerLabelBig.getStyleClass().set(0, "label-header-big");
+        headerLabelSmall.getStyleClass().set(0, "label-header-small");
     }
 
     @FXML
@@ -95,12 +111,7 @@ public class LoginController extends AppData {
 
     private void getUsersFromDB() {
         setDb(new SQLDataBaseFactory().getSQLDataBaseByType(getActiveSQLDataBaseType()));
-        try {
-            getDb().open();
-        } catch (Exception e) {
-
-        }
-
+        getDb().open();
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());
     }

@@ -268,7 +268,7 @@
     -fx-border-color: transparent;
 }
 
-.main-label .text {
+.header-label .text {
     -fx-fill: linear-gradient(#6c98d3, #eaf6fd, #6c98d3);
 }
 

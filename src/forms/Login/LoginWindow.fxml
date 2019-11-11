@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Login.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Login.LoginController">
    <children>
-      <AnchorPane fx:id="mainAnchorPane" layoutY="80.0" prefHeight="249.0" prefWidth="475.0">
+      <AnchorPane fx:id="mainAnchorPane" layoutY="80.0" prefHeight="249.0" prefWidth="475.0" styleClass="anchor-pane-main">
          <children>
             <Button fx:id="loginButton" defaultButton="true" layoutX="172.0" layoutY="158.0" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="32.0" prefWidth="132.0" text="Войти в систему">
                <font>
@@ -21,26 +21,26 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <TextField fx:id="loginTextField" layoutX="20.0" layoutY="23.0" prefHeight="44.0" prefWidth="435.0" promptText="Введите имя пользователя" style="-fx-background-color: #fafafa; -fx-border-color: #376bc5; -fx-border-radius: 5;">
+            <TextField fx:id="loginTextField" layoutX="20.0" layoutY="23.0" prefHeight="44.0" prefWidth="435.0" promptText="Введите имя пользователя">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="20.0" layoutY="81.0" prefHeight="44.0" prefWidth="435.0" promptText="Введите пароль" style="-fx-background-color: #fafafa; -fx-border-color: #376bc5; -fx-border-radius: 5;">
+            <PasswordField fx:id="passwordField" layoutX="20.0" layoutY="81.0" prefHeight="44.0" prefWidth="435.0" promptText="Введите пароль">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-8.0" prefHeight="80.0" prefWidth="484.0" style="-fx-background-color: #376bc5;">
+      <AnchorPane fx:id="headerAnchorPane" layoutX="-8.0" prefHeight="80.0" prefWidth="484.0">
          <children>
-            <Label layoutX="121.0" layoutY="17.0" styleClass="main-label" text="RTTR-Master" textFill="#37abc4">
+            <Label fx:id="headerLabelBig" layoutX="121.0" layoutY="17.0" text="RTTR-Master" textFill="#37abc4">
                <font>
                   <Font name="Eras Bold ITC" size="38.0" />
                </font>
             </Label>
-            <Label layoutX="207.0" layoutY="54.0" prefHeight="18.0" prefWidth="159.0" styleClass="main-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+            <Label fx:id="headerLabelSmall" layoutX="207.0" layoutY="54.0" prefHeight="18.0" prefWidth="159.0" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
          </children>
       </AnchorPane>
    </children>
