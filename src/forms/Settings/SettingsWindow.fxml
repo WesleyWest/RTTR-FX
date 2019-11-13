@@ -10,27 +10,27 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" stylesheets="@../../themes/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.SettingsController">
    <children>
-      <AnchorPane minWidth="783.0" prefHeight="99.0" prefWidth="850.0" style="-fx-background-color: #376bc5;">
+      <AnchorPane fx:id="headerAnchorPane" minWidth="783.0" prefHeight="99.0" prefWidth="850.0">
          <children>
             <Pane layoutX="302.0" layoutY="19.0">
                <children>
-                  <Label layoutY="7.0" styleClass="header-label" text="RTTR-Master">
+                  <Label fx:id="headerLabelBig" layoutY="7.0" styleClass="header-label" text="RTTR-Master">
                      <font>
                         <Font name="Eras Bold ITC" size="38.0" />
                      </font>
                   </Label>
-                  <Label layoutX="89.0" layoutY="44.0" prefHeight="18.0" prefWidth="161.0" styleClass="header-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+                  <Label fx:id="headerLabelSmall" layoutX="89.0" layoutY="44.0" prefHeight="18.0" prefWidth="161.0" styleClass="header-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
                </children>
             </Pane>
          </children>
       </AnchorPane>
-      <TabPane layoutY="99.0" prefHeight="457.0" prefWidth="850.0" stylesheets="@../../themes/BlueTheme.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="99.0" prefHeight="457.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Общие настройки">
             <content>
-              <AnchorPane fx:id="settingsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="850.0" stylesheets="@../../themes/DarkTheme.css">
+              <AnchorPane fx:id="settingsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="850.0">
                      <children>
                         <Label layoutX="14.0" layoutY="349.0" text="Цветовая схема интерфейса" textFill="#376bc5" />
                         <Label layoutX="14.0" layoutY="14.0" text="Тип базы данных" textFill="#376bc5" />

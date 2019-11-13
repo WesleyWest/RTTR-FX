@@ -1,5 +1,7 @@
 package objects;
 
+import java.util.ArrayList;
+
 public class ColorTheme {
     private String name;
     private String path;
@@ -17,6 +19,12 @@ public class ColorTheme {
         return path;
     }
 
+    public static String getPathbyName(ArrayList<ColorTheme> themes, String name){
+        for (ColorTheme theme : themes) {
+            if (theme.getName().equals(name)) return theme.getPath();
+        }
+        return "";
+    }
     @Override
     public String toString() {
         return "ColorTheme{" +

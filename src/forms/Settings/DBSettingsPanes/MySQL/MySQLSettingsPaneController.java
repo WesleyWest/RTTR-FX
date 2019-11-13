@@ -94,12 +94,6 @@ public class MySQLSettingsPaneController extends DBSettingsPaneController {
         AppData.getIniFile().put("MYSQL", "Schema", schema);
         AppData.getIniFile().put("MYSQL", "Login", login);
         AppData.getIniFile().put("MYSQL", "Password", password);
-
-//        AppData.getIniFile().put("MYSQL","Host","localhost");
-//        AppData.getIniFile().put("MYSQL","Port","3306");
-//        AppData.getIniFile().put("MYSQL","Schema","rttr-base");
-//        AppData.getIniFile().put("MYSQL","Login","root");
-//        AppData.getIniFile().put("MYSQL","Password","diamond");
     }
 
     private void saveTempSettingsIntoFile() {

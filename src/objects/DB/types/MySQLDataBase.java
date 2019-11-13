@@ -13,6 +13,7 @@ public class MySQLDataBase extends SQLDataBase {
         String schema = getIniFile().get("MYSQL","Schema");
         setLogin(getIniFile().get("MYSQL","Login"));
         setPassword(getIniFile().get("MYSQL","Password"));
+        System.out.println(getPassword());
         setConnectionString("jdbc:mysql://" + host+ ":" + port + "/" + schema);
 
         try {

@@ -72,7 +72,6 @@ public class SQLDataBase extends AppData {
     public boolean testConnection(){
         this.open();
         ObservableList<User> tmp=this.readUsersFromDB();
-        System.out.println(tmp);
         this.close();
         return (tmp.size()>0);
     }

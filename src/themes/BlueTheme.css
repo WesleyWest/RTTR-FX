@@ -3,6 +3,19 @@
     -fx-background-color: #FAFAFA;
 }
 
+.label-header-big .text {
+    -fx-fill: linear-gradient(#6c98d3, #eaf6fd, #6c98d3);
+}
+
+.label-header-small .text {
+    -fx-fill: #eaf6fd;
+}
+
+.anchor-pane-header {
+    -fx-background-color: #376bc5 ;
+
+}
+
 
 .anchor-pane-in-tab {
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
@@ -13,6 +26,7 @@
 .anchor-pane-main {
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
 }
+
 
 .toggle-button {
     -fx-background-color: #61a4ee,
@@ -266,10 +280,6 @@
 
 .user-button:focused {
     -fx-border-color: transparent;
-}
-
-.header-label .text {
-    -fx-fill: linear-gradient(#6c98d3, #eaf6fd, #6c98d3);
 }
 
 .text-field {

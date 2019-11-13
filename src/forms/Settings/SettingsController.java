@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -41,6 +43,12 @@ public class SettingsController {
     private AnchorPane employeesAnchorPane;
     @FXML
     private AnchorPane technicAnchorPane;
+    @FXML
+    private AnchorPane headerAnchorPane;
+    @FXML
+    private Label headerLabelBig;
+    @FXML
+    private Label headerLabelSmall;
 
     private SQLDataBaseFactory factory;
     Pane dbSettingsPane = null;
@@ -51,17 +59,24 @@ public class SettingsController {
     @FXML
     void initialize() {
 
-        AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
-        for (AnchorPane pane : panes) {
-            pane.getStyleClass().add(0, "anchor-pane-in-tab");
-        }
-
         factory = new SQLDataBaseFactory();
 
         setChooseComboBoxValues();
         setThemesComboBoxValues();
         setDBSettingsPane();
         referenceDataHash = createHash();
+
+        applyCSS();
+    }
+
+    void applyCSS() {
+        AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
+        for (AnchorPane pane : panes) {
+            pane.getStyleClass().add(0, "anchor-pane-in-tab");
+        }
+        headerLabelBig.getStyleClass().set(0, "label-header-big");
+        headerLabelSmall.getStyleClass().set(0, "label-header-small");
+        headerAnchorPane.getStyleClass().add("anchor-pane-header");
     }
 
     @FXML
@@ -81,14 +96,45 @@ public class SettingsController {
 
     @FXML
     void themeComboBoxClick(ActionEvent event) {
-        AppData.setThemeName((String) themeComboBox.getSelectionModel().getSelectedItem());
         calcModifiedDataHash();
         checkHashes();
     }
 
     @FXML
     void applyButtonClick(ActionEvent event) {
-        applyChanges();
+        applyChanges(event);
+    }
+
+    void applyChanges(ActionEvent event) {
+        System.out.println(isColorThemeToChange());
+        if (isColorThemeToChange()) {
+            changeColorTheme(event);
+        }
+    }
+
+    private boolean isColorThemeToChange() {
+        return !(themeComboBox.getSelectionModel().getSelectedItem().equals(AppData.getThemeName()));
+    }
+
+    private void changeColorTheme(ActionEvent event) {
+        String newTheme = themeComboBox.getSelectionModel().getSelectedItem().toString();
+
+        AppData.getIniFile().put("MAIN", "Active theme",newTheme);
+        try {
+            AppData.getIniFile().store();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String newPath=ColorTheme.getPathbyName(AppData.getThemes(),newTheme);
+
+        AppData.setThemeName(newTheme);
+        AppData.setPathCSS(newPath);
+
+        Node source = (Node) event.getSource();
+        Scene currentScene = source.getScene();
+        currentScene.getStylesheets().set(0,AppData.getPathCSS());
+        referenceDataHash=createHash();
     }
 
     private void setThemesComboBoxValues() {
@@ -135,13 +181,10 @@ public class SettingsController {
         }
     }
 
-    void applyChanges() {
-
-    }
 
     int createHash() {
-        return AppData.getThemeName().hashCode() +
-                AppData.getActiveSQLDataBaseType().hashCode() +
+        return themeComboBox.getSelectionModel().getSelectedItem().hashCode() +
+                chooseDBComboBox.getSelectionModel().getSelectedItem().hashCode() +
                 dbSettingsPaneController.getDataHash();
     }
 

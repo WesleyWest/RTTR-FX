@@ -30,15 +30,17 @@ public class SQLiteSettingsPaneController extends DBSettingsPaneController {
     private Label connectionStatusLabel;
 
 
-
-
     @FXML
     void openFileDialog(ActionEvent event) {
         connectionStatusLabel.setText("");
         FileChooser fileChooser = new FileChooser();
         File file = new File((sqLitePathTODBField.getText()));
-        fileChooser.setInitialDirectory(file.getParentFile());
-        fileChooser.setInitialFileName(file.getName());
+        if (file.exists()) {
+            fileChooser.setInitialDirectory(file.getParentFile());
+            fileChooser.setInitialFileName(file.getName());
+        } else {
+            AppData.showAlert("Файл \n"+file.getAbsolutePath()+"\nне найден.");
+        }
 
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
