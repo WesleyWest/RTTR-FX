@@ -10,10 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import objects.AppData;
 import objects.DB.types.SQLiteDataBase;
+import objects.GUI.RTTRApp;
+import org.ini4j.Wini;
 
 import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class SQLiteSettingsPaneController extends DBSettingsPaneController {
 
@@ -29,6 +32,8 @@ public class SQLiteSettingsPaneController extends DBSettingsPaneController {
     @FXML
     private Label connectionStatusLabel;
 
+    String currentPath;
+
 
     @FXML
     void openFileDialog(ActionEvent event) {
@@ -39,7 +44,7 @@ public class SQLiteSettingsPaneController extends DBSettingsPaneController {
             fileChooser.setInitialDirectory(file.getParentFile());
             fileChooser.setInitialFileName(file.getName());
         } else {
-            AppData.showAlert("Файл \n"+file.getAbsolutePath()+"\nне найден.");
+            RTTRApp.showAlert("Файл \n" + file.getAbsolutePath() + "\nне найден.");
         }
 
         Node source = (Node) event.getSource();
@@ -57,9 +62,14 @@ public class SQLiteSettingsPaneController extends DBSettingsPaneController {
 
     @FXML
     void testButtonClick(ActionEvent event) {
-        String tmpPathToFile = SQLiteDataBase.getPathToFile();
-        SQLiteDataBase.setPathToFile(sqLitePathTODBField.getText());
-        SQLiteDataBase testSQLiteDB = new SQLiteDataBase();
+        currentPath = getCurrentPath();
+        saveTempSettingsIntoFile();
+        SQLiteDataBase testSQLiteDB = null;
+        try {
+            testSQLiteDB = new SQLiteDataBase();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         if (testSQLiteDB.testConnection()) {
             connectionStatusLabel.setTextFill(Paint.valueOf("green"));
             connectionStatusLabel.setText("Соединение успешно установлено.");
@@ -67,19 +77,37 @@ public class SQLiteSettingsPaneController extends DBSettingsPaneController {
             connectionStatusLabel.setTextFill(Paint.valueOf("red"));
             connectionStatusLabel.setText("Соединение установить не удалось.");
         }
-        SQLiteDataBase.setPathToFile(tmpPathToFile);
+        restoreCurrentSettingsIntoFile();
+    }
+
+    private String getCurrentPath () {
+        return RTTRApp.getIniFile().get("SQLITE", "Path to file");
+    }
+    private void restoreCurrentSettingsIntoFile() {
+        RTTRApp.getIniFile().put("SQLITE", "Path to file", currentPath);
+    }
+
+    private void saveTempSettingsIntoFile() {
+        RTTRApp.getIniFile().put("SQLITE", "Path to file", sqLitePathTODBField.getText());
     }
 
     @Override
     public void setInformation() {
-        String path = AppData.getIniFile().get("SQLITE", "Path to file");
+        String path = RTTRApp.getIniFile().get("SQLITE", "Path to file");
         File file = new File(path);
         sqLitePathTODBField.setText(file.getAbsolutePath());
     }
 
     @Override
-    public void saveInformation() {
-
+    public void saveInformationToIni() {
+        Wini ini = RTTRApp.getIniFile();
+        ini.put("MAIN", "Active DB type", "SQLite");
+        ini.put("SQLITE", "Path to file", sqLitePathTODBField.getText());
+        try {
+            ini.store();
+        } catch (IOException e) {
+            RTTRApp.showAlert(e.getLocalizedMessage());
+        }
     }
 
     @Override

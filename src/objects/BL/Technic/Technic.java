@@ -1,8 +1,8 @@
-package objects.Technic;
+package objects.BL.Technic;
 
-import objects.idReturnable;
-import objects.SimpleObject;
-import objects.Employees.Employee;
+import objects.BL.idReturnable;
+import objects.BL.SimpleObject;
+import objects.BL.Employees.Employee;
 
 public class Technic implements idReturnable {
     private Integer id;

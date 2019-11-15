@@ -1,7 +1,7 @@
-package objects;
+package objects.GUI;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -9,52 +9,39 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import objects.DB.SQLDataBase;
-import objects.Employees.Division;
-import objects.Employees.Employee;
-import objects.Employees.Position;
-import objects.Technic.Technic;
-import objects.Technic.TechnicStatus;
-import objects.Technic.TechnicType;
-import objects.Users.Role;
-import objects.Users.User;
+import objects.DB.DBType;
 import org.ini4j.Wini;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-public class AppData {
-    private static User user = null;
-    private static SQLDataBase db = null;
-
-    private static ObservableList<Role> roles = null;
-    private static ObservableList<User> users = null;
-
-    private static ObservableList<SimpleObject<Position>> positions;
-    private static ObservableList<Division> divisions;
-    private static ObservableList<Employee> employees;
-
-    private static ObservableList<SimpleObject<TechnicType>> types;
-    private static ObservableList<SimpleObject<TechnicStatus>> statuses;
-    private static ObservableList<Technic> technic;
-
-    private static ObservableList<Request> requests;
-
-    private static Window owner;
-
+public class RTTRApp {
     private static String settingsFilePath = "src/conf/settings.ini";
-    private static String themeName;
-    private static String pathCSS;
-
-    private static ArrayList<ColorTheme> themes = new ArrayList<>();
-    private static ArrayList<DBType> dbTypes = new ArrayList<>();
-
-    private static String activeSQLDataBaseType;
-
+    public static Window owner;
+    public static Stage primaryStage;
+    public static String themeName;
+    public static String pathCSS;
+    public static ArrayList<ColorTheme> themes = new ArrayList<>();
+    public static ArrayList<DBType> dbTypes = new ArrayList<>();
+    public static String activeSQLDataBaseType;
     private static Wini iniFile;
+
+    public static String getSettingsFilePath() {
+        return settingsFilePath;
+    }
+
+    public static void setSettingsFilePath(String settingsFilePath) {
+        RTTRApp.settingsFilePath = settingsFilePath;
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void setPrimaryStage(Stage primaryStage) {
+        RTTRApp.primaryStage = primaryStage;
+    }
 
     public static Wini getIniFile() {
         return iniFile;
@@ -65,7 +52,7 @@ public class AppData {
     }
 
     public static void setThemes(ArrayList<ColorTheme> themes) {
-        AppData.themes = themes;
+        RTTRApp.themes = themes;
     }
 
     public static ArrayList<DBType> getDbTypes() {
@@ -73,7 +60,7 @@ public class AppData {
     }
 
     public static void setDbTypes(ArrayList<DBType> dbTypes) {
-        AppData.dbTypes = dbTypes;
+        RTTRApp.dbTypes = dbTypes;
     }
 
     public static String getThemeName() {
@@ -81,7 +68,7 @@ public class AppData {
     }
 
     public static void setThemeName(String themeName) {
-        AppData.themeName = themeName;
+        RTTRApp.themeName = themeName;
     }
 
     public static String getPathCSS() {
@@ -89,7 +76,7 @@ public class AppData {
     }
 
     public static void setPathCSS(String pathCSS) {
-        AppData.pathCSS = pathCSS;
+        RTTRApp.pathCSS = pathCSS;
     }
 
     public static String getActiveSQLDataBaseType() {
@@ -97,114 +84,15 @@ public class AppData {
     }
 
     public static void setActiveSQLDataBaseType(String activeSQLDataBaseType) {
-        AppData.activeSQLDataBaseType = activeSQLDataBaseType;
+        RTTRApp.activeSQLDataBaseType = activeSQLDataBaseType;
     }
-
-    public static SQLDataBase getDb() {
-        return db;
-    }
-
-    public static void setDb(SQLDataBase db) {
-        AppData.db = db;
-    }
-
-    public static String getSettingsFilePath() {
-        return settingsFilePath;
-    }
-
-    public static void setSettingsFilePath(String settingsFilePath) {
-        AppData.settingsFilePath = settingsFilePath;
-    }
-
 
     public static Window getOwner() {
         return owner;
     }
 
     public static void setOwner(Window owner) {
-        AppData.owner = owner;
-    }
-
-    public static ObservableList<SimpleObject<Position>> getPositions() {
-        return positions;
-    }
-
-    public static void setPositions(ObservableList<SimpleObject<Position>> positions) {
-        AppData.positions = positions;
-    }
-
-    public static ObservableList<SimpleObject<TechnicType>> getTypes() {
-        return types;
-    }
-
-    public static void setTypes(ObservableList<SimpleObject<TechnicType>> types) {
-        AppData.types = types;
-    }
-
-    public static ObservableList<SimpleObject<TechnicStatus>> getStatuses() {
-        return statuses;
-    }
-
-    public static void setStatuses(ObservableList<SimpleObject<TechnicStatus>> statuses) {
-        AppData.statuses = statuses;
-    }
-
-    public static User getUser() {
-        return user;
-    }
-
-    public static void setUser(User user) {
-        AppData.user = user;
-    }
-
-    public static ObservableList<Role> getRoles() {
-        return roles;
-    }
-
-    public static void setRoles(ObservableList<Role> roles) {
-        AppData.roles = roles;
-    }
-
-    public static ObservableList<User> getUsers() {
-        return users;
-    }
-
-    public static void setUsers(ObservableList<User> users) {
-        AppData.users = users;
-    }
-
-
-    public static ObservableList<Division> getDivisions() {
-        return divisions;
-    }
-
-    public static void setDivisions(ObservableList<Division> divisions) {
-        AppData.divisions = divisions;
-    }
-
-    public static ObservableList<Employee> getEmployees() {
-        return employees;
-    }
-
-    public static void setEmployees(ObservableList<Employee> employees) {
-        AppData.employees = employees;
-    }
-
-
-    public static ObservableList<Technic> getTechnic() {
-        return technic;
-    }
-
-    public static void setTechnic(ObservableList<Technic> technic) {
-        AppData.technic = technic;
-    }
-
-    public static ObservableList<Request> getRequests() {
-        return requests;
-    }
-
-    public static void setRequests(ObservableList<Request> requests) {
-        AppData.requests = requests;
+        RTTRApp.owner = owner;
     }
 
     public static void showAlert(String text) {
@@ -215,26 +103,6 @@ public class AppData {
         alert.setHeaderText(null);
         alert.setContentText(text);
         alert.showAndWait();
-    }
-
-    public static <T extends idReturnable> T getObjectByID(ObservableList<T> list, int ID) {
-        for (T element : list) {
-            if (element.getID() == ID) {
-                return element;
-            }
-        }
-        return null;
-    }
-
-
-    public static void printInLog(String str) {
-        if (str.length() != 0) {
-            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
-
-            System.out.println(timeStamp + ": " + str);
-        } else {
-            System.out.println();
-        }
     }
 
     public static void openCustomWindow(ActionEvent event, Parent root, int width, int height, Modality modality, boolean isWindowResizable) {
@@ -256,13 +124,14 @@ public class AppData {
         try {
             iniFile = new Wini(new File(String.valueOf(Paths.get(settingsFilePath))));
             setThemeName(iniFile.get("MAIN","Active theme"));
+            themes.clear();
             for (String key : iniFile.get("THEMES").keySet()) {
                 themes.add(new ColorTheme(key,iniFile.get("THEMES",key)));
                 if (key.equals(getThemeName())){
                     setPathCSS(iniFile.get("THEMES",key));
                 }
             }
-
+            dbTypes.clear();
             for (String key : iniFile.get("DBTYPES").keySet()) {
                 String name = key;
                 String className= iniFile.get("DBTYPES",key);
@@ -279,7 +148,6 @@ public class AppData {
         }
 
     }
-
 
     public static void writeDefaultSettingsToFile() {
         try {
@@ -301,5 +169,17 @@ public class AppData {
             System.out.println("File can't be opened. Program terminates.");
             e.printStackTrace();
         }
+    }
+
+    public void startApp(Stage primaryStage) throws java.io.IOException {
+        readSettingsFromFile();
+        Parent root = FXMLLoader.load(getClass().getResource("../../forms/Login/LoginWindow.fxml"));
+        primaryStage.setTitle("RTTR-Master");
+        primaryStage.getIcons().add(new Image("resources/main.png"));
+        primaryStage.setResizable(false);
+        Scene scene = new Scene(root, 465, 328);
+        scene.getStylesheets().add(getPathCSS());
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

@@ -12,10 +12,9 @@
 }
 
 .anchor-pane-header {
-    -fx-background-color: #376bc5 ;
+    -fx-background-color: #376bc5;
 
 }
-
 
 .anchor-pane-in-tab {
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
@@ -27,6 +26,10 @@
     -fx-background-color: linear-gradient(#93c2dd 10%, #fafafa 90%);
 }
 
+
+.label .text {
+    -fx-fill: #376bc5;
+}
 
 .toggle-button {
     -fx-background-color: #61a4ee,
@@ -135,7 +138,10 @@
 
 .table-view-active .column-header-background .label {
     -fx-background-color: transparent;
-    -fx-text-fill: #992b2b;
+}
+
+.table-view-active .column-header-background .label .text {
+    -fx-fill: #992b2b;
 }
 
 .table-view-active .column-header-background .nested-column-header .table-column {
@@ -167,7 +173,10 @@
 
 .table-view-closed .column-header-background .label {
     -fx-background-color: transparent;
-    -fx-text-fill: #397e39;
+}
+
+.table-view-closed .column-header-background .label .text {
+    -fx-fill: #397e39;
 }
 
 .table-view-closed .column-header-background .nested-column-header .table-column {
@@ -325,10 +334,12 @@
     -fx-background-color: #a7d9f5;
     -fx-text-fill: -fx-text-inner-color;
 }
+
 .combo-box-popup .list-view .list-cell:selected {
     -fx-background-color: #6681b7;
     -fx-text-fill: white;
 }
+
 .combo-box-popup .list-view .list-cell:selected:hover {
     -fx-background-color: #376bc5;
     -fx-text-fill: white;

@@ -1,4 +1,4 @@
-package objects;
+package objects.GUI;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class ColorTheme {
         return path;
     }
 
-    public static String getPathbyName(ArrayList<ColorTheme> themes, String name){
+    public static String getPathByName(ArrayList<ColorTheme> themes, String name){
         for (ColorTheme theme : themes) {
             if (theme.getName().equals(name)) return theme.getPath();
         }

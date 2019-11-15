@@ -1,6 +1,6 @@
-package objects.Users;
+package objects.BL.Users;
 
-import objects.idReturnable;
+import objects.BL.idReturnable;
 
 public class User implements idReturnable {
     private int userID;

@@ -1,6 +1,6 @@
-package objects.Technic;
+package objects.BL.Technic;
 
-import objects.SimpleObject;
+import objects.BL.SimpleObject;
 
 public class TechnicStatus extends SimpleObject {
 

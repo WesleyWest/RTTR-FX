@@ -1,4 +1,4 @@
-package objects;
+package objects.BL;
 
 public class SimpleObject<T> implements idReturnable {
     private Integer id;

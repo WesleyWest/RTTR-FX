@@ -12,12 +12,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import objects.AppData;
+import objects.BL.AppData;
 import objects.DB.SQLDataBaseFactory;
-import objects.Users.User;
+import objects.BL.Users.User;
+import objects.GUI.RTTRApp;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class LoginController extends AppData {
 
@@ -77,11 +77,11 @@ public class LoginController extends AppData {
         String userPassword = passwordField.getText();
 
         if (userName.length() == 0 || userPassword.length() == 0) {
-            showAlert("Заполните все поля.");
+            RTTRApp.showAlert("Заполните все поля.");
         } else if (!(userFound(userName, userPassword))) {
-            showAlert("Пользователь не найден.");
+            RTTRApp.showAlert("Пользователь не найден.");
         } else if (!getUser().isActive()) {
-            showAlert("Учётная запись не активна.");
+            RTTRApp.showAlert("Учётная запись не активна.");
         } else {
             setDivisions(getDb().readDivisionsFromDB());
             setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
@@ -102,15 +102,15 @@ public class LoginController extends AppData {
             oldStage.close();
 
             Parent root = FXMLLoader.load(getClass().getResource("../Main/MainWindow.fxml"));
-            AppData.setOwner(((Node) event.getSource()).getScene().getWindow());
-            AppData.openCustomWindow(event, root, 1044, 768, Modality.WINDOW_MODAL, true);
+            RTTRApp.setOwner(((Node) event.getSource()).getScene().getWindow());
+            RTTRApp.openCustomWindow(event, root, 1044, 768, Modality.WINDOW_MODAL, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void getUsersFromDB() {
-        setDb(new SQLDataBaseFactory().getSQLDataBaseByType(getActiveSQLDataBaseType()));
+        setDb(new SQLDataBaseFactory().getSQLDataBaseByType(RTTRApp.getActiveSQLDataBaseType()));
         getDb().open();
         getDb().setRoleNamesFromDB();
         setUsers(getDb().readUsersFromDB());

@@ -1,10 +1,9 @@
-package objects;
+package objects.BL;
 
-import objects.Technic.Technic;
-import objects.Users.User;
+import objects.BL.Technic.Technic;
+import objects.BL.Users.User;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 public class Request {
     private Integer ID;

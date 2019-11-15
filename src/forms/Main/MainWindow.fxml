@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
+<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
    <top>
       <AnchorPane fx:id="headerAnchorPane" minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
@@ -138,7 +138,7 @@
                   <TextField fx:id="problemDescriptionTextField" editable="false" layoutY="287.0" prefHeight="53.0" prefWidth="350.0" />
                </children>
             </AnchorPane>
-            <VBox fx:id="popOverVBox" layoutX="769.0" layoutY="218.0" />
+            <VBox layoutX="769.0" layoutY="218.0" />
             <ToggleButton fx:id="activeRequestsToggleButtton" layoutX="103.0" layoutY="4.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#activeRequestsToggleButtonClick" prefHeight="23.0" prefWidth="150.0" selected="true" text="Активные заявки">
                <toggleGroup>
                   <ToggleGroup fx:id="reqGroup" />

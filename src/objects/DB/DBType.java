@@ -1,4 +1,4 @@
-package objects;
+package objects.DB;
 
 public class DBType {
     String name;

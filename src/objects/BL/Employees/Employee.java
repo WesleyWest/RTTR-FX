@@ -1,9 +1,9 @@
-package objects.Employees;
+package objects.BL.Employees;
 
-import objects.idReturnable;
-import objects.SimpleObject;
+import objects.BL.idReturnable;
+import objects.BL.SimpleObject;
 import javafx.collections.ObservableList;
-import objects.Users.User;
+import objects.BL.Users.User;
 
 public class Employee implements idReturnable {
     private Integer id;

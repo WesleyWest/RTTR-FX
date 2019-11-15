@@ -1,11 +1,11 @@
 package forms.Settings;
 
+import forms.Main.MainController;
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -13,10 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.AppData;
-import objects.ColorTheme;
+import objects.GUI.ColorTheme;
 import objects.DB.SQLDataBaseFactory;
-import objects.DBType;
+import objects.DB.DBType;
+import objects.GUI.RTTRApp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,18 +54,18 @@ public class SettingsController {
     Pane dbSettingsPane = null;
     DBSettingsPaneController dbSettingsPaneController = null;
     ArrayList<String> dbTypesStr, themesStr;
-    private int referenceDataHash, modifiedDataHash;
+    private int referenceDataHash, modifiedDataHash, referenceDBSettingsHash;
 
+    private MainController parentController;
     @FXML
     void initialize() {
-
         factory = new SQLDataBaseFactory();
 
         setChooseComboBoxValues();
         setThemesComboBoxValues();
         setDBSettingsPane();
         referenceDataHash = createHash();
-
+        referenceDBSettingsHash = dbSettingsPaneController.getDataHash();
         applyCSS();
     }
 
@@ -81,7 +81,7 @@ public class SettingsController {
 
     @FXML
     void chooseDBComboBoxClick(ActionEvent event) {
-        AppData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
+        RTTRApp.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
         setDBSettingsPane();
         calcModifiedDataHash();
         checkHashes();
@@ -89,8 +89,7 @@ public class SettingsController {
 
     @FXML
     void exitButtonClick(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage oldStage = (Stage) source.getScene().getWindow();
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
         oldStage.close();
     }
 
@@ -102,60 +101,79 @@ public class SettingsController {
 
     @FXML
     void applyButtonClick(ActionEvent event) {
-        applyChanges(event);
+        applyChanges();
     }
 
-    void applyChanges(ActionEvent event) {
-        System.out.println(isColorThemeToChange());
+    void applyChanges() {
         if (isColorThemeToChange()) {
-            changeColorTheme(event);
+            changeColorTheme();
         }
+
+        if (isDBDataToChange()){
+            changeDBSettings();
+        }
+
+        referenceDataHash=createHash();
+        checkHashes();
     }
 
     private boolean isColorThemeToChange() {
-        return !(themeComboBox.getSelectionModel().getSelectedItem().equals(AppData.getThemeName()));
+        return !(themeComboBox.getSelectionModel().getSelectedItem().equals(RTTRApp.getThemeName()));
     }
 
-    private void changeColorTheme(ActionEvent event) {
+    private void changeColorTheme() {
         String newTheme = themeComboBox.getSelectionModel().getSelectedItem().toString();
 
-        AppData.getIniFile().put("MAIN", "Active theme",newTheme);
+        RTTRApp.getIniFile().put("MAIN", "Active theme",newTheme);
         try {
-            AppData.getIniFile().store();
+            RTTRApp.getIniFile().store();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String newPath=ColorTheme.getPathbyName(AppData.getThemes(),newTheme);
+        String newPath=ColorTheme.getPathByName(RTTRApp.getThemes(),newTheme);
 
-        AppData.setThemeName(newTheme);
-        AppData.setPathCSS(newPath);
+        RTTRApp.setThemeName(newTheme);
+        RTTRApp.setPathCSS(newPath);
 
-        Node source = (Node) event.getSource();
-        Scene currentScene = source.getScene();
-        currentScene.getStylesheets().set(0,AppData.getPathCSS());
-        referenceDataHash=createHash();
+        Scene currentScene = exitButton.getScene();
+        currentScene.getStylesheets().set(0, RTTRApp.getPathCSS());
+
+        parentController.setNewTheme();
     }
+
+    private boolean isDBDataToChange() {
+        return referenceDBSettingsHash!=dbSettingsPaneController.getDataHash();
+    }
+
+    private void changeDBSettings() {
+        dbSettingsPaneController.saveInformationToIni();
+        RTTRApp.showAlert("Для применения изменений программа будет перезапущена.");
+        exitButton.fire();
+        parentController.restartApp();
+    }
+
 
     private void setThemesComboBoxValues() {
         themesStr = new ArrayList<>();
-        for (ColorTheme theme : AppData.getThemes()) {
+        for (ColorTheme theme : RTTRApp.getThemes()) {
             themesStr.add(theme.getName());
         }
         themeComboBox.setItems(FXCollections.observableArrayList(themesStr));
         themeComboBox.getSelectionModel().select(
-                themeComboBox.getItems().indexOf(AppData.getThemeName())
+                themeComboBox.getItems().indexOf(RTTRApp.getThemeName())
         );
     }
 
     private void setChooseComboBoxValues() {
         dbTypesStr = new ArrayList<>();
-        for (DBType type : AppData.getDbTypes()) {
+
+        for (DBType type : RTTRApp.getDbTypes()) {
             dbTypesStr.add(type.getName());
         }
         chooseDBComboBox.setItems(FXCollections.observableArrayList(dbTypesStr));
         chooseDBComboBox.getSelectionModel().select(
-                chooseDBComboBox.getItems().indexOf(AppData.getActiveSQLDataBaseType())
+                chooseDBComboBox.getItems().indexOf(RTTRApp.getActiveSQLDataBaseType())
         );
     }
 
@@ -164,7 +182,7 @@ public class SettingsController {
             settingsAnchorPane.getChildren().remove(dbSettingsPane);
         }
 
-        FXMLLoader loader = factory.getPaneByDBType(AppData.getActiveSQLDataBaseType());
+        FXMLLoader loader = factory.getPaneByDBType(RTTRApp.getActiveSQLDataBaseType());
         try {
             dbSettingsPane = loader.load();
             dbSettingsPaneController = loader.getController();
@@ -180,7 +198,6 @@ public class SettingsController {
             dbSettingsPaneController.setInformation();
         }
     }
-
 
     int createHash() {
         return themeComboBox.getSelectionModel().getSelectedItem().hashCode() +
@@ -202,5 +219,11 @@ public class SettingsController {
         }
     }
 
+    public MainController getParentController() {
+        return parentController;
+    }
 
+    public void setParentController(MainController parentController) {
+        this.parentController = parentController;
+    }
 }

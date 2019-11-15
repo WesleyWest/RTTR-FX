@@ -1,19 +1,23 @@
 package forms.Main;
 
-import objects.AppData;
+import forms.Settings.SettingsController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import objects.Employees.Employee;
-import objects.Request;
-import objects.Technic.Technic;
+import javafx.stage.Stage;
+import objects.BL.AppData;
+import objects.BL.Employees.Employee;
+import objects.GUI.RTTRApp;
+import objects.BL.Request;
+import objects.BL.Technic.Technic;
 import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
@@ -143,12 +147,10 @@ public class MainController extends AppData {
     @FXML
     private Label headerLabelSmall;
 
-    @FXML
-    private VBox popOverVBox;
-
     private PopOver popOver;
 
     Request selectedRecord;
+    SettingsController settingsController;
 
     @FXML
     void initialize() {
@@ -191,6 +193,7 @@ public class MainController extends AppData {
     }
 
     private void applyCSS() {
+        informLabel.getStyleClass().set(0,"inform-label");
         headerLabelBig.getStyleClass().set(0,"label-header-big");
         headerLabelSmall.getStyleClass().set(0,"label-header-small");
 
@@ -294,12 +297,38 @@ public class MainController extends AppData {
 
     @FXML
     void settingMenuItemClick(ActionEvent event){
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../Settings/SettingsWindow.fxml"));
-            AppData.openCustomWindow(event, root,840,610, Modality.APPLICATION_MODAL,false);
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResource("../Settings/SettingsWindow.fxml").openStream());
+            settingsController = loader.getController();
+            settingsController.setParentController(this);
+
+            RTTRApp.openCustomWindow(event, root,840,610, Modality.APPLICATION_MODAL,false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setNewTheme(){
+        Scene currentScene = exitButton.getScene();
+        currentScene.getStylesheets().set(0, RTTRApp.getPathCSS());
+    }
+
+    public void restartApp(){
+//        exitButton.fire();
+        getDb().close();
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
+        setUsers(null);
+        RTTRApp newApp = new RTTRApp();
+        try {
+            newApp.startApp(RTTRApp.getPrimaryStage());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 }
