@@ -1,10 +1,9 @@
 package forms.Main;
 
-import forms.Settings.SettingsController;
+import forms.GUIController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,16 +12,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import objects.BL.AppData;
 import objects.BL.Employees.Employee;
-import objects.GUI.RTTRApp;
 import objects.BL.Request;
 import objects.BL.Technic.Technic;
+import objects.GUI.GUIData;
 import org.controlsfx.control.PopOver;
 
-import java.io.IOException;
-
-public class MainController extends AppData {
+public class MainController extends GUIController{
 
     @FXML
     private MenuItem createReportMenuItem;
@@ -149,8 +145,7 @@ public class MainController extends AppData {
 
     private PopOver popOver;
 
-    Request selectedRecord;
-    SettingsController settingsController;
+    private Request selectedRecord;
 
     @FXML
     void initialize() {
@@ -297,14 +292,16 @@ public class MainController extends AppData {
 
     @FXML
     void settingMenuItemClick(ActionEvent event){
+        callSettingsWindow(event);
+    }
 
+    private void callSettingsWindow(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent root = loader.load(getClass().getResource("../Settings/SettingsWindow.fxml").openStream());
-            settingsController = loader.getController();
-            settingsController.setParentController(this);
+            MenuItem mItem = (MenuItem) event.getSource();
+            GUIData.setSettingsWindowCaller(mItem.getId());
 
-            RTTRApp.openCustomWindow(event, root,840,610, Modality.APPLICATION_MODAL,false);
+            Parent root = initializeNewSettingsWindow();
+            GUIData.openCustomWindow(event, root,840,610, Modality.APPLICATION_MODAL,false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -312,23 +309,11 @@ public class MainController extends AppData {
 
     public void setNewTheme(){
         Scene currentScene = exitButton.getScene();
-        currentScene.getStylesheets().set(0, RTTRApp.getPathCSS());
+        currentScene.getStylesheets().set(0, GUIData.getPathCSS());
     }
 
     public void restartApp(){
-//        exitButton.fire();
-        getDb().close();
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
-        setUsers(null);
-        RTTRApp newApp = new RTTRApp();
-        try {
-            newApp.startApp(RTTRApp.getPrimaryStage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        restart((Stage) exitButton.getScene().getWindow());
     }
 
 }

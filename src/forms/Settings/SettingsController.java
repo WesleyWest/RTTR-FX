@@ -1,6 +1,6 @@
 package forms.Settings;
 
-import forms.Main.MainController;
+import forms.GUIController;
 import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -10,13 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import objects.GUI.ColorTheme;
 import objects.DB.SQLDataBaseFactory;
 import objects.DB.DBType;
-import objects.GUI.RTTRApp;
+import objects.GUI.GUIData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +47,16 @@ public class SettingsController {
     @FXML
     private AnchorPane headerAnchorPane;
     @FXML
+    private Tab settingsTab;
+    @FXML
+    private Tab usersTab;
+    @FXML
+    private Tab divisionsTab;
+    @FXML
+    private Tab employeesTab;
+    @FXML
+    private Tab technicTab;
+    @FXML
     private Label headerLabelBig;
     @FXML
     private Label headerLabelSmall;
@@ -55,10 +66,22 @@ public class SettingsController {
     DBSettingsPaneController dbSettingsPaneController = null;
     ArrayList<String> dbTypesStr, themesStr;
     private int referenceDataHash, modifiedDataHash, referenceDBSettingsHash;
+    private GUIController parentController;
 
-    private MainController parentController;
     @FXML
     void initialize() {
+        if (GUIData.getSettingsWindowCaller().equals("settingsButton")){
+            usersTab.setDisable(true);
+            divisionsTab.setDisable(true);
+            employeesTab.setDisable(true);
+            technicTab.setDisable(true);
+
+        } else {
+            usersTab.setDisable(!true);
+            divisionsTab.setDisable(!true);
+            employeesTab.setDisable(!true);
+            technicTab.setDisable(!true);
+        }
         factory = new SQLDataBaseFactory();
 
         setChooseComboBoxValues();
@@ -81,7 +104,7 @@ public class SettingsController {
 
     @FXML
     void chooseDBComboBoxClick(ActionEvent event) {
-        RTTRApp.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
+        GUIData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
         setDBSettingsPane();
         calcModifiedDataHash();
         checkHashes();
@@ -118,26 +141,26 @@ public class SettingsController {
     }
 
     private boolean isColorThemeToChange() {
-        return !(themeComboBox.getSelectionModel().getSelectedItem().equals(RTTRApp.getThemeName()));
+        return !(themeComboBox.getSelectionModel().getSelectedItem().equals(GUIData.getThemeName()));
     }
 
     private void changeColorTheme() {
         String newTheme = themeComboBox.getSelectionModel().getSelectedItem().toString();
 
-        RTTRApp.getIniFile().put("MAIN", "Active theme",newTheme);
+        GUIData.getIniFile().put("MAIN", "Active theme",newTheme);
         try {
-            RTTRApp.getIniFile().store();
+            GUIData.getIniFile().store();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String newPath=ColorTheme.getPathByName(RTTRApp.getThemes(),newTheme);
+        String newPath=ColorTheme.getPathByName(GUIData.getThemes(),newTheme);
 
-        RTTRApp.setThemeName(newTheme);
-        RTTRApp.setPathCSS(newPath);
+        GUIData.setThemeName(newTheme);
+        GUIData.setPathCSS(newPath);
 
         Scene currentScene = exitButton.getScene();
-        currentScene.getStylesheets().set(0, RTTRApp.getPathCSS());
+        currentScene.getStylesheets().set(0, GUIData.getPathCSS());
 
         parentController.setNewTheme();
     }
@@ -148,7 +171,7 @@ public class SettingsController {
 
     private void changeDBSettings() {
         dbSettingsPaneController.saveInformationToIni();
-        RTTRApp.showAlert("Для применения изменений программа будет перезапущена.");
+        GUIData.showAlert("Для применения изменений программа будет перезапущена.");
         exitButton.fire();
         parentController.restartApp();
     }
@@ -156,24 +179,24 @@ public class SettingsController {
 
     private void setThemesComboBoxValues() {
         themesStr = new ArrayList<>();
-        for (ColorTheme theme : RTTRApp.getThemes()) {
+        for (ColorTheme theme : GUIData.getThemes()) {
             themesStr.add(theme.getName());
         }
         themeComboBox.setItems(FXCollections.observableArrayList(themesStr));
         themeComboBox.getSelectionModel().select(
-                themeComboBox.getItems().indexOf(RTTRApp.getThemeName())
+                themeComboBox.getItems().indexOf(GUIData.getThemeName())
         );
     }
 
     private void setChooseComboBoxValues() {
         dbTypesStr = new ArrayList<>();
 
-        for (DBType type : RTTRApp.getDbTypes()) {
+        for (DBType type : GUIData.getDbTypes()) {
             dbTypesStr.add(type.getName());
         }
         chooseDBComboBox.setItems(FXCollections.observableArrayList(dbTypesStr));
         chooseDBComboBox.getSelectionModel().select(
-                chooseDBComboBox.getItems().indexOf(RTTRApp.getActiveSQLDataBaseType())
+                chooseDBComboBox.getItems().indexOf(GUIData.getActiveSQLDataBaseType())
         );
     }
 
@@ -182,7 +205,7 @@ public class SettingsController {
             settingsAnchorPane.getChildren().remove(dbSettingsPane);
         }
 
-        FXMLLoader loader = factory.getPaneByDBType(RTTRApp.getActiveSQLDataBaseType());
+        FXMLLoader loader = factory.getPaneByDBType(GUIData.getActiveSQLDataBaseType());
         try {
             dbSettingsPane = loader.load();
             dbSettingsPaneController = loader.getController();
@@ -219,11 +242,11 @@ public class SettingsController {
         }
     }
 
-    public MainController getParentController() {
+    public GUIController getParentController() {
         return parentController;
     }
 
-    public void setParentController(MainController parentController) {
+    public void setParentController(GUIController parentController) {
         this.parentController = parentController;
     }
 }

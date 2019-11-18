@@ -1,31 +1,35 @@
 package forms.Login;
 
+import forms.GUIController;
+import forms.Settings.SettingsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import objects.BL.AppData;
 import objects.DB.SQLDataBaseFactory;
 import objects.BL.Users.User;
-import objects.GUI.RTTRApp;
+import objects.GUI.GUIData;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
-public class LoginController extends AppData {
+public class LoginController extends GUIController {
 
     @FXML
     private Button exitButton;
 
     @FXML
     private Button loginButton;
+
+    @FXML
+    private Button settingsButton;
 
     @FXML
     private TextField loginTextField;
@@ -45,6 +49,8 @@ public class LoginController extends AppData {
     @FXML
     private Label headerLabelSmall;
 
+    private SettingsController settingsController;
+
     @FXML
     void initialize() {
         loginTextField.setText("Wesley");
@@ -58,7 +64,26 @@ public class LoginController extends AppData {
         headerAnchorPane.getStyleClass().add("anchor-pane-header");
         headerLabelBig.getStyleClass().set(0, "label-header-big");
         headerLabelSmall.getStyleClass().set(0, "label-header-small");
+        settingsButton.getStyleClass().set(0, "settings-button");
     }
+
+    @FXML
+    void settingsButtonClick(ActionEvent event) {
+        callSettingsWindow(event);
+    }
+
+    private void callSettingsWindow(ActionEvent event) {
+        try {
+            Button button = (Button) event.getSource();
+            GUIData.setSettingsWindowCaller(button.getId());
+
+            Parent root = initializeNewSettingsWindow();
+            GUIData.openCustomWindow(event, root, 840, 610, Modality.APPLICATION_MODAL, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     void exitButtonClick(ActionEvent event) {
@@ -77,11 +102,11 @@ public class LoginController extends AppData {
         String userPassword = passwordField.getText();
 
         if (userName.length() == 0 || userPassword.length() == 0) {
-            RTTRApp.showAlert("Заполните все поля.");
+            GUIData.showAlert("Заполните все поля.");
         } else if (!(userFound(userName, userPassword))) {
-            RTTRApp.showAlert("Пользователь не найден.");
+            GUIData.showAlert("Пользователь не найден.");
         } else if (!getUser().isActive()) {
-            RTTRApp.showAlert("Учётная запись не активна.");
+            GUIData.showAlert("Учётная запись не активна.");
         } else {
             setDivisions(getDb().readDivisionsFromDB());
             setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
@@ -90,7 +115,6 @@ public class LoginController extends AppData {
             setTypes(getDb().readSimpleObjectsListFromDB("technic_types", "Technic types"));
             setStatuses(getDb().readSimpleObjectsListFromDB("technic_statuses", "Technic statuses"));
             setTechnic(getDb().readTechnicFromDB());
-
             openMainWindow(event);
         }
     }
@@ -102,18 +126,30 @@ public class LoginController extends AppData {
             oldStage.close();
 
             Parent root = FXMLLoader.load(getClass().getResource("../Main/MainWindow.fxml"));
-            RTTRApp.setOwner(((Node) event.getSource()).getScene().getWindow());
-            RTTRApp.openCustomWindow(event, root, 1044, 768, Modality.WINDOW_MODAL, true);
+            GUIData.setOwner(((Node) event.getSource()).getScene().getWindow());
+            GUIData.openCustomWindow(event, root, 1044, 768, Modality.WINDOW_MODAL, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void getUsersFromDB() {
-        setDb(new SQLDataBaseFactory().getSQLDataBaseByType(RTTRApp.getActiveSQLDataBaseType()));
-        getDb().open();
-        getDb().setRoleNamesFromDB();
-        setUsers(getDb().readUsersFromDB());
+        try {
+            setDb(new SQLDataBaseFactory().getSQLDataBaseByType(GUIData.getActiveSQLDataBaseType()));
+            getDb().open();
+            getDb().setRoleNamesFromDB();
+            setUsers(getDb().readUsersFromDB());
+        } catch (ClassNotFoundException e) {
+            GUIData.showAlert("Class not found: " + e.getLocalizedMessage());
+        } catch (InstantiationException e) {
+            GUIData.showAlert("Can't instant object: " + e.getLocalizedMessage());
+        } catch (IllegalAccessException e) {
+            GUIData.showAlert("Illegal access exception: " + e.getLocalizedMessage());
+        } catch (SQLException e) {
+            GUIData.showAlert("Файл не найден: \n" + e.getLocalizedMessage());
+        } catch (Exception e) {
+            GUIData.showAlert("Что-то ещё не так: \n" + e.getLocalizedMessage());
+        }
     }
 
     private boolean userFound(String userName, String userPassword) {
@@ -128,4 +164,14 @@ public class LoginController extends AppData {
     }
 
 
+    @Override
+    public void setNewTheme() {
+        Scene currentScene = exitButton.getScene();
+        currentScene.getStylesheets().set(0, GUIData.getPathCSS());
+    }
+
+    @Override
+    public void restartApp() {
+        restart((Stage) exitButton.getScene().getWindow());
+    }
 }

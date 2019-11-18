@@ -13,7 +13,7 @@ import objects.BL.Technic.TechnicStatus;
 import objects.BL.Technic.TechnicType;
 import objects.BL.Users.Role;
 import objects.BL.Users.User;
-import objects.GUI.RTTRApp;
+import objects.GUI.GUIData;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -63,7 +63,7 @@ public class SQLDataBase extends AppData {
             opened = true;
 
         } catch (Exception e) {
-            RTTRApp.showAlert("Class not found exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("Class not found exception: " + e.getLocalizedMessage());
         } finally {
             AppData.printInLog("Connected successfully to: " + connectionString);
             AppData.printInLog("---------------------");
@@ -130,7 +130,7 @@ public class SQLDataBase extends AppData {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            RTTRApp.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
         AppData.printInLog(objectName + " was read...");
@@ -157,7 +157,7 @@ public class SQLDataBase extends AppData {
             statement.close();
 
         } catch (SQLException e) {
-            RTTRApp.showAlert(e.getMessage());
+            GUIData.showAlert(e.getMessage());
             opened = false;
         }
         AppData.printInLog("Roles was set...");
@@ -186,7 +186,7 @@ public class SQLDataBase extends AppData {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            RTTRApp.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
         AppData.printInLog("Users was read...");
@@ -215,7 +215,7 @@ public class SQLDataBase extends AppData {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            RTTRApp.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
         AppData.printInLog("Employee divisions was read...");
@@ -251,7 +251,7 @@ public class SQLDataBase extends AppData {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            RTTRApp.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
         AppData.printInLog("Employees was read...");
@@ -292,7 +292,7 @@ public class SQLDataBase extends AppData {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            RTTRApp.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         }
 
@@ -349,10 +349,10 @@ public class SQLDataBase extends AppData {
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            RTTRApp.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
             opened = false;
         } catch (ParseException e) {
-            RTTRApp.showAlert("Parse exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("Parse exception: " + e.getLocalizedMessage());
             opened = false;
         }
 

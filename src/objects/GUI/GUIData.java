@@ -16,23 +16,32 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class RTTRApp {
+public class GUIData {
     private static String settingsFilePath = "src/conf/settings.ini";
-    public static Window owner;
-    public static Stage primaryStage;
-    public static String themeName;
-    public static String pathCSS;
-    public static ArrayList<ColorTheme> themes = new ArrayList<>();
-    public static ArrayList<DBType> dbTypes = new ArrayList<>();
-    public static String activeSQLDataBaseType;
+    private static Window owner;
+    private static Stage primaryStage;
+    private static String themeName;
+    private static String pathCSS;
+    private static ArrayList<ColorTheme> themes = new ArrayList<>();
+    private static ArrayList<DBType> dbTypes = new ArrayList<>();
+    private static String activeSQLDataBaseType;
     private static Wini iniFile;
+    private static String settingsWindowCaller;
 
     public static String getSettingsFilePath() {
         return settingsFilePath;
     }
 
     public static void setSettingsFilePath(String settingsFilePath) {
-        RTTRApp.settingsFilePath = settingsFilePath;
+        GUIData.settingsFilePath = settingsFilePath;
+    }
+
+    public static String getSettingsWindowCaller() {
+        return settingsWindowCaller;
+    }
+
+    public static void setSettingsWindowCaller(String settingsWindowCaller) {
+        GUIData.settingsWindowCaller = settingsWindowCaller;
     }
 
     public static Stage getPrimaryStage() {
@@ -40,7 +49,7 @@ public class RTTRApp {
     }
 
     public static void setPrimaryStage(Stage primaryStage) {
-        RTTRApp.primaryStage = primaryStage;
+        GUIData.primaryStage = primaryStage;
     }
 
     public static Wini getIniFile() {
@@ -52,7 +61,7 @@ public class RTTRApp {
     }
 
     public static void setThemes(ArrayList<ColorTheme> themes) {
-        RTTRApp.themes = themes;
+        GUIData.themes = themes;
     }
 
     public static ArrayList<DBType> getDbTypes() {
@@ -60,7 +69,7 @@ public class RTTRApp {
     }
 
     public static void setDbTypes(ArrayList<DBType> dbTypes) {
-        RTTRApp.dbTypes = dbTypes;
+        GUIData.dbTypes = dbTypes;
     }
 
     public static String getThemeName() {
@@ -68,7 +77,7 @@ public class RTTRApp {
     }
 
     public static void setThemeName(String themeName) {
-        RTTRApp.themeName = themeName;
+        GUIData.themeName = themeName;
     }
 
     public static String getPathCSS() {
@@ -76,7 +85,7 @@ public class RTTRApp {
     }
 
     public static void setPathCSS(String pathCSS) {
-        RTTRApp.pathCSS = pathCSS;
+        GUIData.pathCSS = pathCSS;
     }
 
     public static String getActiveSQLDataBaseType() {
@@ -84,7 +93,7 @@ public class RTTRApp {
     }
 
     public static void setActiveSQLDataBaseType(String activeSQLDataBaseType) {
-        RTTRApp.activeSQLDataBaseType = activeSQLDataBaseType;
+        GUIData.activeSQLDataBaseType = activeSQLDataBaseType;
     }
 
     public static Window getOwner() {
@@ -92,7 +101,7 @@ public class RTTRApp {
     }
 
     public static void setOwner(Window owner) {
-        RTTRApp.owner = owner;
+        GUIData.owner = owner;
     }
 
     public static void showAlert(String text) {

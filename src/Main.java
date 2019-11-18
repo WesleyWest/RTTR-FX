@@ -1,6 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import objects.GUI.RTTRApp;
+import objects.GUI.GUIData;
 
 public class Main extends Application {
 
@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 //        AppData.writeDefaultSettingsToFile();
 //        System.exit(0);
-        RTTRApp app = new RTTRApp();
-        RTTRApp.setPrimaryStage(primaryStage);
+        GUIData app = new GUIData();
+        GUIData.setPrimaryStage(primaryStage);
         app.startApp(primaryStage);
     }
 

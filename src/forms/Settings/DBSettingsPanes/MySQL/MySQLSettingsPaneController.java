@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 import objects.DB.SQLDataBase;
 import objects.DB.types.MySQLDataBase;
-import objects.GUI.RTTRApp;
+import objects.GUI.GUIData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -90,28 +90,28 @@ public class MySQLSettingsPaneController extends DBSettingsPaneController {
     }
 
     private void restoreCurrentSettingsIntoFile() {
-        RTTRApp.getIniFile().put("MYSQL", "Host", host);
-        RTTRApp.getIniFile().put("MYSQL", "Port", port);
-        RTTRApp.getIniFile().put("MYSQL", "Schema", schema);
-        RTTRApp.getIniFile().put("MYSQL", "Login", login);
-        RTTRApp.getIniFile().put("MYSQL", "Password", password);
+        GUIData.getIniFile().put("MYSQL", "Host", host);
+        GUIData.getIniFile().put("MYSQL", "Port", port);
+        GUIData.getIniFile().put("MYSQL", "Schema", schema);
+        GUIData.getIniFile().put("MYSQL", "Login", login);
+        GUIData.getIniFile().put("MYSQL", "Password", password);
     }
 
     private void saveTempSettingsIntoFile() {
-        RTTRApp.getIniFile().put("MYSQL", "Host", mySQLHostField.getText());
-        RTTRApp.getIniFile().put("MYSQL", "Port", mySQLPortField.getText());
-        RTTRApp.getIniFile().put("MYSQL", "Schema", mySQLSchemaField.getText());
-        RTTRApp.getIniFile().put("MYSQL", "Login", mySQLLoginField.getText());
-        RTTRApp.getIniFile().put("MYSQL", "Password", mySQLPasswordField.getText());
+        GUIData.getIniFile().put("MYSQL", "Host", mySQLHostField.getText());
+        GUIData.getIniFile().put("MYSQL", "Port", mySQLPortField.getText());
+        GUIData.getIniFile().put("MYSQL", "Schema", mySQLSchemaField.getText());
+        GUIData.getIniFile().put("MYSQL", "Login", mySQLLoginField.getText());
+        GUIData.getIniFile().put("MYSQL", "Password", mySQLPasswordField.getText());
     }
 
     @Override
     public void setInformation() {
-        host = RTTRApp.getIniFile().get("MYSQL", "Host");
-        port = RTTRApp.getIniFile().get("MYSQL", "Port");
-        schema = RTTRApp.getIniFile().get("MYSQL", "Schema");
-        login = RTTRApp.getIniFile().get("MYSQL", "Login");
-        password = RTTRApp.getIniFile().get("MYSQL", "Password");
+        host = GUIData.getIniFile().get("MYSQL", "Host");
+        port = GUIData.getIniFile().get("MYSQL", "Port");
+        schema = GUIData.getIniFile().get("MYSQL", "Schema");
+        login = GUIData.getIniFile().get("MYSQL", "Login");
+        password = GUIData.getIniFile().get("MYSQL", "Password");
 
         mySQLHostField.setText(host);
         mySQLPortField.setText(port);
@@ -122,12 +122,12 @@ public class MySQLSettingsPaneController extends DBSettingsPaneController {
 
     @Override
     public void saveInformationToIni() {
-        RTTRApp.getIniFile().put("MAIN","Active DB type","MySQL");
+        GUIData.getIniFile().put("MAIN","Active DB type","MySQL");
         saveTempSettingsIntoFile();
         try {
-            RTTRApp.getIniFile().store();
+            GUIData.getIniFile().store();
         } catch (IOException e) {
-            RTTRApp.showAlert(e.getLocalizedMessage());
+            GUIData.showAlert(e.getLocalizedMessage());
         }
     }
 
