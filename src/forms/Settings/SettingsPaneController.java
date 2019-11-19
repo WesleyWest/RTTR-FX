@@ -1,8 +1,6 @@
-package forms.Settings.DBSettingsPanes;
+package forms.Settings;
 
-import forms.Settings.SettingsController;
-
-public abstract class DBSettingsPaneController {
+public abstract class SettingsPaneController{
 
     private SettingsController parentController;
 

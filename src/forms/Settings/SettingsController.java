@@ -1,16 +1,12 @@
 package forms.Settings;
 
 import forms.GUIController;
-import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -37,6 +33,8 @@ public class SettingsController {
     @FXML
     private AnchorPane settingsAnchorPane;
     @FXML
+    private AnchorPane dbSettingsAnchorPane;
+    @FXML
     private AnchorPane usersAnchorPane;
     @FXML
     private AnchorPane divisionsAnchorPane;
@@ -46,6 +44,8 @@ public class SettingsController {
     private AnchorPane technicAnchorPane;
     @FXML
     private AnchorPane headerAnchorPane;
+    @FXML
+    private TabPane tabPane;
     @FXML
     private Tab settingsTab;
     @FXML
@@ -63,7 +63,15 @@ public class SettingsController {
 
     private SQLDataBaseFactory factory;
     Pane dbSettingsPane = null;
-    DBSettingsPaneController dbSettingsPaneController = null;
+    Pane usersSettingsPane = null;
+    Pane divisionsSettingsPane = null;
+    Pane employeesSettingsPane = null;
+    Pane technicSettingsPane = null;
+    SettingsPaneController dbSettingsPaneController = null;
+    SettingsPaneController usersPaneController = null;
+    SettingsPaneController divisionsPaneController = null;
+    SettingsPaneController employeesPaneController = null;
+    SettingsPaneController technicPaneController = null;
     ArrayList<String> dbTypesStr, themesStr;
     private int referenceDataHash, modifiedDataHash, referenceDBSettingsHash;
     private GUIController parentController;
@@ -77,19 +85,33 @@ public class SettingsController {
             technicTab.setDisable(true);
 
         } else {
-            usersTab.setDisable(!true);
-            divisionsTab.setDisable(!true);
-            employeesTab.setDisable(!true);
-            technicTab.setDisable(!true);
+            usersTab.setDisable(false);
+            divisionsTab.setDisable(false);
+            employeesTab.setDisable(false);
+            technicTab.setDisable(false);
         }
+
         factory = new SQLDataBaseFactory();
 
         setChooseComboBoxValues();
         setThemesComboBoxValues();
         setDBSettingsPane();
+
         referenceDataHash = createHash();
         referenceDBSettingsHash = dbSettingsPaneController.getDataHash();
         applyCSS();
+
+        tabPane.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+            System.out.println(tabPane.getSelectionModel().getSelectedIndex());
+        });
+
+//        fillTabs();
+    }
+
+    private void fillTabs() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("users/UsersSettings.fxml"));
+//        putAndGetSettingsPane(loader, usersAnchorPane,usersPaneController);
+
     }
 
     void applyCSS() {
@@ -103,17 +125,19 @@ public class SettingsController {
     }
 
     @FXML
+    void exitButtonClick(ActionEvent event) {
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
+    }
+
+
+    /** Main Settings section*/
+    @FXML
     void chooseDBComboBoxClick(ActionEvent event) {
         GUIData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
         setDBSettingsPane();
         calcModifiedDataHash();
         checkHashes();
-    }
-
-    @FXML
-    void exitButtonClick(ActionEvent event) {
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
     }
 
     @FXML
@@ -166,7 +190,7 @@ public class SettingsController {
     }
 
     private boolean isDBDataToChange() {
-        return referenceDBSettingsHash!=dbSettingsPaneController.getDataHash();
+        return referenceDBSettingsHash!= dbSettingsPaneController.getDataHash();
     }
 
     private void changeDBSettings() {
@@ -201,25 +225,34 @@ public class SettingsController {
     }
 
     private void setDBSettingsPane() {
-        if (settingsAnchorPane.getChildren().indexOf(dbSettingsPane) != 0) {
-            settingsAnchorPane.getChildren().remove(dbSettingsPane);
-        }
+//        if (settingsAnchorPane.getChildren().indexOf(dbSettingsPane) != 0) {
+//            settingsAnchorPane.getChildren().remove(dbSettingsPane);
+//        }
 
         FXMLLoader loader = factory.getPaneByDBType(GUIData.getActiveSQLDataBaseType());
+        dbSettingsPane = putAndGetSettingsPane(loader, dbSettingsAnchorPane);
+
+    }
+
+    private Pane putAndGetSettingsPane(FXMLLoader loader,AnchorPane parentAnchorPane) {
+        parentAnchorPane.getChildren().clear();
+        Pane childPane = null;
+        SettingsPaneController childController = dbSettingsPaneController;
         try {
-            dbSettingsPane = loader.load();
-            dbSettingsPaneController = loader.getController();
-            dbSettingsPaneController.setParentController(this);
+            childPane = loader.load();
+            childController = loader.getController();
+            childController.setParentController(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if (dbSettingsPane != null) {
-            settingsAnchorPane.getChildren().add(dbSettingsPane);
-            dbSettingsPane.setLayoutX(14);
-            dbSettingsPane.setLayoutY(70);
-            dbSettingsPaneController.setInformation();
+        if (childPane != null) {
+            parentAnchorPane.getChildren().add(childPane);
+//            childPane.setLayoutX(14);
+//            childPane.setLayoutY(70);
+            childController.setInformation();
         }
+        return childPane;
     }
 
     int createHash() {

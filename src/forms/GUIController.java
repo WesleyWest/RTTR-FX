@@ -9,12 +9,12 @@ import objects.GUI.GUIData;
 
 import java.io.IOException;
 
-public class GUIController extends AppData {
+public abstract class GUIController extends AppData {
     private SettingsController settingsController;
 
-    public void setNewTheme() {}
+    public abstract void setNewTheme();
 
-    public void restartApp() {}
+    public abstract void restartApp();
 
     public void restart(Stage stageToClose) {
         String parentControllerName = settingsController.getParentController().getClass().getSimpleName();

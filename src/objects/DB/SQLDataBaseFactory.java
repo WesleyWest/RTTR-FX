@@ -1,6 +1,6 @@
 package objects.DB;
 
-import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
+import forms.Settings.SettingsPaneController;
 import javafx.fxml.FXMLLoader;
 import objects.BL.AppData;
 import objects.GUI.GUIData;
@@ -33,12 +33,12 @@ public class SQLDataBaseFactory extends AppData {
         return null;
     }
 
-    public DBSettingsPaneController getDBSettingsControllerByType(String typeName) {
+    public SettingsPaneController getDBSettingsControllerByType(String typeName) {
         for (DBType type : GUIData.getDbTypes()) {
             if (type.getName().toUpperCase().equals(typeName.toUpperCase())) {
                 try {
                     Class<?> controllerClass = Class.forName(type.getPaneControllerClassName());
-                    return (DBSettingsPaneController) controllerClass.newInstance();
+                    return (SettingsPaneController) controllerClass.newInstance();
                 } catch (ClassNotFoundException e) {
                     GUIData.showAlert("Class not found: "+e.getLocalizedMessage());
                 } catch (InstantiationException e) {

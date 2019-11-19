@@ -1,6 +1,6 @@
 package forms.Settings.DBSettingsPanes.MySQL;
 
-import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
+import forms.Settings.SettingsPaneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +14,7 @@ import objects.GUI.GUIData;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MySQLSettingsPaneController extends DBSettingsPaneController {
+public class MySQLSettingsPaneController extends SettingsPaneController {
     @FXML
     private TextField mySQLHostField;
 

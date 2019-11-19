@@ -4,15 +4,8 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -33,7 +26,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <TabPane layoutY="99.0" prefHeight="457.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutY="99.0" prefHeight="457.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="settingsTab" text="Общие настройки">
             <content>
@@ -43,52 +36,14 @@
                         <Label layoutX="14.0" layoutY="14.0" text="Тип базы данных" textFill="#376bc5" />
                         <ComboBox fx:id="chooseDBComboBox" layoutX="14.0" layoutY="31.0" onAction="#chooseDBComboBoxClick" prefHeight="32.0" prefWidth="435.0" />
                         <ComboBox fx:id="themeComboBox" layoutX="14.0" layoutY="366.0" onAction="#themeComboBoxClick" prefHeight="32.0" prefWidth="435.0" />
+                        <AnchorPane fx:id="dbSettingsAnchorPane" layoutX="14.0" layoutY="67.0" prefHeight="283.0" prefWidth="825.0" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab fx:id="usersTab" text="Пользователи">
             <content>
-              <AnchorPane fx:id="usersAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="479.0" styleClass="anchor-pane-in-tab">
-                     <children>
-                        <TableView layoutX="28.0" layoutY="33.0" prefHeight="365.0" prefWidth="440.0">
-                           <columns>
-                              <TableColumn fx:id="idColumn" prefWidth="58.0" text="ID" />
-                              <TableColumn fx:id="nameColumn" prefWidth="135.0" text="Name" />
-                              <TableColumn fx:id="roleColumn" prefWidth="140.0" text="Role" />
-                              <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="105.0" text="Status" />
-                           </columns>
-                        </TableView>
-                        <Pane layoutX="490.0" layoutY="71.0" prefHeight="242.0" prefWidth="353.0">
-                           <children>
-                              <Label text="ID" />
-                              <TextField editable="false" layoutY="17.0" prefHeight="25.0" prefWidth="55.0" />
-                              <TextField editable="false" layoutX="1.0" layoutY="59.0" prefHeight="25.0" prefWidth="212.0" />
-                              <PasswordField fx:id="passwordField" editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" promptText="somewhere here is the password" />
-                              <TextField editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" />
-                              <ComboBox disable="true" layoutX="1.0" layoutY="143.0" prefHeight="25.0" prefWidth="212.0" />
-                              <RadioButton disable="true" layoutY="193.0" mnemonicParsing="false" text="Активен">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="statusGroup" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton disable="true" layoutY="215.0" mnemonicParsing="false" selected="true" text="Неактивен" toggleGroup="$statusGroup" />
-                              <Label layoutY="42.0" text="Имя пользователя" />
-                              <Label layoutY="84.0" text="Пароль" />
-                              <Label layoutY="174.0" text="Статус пользователя:" />
-                              <Label layoutX="1.0" layoutY="126.0" text="Роль" />
-                              <ToggleButton layoutX="227.0" layoutY="101.0" mnemonicParsing="false" text="Отобразить пароль" />
-                           </children>
-                        </Pane>
-                        <ButtonBar layoutX="463.0" layoutY="359.0" prefHeight="40.0" prefWidth="373.0">
-                           <buttons>
-                              <Button mnemonicParsing="false" prefHeight="32.0" text="Add" />
-                              <Button defaultButton="true" mnemonicParsing="false" prefHeight="32.0" text="Edit" />
-                              <Button mnemonicParsing="false" prefHeight="32.0" text="Remove" />
-                           </buttons>
-                        </ButtonBar>
-                        <Label fx:id="countLabel" layoutX="28.0" layoutY="406.0" text="Количество пользователей:" />
-                     </children></AnchorPane>
+              <AnchorPane fx:id="usersAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="479.0" styleClass="anchor-pane-in-tab" />
             </content>
           </Tab>
             <Tab fx:id="divisionsTab" text="Подразделения">

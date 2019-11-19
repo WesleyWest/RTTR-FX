@@ -1,6 +1,6 @@
 package forms.Settings.DBSettingsPanes.SQLite;
 
-import forms.Settings.DBSettingsPanes.DBSettingsPaneController;
+import forms.Settings.SettingsPaneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class SQLiteSettingsPaneController extends DBSettingsPaneController {
+public class SQLiteSettingsPaneController extends SettingsPaneController {
 
     @FXML
     private TextField sqLitePathTODBField;
