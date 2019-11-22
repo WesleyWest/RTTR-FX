@@ -139,7 +139,8 @@ public class SQLDataBase extends AppData {
     }
 
     public void setRoleNamesFromDB() {
-        ArrayList<tmpRoles> tmp = new ArrayList<tmpRoles>();
+        ArrayList<tmpRoles> tmp = new ArrayList<>();
+        ArrayList<Role> tmpRole = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             String query =
@@ -152,6 +153,7 @@ public class SQLDataBase extends AppData {
                 String roleCode = rs.getString("role_code");
                 String roleName = rs.getString("role_name");
                 Role.setRoleNameByCode(roleCode, roleName);
+
             }
             rs.close();
             statement.close();

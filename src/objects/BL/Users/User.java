@@ -3,55 +3,72 @@ package objects.BL.Users;
 import objects.BL.idReturnable;
 
 public class User implements idReturnable {
-    private int userID;
-    private String userName;
-    private String userPassword;
-    private Role userRole;
-    private boolean userStatus;
-    private boolean userUndeletable;
+    private int ID;
+    private String name;
+    private String password;
+    private Role role;
+    private boolean status;
+    private boolean undeletable;
 
-    public User(int userID, String userName, String userPassword, Role userRole, boolean userStatus, boolean userUndeletable) {
-        this.userID = userID;
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.userRole = userRole;
-        this.userStatus = userStatus;
-        this.userUndeletable = userUndeletable;
+    public User(int ID, String name, String password, Role role, boolean userStatus, boolean undeletable) {
+        this.ID = ID;
+        this.name = name;
+        this.password = password;
+        this.role = role;
+        this.status = userStatus;
+        this.undeletable = undeletable;
     }
 
     public Integer getID() {
-        return userID;
+        return ID;
     }
 
-    public String getUserName() {
-        return userName;
+
+    public String getName() {
+        return name;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public Role getUserRole() {
-        return userRole;
+    public String getRole() {
+        return role.getRoleName();
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        if (status) {
+            return "Активен";
+        } else {
+            return "Неактивен";
+        }
     }
 
     public boolean isActive() {
-        return userStatus;
+        return status;
     }
 
-    public boolean isUserUndeletable() {
-        return userUndeletable;
+    public boolean isUndeletable() {
+        return undeletable;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userID=" + userID +
-                ", userName='" + userName + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userRole=" + userRole +
-                ", userStatus=" + userStatus +
-                ", userUndeletable=" + userUndeletable +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", status=" + status +
+                ", undeletable=" + undeletable +
                 '}';
+    }
+
+    public boolean getRealStatus() {
+        return status;
     }
 }

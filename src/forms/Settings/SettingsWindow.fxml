@@ -66,7 +66,7 @@
       <ButtonBar layoutX="520.0" layoutY="568.0" prefWidth="320.0">
          <buttons>
             <Button fx:id="applyButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#applyButtonClick" prefHeight="32.0" prefWidth="93.0" text="Применить" />
-            <Button fx:id="OKButton" cancelButton="true" disable="true" mnemonicParsing="false" prefHeight="32.0" prefWidth="93.0" text="Ок" />
+            <Button fx:id="OKButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="32.0" prefWidth="93.0" text="Ок" />
             <Button fx:id="exitButton" cancelButton="true" mnemonicParsing="false" onAction="#exitButtonClick" prefHeight="32.0" prefWidth="93.0" text="Закрыть" />
          </buttons>
       </ButtonBar>

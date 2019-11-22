@@ -18,7 +18,7 @@ import objects.BL.Technic.Technic;
 import objects.GUI.GUIData;
 import org.controlsfx.control.PopOver;
 
-public class MainController extends GUIController{
+public class MainController extends GUIController {
 
     @FXML
     private MenuItem createReportMenuItem;
@@ -159,10 +159,9 @@ public class MainController extends GUIController{
 
         });
 
-
         Employee emp = Employee.getEmployeeByUserID(getEmployees(), getUser().getID());
-        Label lbl1 = new Label("\n   Логин: " + getUser().getUserName());
-        Label lbl2 = new Label("\n   Роль : " + getUser().getUserRole().getRoleName());
+        Label lbl1 = new Label("\n   Логин: " + getUser().getName());
+        Label lbl2 = new Label("\n   Роль : " + getUser().getRole());
         Label lbl3 = new Label("\n   Ф.И.О : " + emp.getLastName() + " " + emp.getName() + " " + emp.getMiddleName() + "   ");
         Label lbl4 = new Label("\n   Звание: " + emp.getPosition().getDescription() + "        ");
         Label lbl5 = new Label("\n   Подразделение: " + emp.getDivision().getDescription() + "\n      ");
@@ -188,9 +187,9 @@ public class MainController extends GUIController{
     }
 
     private void applyCSS() {
-        informLabel.getStyleClass().set(0,"inform-label");
-        headerLabelBig.getStyleClass().set(0,"label-header-big");
-        headerLabelSmall.getStyleClass().set(0,"label-header-small");
+        informLabel.getStyleClass().set(0, "inform-label");
+        headerLabelBig.getStyleClass().set(0, "label-header-big");
+        headerLabelSmall.getStyleClass().set(0, "label-header-small");
 
         headerAnchorPane.getStyleClass().add("anchor-pane-header");
         mainAnchorPane.getStyleClass().add("anchor-pane-main");
@@ -291,7 +290,7 @@ public class MainController extends GUIController{
     }
 
     @FXML
-    void settingMenuItemClick(ActionEvent event){
+    void settingMenuItemClick(ActionEvent event) {
         callSettingsWindow(event);
     }
 
@@ -301,18 +300,18 @@ public class MainController extends GUIController{
             GUIData.setSettingsWindowCaller(mItem.getId());
 
             Parent root = initializeNewSettingsWindow();
-            GUIData.openCustomWindow(event, root,840,610, Modality.APPLICATION_MODAL,false);
+            GUIData.openCustomWindow(event, root, 840, 610, Modality.APPLICATION_MODAL, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setNewTheme(){
+    public void setNewTheme() {
         Scene currentScene = exitButton.getScene();
         currentScene.getStylesheets().set(0, GUIData.getPathCSS());
     }
 
-    public void restartApp(){
+    public void restartApp() {
         restart((Stage) exitButton.getScene().getWindow());
     }
 

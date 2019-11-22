@@ -11,9 +11,7 @@ import java.io.IOException;
 
 public abstract class GUIController extends AppData {
     private SettingsController settingsController;
-
     public abstract void setNewTheme();
-
     public abstract void restartApp();
 
     public void restart(Stage stageToClose) {
@@ -29,7 +27,6 @@ public abstract class GUIController extends AppData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public Parent initializeNewSettingsWindow() throws IOException {

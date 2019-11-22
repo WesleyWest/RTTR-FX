@@ -154,8 +154,8 @@ public class LoginController extends GUIController {
 
     private boolean userFound(String userName, String userPassword) {
         for (User user : getUsers()) {
-            if (userName.toLowerCase().equals(user.getUserName().toLowerCase())
-                    && userPassword.equals(user.getUserPassword())) {
+            if (userName.toLowerCase().equals(user.getName().toLowerCase())
+                    && userPassword.equals(user.getPassword())) {
                 AppData.setUser(user);
                 return true;
             }

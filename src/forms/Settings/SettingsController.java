@@ -17,6 +17,7 @@ import objects.GUI.GUIData;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SettingsController {
 
@@ -78,12 +79,12 @@ public class SettingsController {
 
     @FXML
     void initialize() {
-        if (GUIData.getSettingsWindowCaller().equals("settingsButton")){
+        String caller = GUIData.getSettingsWindowCaller();
+        if (caller.equals("settingsButton")) {
             usersTab.setDisable(true);
             divisionsTab.setDisable(true);
             employeesTab.setDisable(true);
             technicTab.setDisable(true);
-
         } else {
             usersTab.setDisable(false);
             divisionsTab.setDisable(false);
@@ -95,22 +96,42 @@ public class SettingsController {
 
         setChooseComboBoxValues();
         setThemesComboBoxValues();
-        setDBSettingsPane();
+        fillTabs();
 
         referenceDataHash = createHash();
         referenceDBSettingsHash = dbSettingsPaneController.getDataHash();
         applyCSS();
 
-        tabPane.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-            System.out.println(tabPane.getSelectionModel().getSelectedIndex());
+        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
+            tabChanged();
         });
+        setActivePaneByCaller(caller);
+    }
 
-//        fillTabs();
+    private void setActivePaneByCaller(String caller) {
+        String[] tmpCallers = {"settingsMenuItem", "usersMenuItem", "divisionsMenuItem", "employeesMenuItem", "technicMenuitem"};
+        ArrayList<String> callers = new ArrayList<>(Arrays.asList(tmpCallers));
+        tabPane.getSelectionModel().select(callers.indexOf(caller));
+    }
+
+    private void tabChanged() {
+        int tabIndex = tabPane.getSelectionModel().getSelectedIndex();
+        if (tabIndex != 0) {
+            OKButton.setVisible(false);
+            applyButton.setVisible(false);
+        } else {
+            OKButton.setVisible(true);
+            applyButton.setVisible(true);
+        }
     }
 
     private void fillTabs() {
+        setDBSettingsPane();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("users/UsersSettings.fxml"));
-//        putAndGetSettingsPane(loader, usersAnchorPane,usersPaneController);
+        usersSettingsPane = putAndGetSettingsPane(loader, usersAnchorPane);
+        usersPaneController = getSettingsPaneController(loader);
+
 
     }
 
@@ -125,13 +146,25 @@ public class SettingsController {
     }
 
     @FXML
+    void okButtonClick(ActionEvent event) {
+        applyButton.fire();
+        exitButton.fire();
+    }
+
+    @FXML
     void exitButtonClick(ActionEvent event) {
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
         oldStage.close();
     }
 
+    @FXML
+    void applyButtonClick(ActionEvent event) {
+        applyChanges();
+    }
 
-    /** Main Settings section*/
+    /**
+     * Main Settings section
+     */
     @FXML
     void chooseDBComboBoxClick(ActionEvent event) {
         GUIData.setActiveSQLDataBaseType((String) chooseDBComboBox.getSelectionModel().getSelectedItem());
@@ -146,21 +179,17 @@ public class SettingsController {
         checkHashes();
     }
 
-    @FXML
-    void applyButtonClick(ActionEvent event) {
-        applyChanges();
-    }
 
     void applyChanges() {
         if (isColorThemeToChange()) {
             changeColorTheme();
         }
 
-        if (isDBDataToChange()){
+        if (isDBDataToChange()) {
             changeDBSettings();
         }
 
-        referenceDataHash=createHash();
+        referenceDataHash = createHash();
         checkHashes();
     }
 
@@ -171,14 +200,14 @@ public class SettingsController {
     private void changeColorTheme() {
         String newTheme = themeComboBox.getSelectionModel().getSelectedItem().toString();
 
-        GUIData.getIniFile().put("MAIN", "Active theme",newTheme);
+        GUIData.getIniFile().put("MAIN", "Active theme", newTheme);
         try {
             GUIData.getIniFile().store();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String newPath=ColorTheme.getPathByName(GUIData.getThemes(),newTheme);
+        String newPath = ColorTheme.getPathByName(GUIData.getThemes(), newTheme);
 
         GUIData.setThemeName(newTheme);
         GUIData.setPathCSS(newPath);
@@ -190,7 +219,7 @@ public class SettingsController {
     }
 
     private boolean isDBDataToChange() {
-        return referenceDBSettingsHash!= dbSettingsPaneController.getDataHash();
+        return referenceDBSettingsHash != dbSettingsPaneController.getDataHash();
     }
 
     private void changeDBSettings() {
@@ -225,23 +254,17 @@ public class SettingsController {
     }
 
     private void setDBSettingsPane() {
-//        if (settingsAnchorPane.getChildren().indexOf(dbSettingsPane) != 0) {
-//            settingsAnchorPane.getChildren().remove(dbSettingsPane);
-//        }
-
         FXMLLoader loader = factory.getPaneByDBType(GUIData.getActiveSQLDataBaseType());
         dbSettingsPane = putAndGetSettingsPane(loader, dbSettingsAnchorPane);
+        dbSettingsPaneController = getSettingsPaneController(loader);
 
     }
 
-    private Pane putAndGetSettingsPane(FXMLLoader loader,AnchorPane parentAnchorPane) {
+    private Pane putAndGetSettingsPane(FXMLLoader loader, AnchorPane parentAnchorPane) {
         parentAnchorPane.getChildren().clear();
         Pane childPane = null;
-        SettingsPaneController childController = dbSettingsPaneController;
         try {
             childPane = loader.load();
-            childController = loader.getController();
-            childController.setParentController(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -250,9 +273,16 @@ public class SettingsController {
             parentAnchorPane.getChildren().add(childPane);
 //            childPane.setLayoutX(14);
 //            childPane.setLayoutY(70);
-            childController.setInformation();
         }
         return childPane;
+    }
+
+    private SettingsPaneController getSettingsPaneController(FXMLLoader loader) {
+        SettingsPaneController childController = null;
+        childController = loader.getController();
+        childController.setParentController(this);
+        childController.setInformation();
+        return childController;
     }
 
     int createHash() {

@@ -34,8 +34,6 @@ public class AppData {
 
     private static ObservableList<Request> requests;
 
-
-
     public static SQLDataBase getDb() {
         return db;
     }
