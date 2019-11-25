@@ -2,14 +2,13 @@ package forms.Settings.users;
 
 import forms.Settings.SettingsPaneController;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import objects.BL.AppData;
 import objects.BL.Users.Role;
 import objects.BL.Users.User;
@@ -18,7 +17,6 @@ public class UsersSettingsController extends SettingsPaneController {
 
     @FXML
     private TableView<User> usersTableView;
-
     @FXML
     TableColumn<User, Integer> idColumn;
     @FXML
@@ -65,17 +63,33 @@ public class UsersSettingsController extends SettingsPaneController {
     private Button deleteButton;
 
     @FXML
+    private Button applyButton;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
     private Label countLabel;
+
+    @FXML
+    private Label modeLabel;
+
+    @FXML
+    private ButtonBar mainButtonBar;
+
+    @FXML
+    private ButtonBar secondButtonBar;
+
+
 
     User selectedRecord;
 
     @FXML
     void initialize() {
-
+        applyCSS();
         for (Role role : Role.values()) {
             roleComboBox.getItems().add(role.getRoleName());
         }
-
         idColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("ID"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
@@ -83,20 +97,25 @@ public class UsersSettingsController extends SettingsPaneController {
         usersTableView.setItems(AppData.getUsers());
         usersTableView.requestFocus();
         usersTableView.getSelectionModel().select(0);
-        selectedRecord=usersTableView.getSelectionModel().getSelectedItem();
+        selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
+        passwordTextField.setVisible(false);
+        secondButtonBar.setVisible(false);
         setFieldsValues(AppData.getUsers().get(0));
-//        initListeners();
+        initListeners();
         updateCountLabel();
 
     }
 
-    private void setFieldsValues(User user) {
-        passwordTextField.setVisible(false);
-        /*if (openPasswordField.isVisible()) {
-            openPasswordField.setVisible(false);
-            toggleButtonPassword.fire();
-        }*/
+    void applyCSS() {
+        modeLabel.getStyleClass().set(0, "label-view-mode");
+    }
 
+
+    private void setFieldsValues(User user) {
+
+        if (passwordTextField.isVisible()) {
+            showPasswordToggleButton.fire();
+        }
         idTextField.setText(user.getID().toString());
         nameTextField.setText(user.getName());
         userPasswordField.setText(user.getPassword());
@@ -109,24 +128,16 @@ public class UsersSettingsController extends SettingsPaneController {
             disabledRadioButton.setSelected(true);
         }
     }
+
     private void initListeners() {
-        AppData.getUsers().addListener(new ListChangeListener<User>() {
-            @Override
-            public void onChanged(Change<? extends User> c) {
-                updateCountLabel();
+        AppData.getUsers().addListener((ListChangeListener<User>) c -> updateCountLabel());
+
+        usersTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                usersTableViewAction(event);
             }
-        });
-
-        usersTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getClickCount() == 1) {
-                    usersTableViewAction(event);
-                }
-                if (event.getClickCount() == 2) {
+            if (event.getClickCount() == 2) {
 //                    mainEditButton.fire();
-                }
-
             }
         });
     }
@@ -145,7 +156,46 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     private void updateCountLabel() {
-        countLabel.setText("Count of records: " + AppData.getUsers().size());
+        countLabel.setText("Количество пользователей: " + AppData.getUsers().size());
+    }
+
+
+    public void showPasswordToggleButtonClick(ActionEvent event) {
+        if (showPasswordToggleButton.isSelected()) {
+            showPasswordToggleButton.setText("Скрыть пароль");
+            passwordTextField.setText(userPasswordField.getText());
+            passwordTextField.setVisible(true);
+        } else {
+            showPasswordToggleButton.setText("Отобразить пароль");
+            passwordTextField.setEditable(false);
+            passwordTextField.setVisible(false);
+        }
+    }
+
+    @FXML
+    void addOrEditButtonClick(ActionEvent event){
+        startUserAddingOrEditing(event);
+    }
+
+    private void startUserAddingOrEditing(ActionEvent event) {
+        Button callerButton = (Button) event.getSource();
+
+        if (callerButton.getId().equals("addButton")){
+            applyButton.setText("Добавить");
+        } else {
+            applyButton.setText("Применить");
+        }
+        mainButtonBar.setVisible(false);
+        secondButtonBar.setVisible(true);
+        getParentController().setExitButtonDisable(false);
+
+    }
+
+    @FXML
+    void cancelButtonClick(){
+        mainButtonBar.setVisible(true);
+        secondButtonBar.setVisible(false);
+        getParentController().setExitButtonDisable(true);
     }
 
     @Override

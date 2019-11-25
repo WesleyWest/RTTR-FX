@@ -76,10 +76,11 @@ public class SettingsController {
     ArrayList<String> dbTypesStr, themesStr;
     private int referenceDataHash, modifiedDataHash, referenceDBSettingsHash;
     private GUIController parentController;
+    private String caller;
 
     @FXML
     void initialize() {
-        String caller = GUIData.getSettingsWindowCaller();
+        caller = GUIData.getSettingsWindowCaller();
         if (caller.equals("settingsButton")) {
             usersTab.setDisable(true);
             divisionsTab.setDisable(true);
@@ -94,6 +95,11 @@ public class SettingsController {
 
         factory = new SQLDataBaseFactory();
 
+        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
+            tabChanged();
+        });
+
+        setActivePaneByCaller(caller);
         setChooseComboBoxValues();
         setThemesComboBoxValues();
         fillTabs();
@@ -102,10 +108,6 @@ public class SettingsController {
         referenceDBSettingsHash = dbSettingsPaneController.getDataHash();
         applyCSS();
 
-        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
-            tabChanged();
-        });
-        setActivePaneByCaller(caller);
     }
 
     private void setActivePaneByCaller(String caller) {
@@ -127,10 +129,12 @@ public class SettingsController {
 
     private void fillTabs() {
         setDBSettingsPane();
+        if (!caller.equals("settingsButton")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("users/UsersSettings.fxml"));
+            usersSettingsPane = putAndGetSettingsPane(loader, usersAnchorPane);
+            usersPaneController = getSettingsPaneController(loader);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("users/UsersSettings.fxml"));
-        usersSettingsPane = putAndGetSettingsPane(loader, usersAnchorPane);
-        usersPaneController = getSettingsPaneController(loader);
+        }
 
 
     }
@@ -161,6 +165,7 @@ public class SettingsController {
     void applyButtonClick(ActionEvent event) {
         applyChanges();
     }
+
 
     /**
      * Main Settings section
@@ -289,6 +294,10 @@ public class SettingsController {
         return themeComboBox.getSelectionModel().getSelectedItem().hashCode() +
                 chooseDBComboBox.getSelectionModel().getSelectedItem().hashCode() +
                 dbSettingsPaneController.getDataHash();
+    }
+
+    public void setExitButtonDisable (boolean status){
+        exitButton.setVisible(status);
     }
 
     public void calcModifiedDataHash() {

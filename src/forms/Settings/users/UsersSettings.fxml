@@ -12,6 +12,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="404.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.users.UsersSettingsController">
    <children>
@@ -30,27 +31,38 @@
             <TextField fx:id="nameTextField" editable="false" layoutX="1.0" layoutY="59.0" prefHeight="25.0" prefWidth="212.0" />
             <PasswordField fx:id="userPasswordField" editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" promptText="somewhere here is the password" />
             <TextField fx:id="passwordTextField" editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" />
-            <ComboBox fx:id="roleComboBox" layoutX="1.0" layoutY="143.0" prefHeight="25.0" prefWidth="212.0" />
-            <RadioButton fx:id="enabledRadioButton" disable="true" layoutY="193.0" mnemonicParsing="false" text="Активен">
+            <ComboBox fx:id="roleComboBox" disable="true" layoutX="1.0" layoutY="143.0" prefHeight="25.0" prefWidth="212.0" />
+            <RadioButton fx:id="enabledRadioButton" disable="true" layoutX="1.0" layoutY="197.0" mnemonicParsing="false" text="Активен">
                <toggleGroup>
                   <ToggleGroup fx:id="statusGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="disabledRadioButton" disable="true" layoutY="215.0" mnemonicParsing="false" selected="true" text="Неактивен" toggleGroup="$statusGroup" />
+            <RadioButton fx:id="disabledRadioButton" disable="true" layoutX="1.0" layoutY="219.0" mnemonicParsing="false" selected="true" text="Неактивен" toggleGroup="$statusGroup" />
             <Label layoutY="42.0" text="Имя пользователя" />
             <Label layoutY="84.0" text="Пароль" />
-            <Label layoutY="174.0" text="Статус пользователя:" />
+            <Label layoutY="175.0" text="Статус пользователя:" />
             <Label layoutX="1.0" layoutY="126.0" text="Роль" />
-            <ToggleButton fx:id="showPasswordToggleButton" layoutX="227.0" layoutY="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Отобразить пароль" />
+            <ToggleButton fx:id="showPasswordToggleButton" layoutX="227.0" layoutY="101.0" mnemonicParsing="false" onAction="#showPasswordToggleButtonClick" prefHeight="25.0" prefWidth="139.0" text="Отобразить пароль" />
          </children>
       </Pane>
-      <ButtonBar layoutX="453.0" layoutY="347.0" prefHeight="40.0" prefWidth="388.0">
+      <ButtonBar fx:id="mainButtonBar" layoutX="453.0" layoutY="347.0" prefHeight="40.0" prefWidth="388.0">
          <buttons>
-            <Button fx:id="addButton" minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Добавить" />
-            <Button fx:id="editButton" defaultButton="true" minWidth="65.0" mnemonicParsing="false" prefHeight="18.0" text="Редактировать" />
+            <Button fx:id="addButton" minWidth="0.0" mnemonicParsing="false" onAction="#addOrEditButtonClick" prefHeight="25.0" prefWidth="161.0" text="Добавить" />
+            <Button fx:id="editButton" defaultButton="true" minWidth="65.0" mnemonicParsing="false" onAction="#addOrEditButtonClick" prefHeight="18.0" text="Редактировать" />
             <Button fx:id="deleteButton" minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" text="Удалить" />
          </buttons>
       </ButtonBar>
       <Label fx:id="countLabel" layoutX="13.0" layoutY="387.0" text="Количество пользователей:" />
+      <Label fx:id="modeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="14.0" prefHeight="17.0" prefWidth="212.0" text="Режим просмотра" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ButtonBar fx:id="secondButtonBar" layoutX="453.0" layoutY="313.0" prefHeight="40.0" prefWidth="388.0">
+         <buttons>
+            <Button fx:id="applyButton" defaultButton="true" minWidth="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="240.0" text="Применить" />
+            <Button fx:id="cancelButton" minWidth="0.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" text="Отмена" />
+         </buttons>
+      </ButtonBar>
    </children>
 </Pane>
