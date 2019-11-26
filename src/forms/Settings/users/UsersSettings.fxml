@@ -28,8 +28,8 @@
          <children>
             <Label text="ID" />
             <TextField fx:id="idTextField" editable="false" layoutY="17.0" prefHeight="25.0" prefWidth="55.0" />
-            <TextField fx:id="nameTextField" editable="false" layoutX="1.0" layoutY="59.0" prefHeight="25.0" prefWidth="212.0" />
-            <PasswordField fx:id="userPasswordField" editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" promptText="somewhere here is the password" />
+            <TextField fx:id="nameTextField" editable="false" layoutX="1.0" layoutY="59.0" prefHeight="25.0" prefWidth="212.0" promptText="Введите имя пользователя" />
+            <PasswordField fx:id="passwordField" editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" promptText="Введите пароль" />
             <TextField fx:id="passwordTextField" editable="false" layoutX="1.0" layoutY="101.0" prefHeight="25.0" prefWidth="212.0" />
             <ComboBox fx:id="roleComboBox" disable="true" layoutX="1.0" layoutY="143.0" prefHeight="25.0" prefWidth="212.0" />
             <RadioButton fx:id="enabledRadioButton" disable="true" layoutX="1.0" layoutY="197.0" mnemonicParsing="false" text="Активен">
@@ -60,7 +60,7 @@
       </Label>
       <ButtonBar fx:id="secondButtonBar" layoutX="453.0" layoutY="313.0" prefHeight="40.0" prefWidth="388.0">
          <buttons>
-            <Button fx:id="applyButton" defaultButton="true" minWidth="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="240.0" text="Применить" />
+            <Button fx:id="applyButton" defaultButton="true" minWidth="65.0" mnemonicParsing="false" onAction="#applyButtonClick" prefHeight="25.0" prefWidth="240.0" text="Применить" />
             <Button fx:id="cancelButton" minWidth="0.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" text="Отмена" />
          </buttons>
       </ButtonBar>

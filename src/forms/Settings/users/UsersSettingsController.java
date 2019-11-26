@@ -33,7 +33,7 @@ public class UsersSettingsController extends SettingsPaneController {
     private TextField nameTextField;
 
     @FXML
-    private PasswordField userPasswordField;
+    private PasswordField passwordField;
 
     @FXML
     private TextField passwordTextField;
@@ -81,8 +81,9 @@ public class UsersSettingsController extends SettingsPaneController {
     private ButtonBar secondButtonBar;
 
 
-
     User selectedRecord;
+    int selectedRowIndex;
+
 
     @FXML
     void initialize() {
@@ -118,7 +119,7 @@ public class UsersSettingsController extends SettingsPaneController {
         }
         idTextField.setText(user.getID().toString());
         nameTextField.setText(user.getName());
-        userPasswordField.setText(user.getPassword());
+        passwordField.setText(user.getPassword());
         roleComboBox.getSelectionModel().select(
                 roleComboBox.getItems().indexOf(user.getRole()));
 
@@ -150,7 +151,6 @@ public class UsersSettingsController extends SettingsPaneController {
 //                mainEditButton.fire();
             }
         }
-
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
         setFieldsValues(selectedRecord);
     }
@@ -163,7 +163,7 @@ public class UsersSettingsController extends SettingsPaneController {
     public void showPasswordToggleButtonClick(ActionEvent event) {
         if (showPasswordToggleButton.isSelected()) {
             showPasswordToggleButton.setText("Скрыть пароль");
-            passwordTextField.setText(userPasswordField.getText());
+            passwordTextField.setText(passwordField.getText());
             passwordTextField.setVisible(true);
         } else {
             showPasswordToggleButton.setText("Отобразить пароль");
@@ -173,29 +173,79 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     @FXML
-    void addOrEditButtonClick(ActionEvent event){
-        startUserAddingOrEditing(event);
-    }
-
-    private void startUserAddingOrEditing(ActionEvent event) {
+    void addOrEditButtonClick(ActionEvent event) {
         Button callerButton = (Button) event.getSource();
-
-        if (callerButton.getId().equals("addButton")){
+        mainButtonBar.setVisible(false);
+        secondButtonBar.setVisible(true);
+        usersTableView.setDisable(true);
+        getParentController().setExitButtonVisible(false);
+        getParentController().setTabsDisabled("01000");
+        allControlsSetEditable(true);
+        if (callerButton.getId().equals("addButton")) {
             applyButton.setText("Добавить");
+            setNewUserValuesToControls();
         } else {
             applyButton.setText("Применить");
         }
-        mainButtonBar.setVisible(false);
-        secondButtonBar.setVisible(true);
-        getParentController().setExitButtonDisable(false);
 
     }
 
+    private void setNewUserValuesToControls() {
+        int nextID = AppData.getDb().getLastSequenceNumber("users");
+        idTextField.setText(String.valueOf(nextID));
+        nameTextField.setText("");
+        passwordField.setText("");
+        roleComboBox.getSelectionModel().select(2);
+        enabledRadioButton.fire();
+        nameTextField.requestFocus();
+    }
+
+
+    private void allControlsSetEditable(boolean state) {
+        passwordTextField.setVisible(false);
+        nameTextField.setEditable(state);
+        passwordField.setEditable(state);
+        roleComboBox.setDisable(!state);
+        disabledRadioButton.setDisable(!state);
+        enabledRadioButton.setDisable(!state);
+        if (state) {
+            modeLabel.setText("Режим редактирования");
+            modeLabel.getStyleClass().set(0, "label-edit-mode");
+        } else {
+            modeLabel.setText("Режим просмотра");
+            modeLabel.getStyleClass().set(0, "label-view-mode");
+        }
+    }
+
     @FXML
-    void cancelButtonClick(){
+    void cancelButtonClick() {
         mainButtonBar.setVisible(true);
         secondButtonBar.setVisible(false);
-        getParentController().setExitButtonDisable(true);
+        usersTableView.setDisable(false);
+        getParentController().setExitButtonVisible(true);
+        getParentController().setTabsDisabled("11111");
+        allControlsSetEditable(false);
+        setFieldsValues(selectedRecord);
+    }
+
+    @FXML
+    void applyButtonClick(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        int id = Integer.parseInt(idTextField.getText());
+        String name = nameTextField.getText();
+        String password = passwordField.getText();
+        Role role = Role.roleByName((String) roleComboBox.getSelectionModel().getSelectedItem());
+        boolean status = enabledRadioButton.isSelected();
+        boolean undeletable = false;
+        User user = new User(id,name,password,role,status,undeletable);
+
+        if (button.getText().equals("Добавить")) {
+            AppData.getDb().addNewUser(user);
+            AppData.getUsers().add(user);
+        } else {
+
+        }
+        cancelButton.fire();
     }
 
     @Override

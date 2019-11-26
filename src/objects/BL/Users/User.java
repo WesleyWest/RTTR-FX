@@ -36,6 +36,10 @@ public class User implements idReturnable {
         return role.getRoleName();
     }
 
+    public Role getRoleAsObject() {
+        return role;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }

@@ -23,4 +23,11 @@ public class MySQLDataBase extends SQLDataBase {
         }
         setClassName("com.mysql.cj.jdbc.Driver");
     }
+
+    @Override
+    public int getLastSequenceNumber(String tableName) {
+        String query =
+                "SELECT auto_increment FROM information_schema.tables WHERE table_name='"+tableName+"';";
+        return findLastSequenceNumber(query);
+    }
 }

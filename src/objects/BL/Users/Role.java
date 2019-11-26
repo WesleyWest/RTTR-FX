@@ -28,12 +28,6 @@ public enum Role {
         }
         return Role.GUEST;
     }
-
-
-    @Override
-    public String toString() {
-        return super.toString()+" --> "+roleName;
-    }
 }
 
 

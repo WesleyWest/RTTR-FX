@@ -10,9 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.GUI.ColorTheme;
-import objects.DB.SQLDataBaseFactory;
 import objects.DB.DBType;
+import objects.DB.SQLDataBaseFactory;
+import objects.GUI.ColorTheme;
 import objects.GUI.GUIData;
 
 import java.io.IOException;
@@ -77,20 +77,18 @@ public class SettingsController {
     private int referenceDataHash, modifiedDataHash, referenceDBSettingsHash;
     private GUIController parentController;
     private String caller;
+    private ArrayList<Tab> tabs;
 
     @FXML
     void initialize() {
+        Tab[] tmpTabs={settingsTab,usersTab,divisionsTab,employeesTab,technicTab};
+        tabs = new ArrayList<>(Arrays.asList(tmpTabs));
+
         caller = GUIData.getSettingsWindowCaller();
         if (caller.equals("settingsButton")) {
-            usersTab.setDisable(true);
-            divisionsTab.setDisable(true);
-            employeesTab.setDisable(true);
-            technicTab.setDisable(true);
+            setTabsDisabled("10000");
         } else {
-            usersTab.setDisable(false);
-            divisionsTab.setDisable(false);
-            employeesTab.setDisable(false);
-            technicTab.setDisable(false);
+            setTabsDisabled("11111");
         }
 
         factory = new SQLDataBaseFactory();
@@ -108,6 +106,16 @@ public class SettingsController {
         referenceDBSettingsHash = dbSettingsPaneController.getDataHash();
         applyCSS();
 
+    }
+
+    public void setTabsDisabled(String keyString) {
+        for (int i = 0; i < tabs.size(); i++) {
+            if (keyString.charAt(i)=='1') {
+                tabs.get(i).setDisable(false);
+            } else {
+                tabs.get(i).setDisable(true);
+            }
+        }
     }
 
     private void setActivePaneByCaller(String caller) {
@@ -296,8 +304,8 @@ public class SettingsController {
                 dbSettingsPaneController.getDataHash();
     }
 
-    public void setExitButtonDisable (boolean status){
-        exitButton.setVisible(status);
+    public void setExitButtonVisible(boolean state){
+        exitButton.setVisible(state);
     }
 
     public void calcModifiedDataHash() {

@@ -14,13 +14,13 @@ import objects.BL.Technic.TechnicType;
 import objects.BL.Users.Role;
 import objects.BL.Users.User;
 import objects.GUI.GUIData;
-
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class SQLDataBase extends AppData {
+public abstract class SQLDataBase extends AppData {
+
     private class tmpRoles {
         String roleCode;
         String roleName;
@@ -30,6 +30,8 @@ public class SQLDataBase extends AppData {
             this.roleName = roleName;
         }
     }
+
+    public abstract int getLastSequenceNumber(String tableName);
 
     private Connection connection;
     private boolean opened;
@@ -72,22 +74,6 @@ public class SQLDataBase extends AppData {
 
     }
 
-    public boolean testConnection() {
-        this.open();
-        ObservableList<User> tmp = this.readUsersFromDB();
-        this.close();
-        return (tmp.size() > 0);
-    }
-
-    public void close() {
-        try {
-            getConnection().close();
-            AppData.printInLog("Connection to database is closed...");
-        } catch (Exception e) {
-//            AppData.showAlert(e.getLocalizedMessage());
-        }
-    }
-
     public void setConnectionString(String connectionString) {
         this.connectionString = connectionString;
     }
@@ -110,6 +96,39 @@ public class SQLDataBase extends AppData {
 
     public boolean isOpened() {
         return opened;
+    }
+
+    public boolean testConnection() {
+        this.open();
+        ObservableList<User> tmp = this.readUsersFromDB();
+        this.close();
+        return (tmp.size() > 0);
+    }
+
+    public void close() {
+        try {
+            getConnection().close();
+            AppData.printInLog("Connection to database is closed...");
+        } catch (Exception e) {
+//            AppData.showAlert(e.getLocalizedMessage());
+        }
+    }
+
+    public int findLastSequenceNumber(String query){
+        Statement statement = null;
+        int result=0;
+        try {
+            statement = getConnection().createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                result = rs.getInt(1);
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            GUIData.showAlert(e.getLocalizedMessage());
+        }
+        return result;
     }
 
     public <T extends SimpleObject> ObservableList<T> readSimpleObjectsListFromDB(String tableName, String objectName) {
@@ -363,6 +382,31 @@ public class SQLDataBase extends AppData {
         AppData.printInLog("");
         ObservableList<Request> requests = FXCollections.observableArrayList(tmp);
         return requests;
+    }
+
+    public void addNewUser(User user) {
+        int intStatus = (user.isActive()) ? 1 : 0;
+        int intUndeletable =(user.isUndeletable())?1:0;
+        String query =
+                "INSERT INTO users (user_name, user_password, user_role, user_status, user_undeletable)" +
+                        "VALUES ('" + user.getName() + "', '"
+                                    + user.getPassword() + "', '"
+                                    + user.getRoleAsObject().toString() + "', '"
+                                    + intStatus + "', '"
+                                    + intUndeletable+"') ;";
+        System.out.println((executeUpdateDB(query)) ? "Record added" : "Something wrong");
+    }
+
+    private boolean executeUpdateDB(String query) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            GUIData.showAlert(e.getLocalizedMessage());
+            return false;
+        }
     }
 
 }

@@ -15,4 +15,11 @@ public class SQLiteDataBase extends SQLDataBase {
 
         setClassName("org.sqlite.JDBC");
     }
+
+    @Override
+    public int getLastSequenceNumber(String tableName) {
+        String query =
+                "SELECT seq FROM SQLITE_SEQUENCE WHERE name = '"+tableName+"' LIMIT 1;";
+        return findLastSequenceNumber(query)+1;
+    }
 }
