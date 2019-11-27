@@ -14,6 +14,7 @@ import objects.BL.Technic.TechnicType;
 import objects.BL.Users.Role;
 import objects.BL.Users.User;
 import objects.GUI.GUIData;
+
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -114,9 +115,9 @@ public abstract class SQLDataBase extends AppData {
         }
     }
 
-    public int findLastSequenceNumber(String query){
+    public int findLastSequenceNumber(String query) {
         Statement statement = null;
-        int result=0;
+        int result = 0;
         try {
             statement = getConnection().createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -384,17 +385,32 @@ public abstract class SQLDataBase extends AppData {
         return requests;
     }
 
-    public void addNewUser(User user) {
+    public void handleUser(User user, boolean isNew) {
         int intStatus = (user.isActive()) ? 1 : 0;
-        int intUndeletable =(user.isUndeletable())?1:0;
-        String query =
-                "INSERT INTO users (user_name, user_password, user_role, user_status, user_undeletable)" +
-                        "VALUES ('" + user.getName() + "', '"
-                                    + user.getPassword() + "', '"
-                                    + user.getRoleAsObject().toString() + "', '"
-                                    + intStatus + "', '"
-                                    + intUndeletable+"') ;";
-        System.out.println((executeUpdateDB(query)) ? "Record added" : "Something wrong");
+        int intUndeletable = (user.isUndeletable()) ? 1 : 0;
+        String query = "";
+        String report="";
+        if (isNew) {
+            query =
+                    "INSERT INTO users (user_name, user_password, user_role, user_status, user_undeletable)" +
+                            "VALUES ('" + user.getName() + "', '"
+                            + user.getPassword() + "', '"
+                            + user.getRoleAsObject().toString() + "', '"
+                            + intStatus + "', '"
+                            + intUndeletable + "') ;";
+            report="added";
+        } else {
+            query =
+                    "UPDATE users SET "
+                            + "user_name = '" + user.getName() + "', "
+                            + "user_password = '" + user.getPassword() + "', "
+                            + "user_role = '" + user.getRoleAsObject().toString() + "', "
+                            + "user_status = '" + intStatus + "', "
+                            + "user_undeletable = '" + intUndeletable + "' "
+                            + "WHERE user_id = "+ user.getID() +";";
+            report="edited";
+        }
+        AppData.printInLog((executeUpdateDB(query)) ? "Record "+report : "Something wrong");
     }
 
     private boolean executeUpdateDB(String query) {

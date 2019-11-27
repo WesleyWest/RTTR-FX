@@ -82,7 +82,7 @@ public class UsersSettingsController extends SettingsPaneController {
 
 
     User selectedRecord;
-    int selectedRowIndex;
+    int indexOfSelectedRecord;
 
 
     @FXML
@@ -96,15 +96,14 @@ public class UsersSettingsController extends SettingsPaneController {
         statusColumn.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
         usersTableView.setItems(AppData.getUsers());
-        usersTableView.requestFocus();
         usersTableView.getSelectionModel().select(0);
+        usersTableView.requestFocus();
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
         passwordTextField.setVisible(false);
         secondButtonBar.setVisible(false);
         setFieldsValues(AppData.getUsers().get(0));
         initListeners();
         updateCountLabel();
-
     }
 
     void applyCSS() {
@@ -138,7 +137,7 @@ public class UsersSettingsController extends SettingsPaneController {
                 usersTableViewAction(event);
             }
             if (event.getClickCount() == 2) {
-//                    mainEditButton.fire();
+                editButton.fire();
             }
         });
     }
@@ -148,7 +147,7 @@ public class UsersSettingsController extends SettingsPaneController {
         if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             KeyEvent keyEvent = (KeyEvent) event;
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-//                mainEditButton.fire();
+                editButton.fire();
             }
         }
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
@@ -158,7 +157,6 @@ public class UsersSettingsController extends SettingsPaneController {
     private void updateCountLabel() {
         countLabel.setText("Количество пользователей: " + AppData.getUsers().size());
     }
-
 
     public void showPasswordToggleButtonClick(ActionEvent event) {
         if (showPasswordToggleButton.isSelected()) {
@@ -186,8 +184,9 @@ public class UsersSettingsController extends SettingsPaneController {
             setNewUserValuesToControls();
         } else {
             applyButton.setText("Применить");
+            indexOfSelectedRecord = usersTableView.getSelectionModel().getSelectedIndex();
         }
-
+        nameTextField.requestFocus();
     }
 
     private void setNewUserValuesToControls() {
@@ -197,7 +196,6 @@ public class UsersSettingsController extends SettingsPaneController {
         passwordField.setText("");
         roleComboBox.getSelectionModel().select(2);
         enabledRadioButton.fire();
-        nameTextField.requestFocus();
     }
 
 
@@ -230,22 +228,27 @@ public class UsersSettingsController extends SettingsPaneController {
 
     @FXML
     void applyButtonClick(ActionEvent event) {
-        Button button = (Button) event.getSource();
         int id = Integer.parseInt(idTextField.getText());
         String name = nameTextField.getText();
         String password = passwordField.getText();
-        Role role = Role.roleByName((String) roleComboBox.getSelectionModel().getSelectedItem());
+        Role role = Role.roleByName(
+                (String) roleComboBox.getSelectionModel().getSelectedItem());
         boolean status = enabledRadioButton.isSelected();
-        boolean undeletable = false;
-        User user = new User(id,name,password,role,status,undeletable);
+        User user = new User(id, name, password, role, status, false);
 
+        Button button = (Button) event.getSource();
         if (button.getText().equals("Добавить")) {
-            AppData.getDb().addNewUser(user);
+            AppData.getDb().handleUser(user, true);
             AppData.getUsers().add(user);
+            indexOfSelectedRecord = AppData.getUsers().size() - 1;
         } else {
-
+            AppData.getDb().handleUser(user, false);
+            AppData.getUsers().set(indexOfSelectedRecord, user);
         }
         cancelButton.fire();
+        usersTableView.getSelectionModel().select(indexOfSelectedRecord);
+        usersTableView.requestFocus();
+        setFieldsValues(AppData.getUsers().get(indexOfSelectedRecord));
     }
 
     @Override
