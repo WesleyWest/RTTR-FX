@@ -72,7 +72,6 @@ public abstract class SQLDataBase extends AppData {
             AppData.printInLog("---------------------");
             AppData.printInLog("");
         }
-
     }
 
     public void setConnectionString(String connectionString) {
@@ -191,9 +190,10 @@ public abstract class SQLDataBase extends AppData {
         try {
             Statement statement = connection.createStatement();
             String query =
-                    "SELECT user_id,user_name,user_password,user_role,user_status,user_undeletable " +
+                    "SELECT * " +
                             "FROM Users " +
-                            "ORDER BY user_id ";
+                            "WHERE user_isdeleted=0 "+
+                            "ORDER BY user_id";
 
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -201,14 +201,18 @@ public abstract class SQLDataBase extends AppData {
                 String name = rs.getString("user_name");
                 String password = rs.getString("user_password");
                 String roleCode = rs.getString("user_role");
-                Boolean status = rs.getBoolean("user_status");
-                Boolean undeletable = rs.getBoolean("user_undeletable");
-                tmp.add(new User(id, name, password, Role.valueOf(roleCode.toUpperCase()), status, undeletable));
+                boolean status = rs.getBoolean("user_status");
+                boolean undeletable = rs.getBoolean("user_undeletable");
+                int employee_id = rs.getInt("user_employee_id");
+                boolean deleted = rs.getBoolean("user_isdeleted");
+
+                Employee employee=getObjectByID(getEmployees(),employee_id);
+                tmp.add(new User(id, name, password, Role.valueOf(roleCode.toUpperCase()), status, undeletable,employee, deleted));
             }
             rs.close();
             statement.close();
         } catch (SQLException e) {
-            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
+            GUIData.showAlert("SQL exception [USERS]: " + e.getLocalizedMessage());
             opened = false;
         }
         AppData.printInLog("Users was read...");
@@ -262,13 +266,10 @@ public abstract class SQLDataBase extends AppData {
                 String middleName = rs.getString("employee_middle_name");
                 int positionID = rs.getInt("employee_position_id");
                 int divisionID = rs.getInt("employee_division_id");
-                int userID = rs.getInt("employee_user_id");
 
                 Division div = AppData.getObjectByID(AppData.getDivisions(), divisionID);
                 SimpleObject<Position> pos = AppData.getObjectByID(AppData.getPositions(), positionID);
-                User user = AppData.getObjectByID(AppData.getUsers(), userID);
-
-                tmp.add(new Employee(id, lastName, name, middleName, pos, div, user));
+                tmp.add(new Employee(id, lastName, name, middleName, pos, div));
             }
             rs.close();
             statement.close();
@@ -388,16 +389,20 @@ public abstract class SQLDataBase extends AppData {
     public void handleUser(User user, boolean isNew) {
         int intStatus = (user.isActive()) ? 1 : 0;
         int intUndeletable = (user.isUndeletable()) ? 1 : 0;
+        int intDeleted = (user.isDeleted()) ? 1 : 0;
+        int employeeID = user.getEmployee().getID();
         String query = "";
         String report="";
         if (isNew) {
             query =
-                    "INSERT INTO users (user_name, user_password, user_role, user_status, user_undeletable)" +
+                    "INSERT INTO users (user_name, user_password, user_role, user_status, user_undeletable, user_employee_id, user_isdeleted)" +
                             "VALUES ('" + user.getName() + "', '"
                             + user.getPassword() + "', '"
                             + user.getRoleAsObject().toString() + "', '"
                             + intStatus + "', '"
-                            + intUndeletable + "') ;";
+                            + intUndeletable + "', '"
+                            + employeeID + "', '"
+                            + intDeleted+"') ;";
             report="added";
         } else {
             query =
@@ -406,11 +411,19 @@ public abstract class SQLDataBase extends AppData {
                             + "user_password = '" + user.getPassword() + "', "
                             + "user_role = '" + user.getRoleAsObject().toString() + "', "
                             + "user_status = '" + intStatus + "', "
-                            + "user_undeletable = '" + intUndeletable + "' "
+                            + "user_undeletable = '" + intUndeletable +"', "
+                            + "user_employee_id = '" + employeeID +"', "
+                            + "user_isdeleted = '"+intDeleted+"' "
                             + "WHERE user_id = "+ user.getID() +";";
             report="edited";
         }
-        AppData.printInLog((executeUpdateDB(query)) ? "Record "+report : "Something wrong");
+//        System.out.println(query);
+        AppData.printInLog((executeUpdateDB(query)) ? "Record "+report+"..." : "Something wrong...");
+    }
+
+    public void markRecordAsDeleted(String tableName, String isDeletedFieldName, String idFieldName, int id){
+        String query= "UPDATE "+tableName+" SET " + isDeletedFieldName+" = 1 WHERE "+idFieldName+" = "+ id +";";
+        AppData.printInLog((executeUpdateDB(query)) ? "Record was deleted...": "Something wrong...");
     }
 
     private boolean executeUpdateDB(String query) {

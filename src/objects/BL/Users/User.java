@@ -1,5 +1,6 @@
 package objects.BL.Users;
 
+import objects.BL.Employees.Employee;
 import objects.BL.idReturnable;
 
 public class User implements idReturnable {
@@ -9,20 +10,24 @@ public class User implements idReturnable {
     private Role role;
     private boolean status;
     private boolean undeletable;
+    private Employee employee;
+    private boolean deleted;
 
-    public User(int ID, String name, String password, Role role, boolean userStatus, boolean undeletable) {
+
+    public User(int ID, String name, String password, Role role, boolean userStatus, boolean undeletable, Employee employee, boolean deleted) {
         this.ID = ID;
         this.name = name;
         this.password = password;
         this.role = role;
         this.status = userStatus;
         this.undeletable = undeletable;
+        this.deleted = deleted;
+        this.employee = employee;
     }
 
     public Integer getID() {
         return ID;
     }
-
 
     public String getName() {
         return name;
@@ -38,10 +43,6 @@ public class User implements idReturnable {
 
     public Role getRoleAsObject() {
         return role;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public String getStatus() {
@@ -60,6 +61,14 @@ public class User implements idReturnable {
         return undeletable;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -69,10 +78,8 @@ public class User implements idReturnable {
                 ", role=" + role +
                 ", status=" + status +
                 ", undeletable=" + undeletable +
+                ", employee=" + employee +
+                ", deleted=" + deleted +
                 '}';
-    }
-
-    public boolean getRealStatus() {
-        return status;
     }
 }

@@ -1,6 +1,6 @@
 package forms.Settings;
 
-public abstract class SettingsPaneController{
+public abstract class SettingsPaneController {
 
     private SettingsController parentController;
     public void setParentController(SettingsController parentController) {

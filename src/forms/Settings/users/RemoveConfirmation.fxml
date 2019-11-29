@@ -5,13 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="128.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.users.RemoveConfirmationController">
+<AnchorPane prefHeight="132.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.users.RemoveConfirmationController">
    <children>
-      <Button fx:id="removeButton" defaultButton="true" disable="true" layoutX="19.0" layoutY="94.0" mnemonicParsing="false" onAction="#removeButtonClick" text="Удалить" />
-      <Label layoutX="14.0" layoutY="9.0" text="Удаляется запись [ ]" />
-      <Label fx:id="recordLabel" layoutX="14.0" layoutY="35.0" text=" " />
-      <TextField fx:id="textField" layoutX="19.0" layoutY="64.0" onKeyReleased="#textFiledChange" prefHeight="25.0" prefWidth="225.0" />
-      <Button fx:id="cancelButton" cancelButton="true" layoutX="185.0" layoutY="94.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="59.0" text="Отмена" />
+      <Button fx:id="removeButton" defaultButton="true" disable="true" layoutX="13.0" layoutY="99.0" mnemonicParsing="false" onAction="#removeButtonClick" prefHeight="25.0" prefWidth="81.0" text="Удалить" />
+      <Label fx:id="recordLabel" layoutX="14.0" layoutY="9.0" text="Удаляется запись [ ]" />
+      <TextField fx:id="textField" layoutX="13.0" layoutY="64.0" onKeyReleased="#textFieldChange" prefHeight="25.0" prefWidth="231.0" />
+      <Button fx:id="cancelButton" cancelButton="true" layoutX="163.0" layoutY="99.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="81.0" text="Отмена" />
       <Label layoutX="14.0" layoutY="27.0" text="Для удаления введите имя пользователя&#10;и нажмите удалить." />
    </children>
 </AnchorPane>

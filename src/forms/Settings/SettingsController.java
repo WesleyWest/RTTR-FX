@@ -142,9 +142,8 @@ public class SettingsController {
             usersSettingsPane = putAndGetSettingsPane(loader, usersAnchorPane);
             usersPaneController = getSettingsPaneController(loader);
 
+
         }
-
-
     }
 
     void applyCSS() {

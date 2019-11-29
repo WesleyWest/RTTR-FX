@@ -12,16 +12,16 @@ public class Employee implements idReturnable {
     private String middleName;
     private SimpleObject position;
     private Division division;
-    private User user;
 
-    public Employee(Integer id, String lastName, String name, String middleName, SimpleObject<Position> position, Division division, User user) {
+
+    public Employee(Integer id, String lastName, String name, String middleName, SimpleObject<Position> position, Division division) {
         this.id = id;
         this.lastName = lastName;
         this.name = name;
         this.middleName = middleName;
         this.position = position;
         this.division = division;
-        this.user = user;
+
     }
 
     public static String getFullEmployeeDescription(Employee employee) {
@@ -29,11 +29,22 @@ public class Employee implements idReturnable {
                 " " + employee.lastName + " " + employee.name + " " + employee.getMiddleName();
     }
 
-    public static Employee getEmployeeByUserID (ObservableList<Employee> employees, int userID){
-        for (Employee employee : employees) {
-            if (employee.getUser().getID()==userID) return employee;
+    public String getShortDescription() {
+        if (this.id == 0) {
+            return "Сотрудник не привязан";
+        } else {
+            String tmp;
+            if (this.middleName!=null){
+                tmp= this.middleName.charAt(0)+".";
+            } else {
+                tmp = "";
+            }
+            tmp = this.lastName + " "
+                + this.name.charAt(0) + ". "+tmp+", "
+                + this.position.getDescription() + ", "
+                + this.division.getDescription();
+            return tmp;
         }
-        return null;
     }
 
     public Integer getID() {
@@ -88,24 +99,21 @@ public class Employee implements idReturnable {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public int compareTo(Employee employee){
+        return this.position.getID()-employee.position.getID();
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", name='" + name + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", position=" + position +
-                ", division=" + division +
-                ", user=" + user +
-                '}';
+        return getShortDescription();
+
+//                "Employee{" +
+//                "id=" + id +
+//                ", lastName='" + lastName + '\'' +
+//                ", name='" + name + '\'' +
+//                ", middleName='" + middleName + '\'' +
+//                ", position=" + position +
+//                ", division=" + division +
+//                '}';
     }
 }

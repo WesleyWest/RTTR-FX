@@ -96,7 +96,14 @@ public class LoginController extends GUIController {
     @FXML
     void loginButtonClick(ActionEvent event) {
 
-        if (getUsers() == null) getUsersFromDB();
+        if (getUsers() == null) {
+            getDAOFromFactory();
+            setDivisions(getDb().readDivisionsFromDB());
+            setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
+            setEmployees(getDb().readEmployeesFromDB());
+            getDb().setRoleNamesFromDB();
+            setUsers(getDb().readUsersFromDB());
+        }
 
         String userName = loginTextField.getText();
         String userPassword = passwordField.getText();
@@ -108,9 +115,6 @@ public class LoginController extends GUIController {
         } else if (!getUser().isActive()) {
             GUIData.showAlert("Учётная запись не активна.");
         } else {
-            setDivisions(getDb().readDivisionsFromDB());
-            setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
-            setEmployees(getDb().readEmployeesFromDB());
 
             setTypes(getDb().readSimpleObjectsListFromDB("technic_types", "Technic types"));
             setStatuses(getDb().readSimpleObjectsListFromDB("technic_statuses", "Technic statuses"));
@@ -133,12 +137,10 @@ public class LoginController extends GUIController {
         }
     }
 
-    private void getUsersFromDB() {
+    private void getDAOFromFactory() {
         try {
             setDb(new SQLDataBaseFactory().getSQLDataBaseByType(GUIData.getActiveSQLDataBaseType()));
             getDb().open();
-            getDb().setRoleNamesFromDB();
-            setUsers(getDb().readUsersFromDB());
         } catch (ClassNotFoundException e) {
             GUIData.showAlert("Class not found: " + e.getLocalizedMessage());
         } catch (InstantiationException e) {

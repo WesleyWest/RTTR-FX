@@ -3,11 +3,13 @@ package forms.Settings.users;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.BL.AppData;
+import objects.BL.Users.User;
 
 public class RemoveConfirmationController {
     @FXML
@@ -18,37 +20,37 @@ public class RemoveConfirmationController {
     private TextField textField;
     @FXML
     private Label recordLabel;
+
+    private User user;
+
     @FXML
     public void initialize(){
-
+        user = UsersSettingsController.getUserToDelete();
+        recordLabel.setText("Удаляется запись ["+user.getName()+"]");
     }
 
     public void cancelButtonClick(ActionEvent event){
-        Node source = (Node) event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
+        Stage oldStage = (Stage) cancelButton.getScene().getWindow();
+        oldStage.close();
     }
 
     public void removeButtonClick(ActionEvent event){
-       /* Users selectedRecord = UsersController.getSelectedRecord();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Attention");
+        alert.setTitle("Внимание!");
         alert.setHeaderText(null);
-        alert.setContentText("The record: ID"+selectedRecord.getID()+": "+selectedRecord.getName()+" {"+selectedRecord.getRole()+"} was removed.");
+        alert.setContentText("Запись: ID"+user.getID()+": "+user.getName()+" {"+user.getRole()+"} удалена.");
         alert.showAndWait();
-
-        UsersController.getUsers().remove(selectedRecord);
-        UsersController.dbUsers.remove(selectedRecord);
-        cancelButtonClick(event);*/
+        AppData.getUsers().remove(user);
+        AppData.getDb().markRecordAsDeleted("users","user_isdeleted","user_id",user.getID());
+        cancelButtonClick(event);
     }
 
-    public void textFiledChange(Event event){
-        if (textField.getText().equals("remove")) {
+    public void textFieldChange(Event event){
+        if (textField.getText().equals(user.getName())) {
             removeButton.setDisable(false);
         } else {
             removeButton.setDisable(true);
         }
     }
-
 }

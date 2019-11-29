@@ -149,17 +149,9 @@ public class MainController extends GUIController {
 
     @FXML
     void initialize() {
-        mainTableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) {
-                mainTableViewKeyReleased(event);
-            }
-//                if (event.getClickCount() == 2) {
-//                    mainEditButton.fire();
-//                }
+        initListeners();
 
-        });
-
-        Employee emp = Employee.getEmployeeByUserID(getEmployees(), getUser().getID());
+        Employee emp = getObjectByID(getEmployees(), getUser().getEmployee().getID());
         Label lbl1 = new Label("\n   Логин: " + getUser().getName());
         Label lbl2 = new Label("\n   Роль : " + getUser().getRole());
         Label lbl3 = new Label("\n   Ф.И.О : " + emp.getLastName() + " " + emp.getName() + " " + emp.getMiddleName() + "   ");
@@ -186,6 +178,18 @@ public class MainController extends GUIController {
         informLabel.setText("Количество открытых заявок: " + getRequests().size());
     }
 
+    private void initListeners() {
+        mainTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                mainTableViewKeyReleased(event);
+            }
+//                if (event.getClickCount() == 2) {
+//                    mainEditButton.fire();
+//                }
+
+        });
+    }
+
     private void applyCSS() {
         informLabel.getStyleClass().set(0, "inform-label");
         headerLabelBig.getStyleClass().set(0, "label-header-big");
@@ -198,7 +202,6 @@ public class MainController extends GUIController {
 
         activeRequestsToggleButtton.getStyleClass().add("toggle-button-active");
         closedRequestsToggleButton.getStyleClass().add("toggle-button-closed");
-
     }
 
     private void changeTableView(boolean isClosed) {
@@ -214,7 +217,7 @@ public class MainController extends GUIController {
         selectedRecord = mainTableView.getSelectionModel().getSelectedItem();
         idTextField.setText(selectedRecord.getID().toString());
 
-        Employee author = Employee.getEmployeeByUserID(getEmployees(), selectedRecord.getAuthor().getID());
+        Employee author = getObjectByID(getEmployees(), selectedRecord.getAuthor().getID());
         authorTextField.setText(Employee.getFullEmployeeDescription(author));
 
         Technic technic = selectedRecord.getTechnicAsObject();
@@ -231,13 +234,12 @@ public class MainController extends GUIController {
         problemDescriptionTextField.setText(selectedRecord.getProblemDescription());
 
         if (selectedRecord.getStatus()) {
-            Employee closer = Employee.getEmployeeByUserID(getEmployees(), selectedRecord.getCloser().getID());
+            Employee closer = getObjectByID(getEmployees(), selectedRecord.getCloser().getID());
             closerTextField.setText(Employee.getFullEmployeeDescription(closer));
             requestCloseTimeField.setText(selectedRecord.getCloseDate());
             worksDescriptionTextField.setText(selectedRecord.getDecisionDescription());
         }
     }
-
 
     @FXML
     void closedRequestsToggleButtonClick(ActionEvent event) {
@@ -262,7 +264,6 @@ public class MainController extends GUIController {
         changeTableView(false);
         informLabel.setText("Количество открытых заявок: " + getRequests().size());
     }
-
 
     @FXML
     void AddRequestButtonClick(ActionEvent event) {

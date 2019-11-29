@@ -5,13 +5,23 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
 import objects.BL.AppData;
+import objects.BL.Employees.Employee;
 import objects.BL.Users.Role;
 import objects.BL.Users.User;
+import objects.GUI.GUIData;
+
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class UsersSettingsController extends SettingsPaneController {
 
@@ -80,10 +90,11 @@ public class UsersSettingsController extends SettingsPaneController {
     @FXML
     private ButtonBar secondButtonBar;
 
+    @FXML
+    private ComboBox employeesComboBox;
 
-    User selectedRecord;
-    int indexOfSelectedRecord;
-
+    private static User selectedRecord;
+    private int indexOfSelectedRecord;
 
     @FXML
     void initialize() {
@@ -99,11 +110,41 @@ public class UsersSettingsController extends SettingsPaneController {
         usersTableView.getSelectionModel().select(0);
         usersTableView.requestFocus();
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
+
+        fillEmployeesComboBox();
+
+
         passwordTextField.setVisible(false);
         secondButtonBar.setVisible(false);
         setFieldsValues(AppData.getUsers().get(0));
         initListeners();
         updateCountLabel();
+    }
+
+    public void fillEmployeesComboBox() {
+        employeesComboBox.getItems().clear();
+        ArrayList<Employee> tmpEmployees = new ArrayList<>(AppData.getEmployees());
+
+        for (Employee tmpEmployee : sortEmployeeList(tmpEmployees)) {
+            employeesComboBox.getItems().add(tmpEmployee);
+        }
+    }
+
+    private ArrayList<Employee> sortEmployeeList(ArrayList<Employee> tmpEmployees) {
+        employeesComboBox.getItems().add(tmpEmployees.get(0));
+        tmpEmployees.remove(0);
+        tmpEmployees.sort((Employee o1, Employee o2) -> {
+            int tmp1 =
+                    o1.getDivision().getDescription().charAt(0) * -100
+                            + o1.getPosition().getID() * 10
+                            + o1.getLastName().charAt(0);
+            int tmp2 =
+                    o2.getDivision().getDescription().charAt(0) * -100
+                            + o2.getPosition().getID() * 10
+                            + o2.getLastName().charAt(0);
+            return tmp2 - tmp1;
+        });
+        return tmpEmployees;
     }
 
     void applyCSS() {
@@ -122,11 +163,13 @@ public class UsersSettingsController extends SettingsPaneController {
         roleComboBox.getSelectionModel().select(
                 roleComboBox.getItems().indexOf(user.getRole()));
 
-        if (user.getRealStatus()) {
+        if (user.isActive()) {
             enabledRadioButton.setSelected(true);
         } else {
             disabledRadioButton.setSelected(true);
         }
+        employeesComboBox.getSelectionModel().select(user.getEmployee());
+
     }
 
     private void initListeners() {
@@ -143,7 +186,6 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     public void usersTableViewAction(Event event) {
-
         if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             KeyEvent keyEvent = (KeyEvent) event;
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
@@ -198,7 +240,6 @@ public class UsersSettingsController extends SettingsPaneController {
         enabledRadioButton.fire();
     }
 
-
     private void allControlsSetEditable(boolean state) {
         passwordTextField.setVisible(false);
         nameTextField.setEditable(state);
@@ -206,6 +247,7 @@ public class UsersSettingsController extends SettingsPaneController {
         roleComboBox.setDisable(!state);
         disabledRadioButton.setDisable(!state);
         enabledRadioButton.setDisable(!state);
+        employeesComboBox.setDisable(!state);
         if (state) {
             modeLabel.setText("Режим редактирования");
             modeLabel.getStyleClass().set(0, "label-edit-mode");
@@ -234,8 +276,9 @@ public class UsersSettingsController extends SettingsPaneController {
         Role role = Role.roleByName(
                 (String) roleComboBox.getSelectionModel().getSelectedItem());
         boolean status = enabledRadioButton.isSelected();
-        User user = new User(id, name, password, role, status, false);
 
+        Employee employee = (Employee) employeesComboBox.getSelectionModel().getSelectedItem();
+        User user = new User(id, name, password, role, status, false, employee, false);
         Button button = (Button) event.getSource();
         if (button.getText().equals("Добавить")) {
             AppData.getDb().handleUser(user, true);
@@ -251,9 +294,25 @@ public class UsersSettingsController extends SettingsPaneController {
         setFieldsValues(AppData.getUsers().get(indexOfSelectedRecord));
     }
 
+    @FXML
+    void deleteButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
+        try {
+            Parent root = loader.load(getClass().getResource("RemoveConfirmation.fxml").openStream());
+            GUIData.openCustomWindow(event, root, 250, 128, Modality.APPLICATION_MODAL, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static User getUserToDelete() {
+        return selectedRecord;
+    }
+
+
     @Override
     public void setInformation() {
-
     }
 
     @Override
