@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Main.MainController">
+<BorderPane minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Main.MainController">
    <top>
       <AnchorPane fx:id="headerAnchorPane" minWidth="1024.0" prefHeight="99.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
@@ -53,9 +53,11 @@
                 <Menu mnemonicParsing="false" text="Настройки">
                   <items>
                     <MenuItem fx:id="settingsMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Общие настройки" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="usersMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Пользователи" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="divisionsMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Подразделения" />
+                        <MenuItem fx:id="positionsMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Должности" />
                         <MenuItem fx:id="employeesMenuItem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Сотрудники" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="technicMenuitem" mnemonicParsing="false" onAction="#settingMenuItemClick" text="Техника" />

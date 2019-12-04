@@ -1,6 +1,6 @@
-package forms.Settings.users;
+package GUI.Settings.users;
 
-import forms.Settings.SettingsPaneController;
+import GUI.Settings.SettingsPaneController;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -19,9 +19,7 @@ import objects.BL.Users.User;
 import objects.GUI.GUIData;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class UsersSettingsController extends SettingsPaneController {
 
@@ -112,8 +110,6 @@ public class UsersSettingsController extends SettingsPaneController {
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
 
         fillEmployeesComboBox();
-
-
         passwordTextField.setVisible(false);
         secondButtonBar.setVisible(false);
         setFieldsValues(AppData.getUsers().get(0));
@@ -153,7 +149,6 @@ public class UsersSettingsController extends SettingsPaneController {
 
 
     private void setFieldsValues(User user) {
-
         if (passwordTextField.isVisible()) {
             showPasswordToggleButton.fire();
         }
@@ -169,7 +164,8 @@ public class UsersSettingsController extends SettingsPaneController {
             disabledRadioButton.setSelected(true);
         }
         employeesComboBox.getSelectionModel().select(user.getEmployee());
-
+        deleteButton.setDisable(selectedRecord.isUndeletable());
+        editButton.setDisable(selectedRecord.isUndeletable());
     }
 
     private void initListeners() {
@@ -214,13 +210,11 @@ public class UsersSettingsController extends SettingsPaneController {
 
     @FXML
     void addOrEditButtonClick(ActionEvent event) {
-        Button callerButton = (Button) event.getSource();
-        mainButtonBar.setVisible(false);
-        secondButtonBar.setVisible(true);
-        usersTableView.setDisable(true);
         getParentController().setExitButtonVisible(false);
-        getParentController().setTabsDisabled("01000");
+        getParentController().setTabsDisabled("010000");
         allControlsSetEditable(true);
+
+        Button callerButton = (Button) event.getSource();
         if (callerButton.getId().equals("addButton")) {
             applyButton.setText("Добавить");
             setNewUserValuesToControls();
@@ -241,6 +235,10 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     private void allControlsSetEditable(boolean state) {
+        mainButtonBar.setVisible(!state);
+        secondButtonBar.setVisible(state);
+        usersTableView.setDisable(state);
+
         passwordTextField.setVisible(false);
         nameTextField.setEditable(state);
         passwordField.setEditable(state);
@@ -248,22 +246,13 @@ public class UsersSettingsController extends SettingsPaneController {
         disabledRadioButton.setDisable(!state);
         enabledRadioButton.setDisable(!state);
         employeesComboBox.setDisable(!state);
-        if (state) {
-            modeLabel.setText("Режим редактирования");
-            modeLabel.getStyleClass().set(0, "label-edit-mode");
-        } else {
-            modeLabel.setText("Режим просмотра");
-            modeLabel.getStyleClass().set(0, "label-view-mode");
-        }
+        setModeLabelState(modeLabel, state);
     }
 
     @FXML
     void cancelButtonClick() {
-        mainButtonBar.setVisible(true);
-        secondButtonBar.setVisible(false);
-        usersTableView.setDisable(false);
         getParentController().setExitButtonVisible(true);
-        getParentController().setTabsDisabled("11111");
+        getParentController().setTabsDisabled("111111");
         allControlsSetEditable(false);
         setFieldsValues(selectedRecord);
     }

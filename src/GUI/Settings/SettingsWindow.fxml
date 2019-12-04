@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.SettingsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Settings.SettingsController">
    <children>
       <AnchorPane fx:id="headerAnchorPane" minWidth="783.0" prefHeight="99.0" prefWidth="850.0">
          <children>
@@ -49,6 +49,11 @@
             <Tab fx:id="divisionsTab" text="Подразделения">
                <content>
                   <AnchorPane fx:id="divisionsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="479.0" />
+               </content>
+            </Tab>
+            <Tab fx:id="positionsTab" text="Должности">
+               <content>
+                  <AnchorPane fx:id="postionsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="479.0" />
                </content>
             </Tab>
             <Tab fx:id="employeesTab" text="Сотрудники">

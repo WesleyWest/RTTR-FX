@@ -1,7 +1,7 @@
-package forms.Login;
+package GUI.Login;
 
-import forms.GUIController;
-import forms.Settings.SettingsController;
+import GUI.GUIController;
+import GUI.Settings.SettingsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,7 +97,7 @@ public class LoginController extends GUIController {
     void loginButtonClick(ActionEvent event) {
 
         if (getUsers() == null) {
-            getDAOFromFactory();
+            getDBFromFactory();
             setDivisions(getDb().readDivisionsFromDB());
             setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
             setEmployees(getDb().readEmployeesFromDB());
@@ -137,7 +137,7 @@ public class LoginController extends GUIController {
         }
     }
 
-    private void getDAOFromFactory() {
+    private void getDBFromFactory() {
         try {
             setDb(new SQLDataBaseFactory().getSQLDataBaseByType(GUIData.getActiveSQLDataBaseType()));
             getDb().open();

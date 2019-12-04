@@ -1,6 +1,6 @@
-package forms.Settings;
+package GUI.Settings;
 
-import forms.GUIController;
+import GUI.GUIController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +40,8 @@ public class SettingsController {
     @FXML
     private AnchorPane divisionsAnchorPane;
     @FXML
+    private AnchorPane postionsAnchorPane;
+    @FXML
     private AnchorPane employeesAnchorPane;
     @FXML
     private AnchorPane technicAnchorPane;
@@ -54,6 +56,8 @@ public class SettingsController {
     @FXML
     private Tab divisionsTab;
     @FXML
+    private Tab positionsTab;
+    @FXML
     private Tab employeesTab;
     @FXML
     private Tab technicTab;
@@ -66,11 +70,13 @@ public class SettingsController {
     Pane dbSettingsPane = null;
     Pane usersSettingsPane = null;
     Pane divisionsSettingsPane = null;
+    Pane positionsSettingsPane = null;
     Pane employeesSettingsPane = null;
     Pane technicSettingsPane = null;
     SettingsPaneController dbSettingsPaneController = null;
     SettingsPaneController usersPaneController = null;
     SettingsPaneController divisionsPaneController = null;
+    SettingsPaneController positionPaneController = null;
     SettingsPaneController employeesPaneController = null;
     SettingsPaneController technicPaneController = null;
     ArrayList<String> dbTypesStr, themesStr;
@@ -81,14 +87,14 @@ public class SettingsController {
 
     @FXML
     void initialize() {
-        Tab[] tmpTabs={settingsTab,usersTab,divisionsTab,employeesTab,technicTab};
+        Tab[] tmpTabs={settingsTab,usersTab,divisionsTab,positionsTab,employeesTab,technicTab};
         tabs = new ArrayList<>(Arrays.asList(tmpTabs));
 
         caller = GUIData.getSettingsWindowCaller();
         if (caller.equals("settingsButton")) {
-            setTabsDisabled("10000");
+            setTabsDisabled("100000");
         } else {
-            setTabsDisabled("11111");
+            setTabsDisabled("111111");
         }
 
         factory = new SQLDataBaseFactory();
@@ -119,7 +125,7 @@ public class SettingsController {
     }
 
     private void setActivePaneByCaller(String caller) {
-        String[] tmpCallers = {"settingsMenuItem", "usersMenuItem", "divisionsMenuItem", "employeesMenuItem", "technicMenuitem"};
+        String[] tmpCallers = {"settingsMenuItem", "usersMenuItem", "divisionsMenuItem","positionsMenuItem", "employeesMenuItem", "technicMenuitem"};
         ArrayList<String> callers = new ArrayList<>(Arrays.asList(tmpCallers));
         tabPane.getSelectionModel().select(callers.indexOf(caller));
     }
@@ -142,15 +148,48 @@ public class SettingsController {
             usersSettingsPane = putAndGetSettingsPane(loader, usersAnchorPane);
             usersPaneController = getSettingsPaneController(loader);
 
-
+            loader = new FXMLLoader(getClass().getResource("divisions/DivisionsSettings.fxml"));
+            divisionsSettingsPane= putAndGetSettingsPane(loader, divisionsAnchorPane);
+            divisionsPaneController = getSettingsPaneController(loader);
         }
     }
 
+    private Pane putAndGetSettingsPane(FXMLLoader loader, AnchorPane parentAnchorPane) {
+        parentAnchorPane.getChildren().clear();
+        Pane childPane = null;
+        try {
+            childPane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (childPane != null) {
+            parentAnchorPane.getChildren().add(childPane);
+//            childPane.setLayoutX(14);
+//            childPane.setLayoutY(70);
+        }
+        return childPane;
+    }
+
+    private SettingsPaneController getSettingsPaneController(FXMLLoader loader) {
+        SettingsPaneController childController = null;
+        childController = loader.getController();
+        childController.setParentController(this);
+        childController.setInformation();
+        return childController;
+    }
+
     void applyCSS() {
-        AnchorPane[] panes = {settingsAnchorPane, usersAnchorPane, divisionsAnchorPane, employeesAnchorPane, technicAnchorPane};
+        AnchorPane[] panes =   {settingsAnchorPane,
+                                usersAnchorPane,
+                                divisionsAnchorPane,
+                                postionsAnchorPane,
+                                employeesAnchorPane,
+                                technicAnchorPane};
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0, "anchor-pane-in-tab");
         }
+
         headerLabelBig.getStyleClass().set(0, "label-header-big");
         headerLabelSmall.getStyleClass().set(0, "label-header-small");
         headerAnchorPane.getStyleClass().add("anchor-pane-header");
@@ -272,30 +311,6 @@ public class SettingsController {
 
     }
 
-    private Pane putAndGetSettingsPane(FXMLLoader loader, AnchorPane parentAnchorPane) {
-        parentAnchorPane.getChildren().clear();
-        Pane childPane = null;
-        try {
-            childPane = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (childPane != null) {
-            parentAnchorPane.getChildren().add(childPane);
-//            childPane.setLayoutX(14);
-//            childPane.setLayoutY(70);
-        }
-        return childPane;
-    }
-
-    private SettingsPaneController getSettingsPaneController(FXMLLoader loader) {
-        SettingsPaneController childController = null;
-        childController = loader.getController();
-        childController.setParentController(this);
-        childController.setInformation();
-        return childController;
-    }
 
     int createHash() {
         return themeComboBox.getSelectionModel().getSelectedItem().hashCode() +

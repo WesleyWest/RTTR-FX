@@ -1,4 +1,4 @@
-package forms.Settings.users;
+package GUI.Settings.users;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import objects.BL.AppData;
 import objects.BL.Users.User;
@@ -20,6 +21,8 @@ public class RemoveConfirmationController {
     private TextField textField;
     @FXML
     private Label recordLabel;
+    @FXML
+    AnchorPane mainPane;
 
     private User user;
 
@@ -27,6 +30,11 @@ public class RemoveConfirmationController {
     public void initialize(){
         user = UsersSettingsController.getUserToDelete();
         recordLabel.setText("Удаляется запись ["+user.getName()+"]");
+        applyCSS();
+    }
+
+    private void applyCSS() {
+        mainPane.getStyleClass().add(0, "anchor-pane-in-tab");
     }
 
     public void cancelButtonClick(ActionEvent event){

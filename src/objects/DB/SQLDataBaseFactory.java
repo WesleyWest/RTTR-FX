@@ -1,6 +1,6 @@
 package objects.DB;
 
-import forms.Settings.SettingsPaneController;
+import GUI.Settings.SettingsPaneController;
 import javafx.fxml.FXMLLoader;
 import objects.BL.AppData;
 import objects.GUI.GUIData;

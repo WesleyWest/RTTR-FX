@@ -1,6 +1,6 @@
-package forms.Settings.DBSettingsPanes.SQLite;
+package GUI.Settings.DBSettingsPanes.SQLite;
 
-import forms.Settings.SettingsPaneController;
+import GUI.Settings.SettingsPaneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

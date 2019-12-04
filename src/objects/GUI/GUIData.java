@@ -182,7 +182,7 @@ public class GUIData {
 
     public void startApp(Stage primaryStage) throws java.io.IOException {
         readSettingsFromFile();
-        Parent root = FXMLLoader.load(getClass().getResource("../../forms/Login/LoginWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../GUI/Login/LoginWindow.fxml"));
         primaryStage.setTitle("RTTR-Master");
         primaryStage.getIcons().add(new Image("resources/main.png"));
         primaryStage.setResizable(false);

@@ -6,20 +6,39 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2019-11-26">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2019-11-29">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/conf/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/conf/settings.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/rttr-base.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/rttr-base.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/SettingsPaneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/UsersSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/users/UsersSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/Employees/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Employees/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Login/LoginWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Login/LoginWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Main/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPane.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/MySQL/MySQLSettingsPane.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/MySQL/MySQLSettingsPaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPane.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPane.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsPaneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/SettingsWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/SettingsWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/users/RemoveConfirmation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/users/RemoveConfirmationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/UsersSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/users/UsersSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/BL/AppData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/AppData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/BL/Employees/Division.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Employees/Division.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/DB/DBType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/DBType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/DB/types/MySQLDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/types/MySQLDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GUI/GUIData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GUI/GUIData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -78,87 +97,41 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsController.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
-              <folding>
-                <element signature="e#5226#5227#0" expanded="true" />
-                <element signature="e#6854#6855#0" expanded="true" />
-                <element signature="e#9174#9175#0" expanded="true" />
-                <element signature="e#9219#9220#0" expanded="true" />
-                <element signature="e#9506#9507#0" expanded="true" />
-                <element signature="e#9878#9879#0" expanded="true" />
-                <element signature="e#10005#10006#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="3652">
+              <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java">
+        <entry file="file://$PROJECT_DIR$/src/objects/BL/SimpleObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="283" column="34" lean-forward="true" selection-start-line="283" selection-start-column="34" selection-end-line="283" selection-end-column="34" />
+            <state relative-caret-position="44">
+              <caret line="2" column="28" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/objects/BL/AppData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="538">
+              <caret line="282" column="71" lean-forward="true" selection-start-line="261" selection-start-column="8" selection-end-line="282" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4179#4180#0" expanded="true" />
-                <element signature="e#5780#5781#0" expanded="true" />
-                <element signature="e#10144#10145#0" expanded="true" />
-                <element signature="e#10334#10335#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Employee.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-              <folding>
-                <element signature="e#1334#1335#0" expanded="true" />
-                <element signature="e#1359#1360#0" expanded="true" />
-                <element signature="e#1396#1397#0" expanded="true" />
-                <element signature="e#1424#1425#0" expanded="true" />
-                <element signature="e#1459#1460#0" expanded="true" />
-                <element signature="e#1490#1491#0" expanded="true" />
-                <element signature="e#1538#1539#0" expanded="true" />
-                <element signature="e#1578#1579#0" expanded="true" />
-                <element signature="e#1609#1610#0" expanded="true" />
-                <element signature="e#1636#1637#0" expanded="true" />
-                <element signature="e#1676#1677#0" expanded="true" />
-                <element signature="e#1708#1709#0" expanded="true" />
-                <element signature="e#1918#1919#0" expanded="true" />
-                <element signature="e#1962#1963#0" expanded="true" />
-                <element signature="e#2003#2004#0" expanded="true" />
-                <element signature="e#2034#2035#0" expanded="true" />
-                <element signature="e#2088#2089#0" expanded="true" />
-                <element signature="e#2128#2129#0" expanded="true" />
-                <element signature="e#2165#2166#0" expanded="true" />
-                <element signature="e#2196#2197#0" expanded="true" />
-                <element signature="e#2246#2247#0" expanded="true" />
-                <element signature="e#2286#2287#0" expanded="true" />
-                <element signature="e#2621#2622#0" expanded="true" />
-                <element signature="e#2683#2684#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objects/BL/Users/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="72" column="18" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1389#1390#0" expanded="true" />
-                <element signature="e#1423#1424#0" expanded="true" />
-                <element signature="e#1394#1395#0" expanded="true" />
-                <element signature="e#1425#1426#0" expanded="true" />
-                <element signature="e#1350#1351#0" expanded="true" />
-                <element signature="e#1380#1381#0" expanded="true" />
+                <element signature="e#4045#4046#0" expanded="true" />
+                <element signature="e#4112#4113#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,25 +140,49 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="381" column="34" selection-start-line="381" selection-start-column="34" selection-end-line="381" selection-end-column="34" />
+            <state relative-caret-position="330">
+              <caret line="424" column="26" lean-forward="true" selection-start-line="424" selection-start-column="26" selection-end-line="424" selection-end-column="26" />
               <folding>
-                <element signature="e#2074#2075#0" expanded="true" />
-                <element signature="e#2156#2157#0" expanded="true" />
-                <element signature="e#2248#2249#0" expanded="true" />
-                <element signature="e#2322#2323#0" expanded="true" />
-                <element signature="e#2422#2423#0" expanded="true" />
-                <element signature="e#2484#2485#0" expanded="true" />
+                <element signature="e#2223#2224#0" expanded="true" />
+                <element signature="e#2252#2253#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="417" lean-forward="true" selection-start-line="417" selection-end-line="417" />
+            <state relative-caret-position="206">
+              <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+              <folding>
+                <element signature="e#4819#4820#0" expanded="true" />
+                <element signature="e#4843#4844#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Division.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+              <folding>
+                <element signature="e#378#379#0" expanded="true" />
+                <element signature="e#405#406#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#471#472#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -237,16 +234,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/objects/AbstractObject.java" />
-        <option value="$PROJECT_DIR$/src/objects/idReturnable.java" />
-        <option value="$PROJECT_DIR$/src/objects/Employees/Employee.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPaneFactory.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLSettingsPane.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/SettingsPaneControllerMySQL.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SettingsPaneControllerMySQL.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SettingsPaneControllerSQLite.java" />
-        <option value="$PROJECT_DIR$/src/objects/DB/SQLiteDataBase.java" />
-        <option value="$PROJECT_DIR$/src/objects/DB/MySQLDataBase.java" />
         <option value="$PROJECT_DIR$/src/themes/ColorTheme.java" />
         <option value="$PROJECT_DIR$/src/objects/DBType.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/Change.java" />
@@ -267,34 +254,44 @@
         <option value="$PROJECT_DIR$/src/objects/GUI/RTTRApp.java" />
         <option value="$PROJECT_DIR$/src/forms/GUIParentController.java" />
         <option value="$PROJECT_DIR$/src/conf/settings.ini" />
-        <option value="$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java" />
         <option value="$PROJECT_DIR$/src/forms/GUIController.java" />
-        <option value="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" />
         <option value="$PROJECT_DIR$/src/objects/BL/AppData.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPaneController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPaneController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPaneController.java" />
-        <option value="$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java" />
         <option value="$PROJECT_DIR$/src/objects/DB/types/MySQLDataBase.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Users/Role.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/SettingsPaneController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmation.fxml" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" />
         <option value="$PROJECT_DIR$/src/forms/Login/LoginController.java" />
         <option value="$PROJECT_DIR$/src/forms/Main/MainController.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Employees/Employee.java" />
-        <option value="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" />
         <option value="$PROJECT_DIR$/src/objects/BL/Users/User.java" />
+        <option value="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java" />
+        <option value="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" />
+        <option value="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" />
+        <option value="$PROJECT_DIR$/src/forms/Settings/divisions/DivisionsSettingsController.java" />
+        <option value="$PROJECT_DIR$/src/forms/Settings/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Main/MainController.java" />
+        <option value="$PROJECT_DIR$/src/objects/DAO/SQLDataBase.java" />
+        <option value="$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Login/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Settings/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java" />
+        <option value="$PROJECT_DIR$/src/objects/BL/SimpleObject.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java" />
+        <option value="$PROJECT_DIR$/src/objects/BL/Employees/Division.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettingsController.java" />
         <option value="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="70" />
-    <option name="y" value="26" />
+    <option name="x" value="-182" />
+    <option name="y" value="225" />
     <option name="width" value="1865" />
     <option name="height" value="1096" />
   </component>
@@ -307,8 +304,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -331,25 +326,72 @@
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="forms" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="DarkTheme" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Settings" type="462c0819:PsiDirectoryNode" />
+              <item name="divisions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Settings" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+              <item name="BL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+              <item name="BL" type="462c0819:PsiDirectoryNode" />
+              <item name="Employees" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -367,11 +409,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/libraries/ini4j-0.5.4.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -388,9 +430,11 @@
       <recent name="objects.GUI" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\forms\Settings\divisions" />
       <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\windows_fxml" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="forms.Settings.divisions" />
       <recent name="forms.Settings" />
       <recent name="forms.Settings.DBSettingsPanes.SQLite" />
       <recent name="objects.DB" />
@@ -546,7 +590,10 @@
       <workItem from="1574332774072" duration="1056000" />
       <workItem from="1574397570188" duration="10647000" />
       <workItem from="1574651689063" duration="5208000" />
-      <workItem from="1574660658639" duration="57569000" />
+      <workItem from="1574660658639" duration="58228000" />
+      <workItem from="1575352273335" duration="21396000" />
+      <workItem from="1575454983713" duration="13000" />
+      <workItem from="1575456698574" duration="3554000" />
     </task>
     <task id="LOCAL-00001" summary="2019-10-08">
       <created>1570590656736</created>
@@ -842,11 +889,18 @@
       <option name="project" value="LOCAL" />
       <updated>1574830182085</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="version from 2019-11-29">
+      <created>1575026438528</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1575026438528</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="497647000" />
+    <option name="totallyTimeSpent" value="523269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-8" width="1864" height="1096" extended-state="6" />
@@ -854,7 +908,7 @@
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.18560606" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.17965367" />
       <window_info id="Structure" order="3" weight="0.25" />
       <window_info id="Favorites" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
@@ -910,21 +964,14 @@
     <MESSAGE value="version from 2019-11-22" />
     <MESSAGE value="version from 2019-11-25" />
     <MESSAGE value="version from 2019-11-26" />
-    <option name="LAST_COMMIT_MESSAGE" value="version from 2019-11-26" />
+    <MESSAGE value="version from 2019-11-29" />
+    <option name="LAST_COMMIT_MESSAGE" value="version from 2019-11-29" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/application/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1567">
-          <caret line="144" column="22" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme.css" />
     <entry file="file://$PROJECT_DIR$/src/objects/GUI/ColorTheme.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -949,13 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/SimpleObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/DB/DBType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -971,34 +1011,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme.css" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/event/EventTarget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/css/Styleable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-806">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/MenuItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="102" column="50" selection-start-line="102" selection-start-column="50" selection-end-line="102" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/event/EventTarget.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/css/Styleable.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/MenuItem.java" />
     <entry file="file://$PROJECT_DIR$/src/resources/settings2.png" />
     <entry file="file://$PROJECT_DIR$/src/resources/settings.png" />
     <entry file="file://$PROJECT_DIR$/src/resources/main.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme/theme.css" />
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsWindow.fxml">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsWindow.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
@@ -1006,17 +1028,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="313" column="15" selection-start-line="313" selection-start-column="15" selection-end-line="313" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/users/UsersSettings.fxml">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/UsersSettings.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1041,21 +1054,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Division.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/DBSettingsPaneController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPaneController.java">
+    <entry file="file://$PROJECT_DIR$/src/forms/Settings/DBSettingsPaneController.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/MySQL/MySQLSettingsPaneController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="134" column="28" selection-start-line="134" selection-start-column="4" selection-end-line="134" selection-end-column="28" />
@@ -1065,7 +1065,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPaneController.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPaneController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
@@ -1075,7 +1075,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPane.fxml">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/DBSettingsPanes/MySQL/MySQLSettingsPane.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -1083,29 +1083,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="3811" column="8" selection-start-line="3811" selection-start-column="8" selection-end-line="3811" selection-end-column="8" />
-          <folding>
-            <element signature="e#177013#177014#0" expanded="true" />
-            <element signature="e#177054#177055#0" expanded="true" />
-            <element signature="e#177353#177354#0" expanded="true" />
-            <element signature="e#177410#177411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java" />
     <entry file="file://$PROJECT_DIR$/src/objects/BL/Users/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
@@ -1113,16 +1091,6 @@
           <folding>
             <element signature="e#265#266#0" expanded="true" />
             <element signature="e#296#297#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1137,25 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsPaneController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="4" selection-end-line="10" selection-end-column="5" />
-          <folding>
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmation.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/conf/settings.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1163,71 +1112,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/function/Predicate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/stream/Stream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="934" column="16" selection-start-line="934" selection-start-column="16" selection-end-line="934" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="112" column="11" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
-          <folding>
-            <element signature="e#4183#4184#0" expanded="true" />
-            <element signature="e#4223#4224#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/GUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Login/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="99" column="20" lean-forward="true" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
-          <folding>
-            <element signature="e#1677#1678#0" expanded="true" />
-            <element signature="e#1718#1719#0" expanded="true" />
-            <element signature="e#5503#5504#0" expanded="true" />
-            <element signature="e#5569#5570#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/AppData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="126" column="45" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/function/Predicate.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/stream/Stream.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactory.java" />
     <entry file="file://$PROJECT_DIR$/src/objects/GUI/GUIData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1242,36 +1129,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Main/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/RemoveConfirmation.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="154" column="69" lean-forward="true" selection-start-line="154" selection-start-column="69" selection-end-line="154" selection-end-column="69" />
+        <state relative-caret-position="242">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/RemoveConfirmationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#951#952#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/SettingsController.java">
+    <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
-          <folding>
-            <element signature="e#5226#5227#0" expanded="true" />
-            <element signature="e#6854#6855#0" expanded="true" />
-            <element signature="e#9174#9175#0" expanded="true" />
-            <element signature="e#9219#9220#0" expanded="true" />
-            <element signature="e#9506#9507#0" expanded="true" />
-            <element signature="e#9878#9879#0" expanded="true" />
-            <element signature="e#10005#10006#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="417" lean-forward="true" selection-start-line="417" selection-end-line="417" />
+        <state relative-caret-position="638">
+          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1281,74 +1162,152 @@
           <caret line="72" column="18" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1389#1390#0" expanded="true" />
-            <element signature="e#1423#1424#0" expanded="true" />
             <element signature="e#1394#1395#0" expanded="true" />
             <element signature="e#1425#1426#0" expanded="true" />
-            <element signature="e#1350#1351#0" expanded="true" />
-            <element signature="e#1380#1381#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Employee.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Main/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-          <folding>
-            <element signature="e#1334#1335#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
-            <element signature="e#1396#1397#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-            <element signature="e#1459#1460#0" expanded="true" />
-            <element signature="e#1490#1491#0" expanded="true" />
-            <element signature="e#1538#1539#0" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-            <element signature="e#1609#1610#0" expanded="true" />
-            <element signature="e#1636#1637#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-            <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#1962#1963#0" expanded="true" />
-            <element signature="e#2003#2004#0" expanded="true" />
-            <element signature="e#2034#2035#0" expanded="true" />
-            <element signature="e#2088#2089#0" expanded="true" />
-            <element signature="e#2128#2129#0" expanded="true" />
-            <element signature="e#2165#2166#0" expanded="true" />
-            <element signature="e#2196#2197#0" expanded="true" />
-            <element signature="e#2246#2247#0" expanded="true" />
-            <element signature="e#2286#2287#0" expanded="true" />
-            <element signature="e#2621#2622#0" expanded="true" />
-            <element signature="e#2683#2684#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="283" column="34" lean-forward="true" selection-start-line="283" selection-start-column="34" selection-end-line="283" selection-end-column="34" />
+        <state relative-caret-position="168">
+          <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4179#4180#0" expanded="true" />
-            <element signature="e#5780#5781#0" expanded="true" />
-            <element signature="e#10144#10145#0" expanded="true" />
-            <element signature="e#10334#10335#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="414" column="19" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="419" selection-start-line="419" selection-end-line="425" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Login/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="140" column="13" lean-forward="true" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettings.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3652">
+          <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/BL/SimpleObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/BL/AppData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="282" column="71" lean-forward="true" selection-start-line="261" selection-start-column="8" selection-end-line="282" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4045#4046#0" expanded="true" />
+            <element signature="e#4112#4113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Division.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding>
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#471#472#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+          <folding>
+            <element signature="e#4819#4820#0" expanded="true" />
+            <element signature="e#4843#4844#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="381" column="34" selection-start-line="381" selection-start-column="34" selection-end-line="381" selection-end-column="34" />
+        <state relative-caret-position="330">
+          <caret line="424" column="26" lean-forward="true" selection-start-line="424" selection-start-column="26" selection-end-line="424" selection-end-column="26" />
           <folding>
-            <element signature="e#2074#2075#0" expanded="true" />
-            <element signature="e#2156#2157#0" expanded="true" />
-            <element signature="e#2248#2249#0" expanded="true" />
-            <element signature="e#2322#2323#0" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2484#2485#0" expanded="true" />
+            <element signature="e#2223#2224#0" expanded="true" />
+            <element signature="e#2252#2253#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1360,10 +1319,10 @@
         <settings>
           <artifact-editor>
             <show-content>
-              <type id="artifact" />
-              <type id="javaee-facet-resources" />
-              <type id="jpa-descriptors" />
               <type id="library" />
+              <type id="jpa-descriptors" />
+              <type id="javaee-facet-resources" />
+              <type id="artifact" />
             </show-content>
           </artifact-editor>
           <last-edited>RTTR-FX:jar</last-edited>
@@ -1371,6 +1330,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1401,7 +1361,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>1.8 (2)</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

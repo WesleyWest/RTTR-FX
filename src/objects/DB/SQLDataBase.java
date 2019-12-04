@@ -22,15 +22,6 @@ import java.util.ArrayList;
 
 public abstract class SQLDataBase extends AppData {
 
-    private class tmpRoles {
-        String roleCode;
-        String roleName;
-
-        public tmpRoles(String roleCode, String roleName) {
-            this.roleCode = roleCode;
-            this.roleName = roleName;
-        }
-    }
 
     public abstract int getLastSequenceNumber(String tableName);
 
@@ -157,6 +148,16 @@ public abstract class SQLDataBase extends AppData {
         return objects;
     }
 
+    private class tmpRoles {
+        String roleCode;
+        String roleName;
+
+        public tmpRoles(String roleCode, String roleName) {
+            this.roleCode = roleCode;
+            this.roleName = roleName;
+        }
+    }
+
     public void setRoleNamesFromDB() {
         ArrayList<tmpRoles> tmp = new ArrayList<>();
         ArrayList<Role> tmpRole = new ArrayList<>();
@@ -172,7 +173,6 @@ public abstract class SQLDataBase extends AppData {
                 String roleCode = rs.getString("role_code");
                 String roleName = rs.getString("role_name");
                 Role.setRoleNameByCode(roleCode, roleName);
-
             }
             rs.close();
             statement.close();
@@ -229,14 +229,15 @@ public abstract class SQLDataBase extends AppData {
             String query =
                     "SELECT * " +
                             "FROM employee_divisions " +
-                            "ORDER BY division_id ";
+                            "ORDER BY division_code";
 
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("division_id");
                 String code = rs.getString("division_code");
                 String description = rs.getString("division_description");
-                tmp.add(new Division(id, code, description));
+                boolean isDeleted = rs.getBoolean("division_isdeleted");
+                tmp.add(new Division(id, code, description, isDeleted));
             }
             rs.close();
             statement.close();
@@ -417,9 +418,29 @@ public abstract class SQLDataBase extends AppData {
                             + "WHERE user_id = "+ user.getID() +";";
             report="edited";
         }
-//        System.out.println(query);
         AppData.printInLog((executeUpdateDB(query)) ? "Record "+report+"..." : "Something wrong...");
     }
+
+    public void handleDivision(Division division, boolean isNew) {
+        String query = "";
+        String report="";
+        if (isNew) {
+            query = "INSERT INTO employee_divisions (division_code, division_description, division_isdeleted)" +
+                            "VALUES ('" + division.getCode() + "', '"
+                            + division.getDescription() + "', '"
+                            + division.isDeleted()+"') ;";
+            report="added";
+        } else {
+            query = "UPDATE employee_divisions SET "
+                            + "division_code = '" + division.getCode() + "', "
+                            + "division_description = '" + division.getDescription() + "', "
+                            + "user_isdeleted = '"+division.isDeleted()+"' "
+                            + "WHERE user_id = "+ division.getID() +";";
+            report="edited";
+        }
+        AppData.printInLog((executeUpdateDB(query)) ? "Record "+report+"..." : "Something wrong...");
+    }
+
 
     public void markRecordAsDeleted(String tableName, String isDeletedFieldName, String idFieldName, int id){
         String query= "UPDATE "+tableName+" SET " + isDeletedFieldName+" = 1 WHERE "+idFieldName+" = "+ id +";";

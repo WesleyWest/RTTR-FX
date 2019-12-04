@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="406.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forms.Settings.users.UsersSettingsController">
+<Pane prefHeight="406.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Settings.users.UsersSettingsController">
    <children>
       <TableView fx:id="usersTableView" layoutX="13.0" layoutY="14.0" onKeyReleased="#usersTableViewAction" onMouseReleased="#usersTableViewAction" prefHeight="376.0" prefWidth="440.0">
          <columns>

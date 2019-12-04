@@ -1,6 +1,6 @@
-package forms.Main;
+package GUI.Main;
 
-import forms.GUIController;
+import GUI.GUIController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -22,129 +22,90 @@ public class MainController extends GUIController {
 
     @FXML
     private MenuItem createReportMenuItem;
-
     @FXML
     private MenuItem exitMenuItem;
-
     @FXML
     private MenuItem addRequestMenuItem;
-
     @FXML
     private MenuItem editRequestMenuItem;
-
     @FXML
     private MenuItem closeRequestMenuItem;
-
     @FXML
     private MenuItem settingsMenuItem;
-
     @FXML
     private MenuItem usersMenuItem;
-
     @FXML
     private MenuItem divisionsMenuItem;
-
+    @FXML
+    private MenuItem positionsMenuItem;
     @FXML
     private MenuItem employeesMenuItem;
-
     @FXML
     private MenuItem technicMenuitem;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private MenuItem aboutMenuItem;
-
     @FXML
     private TableView<Request> mainTableView;
-
     @FXML
     private TableColumn<Request, Integer> idTableColumn;
-
     @FXML
     private TableColumn<Request, String> technicTableColumn;
-
     @FXML
     private TableColumn<Request, String> dateTableColumn;
-
     @FXML
     private TableColumn<Request, String> descriptionTableColumn;
-
     @FXML
     private ToggleGroup reqGroup;
-
     @FXML
     private ToggleButton closedRequestsToggleButton;
-
     @FXML
     private ToggleButton activeRequestsToggleButtton;
-
     @FXML
     private TextField idTextField;
-
     @FXML
     private TextField technicField;
-
     @FXML
     private TextField requestOpenTimeField;
-
     @FXML
     private TextField authorTextField;
-
     @FXML
     private TextField ownerTextField;
-
     @FXML
     private TextField repairerTextField;
-
     @FXML
     private TextField problemDescriptionTextField;
-
     @FXML
     private TextField requestCloseTimeField;
-
     @FXML
     private TextField worksDescriptionTextField;
-
     @FXML
     private TextField closerTextField;
-
     @FXML
     private Button addRequestButton;
-
     @FXML
     private Button editrequestButton;
-
     @FXML
     private Button closeRequestButton;
-
     @FXML
     private Button exitButton;
-
     @FXML
     private Button userButton;
-
     @FXML
     private Label informLabel;
-
     @FXML
     private AnchorPane closedRequestsAnchorPane;
-
     @FXML
     private AnchorPane mainAnchorPane;
-
     @FXML
     private AnchorPane headerAnchorPane;
-
     @FXML
     private Label headerLabelBig;
-
     @FXML
     private Label headerLabelSmall;
 
     private PopOver popOver;
-
     private Request selectedRecord;
 
     @FXML

@@ -37,18 +37,24 @@
 }
 
 .toggle-button .text {
-    -fx-fill: #376bc5;
+    -fx-fill:#9a2727;
+}
+
+.toggle-button:selected .text {
+    -fx-fill: #52b552;
 }
 
 .toggle-button:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 150, 0.6), 5, 0.0, 0, 1);
 }
+
 .toggle-button:selected {
     -fx-background-color: #57a8d7,
     linear-gradient(#eaf6fd, #a7d9f5, #eaf6fd);
 }
-.toggle-button:selected .text {
-    -fx-fill:green;
+
+.toggle-button-active .text, .toggle-button-closed .text {
+    -fx-fill: #3a7ad7;
 }
 
 .toggle-button-active:selected {
@@ -142,6 +148,32 @@
     -fx-text-alignment: CENTER;
 }
 
+
+.table-view .column-header-background .label .text {
+    -fx-fill: #376bc5;
+}
+
+.table-view .column-header-background .nested-column-header .table-column {
+    -fx-background-color: linear-gradient(#93c2dd, #fafafa, #93c2dd);
+    -fx-border-color: #376bc5;
+    -fx-border-width: 0 1 0 0;
+}
+
+.table-view .cell {
+    -fx-background-color: #d3eeff;
+    -fx-text-fill: #376bc5;
+}
+
+.table-view .cell:odd {
+    -fx-background-color: #e1faff;
+    -fx-text-fill: #376bc5;
+}
+
+.table-view .cell:empty, .table-view .cell:empty:odd {
+    -fx-background-color: #edfffd;
+}
+
+
 .table-view-active .column-header-background .label {
     -fx-background-color: transparent;
 }
@@ -173,8 +205,12 @@
 }
 
 .table-view-active .cell:odd {
-    -fx-background-color: #e3cfcc;
+    -fx-background-color: #e3cbc8;
     -fx-text-fill: #671C1C;
+}
+
+.table-view-active .cell:empty, .table-view-active .cell:empty:odd {
+    -fx-background-color: #ead6d3;
 }
 
 .table-view-closed .column-header-background .label {
@@ -208,8 +244,11 @@
 }
 
 .table-view-closed .cell:odd {
-    -fx-background-color: #d0f1cb;
+    -fx-background-color: #ccf1c5;
     -fx-text-fill: #234723;
+}
+.table-view-closed .cell:empty, .table-view-closed .cell:empty:odd {
+    -fx-background-color: #deffd9;
 }
 
 .menu-bar .label .text {
@@ -347,7 +386,15 @@
     -fx-border-color: #57a8d7;
     -fx-border-radius: 5 5 5 5;
 }
+.combo-box:disabled {
+    -fx-opacity: 1.0;
+    -fx-background-color: #d6d6d6;
+}
 
+.combo-box:disabled .list-cell {
+    -fx-opacity: 1.0;
+    -fx-text-fill: #3a7ad7;
+}
 .combo-box .arrow-button {
     -fx-background-color: #a7d9f5;
     -fx-background-radius: 0 5 5 0;
@@ -368,4 +415,27 @@
 .combo-box-popup .list-view .list-cell:selected:hover {
     -fx-background-color: #376bc5;
     -fx-text-fill: white;
+}
+
+.radio-button {
+    -fx-opacity: 1.0;
+    -fx-text-fill: #233d7b;
+}
+
+.radio-button:disabled, .radio-button:disabled .radio{
+    -fx-opacity: 0.7;
+}
+
+.radio-button .radio {
+    -fx-opacity: 1.0;
+    -fx-background-color: #8ca8d3;
+    -fx-background-image: null;
+}
+
+.label-view-mode .text {
+    -fx-fill: green;
+}
+
+.label-edit-mode .text {
+    -fx-fill: red;
 }

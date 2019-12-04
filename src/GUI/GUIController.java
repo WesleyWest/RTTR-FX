@@ -1,6 +1,6 @@
-package forms;
+package GUI;
 
-import forms.Settings.SettingsController;
+import GUI.Settings.SettingsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;

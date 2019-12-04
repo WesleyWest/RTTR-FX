@@ -1,6 +1,6 @@
-package forms.Settings.DBSettingsPanes.MySQL;
+package GUI.Settings.DBSettingsPanes.MySQL;
 
-import forms.Settings.SettingsPaneController;
+import GUI.Settings.SettingsPaneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
