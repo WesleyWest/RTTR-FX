@@ -104,7 +104,7 @@ public class UsersSettingsController extends SettingsPaneController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
-        usersTableView.setItems(AppData.getUsers());
+        usersTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getUsers()));
         usersTableView.getSelectionModel().select(0);
         usersTableView.requestFocus();
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
@@ -119,28 +119,12 @@ public class UsersSettingsController extends SettingsPaneController {
 
     public void fillEmployeesComboBox() {
         employeesComboBox.getItems().clear();
-        ArrayList<Employee> tmpEmployees = new ArrayList<>(AppData.getEmployees());
-
-        for (Employee tmpEmployee : sortEmployeeList(tmpEmployees)) {
-            employeesComboBox.getItems().add(tmpEmployee);
-        }
-    }
-
-    private ArrayList<Employee> sortEmployeeList(ArrayList<Employee> tmpEmployees) {
+        ArrayList<Employee> tmpEmployees = new ArrayList<>(AppData.getListWithoutDeletedObjects(AppData.getEmployees()));
         employeesComboBox.getItems().add(tmpEmployees.get(0));
         tmpEmployees.remove(0);
-        tmpEmployees.sort((Employee o1, Employee o2) -> {
-            int tmp1 =
-                    o1.getDivision().getDescription().charAt(0) * -100
-                            + o1.getPosition().getID() * 10
-                            + o1.getLastName().charAt(0);
-            int tmp2 =
-                    o2.getDivision().getDescription().charAt(0) * -100
-                            + o2.getPosition().getID() * 10
-                            + o2.getLastName().charAt(0);
-            return tmp2 - tmp1;
-        });
-        return tmpEmployees;
+        for (Employee tmpEmployee : Employee.sortEmployeeList(tmpEmployees)) {
+            employeesComboBox.getItems().add(tmpEmployee);
+        }
     }
 
     void applyCSS() {
@@ -193,7 +177,7 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     private void updateCountLabel() {
-        countLabel.setText("Количество пользователей: " + AppData.getUsers().size());
+        countLabel.setText("Количество пользователей: " + AppData.getListWithoutDeletedObjects(AppData.getUsers()).size());
     }
 
     public void showPasswordToggleButtonClick(ActionEvent event) {
@@ -266,21 +250,29 @@ public class UsersSettingsController extends SettingsPaneController {
                 (String) roleComboBox.getSelectionModel().getSelectedItem());
         boolean status = enabledRadioButton.isSelected();
 
-        Employee employee = (Employee) employeesComboBox.getSelectionModel().getSelectedItem();
-        User user = new User(id, name, password, role, status, false, employee, false);
-        Button button = (Button) event.getSource();
-        if (button.getText().equals("Добавить")) {
-            AppData.getDb().handleUser(user, true);
-            AppData.getUsers().add(user);
-            indexOfSelectedRecord = AppData.getUsers().size() - 1;
+        ArrayList<String> args = new ArrayList<>();
+        args.add(name);
+        args.add(password);
+
+        if (GUIData.isNotEmpty(args)) {
+            Employee employee = (Employee) employeesComboBox.getSelectionModel().getSelectedItem();
+            User user = new User(id, name, password, role, status, false, employee, false);
+            Button button = (Button) event.getSource();
+            if (button.getText().equals("Добавить")) {
+                AppData.getDb().handleUser(user, true);
+                AppData.getUsers().add(user);
+                indexOfSelectedRecord = AppData.getUsers().size() - 1;
+            } else {
+                AppData.getDb().handleUser(user, false);
+                AppData.getUsers().set(indexOfSelectedRecord, user);
+            }
+            cancelButton.fire();
+            usersTableView.getSelectionModel().select(indexOfSelectedRecord);
+            usersTableView.requestFocus();
+            setFieldsValues(AppData.getUsers().get(indexOfSelectedRecord));
         } else {
-            AppData.getDb().handleUser(user, false);
-            AppData.getUsers().set(indexOfSelectedRecord, user);
+            GUIData.showAlert("Поля не могут быть пустыми!");
         }
-        cancelButton.fire();
-        usersTableView.getSelectionModel().select(indexOfSelectedRecord);
-        usersTableView.requestFocus();
-        setFieldsValues(AppData.getUsers().get(indexOfSelectedRecord));
     }
 
     @FXML

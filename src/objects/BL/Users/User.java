@@ -1,9 +1,9 @@
 package objects.BL.Users;
 
 import objects.BL.Employees.Employee;
-import objects.BL.idReturnable;
+import objects.BL.StandardBehavior;
 
-public class User implements idReturnable {
+public class User implements StandardBehavior {
     private int ID;
     private String name;
     private String password;

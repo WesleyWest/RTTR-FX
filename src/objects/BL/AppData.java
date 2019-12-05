@@ -1,5 +1,6 @@
 package objects.BL;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import objects.DB.SQLDataBase;
 import objects.BL.Employees.Division;
@@ -12,6 +13,7 @@ import objects.BL.Users.Role;
 import objects.BL.Users.User;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AppData {
@@ -87,7 +89,6 @@ public class AppData {
         AppData.users = users;
     }
 
-
     public static ObservableList<Division> getDivisions() {
         return divisions;
     }
@@ -103,7 +104,6 @@ public class AppData {
     public static void setEmployees(ObservableList<Employee> employees) {
         AppData.employees = employees;
     }
-
 
     public static ObservableList<Technic> getTechnic() {
         return technic;
@@ -121,7 +121,7 @@ public class AppData {
         AppData.requests = requests;
     }
 
-    public static <T extends idReturnable> T getObjectByID(ObservableList<T> list, int ID) {
+    public static <T extends StandardBehavior> T getObjectByID(ObservableList<T> list, int ID) {
         for (T element : list) {
             if (element.getID() == ID) {
                 return element;
@@ -130,6 +130,16 @@ public class AppData {
         return null;
     }
 
+    public static <T extends StandardBehavior> ObservableList<T> getListWithoutDeletedObjects(ObservableList<T> incomingList)
+    {
+        ArrayList<T> tmp = new ArrayList<>();
+        for (T object : incomingList) {
+            if (!object.isDeleted()) {
+                tmp.add(object);
+            }
+        }
+        return FXCollections.observableArrayList(tmp);
+    }
 
     public static void printInLog(String str) {
         if (str.length() != 0) {
@@ -140,5 +150,7 @@ public class AppData {
             System.out.println();
         }
     }
+
+
 
 }

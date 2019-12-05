@@ -1,11 +1,11 @@
 package objects.BL.Employees;
 
-import objects.BL.idReturnable;
+import objects.BL.StandardBehavior;
 import objects.BL.SimpleObject;
-import javafx.collections.ObservableList;
-import objects.BL.Users.User;
 
-public class Employee implements idReturnable {
+import java.util.ArrayList;
+
+public class Employee implements StandardBehavior {
     private Integer id;
     private String lastName;
     private String name;
@@ -22,6 +22,21 @@ public class Employee implements idReturnable {
         this.position = position;
         this.division = division;
 
+    }
+
+    public static ArrayList<Employee> sortEmployeeList(ArrayList<Employee> tmpEmployees) {
+        tmpEmployees.sort((Employee employee1, Employee employee2) -> {
+            int tmp1 =
+                    employee1.getDivision().getDescription().charAt(0) * -100
+                            + employee1.getPosition().getID() * 10
+                            + employee1.getLastName().charAt(0);
+            int tmp2 =
+                    employee2.getDivision().getDescription().charAt(0) * -100
+                            + employee2.getPosition().getID() * 10
+                            + employee2.getLastName().charAt(0);
+            return tmp2 - tmp1;
+        });
+        return tmpEmployees;
     }
 
     public static String getFullEmployeeDescription(Employee employee) {
@@ -50,6 +65,7 @@ public class Employee implements idReturnable {
     public Integer getID() {
         return id;
     }
+
 
     public void setId(Integer id) {
         this.id = id;
@@ -104,6 +120,11 @@ public class Employee implements idReturnable {
     }
 
     @Override
+    public boolean isDeleted() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return getShortDescription();
 
@@ -116,4 +137,5 @@ public class Employee implements idReturnable {
 //                ", division=" + division +
 //                '}';
     }
+
 }

@@ -14,6 +14,10 @@ import objects.BL.Employees.Division;
 import objects.BL.Employees.Employee;
 import objects.BL.Users.Role;
 import objects.BL.Users.User;
+import objects.GUI.GUIData;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class DivisionsSettingsController extends SettingsPaneController {
 
@@ -60,7 +64,7 @@ public class DivisionsSettingsController extends SettingsPaneController {
         codeColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("code"));
         fullDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("description"));
 
-        divisionsTableView.setItems(AppData.getDivisions());
+        divisionsTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getDivisions()));
         divisionsTableView.getSelectionModel().select(0);
         divisionsTableView.requestFocus();
         selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
@@ -68,7 +72,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
         setFieldsValues(selectedRecord);
         updateCountLabel();
     }
-
 
 
     void applyCSS() {
@@ -107,7 +110,7 @@ public class DivisionsSettingsController extends SettingsPaneController {
     }
 
     private void updateCountLabel() {
-        countLabel.setText("Количество подразделений: " + AppData.getUsers().size());
+        countLabel.setText("Количество подразделений: " + AppData.getListWithoutDeletedObjects(AppData.getDivisions()).size());
     }
 
     @FXML
@@ -119,23 +122,28 @@ public class DivisionsSettingsController extends SettingsPaneController {
         Button callerButton = (Button) event.getSource();
         if (callerButton.getId().equals("addButton")) {
             applyButton.setText("Добавить");
+            setNewDivisionValuesToControls();
         } else {
             applyButton.setText("Применить");
             indexOfSelectedRecord = divisionsTableView.getSelectionModel().getSelectedIndex();
+            codeTextField.requestFocus();
         }
-        codeTextField.requestFocus();
+    }
+
+    private void setNewDivisionValuesToControls() {
+        codeTextField.setText("");
+        fullDescriptionTextField.setText("");
+        applyButton.requestFocus();
     }
 
     private void allControlsSetEditable(boolean state) {
-        setModeLabelState(modeLabel,state);
+        setModeLabelState(modeLabel, state);
         codeTextField.setEditable(state);
         fullDescriptionTextField.setEditable(state);
         mainButtonBar.setVisible(!state);
         secondButtonBar.setVisible(state);
         divisionsTableView.setDisable(state);
     }
-
-
 
     @FXML
     void cancelButtonClick() {
@@ -149,27 +157,49 @@ public class DivisionsSettingsController extends SettingsPaneController {
     void applyButtonClick(ActionEvent event) {
         int id = selectedRecord.getID();
         String code = codeTextField.getText();
-        String descriptionTextFieldText = fullDescriptionTextField.getText();
-        Division division = new Division(id,code,descriptionTextFieldText,false);
+        String description = fullDescriptionTextField.getText();
+        Division division = new Division(id, code, description, false);
 
-        Button button = (Button) event.getSource();
-        if (button.getText().equals("Добавить")) {
-            AppData.getDb().handleDivision(division, true);
-            AppData.getDivisions().add(division);
-            indexOfSelectedRecord = AppData.getUsers().size() - 1;
+        ArrayList<String> args = new ArrayList<>();
+        args.add(code);
+        args.add(description);
+
+        if (GUIData.isNotEmpty(args)) {
+            Button button = (Button) event.getSource();
+            if (button.getText().equals("Добавить")) {
+                AppData.getDb().handleDivision(division, true);
+                AppData.getDivisions().add(division);
+                indexOfSelectedRecord = AppData.getUsers().size() - 1;
+            } else {
+                AppData.getDb().handleDivision(division, false);
+                AppData.getDivisions().set(indexOfSelectedRecord, division);
+                divisionsTableView.getItems().clear();
+                divisionsTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getDivisions()));
+            }
+            cancelButton.fire();
+            divisionsTableView.getSelectionModel().select(indexOfSelectedRecord);
+            divisionsTableView.requestFocus();
+            selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
+            setFieldsValues(selectedRecord);
         } else {
-            AppData.getDb().handleDivision(division, false);
-            AppData.getDivisions().set(indexOfSelectedRecord, division);
+            GUIData.showAlert("Поля не могут быть пустыми!");
         }
-        cancelButton.fire();
-        divisionsTableView.getSelectionModel().select(indexOfSelectedRecord);
-        divisionsTableView.requestFocus();
-        selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
-        setFieldsValues(selectedRecord);
     }
 
     @FXML
     void deleteButtonClick(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Внимание!");
+        alert.setHeaderText("Вы уверены, что хотите удалить запись: ");
+        alert.setContentText("Запись: <" + selectedRecord.getCode() + "> " + selectedRecord.getDescription() + "?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK) {
+            AppData.getDivisions().remove(selectedRecord);
+            AppData.getDb().markRecordAsDeleted("employee_divisions",
+                    "division_isdeleted",
+                    "division_id",
+                    selectedRecord.getID());
+        }
 
     }
 

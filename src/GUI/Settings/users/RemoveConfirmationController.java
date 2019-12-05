@@ -51,7 +51,7 @@ public class RemoveConfirmationController {
         alert.showAndWait();
         AppData.getUsers().remove(user);
         AppData.getDb().markRecordAsDeleted("users","user_isdeleted","user_id",user.getID());
-        cancelButtonClick(event);
+        cancelButton.fire();
     }
 
     public void textFieldChange(Event event){

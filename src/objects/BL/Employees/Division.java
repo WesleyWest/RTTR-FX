@@ -1,8 +1,7 @@
 package objects.BL.Employees;
 
 import objects.BL.SimpleObject;
-
-public class Division extends SimpleObject {
+public class Division extends SimpleObject  {
 
     private String code;
     private boolean isDeleted;

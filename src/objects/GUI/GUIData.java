@@ -191,4 +191,13 @@ public class GUIData {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public static boolean isNotEmpty(ArrayList<String> args){
+        for (String arg : args) {
+            if(arg.length()==0){
+                return false;
+            }
+        }
+        return true;
+    }
 }

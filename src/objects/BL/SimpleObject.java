@@ -1,6 +1,6 @@
 package objects.BL;
 
-public class SimpleObject<T> implements idReturnable {
+public class SimpleObject<T> implements StandardBehavior {
     private Integer id;
     String description;
 
@@ -11,6 +11,11 @@ public class SimpleObject<T> implements idReturnable {
 
     public Integer getID() {
         return id;
+    }
+
+    @Override
+    public boolean isDeleted() {
+        return false;
     }
 
     public void setId(Integer id) {

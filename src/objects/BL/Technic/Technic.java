@@ -1,10 +1,10 @@
 package objects.BL.Technic;
 
-import objects.BL.idReturnable;
+import objects.BL.StandardBehavior;
 import objects.BL.SimpleObject;
 import objects.BL.Employees.Employee;
 
-public class Technic implements idReturnable {
+public class Technic implements StandardBehavior {
     private Integer id;
     private String name;
     private String details;
@@ -27,6 +27,11 @@ public class Technic implements idReturnable {
 
     public Integer getID() {
         return id;
+    }
+
+    @Override
+    public boolean isDeleted() {
+        return false;
     }
 
     public void setId(Integer id) {
