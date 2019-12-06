@@ -103,6 +103,14 @@
     -fx-background-color: black;
 }
 
+.table-view:disabled{
+    -fx-opacity: 1;
+}
+
+.table-view:disabled .cell, .table-view:disabled .cell:odd{
+    -fx-text-fill: #7c2020;
+}
+
 .table-view-active .column-header-background .label .text {
     -fx-fill: #cd3838;
 }
@@ -181,6 +189,25 @@
     -fx-text-fill: white;
     -fx-border-color: #6d7179;
 }
+
+.table-row-cell:disabled{
+    -fx-opacity: 1;
+}
+
+.table-row-cell:selected:disabled .table-cell:odd {
+    -fx-opacity: 1;
+    -fx-background-color: #793031;
+    -fx-text-fill: white;
+    -fx-border-color: #793031;
+}
+
+.table-row-cell:selected:disabled .table-cell {
+    -fx-opacity: 1;
+    -fx-background-color: #793031;
+    -fx-text-fill: white;
+    -fx-border-color: #793031;
+}
+
 
 .menu-bar .label .text {
     -fx-fill: #c4c5c2;
@@ -445,4 +472,41 @@
 
 .radio-button:disabled {
     -fx-opacity: 0.6;
+}
+
+.arrow-up-button {
+    -fx-opacity: 1.0;
+    -fx-background-image: url('res/arrowup.png');
+    -fx-background-size: 100% 100%;
+    /*-fx-background-color: transparent;*/
+}
+.arrow-up-button:disabled{
+    -fx-opacity: 0.6;
+}
+.arrow-up-button:pressed {
+    -fx-background-image: url('res/arrowup.png');
+    -fx-background-size: 98% 98%;
+    /*-fx-background-color: transparent;*/
+}
+
+.arrow-up-button:focused {
+    -fx-border-color: transparent;
+}
+
+.arrow-down-button {
+    -fx-background-image: url('res/arrowdown.png');
+    -fx-background-size: 100% 100%;
+    /*-fx-background-color: transparent;*/
+}
+.arrow-down-button:disabled{
+    -fx-opacity: 0.6;
+}
+.arrow-down-button:pressed {
+    -fx-background-image: url('res/arrowdown.png');
+    -fx-background-size: 98% 98%;
+    /*-fx-background-color: transparent;*/
+}
+
+.arrow-down-button:focused {
+    -fx-border-color: transparent;
 }

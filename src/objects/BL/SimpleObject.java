@@ -3,10 +3,12 @@ package objects.BL;
 public class SimpleObject<T> implements StandardBehavior {
     private Integer id;
     String description;
+    boolean isDeleted;
 
-    public SimpleObject(Integer id, String description) {
+    public SimpleObject(Integer id, String description, boolean isDeleted) {
         this.id = id;
         this.description = description;
+        this.isDeleted = isDeleted;
     }
 
     public Integer getID() {
@@ -15,7 +17,7 @@ public class SimpleObject<T> implements StandardBehavior {
 
     @Override
     public boolean isDeleted() {
-        return false;
+        return isDeleted;
     }
 
     public void setId(Integer id) {

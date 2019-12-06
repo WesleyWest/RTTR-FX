@@ -264,6 +264,7 @@ public class UsersSettingsController extends SettingsPaneController {
                 indexOfSelectedRecord = AppData.getUsers().size() - 1;
             } else {
                 AppData.getDb().handleUser(user, false);
+                usersTableView.getItems().set(indexOfSelectedRecord,user);
                 AppData.getUsers().set(indexOfSelectedRecord, user);
             }
             cancelButton.fire();

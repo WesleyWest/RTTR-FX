@@ -4,7 +4,7 @@ import objects.BL.SimpleObject;
 
 public class TechnicStatus extends SimpleObject {
 
-    public TechnicStatus(Integer id, String description) {
-        super(id, description);
+    public TechnicStatus(Integer id, String description, boolean isDeleted) {
+        super(id, description, isDeleted);
     }
 }

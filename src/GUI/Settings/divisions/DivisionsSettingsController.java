@@ -11,9 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import objects.BL.AppData;
 import objects.BL.Employees.Division;
-import objects.BL.Employees.Employee;
-import objects.BL.Users.Role;
-import objects.BL.Users.User;
 import objects.GUI.GUIData;
 
 import java.util.ArrayList;
@@ -23,7 +20,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
 
     @FXML
     private TableView<Division> divisionsTableView;
-
     @FXML
     TableColumn<Division, String> codeColumn;
     @FXML
@@ -173,8 +169,7 @@ public class DivisionsSettingsController extends SettingsPaneController {
             } else {
                 AppData.getDb().handleDivision(division, false);
                 AppData.getDivisions().set(indexOfSelectedRecord, division);
-                divisionsTableView.getItems().clear();
-                divisionsTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getDivisions()));
+                divisionsTableView.getItems().set(indexOfSelectedRecord, division);
             }
             cancelButton.fire();
             divisionsTableView.getSelectionModel().select(indexOfSelectedRecord);

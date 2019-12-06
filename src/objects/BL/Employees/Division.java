@@ -7,9 +7,8 @@ public class Division extends SimpleObject  {
     private boolean isDeleted;
 
     public Division(Integer id, String code, String description, boolean isDeleted) {
-        super(id, description);
+        super(id, description, isDeleted);
         this.code=code;
-        this.isDeleted=isDeleted;
     }
 
     public String getCode() {

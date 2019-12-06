@@ -151,6 +151,10 @@ public class SettingsController {
             loader = new FXMLLoader(getClass().getResource("divisions/DivisionsSettings.fxml"));
             divisionsSettingsPane= putAndGetSettingsPane(loader, divisionsAnchorPane);
             divisionsPaneController = getSettingsPaneController(loader);
+
+            loader = new FXMLLoader(getClass().getResource("positions/PositionsSettings.fxml"));
+            positionsSettingsPane= putAndGetSettingsPane(loader, postionsAnchorPane);
+            positionPaneController = getSettingsPaneController(loader);
         }
     }
 
@@ -165,8 +169,6 @@ public class SettingsController {
 
         if (childPane != null) {
             parentAnchorPane.getChildren().add(childPane);
-//            childPane.setLayoutX(14);
-//            childPane.setLayoutY(70);
         }
         return childPane;
     }

@@ -135,7 +135,8 @@ public abstract class SQLDataBase extends AppData {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String description = rs.getString(2);
-                tmp.add((T) new SimpleObject(id, description));
+                boolean isDeleted = rs.getBoolean(3);
+                tmp.add((T) new SimpleObject(id, description,isDeleted));
             }
             rs.close();
             statement.close();
@@ -422,17 +423,18 @@ public abstract class SQLDataBase extends AppData {
     public void handleDivision(Division division, boolean isNew) {
         String query = "";
         String report = "";
+
         if (isNew) {
             query = "INSERT INTO employee_divisions (division_code, division_description, division_isdeleted)" +
                     "VALUES ('" + division.getCode() + "', '"
                     + division.getDescription() + "', '"
-                    + division.isDeleted() + "') ;";
+                    + "0') ;";
             report = "added";
         } else {
             query = "UPDATE employee_divisions SET "
                     + "division_code = '" + division.getCode() + "', "
                     + "division_description = '" + division.getDescription() + "', "
-                    + "division_isdeleted = '" + division.isDeleted() + "' "
+                    + "division_isdeleted = '0' "
                     + "WHERE division_id = " + division.getID() + ";";
             report = "edited";
         }

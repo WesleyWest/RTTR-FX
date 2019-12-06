@@ -128,6 +128,19 @@
     -fx-border-color: #376bc5;
 }
 
+.table-row-cell:selected:disabled .table-cell:odd {
+    -fx-opacity: 1;
+}
+
+.table-row-cell:selected:disabled .table-cell {
+    -fx-opacity: 1;
+}
+
+.table-row-cell:disabled{
+    -fx-opacity: 1;
+}
+
+
 .table-view {
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
@@ -172,7 +185,6 @@
 .table-view .cell:empty, .table-view .cell:empty:odd {
     -fx-background-color: #edfffd;
 }
-
 
 .table-view-active .column-header-background .label {
     -fx-background-color: transparent;
@@ -438,4 +450,40 @@
 
 .label-edit-mode .text {
     -fx-fill: red;
+}
+
+.arrow-up-button {
+    -fx-background-image: url('res/arrowup.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-color: transparent;
+}
+.arrow-up-button:disabled{
+    -fx-opacity: 0.6;
+}
+.arrow-up-button:pressed {
+    -fx-background-image: url('res/arrowup.png');
+    -fx-background-size: 98% 98%;
+    -fx-background-color: transparent;
+}
+
+.arrow-up-button:focused {
+    -fx-border-color: transparent;
+}
+
+.arrow-down-button {
+    -fx-background-image: url('res/arrowdown.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-color: transparent;
+}
+.arrow-down-button:disabled{
+    -fx-opacity: 0.6;
+}
+.arrow-down-button:pressed {
+    -fx-background-image: url('res/arrowdown.png');
+    -fx-background-size: 98% 98%;
+    -fx-background-color: transparent;
+}
+
+.arrow-down-button:focused {
+    -fx-border-color: transparent;
 }
