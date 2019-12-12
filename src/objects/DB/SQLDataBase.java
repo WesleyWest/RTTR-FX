@@ -24,6 +24,7 @@ public abstract class SQLDataBase extends AppData {
 
 
     public abstract int getLastSequenceNumber(String tableName);
+    public abstract void createTable(String tableName);
 
     private Connection connection;
     private boolean opened;
@@ -122,7 +123,7 @@ public abstract class SQLDataBase extends AppData {
         return result;
     }
 
-    public <T extends SimpleObject> ObservableList<T> readSimpleObjectsListFromDB(String tableName, String objectName) {
+    public <T extends SimpleObject> ObservableList<T> readSimpleObjectsListFromDB(String tableName,String objectName) {
         ArrayList<T> tmp = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -136,7 +137,7 @@ public abstract class SQLDataBase extends AppData {
                 int id = rs.getInt(1);
                 String description = rs.getString(2);
                 boolean isDeleted = rs.getBoolean(3);
-                tmp.add((T) new SimpleObject(id, description,isDeleted));
+                tmp.add((T) new SimpleObject(id, description, isDeleted));
             }
             rs.close();
             statement.close();
@@ -245,8 +246,38 @@ public abstract class SQLDataBase extends AppData {
             opened = false;
         }
         AppData.printInLog("Employee divisions was read...");
+//        System.out.println(tmp);
         ObservableList<Division> divisions = FXCollections.observableArrayList(tmp);
         return divisions;
+    }
+
+    public ObservableList<Position> readPositionsFromDB() {
+        ArrayList<Position> tmp = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query =
+                    "SELECT * " +
+                            "FROM employee_positions " +
+                            "ORDER BY position_weight DESC";
+
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int id = rs.getInt("position_id");
+                String description = rs.getString("position_description");
+                int weight = rs.getInt("position_weight");
+                boolean isDeleted = rs.getBoolean("position_isdeleted");
+                tmp.add(new Position(id, description, weight, isDeleted));
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            GUIData.showAlert("SQL exception: " + e.getLocalizedMessage());
+            opened = false;
+        }
+        AppData.printInLog("Employee positions was read...");
+//        System.out.println(tmp);
+        ObservableList<Position> positions = FXCollections.observableArrayList(tmp);
+        return positions;
     }
 
     public ObservableList<Employee> readEmployeesFromDB() {
@@ -364,7 +395,6 @@ public abstract class SQLDataBase extends AppData {
                 Technic technic = AppData.getObjectByID(AppData.getTechnic(), tecnicID);
                 User author = AppData.getObjectByID(AppData.getUsers(), authorID);
                 User closer = AppData.getObjectByID(AppData.getUsers(), closerID);
-
                 Request req = new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, author, closer);
                 tmp.add(req);
             }
@@ -441,13 +471,37 @@ public abstract class SQLDataBase extends AppData {
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
     }
 
+    public void handlePositions(ObservableList<Position> positions) {
+        String query = "";
+        dropTable("employee_positions");
+        createTable("employee_positions");
+        query = "INSERT INTO 'employee_positions' VALUES \n";
+
+        for(int i=0; i<positions.size(); i++) {
+            int intDeleted = (positions.get(i).isDeleted())?1:0;
+            char c = (i<positions.size()-1)?',':';';
+            query+="("
+                    +positions.get(i).getID()+
+                    ", '"+positions.get(i).getDescription()+"', "
+                    +(positions.size()-i)+", "
+                    +intDeleted
+                    +")"+c+"\n";
+        }
+//        System.out.println(query);
+        AppData.printInLog((executeUpdateDB(query)) ? "The table was re-created..." : "Something wrong...");
+    }
 
     public void markRecordAsDeleted(String tableName, String isDeletedFieldName, String idFieldName, int id) {
         String query = "UPDATE " + tableName + " SET " + isDeletedFieldName + " = 1 WHERE " + idFieldName + " = " + id + ";";
-        AppData.printInLog((executeUpdateDB(query)) ? "Record was deleted..." : "Something wrong...");
+        AppData.printInLog((executeUpdateDB(query)) ? "Record was marked as deleted..." : "Something wrong...");
     }
 
-    private boolean executeUpdateDB(String query) {
+    public void dropTable(String tableName){
+        String query="DROP TABLE "+tableName;
+        executeUpdateDB(query);
+    }
+
+    protected boolean executeUpdateDB(String query) {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);

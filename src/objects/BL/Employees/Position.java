@@ -1,17 +1,29 @@
 package objects.BL.Employees;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import objects.BL.SimpleObject;
 
-public class Position extends SimpleObject{
-    public Position(Integer id, String description, boolean isDeleted) {
+public class Position extends SimpleObject implements Comparable {
+    private int weight;
+
+    public Position(Integer id, String description, int weight, boolean isDeleted) {
         super(id, description, isDeleted);
+        this.weight=weight;
     }
 
-    public static ObservableList<SimpleObject<Position>> getSortedList(ObservableList<SimpleObject<Position>> incomingList){
-        incomingList.sort((o1, o2) -> o2.getID()-o1.getID());
+    public int getWeight() {
+        return weight;
+    }
 
-        return FXCollections.observableArrayList(incomingList);
+    @Override
+    public String toString() {
+        return "Position{" +
+                super.toString()+
+                "; weight=" + weight +
+                "}\n";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return ((Position) o).getWeight()-this.getWeight();
     }
 }

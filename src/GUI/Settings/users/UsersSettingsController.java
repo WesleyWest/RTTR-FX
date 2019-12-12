@@ -104,7 +104,7 @@ public class UsersSettingsController extends SettingsPaneController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
-        usersTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getUsers()));
+        usersTableView.setItems(AppData.getListOfObjects(AppData.getUsers(),false));
         usersTableView.getSelectionModel().select(0);
         usersTableView.requestFocus();
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
@@ -119,7 +119,7 @@ public class UsersSettingsController extends SettingsPaneController {
 
     public void fillEmployeesComboBox() {
         employeesComboBox.getItems().clear();
-        ArrayList<Employee> tmpEmployees = new ArrayList<>(AppData.getListWithoutDeletedObjects(AppData.getEmployees()));
+        ArrayList<Employee> tmpEmployees = new ArrayList<>(AppData.getListOfObjects(AppData.getEmployees(),false));
         employeesComboBox.getItems().add(tmpEmployees.get(0));
         tmpEmployees.remove(0);
         for (Employee tmpEmployee : Employee.sortEmployeeList(tmpEmployees)) {
@@ -177,7 +177,7 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     private void updateCountLabel() {
-        countLabel.setText("Количество пользователей: " + AppData.getListWithoutDeletedObjects(AppData.getUsers()).size());
+        countLabel.setText("Количество пользователей: " + AppData.getListOfObjects(AppData.getUsers(),false).size());
     }
 
     public void showPasswordToggleButtonClick(ActionEvent event) {

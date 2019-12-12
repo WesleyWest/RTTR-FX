@@ -34,6 +34,6 @@ public class SimpleObject<T> implements StandardBehavior {
 
     @Override
     public String toString() {
-        return getID()+": "+getDescription();
+        return getID()+": "+getDescription()+": "+isDeleted();
     }
 }

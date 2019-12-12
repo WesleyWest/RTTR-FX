@@ -30,7 +30,7 @@
          </buttons>
       </ButtonBar>
       <Label fx:id="countLabel" layoutX="14.0" layoutY="391.0" text="Количество зарегистрированных должностей:" />
-      <Label fx:id="modeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="494.0" layoutY="14.0" prefHeight="17.0" prefWidth="212.0" text="Режим просмотра" textAlignment="CENTER">
+      <Label fx:id="modeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="532.0" layoutY="14.0" prefHeight="17.0" prefWidth="212.0" text="Режим просмотра" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -41,7 +41,7 @@
             <Button fx:id="cancelButton" cancelButton="true" minWidth="0.0" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" text="Отмена" />
          </buttons>
       </ButtonBar>
-      <Button fx:id="upButton" layoutX="365.0" layoutY="150.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" />
-      <Button fx:id="downButton" layoutX="365.0" layoutY="208.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" />
+      <Button fx:id="upButton" layoutX="365.0" layoutY="150.0" mnemonicParsing="false" onAction="#upDownButtonClick" prefHeight="42.0" prefWidth="42.0" />
+      <Button fx:id="downButton" layoutX="365.0" layoutY="208.0" mnemonicParsing="false" onAction="#upDownButtonClick" prefHeight="42.0" prefWidth="42.0" />
    </children>
 </Pane>

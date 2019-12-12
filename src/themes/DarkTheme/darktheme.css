@@ -59,6 +59,20 @@
     -fx-border-radius: 5;
 }
 
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: #1f0c0c;
+}
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #5b1a1a;
+}
+
+.table-view .scroll-bar:vertical .increment-button,
+.table-view .scroll-bar:vertical .decrement-button{
+    -fx-background-color: #5b1a1a;
+    -fx-border-color: #1f0c0c;
+    -fx-border-width: 2;
+}
+
 .table-view:focused {
     -fx-border-width: 1;
     -fx-border-color: #9ea09f;
@@ -194,14 +208,14 @@
     -fx-opacity: 1;
 }
 
-.table-row-cell:selected:disabled .table-cell:odd {
+.table-row-cell:selected:disabled:odd .table-cell{
     -fx-opacity: 1;
     -fx-background-color: #793031;
     -fx-text-fill: white;
     -fx-border-color: #793031;
 }
 
-.table-row-cell:selected:disabled .table-cell {
+.table-row-cell:selected:disabled .table-cell{
     -fx-opacity: 1;
     -fx-background-color: #793031;
     -fx-text-fill: white;

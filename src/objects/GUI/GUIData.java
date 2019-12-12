@@ -195,6 +195,7 @@ public class GUIData {
     public static boolean isNotEmpty(ArrayList<String> args){
         for (String arg : args) {
             if(arg.length()==0){
+                GUIData.showAlert("Поля не могут быть пустыми!");
                 return false;
             }
         }

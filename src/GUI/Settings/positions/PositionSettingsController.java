@@ -16,13 +16,14 @@ import objects.BL.Employees.Position;
 import objects.BL.SimpleObject;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class PositionSettingsController extends SettingsPaneController {
     @FXML
-    private TableView<SimpleObject<Position>> positionsTableView;
+    private TableView<Position> positionsTableView;
 
     @FXML
-    private TableColumn<SimpleObject<Position>, String> descriptionColumn;
+    private TableColumn<Position, String> descriptionColumn;
 
     @FXML
     private TextField descriptionTextField;
@@ -60,17 +61,18 @@ public class PositionSettingsController extends SettingsPaneController {
     @FXML
     private Button downButton;
 
-    private static SimpleObject<Position> selectedRecord;
-    private int indexOfSelectedRecord;
+    private Position selectedRecord;
+    private Position tmpPosition;
+    private ArrayList<Position> tmpList = new ArrayList<>();
 
+    private int indexOfSelectedRecord;
 
     @FXML
     void initialize() {
-        AppData.setPositions(Position.getSortedList(AppData.getPositions()));
         initListeners();
         applyCSS();
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<SimpleObject<Position>, String>("description"));
-        positionsTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getPositions()));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<Position, String>("description"));
+        fillTableView();
         positionsTableView.getSelectionModel().select(0);
         positionsTableView.requestFocus();
         selectedRecord = positionsTableView.getSelectionModel().getSelectedItem();
@@ -80,13 +82,19 @@ public class PositionSettingsController extends SettingsPaneController {
         updateCountLabel();
     }
 
+    private void fillTableView() {
+        positionsTableView.setItems(AppData.getListOfObjects(AppData.getPositions(), false));
+        updateCountLabel();
+    }
+
     private void directionButtonsSetDisable(boolean state) {
         upButton.setDisable(state);
         downButton.setDisable(state);
     }
 
-    private void setFieldsValues(SimpleObject<Position> selectedRecord) {
+    private void setFieldsValues(Position selectedRecord) {
         descriptionTextField.setText(selectedRecord.getDescription());
+
     }
 
 
@@ -97,7 +105,7 @@ public class PositionSettingsController extends SettingsPaneController {
     }
 
     private void initListeners() {
-        AppData.getPositions().addListener((ListChangeListener<SimpleObject>) c -> updateCountLabel());
+//        positionsTableView.getItems().addListener((ListChangeListener<SimpleObject>) c -> updateCountLabel());
 
         positionsTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) {
@@ -111,26 +119,38 @@ public class PositionSettingsController extends SettingsPaneController {
 
     private void updateCountLabel() {
         countLabel.setText("Количество зарегистрированных должностей: "
-                + AppData.getListWithoutDeletedObjects(AppData.getPositions()).size());
+                + positionsTableView.getItems().size());
     }
 
     @FXML
     void addOrEditButtonClick(ActionEvent event) {
-        getParentController().setExitButtonVisible(false);
-        getParentController().setTabsDisabled("000100");
         allControlsSetEditable(true);
+
+        tmpList.clear();
+        tmpList.addAll(positionsTableView.getItems());
+
         Button callerButton = (Button) event.getSource();
         if (callerButton.getId().equals("addButton")) {
             applyButton.setText("Добавить");
+            int tmpID = AppData.getDb().getLastSequenceNumber("employee_positions");
+            tmpPosition = new Position(tmpID, "Новая позиция", 0, false);
+            positionsTableView.getItems().add(tmpPosition);
+            positionsTableView.getSelectionModel().select(tmpPosition);
+            selectedRecord = positionsTableView.getSelectionModel().getSelectedItem();
             descriptionTextField.setText("");
+            positionsTableView.requestFocus();
+
         } else {
             applyButton.setText("Применить");
-            indexOfSelectedRecord = positionsTableView.getSelectionModel().getSelectedIndex();
+            selectedRecord = positionsTableView.getSelectionModel().getSelectedItem();
             descriptionTextField.requestFocus();
         }
     }
 
     private void allControlsSetEditable(boolean state) {
+        getParentController().setExitButtonVisible(!state);
+        String tabsKey = (state) ? "000100" : "111111";
+        getParentController().setTabsDisabled(tabsKey);
         setModeLabelState(modeLabel, state);
         descriptionTextField.setEditable(true);
         mainButtonBar.setVisible(!state);
@@ -141,22 +161,80 @@ public class PositionSettingsController extends SettingsPaneController {
     }
 
     @FXML
-    void applyButtonClick(ActionEvent event) {
+    void upDownButtonClick(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        int currentPos = positionsTableView.getSelectionModel().getSelectedIndex();
+        int step = 0;
+        if (clickedButton.getId().equals("upButton")) {
+            if (currentPos == 0) {
+                return;
+            }
+            step = -1;
+        } else {
+            if (currentPos == positionsTableView.getItems().size() - 1) {
+                return;
+            }
+            step = 1;
+        }
+        int newPos = currentPos + step;
+        Position tmp = positionsTableView.getItems().get(newPos);
+        positionsTableView.getItems().set(newPos, positionsTableView.getItems().get(currentPos));
+        positionsTableView.getItems().set(currentPos, tmp);
+        positionsTableView.scrollTo(newPos);
+    }
 
+    @FXML
+    void applyButtonClick(ActionEvent event) {
+        positionsTableView.getItems().
+                get(positionsTableView.getSelectionModel().getSelectedIndex()).
+                setDescription(descriptionTextField.getText());
+
+        ObservableList<Position> tmpPositions = FXCollections.observableArrayList();
+        int tmpID = selectedRecord.getID();
+        tmpPositions.addAll(AppData.getListOfObjects(AppData.getPositions(), true));
+        tmpPositions.addAll(positionsTableView.getItems());
+
+        AppData.getDb().handlePositions(tmpPositions);
+        allControlsSetEditable(false);
+        AppData.setPositions(AppData.getDb().readPositionsFromDB());
+        positionsTableView.getItems().clear();
+        fillTableView();
+        positionsTableView.getSelectionModel().select(AppData.getObjectByID(AppData.getPositions(), tmpID));
+        positionsTableView.requestFocus();
     }
 
     @FXML
     void cancelButtonClick(ActionEvent event) {
-        getParentController().setExitButtonVisible(true);
-        getParentController().setTabsDisabled("111111");
+        positionsTableView.getItems().clear();
+        positionsTableView.getItems().addAll(tmpList);
         allControlsSetEditable(false);
         setFieldsValues(selectedRecord);
+        positionsTableView.getSelectionModel().select(selectedRecord);
+        positionsTableView.requestFocus();
     }
 
     @FXML
     void deleteButtonClick(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Внимание!");
+        alert.setHeaderText("Вы уверены, что хотите удалить запись: ");
+        alert.setContentText("Запись: <" + selectedRecord.getDescription() + "> ?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK) {
+            AppData.getPositions().remove(selectedRecord);
+            AppData.getDb().markRecordAsDeleted("employee_positions",
+                    "position_isdeleted",
+                    "position_id",
+                    selectedRecord.getID());
+            fillTableView();
+            positionsTableView.getSelectionModel().select(0);
+            selectedRecord = positionsTableView.getItems().get(0);
+            setFieldsValues(selectedRecord);
+            positionsTableView.requestFocus();
+        }
 
     }
+
 
     @FXML
     void positionsTableViewAction(Event event) {

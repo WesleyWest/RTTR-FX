@@ -99,7 +99,7 @@ public class LoginController extends GUIController {
         if (getUsers() == null) {
             getDBFromFactory();
             setDivisions(getDb().readDivisionsFromDB());
-            setPositions(getDb().readSimpleObjectsListFromDB("employee_positions", "Employees positions"));
+            setPositions(getDb().readPositionsFromDB());
             setEmployees(getDb().readEmployeesFromDB());
             getDb().setRoleNamesFromDB();
             setUsers(getDb().readUsersFromDB());

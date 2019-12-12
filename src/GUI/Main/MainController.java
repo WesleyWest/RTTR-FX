@@ -179,7 +179,7 @@ public class MainController extends GUIController {
         idTextField.setText(selectedRecord.getID().toString());
 
         Employee author = getObjectByID(getEmployees(), selectedRecord.getAuthor().getID());
-        authorTextField.setText(Employee.getFullEmployeeDescription(author));
+        authorTextField.setText(author.getShortDescription());
 
         Technic technic = selectedRecord.getTechnicAsObject();
         technicField.setText(technic.getType().getDescription() + " " + technic.getName());
@@ -187,16 +187,16 @@ public class MainController extends GUIController {
         requestOpenTimeField.setText(selectedRecord.getOpenDate());
 
         Employee owner = selectedRecord.getTechnicAsObject().getOwner();
-        ownerTextField.setText(Employee.getFullEmployeeDescription(owner));
+        ownerTextField.setText(owner.getShortDescription());
 
         Employee repairer = selectedRecord.getTechnicAsObject().getRepairer();
-        repairerTextField.setText(Employee.getFullEmployeeDescription(repairer));
+        repairerTextField.setText(repairer.getShortDescription());
 
         problemDescriptionTextField.setText(selectedRecord.getProblemDescription());
 
         if (selectedRecord.getStatus()) {
             Employee closer = getObjectByID(getEmployees(), selectedRecord.getCloser().getID());
-            closerTextField.setText(Employee.getFullEmployeeDescription(closer));
+            closerTextField.setText(closer.getShortDescription());
             requestCloseTimeField.setText(selectedRecord.getCloseDate());
             worksDescriptionTextField.setText(selectedRecord.getDecisionDescription());
         }

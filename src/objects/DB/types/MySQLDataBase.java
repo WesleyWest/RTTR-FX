@@ -30,4 +30,9 @@ public class MySQLDataBase extends SQLDataBase {
                 "SELECT auto_increment FROM information_schema.tables WHERE table_name='"+tableName+"';";
         return findLastSequenceNumber(query);
     }
+
+    @Override
+    public void createTable(String tableName) {
+
+    }
 }

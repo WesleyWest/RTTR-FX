@@ -40,7 +40,7 @@ public class SettingsController {
     @FXML
     private AnchorPane divisionsAnchorPane;
     @FXML
-    private AnchorPane postionsAnchorPane;
+    private AnchorPane positionsAnchorPane;
     @FXML
     private AnchorPane employeesAnchorPane;
     @FXML
@@ -153,8 +153,12 @@ public class SettingsController {
             divisionsPaneController = getSettingsPaneController(loader);
 
             loader = new FXMLLoader(getClass().getResource("positions/PositionsSettings.fxml"));
-            positionsSettingsPane= putAndGetSettingsPane(loader, postionsAnchorPane);
+            positionsSettingsPane= putAndGetSettingsPane(loader, positionsAnchorPane);
             positionPaneController = getSettingsPaneController(loader);
+
+            loader = new FXMLLoader(getClass().getResource("employees/EmployeesSettings.fxml"));
+            employeesSettingsPane= putAndGetSettingsPane(loader, employeesAnchorPane);
+            employeesPaneController = getSettingsPaneController(loader);
         }
     }
 
@@ -185,7 +189,7 @@ public class SettingsController {
         AnchorPane[] panes =   {settingsAnchorPane,
                                 usersAnchorPane,
                                 divisionsAnchorPane,
-                                postionsAnchorPane,
+                positionsAnchorPane,
                                 employeesAnchorPane,
                                 technicAnchorPane};
         for (AnchorPane pane : panes) {

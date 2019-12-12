@@ -57,7 +57,7 @@ public class Employee implements StandardBehavior {
             tmp = this.lastName + " "
                 + this.name.charAt(0) + ". "+tmp+", "
                 + this.position.getDescription() + ", "
-                + this.division.getDescription();
+                + this.division.getCode();
             return tmp;
         }
     }

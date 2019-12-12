@@ -23,7 +23,7 @@ public class AppData {
     private static ObservableList<Role> roles = null;
     private static ObservableList<User> users = null;
 
-    private static ObservableList<SimpleObject<Position>> positions;
+    private static ObservableList<Position> positions;
     private static ObservableList<Division> divisions;
     private static ObservableList<Employee> employees;
 
@@ -41,13 +41,6 @@ public class AppData {
         AppData.db = db;
     }
 
-    public static ObservableList<SimpleObject<Position>> getPositions() {
-        return positions;
-    }
-
-    public static void setPositions(ObservableList<SimpleObject<Position>> positions) {
-        AppData.positions = positions;
-    }
 
     public static ObservableList<SimpleObject<TechnicType>> getTypes() {
         return types;
@@ -87,6 +80,15 @@ public class AppData {
 
     public static void setUsers(ObservableList<User> users) {
         AppData.users = users;
+    }
+
+
+    public static ObservableList<Position> getPositions() {
+        return positions;
+    }
+
+    public static void setPositions(ObservableList<Position> positions) {
+        AppData.positions = positions;
     }
 
     public static ObservableList<Division> getDivisions() {
@@ -130,11 +132,10 @@ public class AppData {
         return null;
     }
 
-    public static <T extends StandardBehavior> ObservableList<T> getListWithoutDeletedObjects(ObservableList<T> incomingList)
-    {
+    public static <T extends StandardBehavior> ObservableList<T> getListOfObjects(ObservableList<T> incomingList, boolean isDeleted) {
         ArrayList<T> tmp = new ArrayList<>();
         for (T object : incomingList) {
-            if (!object.isDeleted()) {
+            if (object.isDeleted() == isDeleted) {
                 tmp.add(object);
             }
         }
@@ -150,7 +151,6 @@ public class AppData {
             System.out.println();
         }
     }
-
 
 
 }

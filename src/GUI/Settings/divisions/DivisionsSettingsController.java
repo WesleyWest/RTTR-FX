@@ -59,8 +59,7 @@ public class DivisionsSettingsController extends SettingsPaneController {
 
         codeColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("code"));
         fullDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("description"));
-
-        divisionsTableView.setItems(AppData.getListWithoutDeletedObjects(AppData.getDivisions()));
+        divisionsTableView.setItems(AppData.getListOfObjects(AppData.getDivisions(),false));
         divisionsTableView.getSelectionModel().select(0);
         divisionsTableView.requestFocus();
         selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
@@ -106,7 +105,7 @@ public class DivisionsSettingsController extends SettingsPaneController {
     }
 
     private void updateCountLabel() {
-        countLabel.setText("Количество подразделений: " + AppData.getListWithoutDeletedObjects(AppData.getDivisions()).size());
+        countLabel.setText("Количество подразделений: " + AppData.getListOfObjects(AppData.getDivisions(),false).size());
     }
 
     @FXML
@@ -176,8 +175,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
             divisionsTableView.requestFocus();
             selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
             setFieldsValues(selectedRecord);
-        } else {
-            GUIData.showAlert("Поля не могут быть пустыми!");
         }
     }
 
