@@ -65,7 +65,6 @@ public class PositionSettingsController extends SettingsPaneController {
     private Position tmpPosition;
     private ArrayList<Position> tmpList = new ArrayList<>();
 
-    private int indexOfSelectedRecord;
 
     @FXML
     void initialize() {
@@ -99,7 +98,9 @@ public class PositionSettingsController extends SettingsPaneController {
 
 
     private void applyCSS() {
-        modeLabel.getStyleClass().set(0, "label-view-mode");
+        modeLabel.getStyleClass().clear();
+        modeLabel.getStyleClass().add("");
+        setModeLabelState(modeLabel, false);
         upButton.getStyleClass().set(0, "arrow-up-button");
         downButton.getStyleClass().set(0, "arrow-down-button");
     }
@@ -151,13 +152,13 @@ public class PositionSettingsController extends SettingsPaneController {
         getParentController().setExitButtonVisible(!state);
         String tabsKey = (state) ? "000100" : "111111";
         getParentController().setTabsDisabled(tabsKey);
-        setModeLabelState(modeLabel, state);
-        descriptionTextField.setEditable(true);
+        descriptionTextField.setEditable(state);
         mainButtonBar.setVisible(!state);
         secondButtonBar.setVisible(state);
         positionsTableView.setDisable(state);
         upButton.setDisable(!state);
         downButton.setDisable(!state);
+        setModeLabelState(modeLabel, state);
     }
 
     @FXML
@@ -193,7 +194,6 @@ public class PositionSettingsController extends SettingsPaneController {
         int tmpID = selectedRecord.getID();
         tmpPositions.addAll(AppData.getListOfObjects(AppData.getPositions(), true));
         tmpPositions.addAll(positionsTableView.getItems());
-
         AppData.getDb().handlePositions(tmpPositions);
         allControlsSetEditable(false);
         AppData.setPositions(AppData.getDb().readPositionsFromDB());

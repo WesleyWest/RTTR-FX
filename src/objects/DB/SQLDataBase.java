@@ -297,10 +297,10 @@ public abstract class SQLDataBase extends AppData {
                 String middleName = rs.getString("employee_middle_name");
                 int positionID = rs.getInt("employee_position_id");
                 int divisionID = rs.getInt("employee_division_id");
-
+                boolean isDeleted = rs.getBoolean("employee_isdeleted");
                 Division div = AppData.getObjectByID(AppData.getDivisions(), divisionID);
-                SimpleObject<Position> pos = AppData.getObjectByID(AppData.getPositions(), positionID);
-                tmp.add(new Employee(id, lastName, name, middleName, pos, div));
+                Position pos = AppData.getObjectByID(AppData.getPositions(), positionID);
+                tmp.add(new Employee(id, lastName, name, middleName, pos, div, isDeleted));
             }
             rs.close();
             statement.close();
@@ -487,8 +487,40 @@ public abstract class SQLDataBase extends AppData {
                     +intDeleted
                     +")"+c+"\n";
         }
-//        System.out.println(query);
         AppData.printInLog((executeUpdateDB(query)) ? "The table was re-created..." : "Something wrong...");
+    }
+
+    public void handleEmployee(Employee employee, boolean isNew) {
+        System.out.println(employee.getDivision());
+        System.out.println(employee.getPosition());
+        int intDeleted = (employee.isDeleted()) ? 1 : 0;
+        String query = "";
+        String report = "";
+        if (isNew) {
+            query =
+                    "INSERT INTO employees (employee_last_name, employee_name, employee_middle_name, employee_position_id," +
+                            " employee_division_id, employee_isdeleted)" +
+                            "VALUES ('" + employee.getLastName() + "', '"
+                            + employee.getName() + "', '"
+                            + employee.getMiddleName()+ "', '"
+                            + employee.getPosition().getID() + "', '"
+                            + employee.getDivision().getID() + "', '"
+                            + intDeleted + "') ;";
+            report = "added";
+        } else {
+            query =
+                    "UPDATE employees SET "
+                            + "employee_last_name = '" + employee.getLastName() + "', "
+                            + "employee_name = '" + employee.getName() + "', "
+                            + "employee_middle_name = '" + employee.getMiddleName() + "', "
+                            + "employee_position_id = '" + employee.getPosition().getID() + "', "
+                            + "employee_division_id = '" + employee.getDivision().getID() + "', "
+                            + "employee_isdeleted = '" + intDeleted + "' "
+                            + "WHERE employee_id = " + employee.getID() + ";";
+            report = "edited";
+        }
+        System.out.println(query);
+        AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
     }
 
     public void markRecordAsDeleted(String tableName, String isDeletedFieldName, String idFieldName, int id) {

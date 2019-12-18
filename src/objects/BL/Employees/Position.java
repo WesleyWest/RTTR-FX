@@ -16,10 +16,7 @@ public class Position extends SimpleObject implements Comparable {
 
     @Override
     public String toString() {
-        return "Position{" +
-                super.toString()+
-                "; weight=" + weight +
-                "}\n";
+        return this.getDescription();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package objects.BL.Employees;
 
+import javafx.collections.ObservableList;
 import objects.BL.StandardBehavior;
 import objects.BL.SimpleObject;
 
@@ -10,38 +11,34 @@ public class Employee implements StandardBehavior {
     private String lastName;
     private String name;
     private String middleName;
-    private SimpleObject position;
+    private Position position;
     private Division division;
+    private boolean isDeleted;
 
 
-    public Employee(Integer id, String lastName, String name, String middleName, SimpleObject<Position> position, Division division) {
+    public Employee(Integer id, String lastName, String name, String middleName, Position position, Division division, boolean isDeleted) {
         this.id = id;
         this.lastName = lastName;
         this.name = name;
         this.middleName = middleName;
         this.position = position;
         this.division = division;
-
+        this.isDeleted = isDeleted;
     }
 
-    public static ArrayList<Employee> sortEmployeeList(ArrayList<Employee> tmpEmployees) {
+    public static ObservableList<Employee> sortEmployeeList(ObservableList<Employee> tmpEmployees) {
         tmpEmployees.sort((Employee employee1, Employee employee2) -> {
             int tmp1 =
-                    employee1.getDivision().getDescription().charAt(0) * -100
-                            + employee1.getPosition().getID() * 10
+                    employee1.getDivision().getCode().charAt(0) * -100
+                            + employee1.getPosition().getID() * -10
                             + employee1.getLastName().charAt(0);
             int tmp2 =
-                    employee2.getDivision().getDescription().charAt(0) * -100
-                            + employee2.getPosition().getID() * 10
+                    employee2.getDivision().getCode().charAt(0) * -100
+                            + employee2.getPosition().getID() * -10
                             + employee2.getLastName().charAt(0);
             return tmp2 - tmp1;
         });
         return tmpEmployees;
-    }
-
-    public static String getFullEmployeeDescription(Employee employee) {
-        return employee.position.getDescription() + " " + employee.division.getDescription() +
-                " " + employee.lastName + " " + employee.name + " " + employee.getMiddleName();
     }
 
     public String getShortDescription() {
@@ -62,10 +59,24 @@ public class Employee implements StandardBehavior {
         }
     }
 
+    public String getFullName(){
+        String middleName =(this.middleName!=null)?this.middleName:"";
+        return this.lastName + " "
+                +this.name+ " "
+                +middleName;
+    }
+
+    public String getStringPosition(){
+        return this.position.getDescription();
+    }
+
+    public String getStringDivision(){
+        return this.division.getCode();
+    }
+
     public Integer getID() {
         return id;
     }
-
 
     public void setId(Integer id) {
         this.id = id;
@@ -87,6 +98,8 @@ public class Employee implements StandardBehavior {
         this.name = name;
     }
 
+
+
     public String getMiddleName() {
         if (middleName != null) {
             return middleName;
@@ -99,11 +112,11 @@ public class Employee implements StandardBehavior {
         this.middleName = middleName;
     }
 
-    public SimpleObject getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(SimpleObject position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -115,27 +128,14 @@ public class Employee implements StandardBehavior {
         this.division = division;
     }
 
-    public int compareTo(Employee employee){
-        return this.position.getID()-employee.position.getID();
-    }
-
     @Override
     public boolean isDeleted() {
-        return false;
+        return isDeleted;
     }
 
     @Override
     public String toString() {
         return getShortDescription();
-
-//                "Employee{" +
-//                "id=" + id +
-//                ", lastName='" + lastName + '\'' +
-//                ", name='" + name + '\'' +
-//                ", middleName='" + middleName + '\'' +
-//                ", position=" + position +
-//                ", division=" + division +
-//                '}';
     }
 
 }

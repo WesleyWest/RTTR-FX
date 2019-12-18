@@ -59,20 +59,24 @@ public class DivisionsSettingsController extends SettingsPaneController {
 
         codeColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("code"));
         fullDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("description"));
-        divisionsTableView.setItems(AppData.getListOfObjects(AppData.getDivisions(),false));
-        divisionsTableView.getSelectionModel().select(0);
-        divisionsTableView.requestFocus();
+        fillDivisionsTableView();
         selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
         secondButtonBar.setVisible(false);
         setFieldsValues(selectedRecord);
-        updateCountLabel();
     }
-
 
     void applyCSS() {
-        modeLabel.getStyleClass().set(0, "label-view-mode");
+        modeLabel.getStyleClass().clear();
+        modeLabel.getStyleClass().add("");
+        setModeLabelState(modeLabel, false);
     }
 
+    private void fillDivisionsTableView() {
+        divisionsTableView.setItems(AppData.getListOfObjects(AppData.getDivisions(),false));
+        divisionsTableView.getSelectionModel().select(0);
+        divisionsTableView.requestFocus();
+        updateCountLabel();
+    }
 
     private void setFieldsValues(Division division) {
         codeTextField.setText(division.getCode());
@@ -111,7 +115,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
     @FXML
     void addOrEditButtonClick(ActionEvent event) {
         getParentController().setExitButtonVisible(false);
-        getParentController().setTabsDisabled("001000");
         allControlsSetEditable(true);
 
         Button callerButton = (Button) event.getSource();
@@ -132,6 +135,8 @@ public class DivisionsSettingsController extends SettingsPaneController {
     }
 
     private void allControlsSetEditable(boolean state) {
+        String tabsKey = (state) ? "001000" : "111111";
+        getParentController().setTabsDisabled(tabsKey);
         setModeLabelState(modeLabel, state);
         codeTextField.setEditable(state);
         fullDescriptionTextField.setEditable(state);
@@ -143,7 +148,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
     @FXML
     void cancelButtonClick() {
         getParentController().setExitButtonVisible(true);
-        getParentController().setTabsDisabled("111111");
         allControlsSetEditable(false);
         setFieldsValues(selectedRecord);
     }

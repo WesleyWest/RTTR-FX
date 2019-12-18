@@ -1,7 +1,9 @@
 package GUI.Settings.users;
 
 import GUI.Settings.SettingsPaneController;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -104,9 +106,7 @@ public class UsersSettingsController extends SettingsPaneController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
-        usersTableView.setItems(AppData.getListOfObjects(AppData.getUsers(),false));
-        usersTableView.getSelectionModel().select(0);
-        usersTableView.requestFocus();
+        fillUsersTableView();
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
 
         fillEmployeesComboBox();
@@ -114,12 +114,19 @@ public class UsersSettingsController extends SettingsPaneController {
         secondButtonBar.setVisible(false);
         setFieldsValues(AppData.getUsers().get(0));
         initListeners();
+    }
+
+    private void fillUsersTableView() {
+        usersTableView.setItems(AppData.getListOfObjects(AppData.getUsers(),false));
+        usersTableView.getSelectionModel().select(0);
+        usersTableView.requestFocus();
         updateCountLabel();
     }
 
     public void fillEmployeesComboBox() {
         employeesComboBox.getItems().clear();
-        ArrayList<Employee> tmpEmployees = new ArrayList<>(AppData.getListOfObjects(AppData.getEmployees(),false));
+        ObservableList<Employee> tmpEmployees = FXCollections.observableArrayList(
+                AppData.getListOfObjects(AppData.getEmployees(),false));
         employeesComboBox.getItems().add(tmpEmployees.get(0));
         tmpEmployees.remove(0);
         for (Employee tmpEmployee : Employee.sortEmployeeList(tmpEmployees)) {
@@ -128,7 +135,9 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     void applyCSS() {
-        modeLabel.getStyleClass().set(0, "label-view-mode");
+        modeLabel.getStyleClass().clear();
+        modeLabel.getStyleClass().add("");
+        setModeLabelState(modeLabel, false);
     }
 
 
@@ -195,7 +204,6 @@ public class UsersSettingsController extends SettingsPaneController {
     @FXML
     void addOrEditButtonClick(ActionEvent event) {
         getParentController().setExitButtonVisible(false);
-        getParentController().setTabsDisabled("010000");
         allControlsSetEditable(true);
 
         Button callerButton = (Button) event.getSource();
@@ -219,6 +227,9 @@ public class UsersSettingsController extends SettingsPaneController {
     }
 
     private void allControlsSetEditable(boolean state) {
+        String tabsKey = (state) ? "010000" : "111111";
+        getParentController().setTabsDisabled(tabsKey);
+
         mainButtonBar.setVisible(!state);
         secondButtonBar.setVisible(state);
         usersTableView.setDisable(state);
@@ -236,7 +247,6 @@ public class UsersSettingsController extends SettingsPaneController {
     @FXML
     void cancelButtonClick() {
         getParentController().setExitButtonVisible(true);
-        getParentController().setTabsDisabled("111111");
         allControlsSetEditable(false);
         setFieldsValues(selectedRecord);
     }
@@ -268,11 +278,10 @@ public class UsersSettingsController extends SettingsPaneController {
                 AppData.getUsers().set(indexOfSelectedRecord, user);
             }
             cancelButton.fire();
+            fillUsersTableView();
             usersTableView.getSelectionModel().select(indexOfSelectedRecord);
             usersTableView.requestFocus();
             setFieldsValues(AppData.getUsers().get(indexOfSelectedRecord));
-        } else {
-            GUIData.showAlert("Поля не могут быть пустыми!");
         }
     }
 

@@ -103,6 +103,13 @@ public class AppData {
         return employees;
     }
 
+    public static ObservableList<Employee> getEmployeesWithoutEmptyObject() {
+        ObservableList<Employee> tmp = FXCollections.observableArrayList();
+        tmp.addAll(employees);
+        tmp.remove(0);
+        return tmp;
+    }
+
     public static void setEmployees(ObservableList<Employee> employees) {
         AppData.employees = employees;
     }

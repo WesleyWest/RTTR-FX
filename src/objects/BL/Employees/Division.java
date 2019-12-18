@@ -16,6 +16,8 @@ public class Division extends SimpleObject  {
 
     @Override
     public String toString() {
-        return super.toString()+": "+code;
+        return this.getCode();
     }
+
+
 }
