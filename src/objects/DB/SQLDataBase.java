@@ -333,15 +333,13 @@ public abstract class SQLDataBase extends AppData {
                 int statusID = rs.getInt("technic_status_id");
                 int typeID = rs.getInt("technic_type_id");
                 int e_owner = rs.getInt("technic_owner");
-                int e_repairer = rs.getInt("technic_repairer");
 
                 SimpleObject<TechnicStatus> status = AppData.getObjectByID(AppData.getStatuses(), statusID);
                 SimpleObject<TechnicType> type = AppData.getObjectByID(AppData.getTypes(), typeID);
 
                 Employee owner = AppData.getObjectByID(AppData.getEmployees(), e_owner);
-                Employee repairer = AppData.getObjectByID(AppData.getEmployees(), e_repairer);
 
-                tmp.add(new Technic(id, name, details, status, type, owner, repairer));
+                tmp.add(new Technic(id, name, details, status, type, owner));
             }
             rs.close();
             statement.close();
@@ -491,8 +489,6 @@ public abstract class SQLDataBase extends AppData {
     }
 
     public void handleEmployee(Employee employee, boolean isNew) {
-        System.out.println(employee.getDivision());
-        System.out.println(employee.getPosition());
         int intDeleted = (employee.isDeleted()) ? 1 : 0;
         String query = "";
         String report = "";
@@ -519,7 +515,6 @@ public abstract class SQLDataBase extends AppData {
                             + "WHERE employee_id = " + employee.getID() + ";";
             report = "edited";
         }
-        System.out.println(query);
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
     }
 

@@ -14,10 +14,10 @@ import objects.BL.AppData;
 import objects.BL.Employees.Division;
 import objects.BL.Employees.Employee;
 import objects.BL.Employees.Position;
-import objects.BL.Users.User;
 import objects.GUI.GUIData;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class EmployeesSettingsController extends SettingsPaneController {
 
@@ -76,7 +76,6 @@ public class EmployeesSettingsController extends SettingsPaneController {
     private Button cancelButton;
 
     private static Employee selectedRecord;
-    private int indexOfSelectedRecord;
 
     @FXML
     void initialize() {
@@ -85,17 +84,15 @@ public class EmployeesSettingsController extends SettingsPaneController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("fullName"));
         positionColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("stringPosition"));
         divisionColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("stringDivision"));
-        fillEmployeesTableView();
-        selectedRecord = employeesTableView.getSelectionModel().getSelectedItem();
         secondButtonBar.setVisible(false);
-        fillComboBoxes();
-        setControlsValues(selectedRecord);
+//        setInformation();
     }
 
 
     private void fillEmployeesTableView() {
         ObservableList<Employee> tmpEmployees = FXCollections.observableArrayList(
                 AppData.getListOfObjects(AppData.getEmployeesWithoutEmptyObject(), false));
+        employeesTableView.getItems().clear();
         employeesTableView.setItems(Employee.sortEmployeeList(tmpEmployees));
         employeesTableView.getSelectionModel().select(0);
         employeesTableView.requestFocus();
@@ -160,7 +157,6 @@ public class EmployeesSettingsController extends SettingsPaneController {
             setNewEmployeeValuesToControls();
         } else {
             applyButton.setText("Применить");
-            indexOfSelectedRecord = employeesTableView.getSelectionModel().getSelectedIndex();
         }
         lastNameTextField.requestFocus();
     }
@@ -192,7 +188,7 @@ public class EmployeesSettingsController extends SettingsPaneController {
 
     @FXML
     void applyButtonClick(ActionEvent event) {
-
+        int id = selectedRecord.getID();
         String lastName = lastNameTextField.getText();
         String name = nameTextField.getText();
         String middleName = middleNameTextField.getText();
@@ -203,27 +199,36 @@ public class EmployeesSettingsController extends SettingsPaneController {
             args.add(name);
             args.add(lastName);
             if (GUIData.isNotEmpty(args)) {
-                Employee employee = new Employee(selectedRecord.getID(), lastName, name, middleName, position, division, false);
+                Employee employee = new Employee(id, lastName, name, middleName, position, division, false);
                 Button button = (Button) event.getSource();
                 if (button.getText().equals("Добавить")) {
+                    employee.setId(AppData.getDb().getLastSequenceNumber("employees"));
                     AppData.getDb().handleEmployee(employee, true);
                     AppData.getEmployees().add(employee);
-                    indexOfSelectedRecord = AppData.getEmployees().size() - 1;
+                    selectedRecord = employee;
                 } else {
                     AppData.getDb().handleEmployee(employee, false);
-                    AppData.getEmployees().set(indexOfSelectedRecord, employee);
+                    AppData.setEmployees(AppData.getDb().readEmployeesFromDB());
                 }
                 cancelButton.fire();
                 fillEmployeesTableView();
-                employeesTableView.getSelectionModel().select(indexOfSelectedRecord);
+                selectRecordByID(selectedRecord.getID());
                 employeesTableView.requestFocus();
-                setControlsValues(AppData.getEmployees().get(indexOfSelectedRecord));
+                setControlsValues(employeesTableView.getSelectionModel().getSelectedItem());
             }
 
         } else {
             GUIData.showAlert("Должность и подразеление должны быть выбраны");
         }
+    }
 
+    private void selectRecordByID(Integer id) {
+        for (Employee employee : employeesTableView.getItems()) {
+            if (employee.getID() == id) {
+                employeesTableView.getSelectionModel().select(employee);
+                return;
+            }
+        }
     }
 
     @FXML
@@ -237,12 +242,31 @@ public class EmployeesSettingsController extends SettingsPaneController {
 
     @FXML
     void deleteButtonClick(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Внимание!");
+        alert.setHeaderText("Вы уверены, что хотите удалить запись: ");
+        alert.setContentText(selectedRecord.getShortDescription());
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK) {
+            AppData.getEmployees().remove(selectedRecord);
+            AppData.getDb().markRecordAsDeleted("employees",
+                    "employee_isdeleted",
+                    "employee_id",
+                    selectedRecord.getID());
+            fillEmployeesTableView();
+            employeesTableView.getSelectionModel().select(0);
+            selectedRecord = employeesTableView.getSelectionModel().getSelectedItem();
+            setControlsValues(selectedRecord);
+            employeesTableView.requestFocus();
+        }
     }
 
     @Override
     public void setInformation() {
-
+        fillEmployeesTableView();
+        selectedRecord = employeesTableView.getSelectionModel().getSelectedItem();
+        fillComboBoxes();
+        setControlsValues(selectedRecord);
     }
 
     @Override

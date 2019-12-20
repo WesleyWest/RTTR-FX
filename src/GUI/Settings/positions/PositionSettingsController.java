@@ -2,7 +2,6 @@ package GUI.Settings.positions;
 
 import GUI.Settings.SettingsPaneController;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -13,7 +12,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import objects.BL.AppData;
 import objects.BL.Employees.Position;
-import objects.BL.SimpleObject;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -71,14 +69,9 @@ public class PositionSettingsController extends SettingsPaneController {
         initListeners();
         applyCSS();
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Position, String>("description"));
-        fillTableView();
-        positionsTableView.getSelectionModel().select(0);
-        positionsTableView.requestFocus();
-        selectedRecord = positionsTableView.getSelectionModel().getSelectedItem();
         secondButtonBar.setVisible(false);
         directionButtonsSetDisable(true);
-        setFieldsValues(selectedRecord);
-        updateCountLabel();
+//        setInformation();
     }
 
     private void fillTableView() {
@@ -218,7 +211,7 @@ public class PositionSettingsController extends SettingsPaneController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Внимание!");
         alert.setHeaderText("Вы уверены, что хотите удалить запись: ");
-        alert.setContentText("Запись: <" + selectedRecord.getDescription() + "> ?");
+        alert.setContentText(selectedRecord.getDescription());
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == ButtonType.OK) {
             AppData.getPositions().remove(selectedRecord);
@@ -250,7 +243,11 @@ public class PositionSettingsController extends SettingsPaneController {
 
     @Override
     public void setInformation() {
-
+        fillTableView();
+        positionsTableView.getSelectionModel().select(0);
+        positionsTableView.requestFocus();
+        selectedRecord = positionsTableView.getSelectionModel().getSelectedItem();
+        setFieldsValues(selectedRecord);
     }
 
     @Override

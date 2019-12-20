@@ -1,5 +1,7 @@
 package GUI.Settings.users;
 
+import GUI.Settings.SettingsController;
+import GUI.Settings.SettingsPaneController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,13 +25,14 @@ public class RemoveConfirmationController {
     private Label recordLabel;
     @FXML
     AnchorPane mainPane;
+    private UsersSettingsController parentController;
 
     private User user;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         user = UsersSettingsController.getUserToDelete();
-        recordLabel.setText("Удаляется запись ["+user.getName()+"]");
+        recordLabel.setText("Удаляется запись [" + user.getName() + "]");
         applyCSS();
     }
 
@@ -37,28 +40,36 @@ public class RemoveConfirmationController {
         mainPane.getStyleClass().add(0, "anchor-pane-in-tab");
     }
 
-    public void cancelButtonClick(ActionEvent event){
+    @FXML
+    void cancelButtonClick(ActionEvent event) {
         Stage oldStage = (Stage) cancelButton.getScene().getWindow();
         oldStage.close();
     }
 
-    public void removeButtonClick(ActionEvent event){
+    @FXML
+    void removeButtonClick(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Внимание!");
         alert.setHeaderText(null);
-        alert.setContentText("Запись: ID"+user.getID()+": "+user.getName()+" {"+user.getRole()+"} удалена.");
+        alert.setContentText("Запись: ID" + user.getID() + ": " + user.getName() + " {" + user.getRole() + "} удалена.");
         alert.showAndWait();
         AppData.getUsers().remove(user);
-        AppData.getDb().markRecordAsDeleted("users","user_isdeleted","user_id",user.getID());
+        AppData.getDb().markRecordAsDeleted("users", "user_isdeleted", "user_id", user.getID());
+        parentController.fillUsersTableView();
         cancelButton.fire();
     }
 
-    public void textFieldChange(Event event){
+    @FXML
+    void textFieldChange(Event event) {
         if (textField.getText().equals(user.getName())) {
             removeButton.setDisable(false);
         } else {
             removeButton.setDisable(true);
         }
+    }
+
+    protected void setParentController(UsersSettingsController parentController) {
+        this.parentController = parentController;
     }
 }

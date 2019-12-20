@@ -106,24 +106,18 @@ public class UsersSettingsController extends SettingsPaneController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<User, String>("status"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
-        fillUsersTableView();
-        selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
-
-        fillEmployeesComboBox();
-        passwordTextField.setVisible(false);
-        secondButtonBar.setVisible(false);
-        setFieldsValues(AppData.getUsers().get(0));
+//        setInformation();
         initListeners();
     }
 
-    private void fillUsersTableView() {
+    protected void fillUsersTableView() {
         usersTableView.setItems(AppData.getListOfObjects(AppData.getUsers(),false));
         usersTableView.getSelectionModel().select(0);
         usersTableView.requestFocus();
         updateCountLabel();
     }
 
-    public void fillEmployeesComboBox() {
+    void fillEmployeesComboBox() {
         employeesComboBox.getItems().clear();
         ObservableList<Employee> tmpEmployees = FXCollections.observableArrayList(
                 AppData.getListOfObjects(AppData.getEmployees(),false));
@@ -291,6 +285,8 @@ public class UsersSettingsController extends SettingsPaneController {
         selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
         try {
             Parent root = loader.load(getClass().getResource("RemoveConfirmation.fxml").openStream());
+            RemoveConfirmationController removeController = loader.getController();
+            removeController.setParentController(this);
             GUIData.openCustomWindow(event, root, 250, 128, Modality.APPLICATION_MODAL, false);
         } catch (IOException e) {
             e.printStackTrace();
@@ -301,9 +297,15 @@ public class UsersSettingsController extends SettingsPaneController {
         return selectedRecord;
     }
 
-
     @Override
     public void setInformation() {
+        fillUsersTableView();
+        selectedRecord = usersTableView.getSelectionModel().getSelectedItem();
+
+        fillEmployeesComboBox();
+        passwordTextField.setVisible(false);
+        secondButtonBar.setVisible(false);
+        setFieldsValues(AppData.getUsers().get(0));
     }
 
     @Override

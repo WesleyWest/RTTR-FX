@@ -29,11 +29,11 @@ public class Employee implements StandardBehavior {
     public static ObservableList<Employee> sortEmployeeList(ObservableList<Employee> tmpEmployees) {
         tmpEmployees.sort((Employee employee1, Employee employee2) -> {
             int tmp1 =
-                    employee1.getDivision().getCode().charAt(0) * -100
+                    employee1.getDivision().getCode().hashCode() * -100
                             + employee1.getPosition().getID() * -10
                             + employee1.getLastName().charAt(0);
             int tmp2 =
-                    employee2.getDivision().getCode().charAt(0) * -100
+                    employee2.getDivision().getCode().hashCode() * -100
                             + employee2.getPosition().getID() * -10
                             + employee2.getLastName().charAt(0);
             return tmp2 - tmp1;

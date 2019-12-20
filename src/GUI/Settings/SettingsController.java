@@ -87,7 +87,7 @@ public class SettingsController {
 
     @FXML
     void initialize() {
-        Tab[] tmpTabs={settingsTab,usersTab,divisionsTab,positionsTab,employeesTab,technicTab};
+        Tab[] tmpTabs = {settingsTab, usersTab, divisionsTab, positionsTab, employeesTab, technicTab};
         tabs = new ArrayList<>(Arrays.asList(tmpTabs));
 
         caller = GUIData.getSettingsWindowCaller();
@@ -103,20 +103,19 @@ public class SettingsController {
             tabChanged();
         });
 
+        fillTabs();
         setActivePaneByCaller(caller);
         setChooseComboBoxValues();
         setThemesComboBoxValues();
-        fillTabs();
 
         referenceDataHash = createHash();
         referenceDBSettingsHash = dbSettingsPaneController.getDataHash();
         applyCSS();
-
     }
 
     public void setTabsDisabled(String keyString) {
         for (int i = 0; i < tabs.size(); i++) {
-            if (keyString.charAt(i)=='1') {
+            if (keyString.charAt(i) == '1') {
                 tabs.get(i).setDisable(false);
             } else {
                 tabs.get(i).setDisable(true);
@@ -125,9 +124,10 @@ public class SettingsController {
     }
 
     private void setActivePaneByCaller(String caller) {
-        String[] tmpCallers = {"settingsMenuItem", "usersMenuItem", "divisionsMenuItem","positionsMenuItem", "employeesMenuItem", "technicMenuitem"};
+        String[] tmpCallers = {"settingsMenuItem", "usersMenuItem", "divisionsMenuItem", "positionsMenuItem", "employeesMenuItem", "technicMenuitem"};
         ArrayList<String> callers = new ArrayList<>(Arrays.asList(tmpCallers));
         tabPane.getSelectionModel().select(callers.indexOf(caller));
+        tabChanged();
     }
 
     private void tabChanged() {
@@ -139,6 +139,22 @@ public class SettingsController {
             OKButton.setVisible(true);
             applyButton.setVisible(true);
         }
+
+        if (tabIndex == 1) {
+            usersPaneController.setInformation();
+        }
+        if (tabIndex == 2) {
+            divisionsPaneController.setInformation();
+        }
+        if (tabIndex == 3) {
+            positionPaneController.setInformation();
+        }
+        if (tabIndex == 4) {
+            employeesPaneController.setInformation();
+        }
+        if (tabIndex == 5) {
+            technicPaneController.setInformation();
+        }
     }
 
     private void fillTabs() {
@@ -149,16 +165,20 @@ public class SettingsController {
             usersPaneController = getSettingsPaneController(loader);
 
             loader = new FXMLLoader(getClass().getResource("divisions/DivisionsSettings.fxml"));
-            divisionsSettingsPane= putAndGetSettingsPane(loader, divisionsAnchorPane);
+            divisionsSettingsPane = putAndGetSettingsPane(loader, divisionsAnchorPane);
             divisionsPaneController = getSettingsPaneController(loader);
 
             loader = new FXMLLoader(getClass().getResource("positions/PositionsSettings.fxml"));
-            positionsSettingsPane= putAndGetSettingsPane(loader, positionsAnchorPane);
+            positionsSettingsPane = putAndGetSettingsPane(loader, positionsAnchorPane);
             positionPaneController = getSettingsPaneController(loader);
 
             loader = new FXMLLoader(getClass().getResource("employees/EmployeesSettings.fxml"));
-            employeesSettingsPane= putAndGetSettingsPane(loader, employeesAnchorPane);
+            employeesSettingsPane = putAndGetSettingsPane(loader, employeesAnchorPane);
             employeesPaneController = getSettingsPaneController(loader);
+
+            loader = new FXMLLoader(getClass().getResource("technic/TechnicSettings.fxml"));
+            technicSettingsPane = putAndGetSettingsPane(loader, technicAnchorPane);
+            technicPaneController = getSettingsPaneController(loader);
         }
     }
 
@@ -186,12 +206,12 @@ public class SettingsController {
     }
 
     void applyCSS() {
-        AnchorPane[] panes =   {settingsAnchorPane,
-                                usersAnchorPane,
-                                divisionsAnchorPane,
+        AnchorPane[] panes = {settingsAnchorPane,
+                usersAnchorPane,
+                divisionsAnchorPane,
                 positionsAnchorPane,
-                                employeesAnchorPane,
-                                technicAnchorPane};
+                employeesAnchorPane,
+                technicAnchorPane};
         for (AnchorPane pane : panes) {
             pane.getStyleClass().add(0, "anchor-pane-in-tab");
         }
@@ -324,7 +344,7 @@ public class SettingsController {
                 dbSettingsPaneController.getDataHash();
     }
 
-    public void setExitButtonVisible(boolean state){
+    public void setExitButtonVisible(boolean state) {
         exitButton.setVisible(state);
     }
 

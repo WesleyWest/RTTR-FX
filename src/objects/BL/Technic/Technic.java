@@ -11,19 +11,15 @@ public class Technic implements StandardBehavior {
     private SimpleObject<TechnicStatus> status;
     private SimpleObject<TechnicType> type;
     private Employee owner;
-    private Employee repairer;
 
-    public Technic(Integer id, String name, String details, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner, Employee repairer) {
+    public Technic(Integer id, String name, String details, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner) {
         this.id = id;
         this.name = name;
         this.details = details;
         this.status = status;
         this.type = type;
         this.owner = owner;
-        this.repairer = repairer;
     }
-
-
 
     public Integer getID() {
         return id;
@@ -76,14 +72,6 @@ public class Technic implements StandardBehavior {
 
     public void setOwner(Employee owner) {
         this.owner = owner;
-    }
-
-    public Employee getRepairer() {
-        return repairer;
-    }
-
-    public void setRepairer(Employee repairer) {
-        this.repairer = repairer;
     }
 }
 

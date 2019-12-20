@@ -59,10 +59,8 @@ public class DivisionsSettingsController extends SettingsPaneController {
 
         codeColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("code"));
         fullDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("description"));
-        fillDivisionsTableView();
-        selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
         secondButtonBar.setVisible(false);
-        setFieldsValues(selectedRecord);
+//        setInformation();
     }
 
     void applyCSS() {
@@ -187,10 +185,11 @@ public class DivisionsSettingsController extends SettingsPaneController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Внимание!");
         alert.setHeaderText("Вы уверены, что хотите удалить запись: ");
-        alert.setContentText("Запись: <" + selectedRecord.getCode() + "> " + selectedRecord.getDescription() + "?");
+        alert.setContentText(selectedRecord.getCode() + "> " + selectedRecord.getDescription());
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == ButtonType.OK) {
             AppData.getDivisions().remove(selectedRecord);
+            fillDivisionsTableView();
             AppData.getDb().markRecordAsDeleted("employee_divisions",
                     "division_isdeleted",
                     "division_id",
@@ -201,6 +200,9 @@ public class DivisionsSettingsController extends SettingsPaneController {
 
     @Override
     public void setInformation() {
+        fillDivisionsTableView();
+        selectedRecord = divisionsTableView.getSelectionModel().getSelectedItem();
+        setFieldsValues(selectedRecord);
     }
 
     @Override
