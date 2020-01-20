@@ -60,7 +60,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
         codeColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("code"));
         fullDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Division, String>("description"));
         secondButtonBar.setVisible(false);
-//        setInformation();
     }
 
     void applyCSS() {

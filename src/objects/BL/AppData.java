@@ -27,8 +27,8 @@ public class AppData {
     private static ObservableList<Division> divisions;
     private static ObservableList<Employee> employees;
 
-    private static ObservableList<SimpleObject<TechnicType>> types;
-    private static ObservableList<SimpleObject<TechnicStatus>> statuses;
+    private static ObservableList<TechnicType> types;
+    private static ObservableList<TechnicStatus> statuses;
     private static ObservableList<Technic> technic;
 
     private static ObservableList<Request> requests;
@@ -42,19 +42,19 @@ public class AppData {
     }
 
 
-    public static ObservableList<SimpleObject<TechnicType>> getTypes() {
+    public static ObservableList<TechnicType> getTypes() {
         return types;
     }
 
-    public static void setTypes(ObservableList<SimpleObject<TechnicType>> types) {
+    public static void setTypes(ObservableList<TechnicType> types) {
         AppData.types = types;
     }
 
-    public static ObservableList<SimpleObject<TechnicStatus>> getStatuses() {
+    public static ObservableList<TechnicStatus> getStatuses() {
         return statuses;
     }
 
-    public static void setStatuses(ObservableList<SimpleObject<TechnicStatus>> statuses) {
+    public static void setStatuses(ObservableList<TechnicStatus> statuses) {
         AppData.statuses = statuses;
     }
 

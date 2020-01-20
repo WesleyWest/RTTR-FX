@@ -7,15 +7,15 @@ import objects.BL.Employees.Employee;
 public class Technic implements StandardBehavior {
     private Integer id;
     private String name;
-    private String details;
+    private String description;
     private SimpleObject<TechnicStatus> status;
     private SimpleObject<TechnicType> type;
     private Employee owner;
 
-    public Technic(Integer id, String name, String details, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner) {
+    public Technic(Integer id, String name, String description, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner) {
         this.id = id;
         this.name = name;
-        this.details = details;
+        this.description = description;
         this.status = status;
         this.type = type;
         this.owner = owner;
@@ -42,16 +42,19 @@ public class Technic implements StandardBehavior {
         this.name = name;
     }
 
-    public String getDetails() {
-        return details;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public SimpleObject<TechnicStatus> getStatus() {
         return status;
+    }
+    public String getStringStatus(){
+        return this.status.getDescription();
     }
 
     public void setStatus(SimpleObject<TechnicStatus> status) {
@@ -62,12 +65,20 @@ public class Technic implements StandardBehavior {
         return type;
     }
 
+    public String getStringType(){
+        return this.type.getDescription();
+    }
+
     public void setType(SimpleObject<TechnicType> type) {
         this.type = type;
     }
 
     public Employee getOwner() {
         return owner;
+    }
+
+    public String getStringOwner(){
+        return this.owner.getShortDescription();
     }
 
     public void setOwner(Employee owner) {

@@ -85,7 +85,6 @@ public class EmployeesSettingsController extends SettingsPaneController {
         positionColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("stringPosition"));
         divisionColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("stringDivision"));
         secondButtonBar.setVisible(false);
-//        setInformation();
     }
 
 

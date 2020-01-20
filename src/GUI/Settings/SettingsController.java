@@ -124,7 +124,12 @@ public class SettingsController {
     }
 
     private void setActivePaneByCaller(String caller) {
-        String[] tmpCallers = {"settingsMenuItem", "usersMenuItem", "divisionsMenuItem", "positionsMenuItem", "employeesMenuItem", "technicMenuitem"};
+        String[] tmpCallers = { "settingsMenuItem",
+                                "usersMenuItem",
+                                "divisionsMenuItem",
+                                "positionsMenuItem",
+                                "employeesMenuItem",
+                                "technicMenuitem"};
         ArrayList<String> callers = new ArrayList<>(Arrays.asList(tmpCallers));
         tabPane.getSelectionModel().select(callers.indexOf(caller));
         tabChanged();
