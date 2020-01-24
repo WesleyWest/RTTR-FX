@@ -11,14 +11,17 @@ public class Technic implements StandardBehavior {
     private SimpleObject<TechnicStatus> status;
     private SimpleObject<TechnicType> type;
     private Employee owner;
+    private boolean isDeleted;
 
-    public Technic(Integer id, String name, String description, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner) {
+
+    public Technic(Integer id, String name, String description, SimpleObject<TechnicStatus> status, SimpleObject<TechnicType> type, Employee owner, boolean isDeleted) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
         this.owner = owner;
+        this.isDeleted = isDeleted;
     }
 
     public Integer getID() {
@@ -27,7 +30,7 @@ public class Technic implements StandardBehavior {
 
     @Override
     public boolean isDeleted() {
-        return false;
+        return isDeleted;
     }
 
     public void setId(Integer id) {
@@ -57,9 +60,6 @@ public class Technic implements StandardBehavior {
         return this.status.getDescription();
     }
 
-    public void setStatus(SimpleObject<TechnicStatus> status) {
-        this.status = status;
-    }
 
     public SimpleObject<TechnicType> getType() {
         return type;
@@ -67,10 +67,6 @@ public class Technic implements StandardBehavior {
 
     public String getStringType(){
         return this.type.getDescription();
-    }
-
-    public void setType(SimpleObject<TechnicType> type) {
-        this.type = type;
     }
 
     public Employee getOwner() {

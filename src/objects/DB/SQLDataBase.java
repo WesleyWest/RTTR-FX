@@ -329,17 +329,18 @@ public abstract class SQLDataBase extends AppData {
             while (rs.next()) {
                 int id = rs.getInt("technic_id");
                 String name = rs.getString("technic_name");
-                String details = rs.getString("technic_details");
+                String details = rs.getString("technic_description");
                 int statusID = rs.getInt("technic_status_id");
                 int typeID = rs.getInt("technic_type_id");
-                int e_owner = rs.getInt("technic_owner");
+                int e_owner = rs.getInt("technic_owner_id");
+                boolean isDeleted = rs.getBoolean("technic_isdeleted");
 
                 SimpleObject<TechnicStatus> status = AppData.getObjectByID(AppData.getStatuses(), statusID);
                 SimpleObject<TechnicType> type = AppData.getObjectByID(AppData.getTypes(), typeID);
 
                 Employee owner = AppData.getObjectByID(AppData.getEmployees(), e_owner);
 
-                tmp.add(new Technic(id, name, details, status, type, owner));
+                tmp.add(new Technic(id, name, details, status, type, owner,isDeleted));
             }
             rs.close();
             statement.close();
@@ -513,6 +514,36 @@ public abstract class SQLDataBase extends AppData {
                             + "employee_division_id = '" + employee.getDivision().getID() + "', "
                             + "employee_isdeleted = '" + intDeleted + "' "
                             + "WHERE employee_id = " + employee.getID() + ";";
+            report = "edited";
+        }
+        AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
+    }
+
+    public void handleTechnic(Technic technic, boolean isNew) {
+        int intDeleted = (technic.isDeleted()) ? 1 : 0;
+        String query = "";
+        String report = "";
+        if (isNew) {
+            query =
+                    "INSERT INTO technic (technic_name, technic_description, technic_status_id," +
+                            " technic_type_id, technic_owner_id, technic_isdeleted)" +
+                            "VALUES ('" + technic.getName() + "', '"
+                            + technic.getDescription() + "', '"
+                            + technic.getStatus().getID()+ "', '"
+                            + technic.getType().getID() + "', '"
+                            + technic.getOwner().getID() + "', '"
+                            + intDeleted + "') ;";
+            report = "added";
+        } else {
+            query =
+                    "UPDATE technic SET "
+                            + "technic_name = '" + technic.getName() + "', "
+                            + "technic_description = '" + technic.getDescription() + "', "
+                            + "technic_status_id = '" + technic.getStatus().getID() + "', "
+                            + "technic_type_id = '" + technic.getType().getID() + "', "
+                            + "technic_owner_id = '" + technic.getOwner().getID() + "', "
+                            + "technic_isdeleted = '" + intDeleted + "' "
+                            + "WHERE technic_id = " + technic.getID() + ";";
             report = "edited";
         }
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");

@@ -87,7 +87,6 @@ public class EmployeesSettingsController extends SettingsPaneController {
         secondButtonBar.setVisible(false);
     }
 
-
     private void fillEmployeesTableView() {
         ObservableList<Employee> tmpEmployees = FXCollections.observableArrayList(
                 AppData.getListOfObjects(AppData.getEmployeesWithoutEmptyObject(), false));
@@ -172,9 +171,9 @@ public class EmployeesSettingsController extends SettingsPaneController {
 
     private void allControlsSetEditable(boolean state) {
         getParentController().setExitButtonVisible(!state);
-        String tabsKey = (state) ? "000010" : "111111";
         mainButtonBar.setVisible(!state);
         secondButtonBar.setVisible(state);
+        String tabsKey = (state) ? "000010" : "111111";
         getParentController().setTabsDisabled(tabsKey);
         nameTextField.setEditable(state);
         lastNameTextField.setEditable(state);
@@ -217,7 +216,7 @@ public class EmployeesSettingsController extends SettingsPaneController {
             }
 
         } else {
-            GUIData.showAlert("Должность и подразеление должны быть выбраны");
+            GUIData.showAlert("Должность и подразеление должны быть выбраны!");
         }
     }
 
@@ -259,6 +258,8 @@ public class EmployeesSettingsController extends SettingsPaneController {
             employeesTableView.requestFocus();
         }
     }
+
+
 
     @Override
     public void setInformation() {

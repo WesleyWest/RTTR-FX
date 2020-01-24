@@ -132,6 +132,7 @@ public class DivisionsSettingsController extends SettingsPaneController {
     }
 
     private void allControlsSetEditable(boolean state) {
+        getParentController().setExitButtonVisible(!state);
         String tabsKey = (state) ? "001000" : "111111";
         getParentController().setTabsDisabled(tabsKey);
         setModeLabelState(modeLabel, state);
@@ -144,7 +145,6 @@ public class DivisionsSettingsController extends SettingsPaneController {
 
     @FXML
     void cancelButtonClick() {
-        getParentController().setExitButtonVisible(true);
         allControlsSetEditable(false);
         setFieldsValues(selectedRecord);
     }

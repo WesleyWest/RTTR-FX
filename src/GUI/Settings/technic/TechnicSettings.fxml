@@ -18,7 +18,7 @@
             <TableColumn fx:id="nameColumn" prefWidth="121.0" text="Наименование&#10;обрудования" />
             <TableColumn fx:id="typeColumn" prefWidth="95.0" text="Тип&#10;оборудования" />
             <TableColumn fx:id="statusColumn" prefWidth="110.0" text="Статус" />
-            <TableColumn fx:id="ownerColumn" prefWidth="155.0" text="Владелец" />
+            <TableColumn fx:id="ownerColumn" prefWidth="155.0" text="Мат. ответственный&#10;сотрудник" />
          </columns>
       </TableView>
       <ButtonBar fx:id="mainButtonBar" layoutX="482.0" layoutY="357.0" prefHeight="40.0" prefWidth="359.0">
@@ -37,7 +37,7 @@
       <Label layoutX="501.0" layoutY="82.0" text="Наименование оборудования" />
       <TextField fx:id="nameTextField" editable="false" layoutX="501.0" layoutY="99.0" prefHeight="25.0" prefWidth="340.0" promptText="Введите наименование оборудования" />
       <TextField fx:id="descriptionTextField" editable="false" layoutX="501.0" layoutY="141.0" prefHeight="25.0" prefWidth="340.0" promptText="Введите описание оборудования" />
-      <ComboBox fx:id="ownerComboBox" layoutX="501.0" layoutY="274.0" prefHeight="25.0" prefWidth="340.0" />
+      <ComboBox fx:id="ownerComboBox" disable="true" layoutX="501.0" layoutY="274.0" prefHeight="25.0" prefWidth="340.0" />
       <Label layoutX="501.0" layoutY="166.0" text="Тип" />
       <Label layoutX="501.0" layoutY="124.0" text="Полное описание" />
       <Label layoutX="501.0" layoutY="257.0" text="Материально ответственный сотрудник" />
@@ -47,11 +47,11 @@
          </font>
       </Label>
       <Label layoutX="502.0" layoutY="208.0" text="Статус" />
-      <ComboBox fx:id="typeComboBox" layoutX="502.0" layoutY="183.0" prefHeight="25.0" prefWidth="194.0" />
-      <ComboBox fx:id="statusComboBox" layoutX="502.0" layoutY="225.0" prefHeight="25.0" prefWidth="194.0" />
+      <ComboBox fx:id="typeComboBox" disable="true" layoutX="502.0" layoutY="183.0" prefHeight="25.0" prefWidth="194.0" />
+      <ComboBox fx:id="statusComboBox" disable="true" layoutX="502.0" layoutY="225.0" prefHeight="25.0" prefWidth="194.0" />
       <Label layoutX="502.0" layoutY="40.0" text="ID" />
       <TextField fx:id="idTextField" editable="false" layoutX="502.0" layoutY="57.0" prefHeight="25.0" prefWidth="72.0" />
-      <Button fx:id="editTypeListButton" layoutX="702.0" layoutY="183.0" minWidth="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Изменить список" />
-      <Button fx:id="editStatusListButton" layoutX="702.0" layoutY="225.0" minWidth="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Изменить список" />
+      <Button fx:id="editTypeListButton" layoutX="702.0" layoutY="183.0" minWidth="65.0" mnemonicParsing="false" onAction="#editListButtonClick" prefHeight="25.0" prefWidth="139.0" text="Изменить список" />
+      <Button fx:id="editStatusListButton" layoutX="702.0" layoutY="225.0" minWidth="65.0" mnemonicParsing="false" onAction="#editListButtonClick" prefHeight="25.0" prefWidth="139.0" text="Изменить список" />
    </children>
 </Pane>
