@@ -128,11 +128,12 @@ public class TechnicSettingsController extends SettingsPaneController {
         try {
             Parent root = loader.load(getClass().getResource("ListEditing.fxml").openStream());
             ListEditingController childController = loader.getController();
+            childController.setParentController(this);
             Button callButton = (Button) event.getSource();
             if (callButton.getId().equals("editTypeListButton")) {
-                childController.setSimpleObjectsList(AppData.getTypes());
+                childController.setSimpleObjectsList(AppData.getTypes(),"type");
             } else {
-                childController.setSimpleObjectsList(AppData.getStatuses());
+                childController.setSimpleObjectsList(AppData.getStatuses(),"status");
             }
             GUIData.openCustomWindow(event, root, 312, 267, Modality.APPLICATION_MODAL, false);
         } catch (IOException e) {
@@ -267,7 +268,7 @@ public class TechnicSettingsController extends SettingsPaneController {
         setControlsValues();
     }
 
-    private void fillComboBoxes() {
+    protected void fillComboBoxes() {
         typeComboBox.getItems().clear();
         typeComboBox.getItems().addAll(AppData.getListOfObjects(AppData.getTypes(), false));
 
@@ -279,7 +280,7 @@ public class TechnicSettingsController extends SettingsPaneController {
                 AppData.getListOfObjects(AppData.getEmployeesWithoutEmptyObject(), false)));
     }
 
-    private void setControlsValues() {
+    protected void setControlsValues() {
         selectedRecord = technicTableView.getSelectionModel().getSelectedItem();
         idTextField.setText(selectedRecord.getID().toString());
         nameTextField.setText(selectedRecord.getName());
@@ -289,7 +290,7 @@ public class TechnicSettingsController extends SettingsPaneController {
         ownerComboBox.getSelectionModel().select(selectedRecord.getOwner());
     }
 
-    private void fillTechnicTableView() {
+    protected void fillTechnicTableView() {
         technicTableView.setItems(AppData.getListOfObjects(AppData.getTechnic(), false));
         technicTableView.getSelectionModel().select(0);
         technicTableView.requestFocus();

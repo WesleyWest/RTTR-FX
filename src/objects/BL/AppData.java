@@ -46,12 +46,12 @@ public class AppData {
         return types;
     }
 
-    public static void setTypes(ObservableList<SimpleObject<TechnicType>> types) {
-        AppData.types = types;
-    }
-
     public static ObservableList<SimpleObject<TechnicStatus>> getStatuses() {
         return statuses;
+    }
+
+    public static void setTypes(ObservableList<SimpleObject<TechnicType>> types) {
+        AppData.types = types;
     }
 
     public static void setStatuses(ObservableList<SimpleObject<TechnicStatus>> statuses) {

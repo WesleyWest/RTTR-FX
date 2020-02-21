@@ -549,10 +549,37 @@ public abstract class SQLDataBase extends AppData {
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
     }
 
+    public void handleSimpleObject(SimpleObject object, boolean isNew, String type) {
+        int intDeleted = (object.isDeleted()) ? 1 : 0;
+        String tableName = (type.equals("type")) ? "technic_types" : "technic_statuses";
+        String fieldPreffix = (type.equals("type")) ? "technic_type" : "technic_status";
+        String query = "";
+        String report = "";
+        if (isNew) {
+            query =
+                    "INSERT INTO "+tableName+" ("+fieldPreffix+"_description, "
+                                                 +fieldPreffix+"_isdeleted)" +
+                            "VALUES ('" + object.getDescription() + "', '"
+                                        + intDeleted + "') ;";
+            report = "added";
+        } else {
+            query =
+                    "UPDATE "+tableName+" SET "
+                            + fieldPreffix+"_description = '" + object.getDescription() + "', "
+                            + fieldPreffix+"_isdeleted = '" + intDeleted + "' "
+                            + "WHERE "+fieldPreffix+"_id = " + object.getID() + ";";
+            report = "edited";
+        }
+        AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
+    }
+
+
     public void markRecordAsDeleted(String tableName, String isDeletedFieldName, String idFieldName, int id) {
         String query = "UPDATE " + tableName + " SET " + isDeletedFieldName + " = 1 WHERE " + idFieldName + " = " + id + ";";
         AppData.printInLog((executeUpdateDB(query)) ? "Record was marked as deleted..." : "Something wrong...");
     }
+
+
 
     public void dropTable(String tableName){
         String query="DROP TABLE "+tableName;
