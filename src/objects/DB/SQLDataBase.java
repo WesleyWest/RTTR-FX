@@ -390,11 +390,14 @@ public abstract class SQLDataBase extends AppData {
                 String decisionDescription = rs.getString("request_decision_description");
                 int authorID = rs.getInt("request_author_id");
                 int closerID = rs.getInt("request_closer_id");
+                int repairerID = rs.getInt("request_repairer_id");
 
                 Technic technic = AppData.getObjectByID(AppData.getTechnic(), tecnicID);
                 User author = AppData.getObjectByID(AppData.getUsers(), authorID);
                 User closer = AppData.getObjectByID(AppData.getUsers(), closerID);
-                Request req = new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, author, closer);
+                User repairer = AppData.getObjectByID(AppData.getUsers(), repairerID);
+
+                Request req = new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, repairer, author, closer);
                 tmp.add(req);
             }
 

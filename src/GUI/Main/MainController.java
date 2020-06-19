@@ -117,8 +117,10 @@ public class MainController extends GUIController {
         Label lbl2 = new Label("\n   Роль : " + getUser().getRole());
         Label lbl3 = new Label("\n   Ф.И.О : " + emp.getLastName() + " " + emp.getName() + " " + emp.getMiddleName() + "   ");
         Label lbl4 = new Label("\n   Звание: " + emp.getPosition().getDescription() + "        ");
-        Label lbl5 = new Label("\n   Подразделение: " + emp.getDivision().getDescription() + "           \n");
-        VBox vBox = new VBox(lbl1, lbl2, lbl3, lbl4, lbl5);
+        Label lbl5 = new Label("\n   Подразделение: " + emp.getDivision().getDescription() + "           ");
+        Label lbl6 = new Label("\n   ");
+
+        VBox vBox = new VBox(lbl1, lbl2, lbl3, lbl4, lbl5, lbl6);
 
         popOver = new PopOver(vBox);
         popOver.setArrowLocation(PopOver.ArrowLocation.TOP_RIGHT);
@@ -189,8 +191,8 @@ public class MainController extends GUIController {
         Employee owner = selectedRecord.getTechnicAsObject().getOwner();
         ownerTextField.setText(owner.getShortDescription());
 
-//        Employee repairer = selectedRecord.getTechnicAsObject().getRepairer();
-//        repairerTextField.setText(repairer.getShortDescription());
+        Employee repairer = selectedRecord.getRepairer().getEmployee();
+        repairerTextField.setText(repairer.getShortDescription());
 
         problemDescriptionTextField.setText(selectedRecord.getProblemDescription());
 
@@ -233,7 +235,7 @@ public class MainController extends GUIController {
 
     @FXML
     void exitFromApp(ActionEvent event) {
-        if (popOver.isShowing()){
+        if (popOver.isShowing()) {
             popOver.hide();
         }
         getDb().close();
