@@ -11,6 +11,7 @@ import objects.BL.AppData;
 import objects.BL.Employees.Employee;
 import objects.BL.Request;
 import objects.BL.Technic.Technic;
+import objects.BL.Users.User;
 
 public class RequestController {
 
@@ -62,7 +63,7 @@ public class RequestController {
     private ComboBox<Employee> ownerComboBox;
 
     @FXML
-    private ComboBox<Employee> repairerComboBox;
+    private ComboBox<User> repairerComboBox;
 
     private MainController parentController;
 
@@ -92,8 +93,14 @@ public class RequestController {
     }
 
     private void fillComboBoxes(){
-        System.out.println(AppData.getTechnic());
+        technicComboBox.getItems().clear();
         technicComboBox.setItems(AppData.getTechnic());
+
+        ownerComboBox.getItems().clear();
+        ownerComboBox.setItems(AppData.getEmployees());
+
+        repairerComboBox.getItems().clear();
+        repairerComboBox.setItems(AppData.getUsers());
     }
 
     private void fillFieldsByMode() {

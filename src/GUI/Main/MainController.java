@@ -246,7 +246,7 @@ public class MainController extends GUIController {
         try {
             root = loader.load(getClass().getResource("../Request/RequestWindow.fxml").openStream());
             GUIData.setOwner(((Node) event.getSource()).getScene().getWindow());
-            GUIData.openCustomWindow(event, root, 795, 525, Modality.APPLICATION_MODAL, false);
+            GUIData.openCustomWindow(event, root, 840, 525, Modality.APPLICATION_MODAL, false);
             requestController = loader.getController();
             requestController.setParentController(this);
             Button sourceButton = (Button) event.getSource();
