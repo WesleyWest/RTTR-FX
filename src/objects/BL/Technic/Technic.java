@@ -60,7 +60,6 @@ public class Technic implements StandardBehavior {
         return this.status.getDescription();
     }
 
-
     public SimpleObject<TechnicType> getType() {
         return type;
     }
@@ -79,6 +78,11 @@ public class Technic implements StandardBehavior {
 
     public void setOwner(Employee owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return getStringType()+": "+getName()+" ("+getDescription()+")";
     }
 }
 

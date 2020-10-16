@@ -297,6 +297,7 @@ public class TechnicSettingsController extends SettingsPaneController {
         updateCountLabel();
     }
 
+
     private void updateCountLabel() {
         countLabel.setText("Количество оборудования: " + AppData.getListOfObjects(AppData.getTechnic(), false).size());
     }

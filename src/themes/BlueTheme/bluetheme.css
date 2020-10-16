@@ -463,6 +463,27 @@
     -fx-text-fill: white;
 }
 
+.check-box {
+    selected-box-color: #233d7b;
+    box-color: #233d7b;
+    mark-color: white;
+}
+
+.check-box .text {
+    -fx-opacity: 1.0;
+    -fx-fill: #233d7b;
+}
+
+.check-box .box {
+    -fx-background-color: #376bc5;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: white;
+}
+
 .radio-button {
     -fx-opacity: 1.0;
     -fx-text-fill: #233d7b;

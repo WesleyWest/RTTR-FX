@@ -7,11 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2020-02-27">
+      <change afterPath="$PROJECT_DIR$/src/GUI/Request/RequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/rttr-base.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/rttr-base.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Main/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Settings/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/BL/Technic/Technic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Technic/Technic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,11 +73,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-44">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+              <folding>
+                <element signature="e#1381#1382#0" expanded="true" />
+                <element signature="e#1420#1421#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2772">
-              <caret line="147" selection-start-line="147" selection-end-line="147" />
+            <state relative-caret-position="988">
+              <caret line="298" selection-start-line="298" selection-end-line="298" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,66 +99,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objects/BL/Request.java">
+        <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#2983#2984#0" expanded="true" />
-                <element signature="e#3014#3015#0" expanded="true" />
-                <element signature="e#3060#3061#0" expanded="true" />
-                <element signature="e#3100#3101#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/technic/ListEditingController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7942">
-              <caret line="399" column="16" selection-start-line="399" selection-start-column="16" selection-end-line="399" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5596">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5962">
-              <caret line="271" column="60" selection-start-line="271" selection-start-column="60" selection-end-line="271" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-750">
+              <caret line="31" column="48" lean-forward="true" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -148,10 +110,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/Main/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="125" column="6" selection-start-line="125" selection-start-column="6" selection-end-line="125" selection-end-column="6" />
+            <state relative-caret-position="204">
+              <caret line="252" selection-start-line="252" selection-end-line="252" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#8043#8044#0" expanded="true" />
+                <element signature="e#8080#8081#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,11 +124,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/objects/BL/Technic/Technic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="380">
+              <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
               <folding>
                 <element signature="e#905#906#0" expanded="true" />
                 <element signature="e#937#938#0" expanded="true" />
+                <element signature="e#1915#1916#0" expanded="true" />
+                <element signature="e#1988#1989#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,6 +143,7 @@
       <list>
         <option value="CSS File" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -196,10 +163,10 @@
       <find>No</find>
       <find>SQL e</find>
       <find>user</find>
-      <find>radio</find>
       <find>cen</find>
       <find>AppDa</find>
       <find>mode</find>
+      <find>radio</find>
     </findStrings>
     <replaceStrings>
       <replace>System.out.println</replace>
@@ -218,11 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/SQLite/SQLiteSettingsPaneController.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/DBSettingsPanes/MySQL/MySQLSettingsPaneController.java" />
-        <option value="$PROJECT_DIR$/src/objects/BL/Users/Role.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/SettingsPaneController.java" />
-        <option value="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmation.fxml" />
         <option value="$PROJECT_DIR$/src/forms/Login/LoginController.java" />
         <option value="$PROJECT_DIR$/src/forms/Main/MainController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" />
@@ -240,42 +202,47 @@
         <option value="$PROJECT_DIR$/src/objects/GUI/GUIData.java" />
         <option value="$PROJECT_DIR$/src/objects/DB/types/MySQLDataBase.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/StandardBehavior.java" />
-        <option value="$PROJECT_DIR$/src/GUI/Login/LoginController.java" />
         <option value="$PROJECT_DIR$/src/objects/DB/types/SQLiteDataBase.java" />
-        <option value="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/employees/EmpployeesSettingsController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/employees/EmployeesSettings.fxml" />
         <option value="$PROJECT_DIR$/src/objects/BL/Employees/Division.java" />
-        <option value="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Employees/Employee.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/positions/PositionSettingsController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/users/RemoveConfirmationController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettingsController.kt" />
-        <option value="$PROJECT_DIR$/src/GUI/Settings/SettingsController.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Technic/TechnicType.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/SimpleObject.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Employees/Position.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/divisions/DivisionsSettingsController.java" />
-        <option value="$PROJECT_DIR$/src/objects/BL/Technic/Technic.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettings.fxml" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/employees/EmployeesSettingsController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/technic/SimpleObjectsListEditing.fxml" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/technic/ListEditing.fxml" />
         <option value="$PROJECT_DIR$/src/objects/BL/AppData.java" />
-        <option value="$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/technic/ListEditingController.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Request.java" />
         <option value="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Settings/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/RequestHandle/RequestHandleWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/GUI/RequestHandle/SettingsPaneController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUIController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/RequestHandle/RequestController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Login/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" />
+        <option value="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" />
         <option value="$PROJECT_DIR$/src/GUI/Main/MainController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Request/RequestController.java" />
+        <option value="$PROJECT_DIR$/src/objects/BL/Technic/Technic.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-182" />
-    <option name="y" value="225" />
+    <option name="x" value="63" />
+    <option name="y" value="-8" />
     <option name="width" value="1865" />
     <option name="height" value="1096" />
   </component>
@@ -311,7 +278,29 @@
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Request" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
               <item name="Settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Settings" type="462c0819:PsiDirectoryNode" />
+              <item name="technic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
@@ -319,12 +308,35 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="objects" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+              <item name="BL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+              <item name="BL" type="462c0819:PsiDirectoryNode" />
+              <item name="Employees" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+              <item name="BL" type="462c0819:PsiDirectoryNode" />
+              <item name="Technic" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,11 +376,11 @@
       <recent name="objects.GUI" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\GUI\RequestHandle" />
       <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\GUI\Settings\technic" />
       <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\GUI\Settings\employees" />
       <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\GUI\Settings\positions" />
       <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\forms\Settings\divisions" />
-      <recent name="D:\Documents\Personal Data\GitHub\RTTR-FX\src\windows_fxml" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="GUI.Settings.employees" />
@@ -557,14 +569,14 @@
       <workItem from="1590572493506" duration="601000" />
       <workItem from="1591615965296" duration="3520000" />
       <workItem from="1592212285672" duration="3854000" />
-      <workItem from="1592561745124" duration="985000" />
-    </task>
-    <task id="LOCAL-00005" summary="2019-10-09">
-      <created>1570677147967</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1570677147967</updated>
+      <workItem from="1592561745124" duration="2332000" />
+      <workItem from="1592795284010" duration="7947000" />
+      <workItem from="1592890129901" duration="8566000" />
+      <workItem from="1593405937067" duration="5530000" />
+      <workItem from="1594267321783" duration="1358000" />
+      <workItem from="1594353868189" duration="704000" />
+      <workItem from="1602558675285" duration="5118000" />
+      <workItem from="1602819365025" duration="9115000" />
     </task>
     <task id="LOCAL-00006" summary="2019-10-09">
       <created>1570688340826</created>
@@ -902,11 +914,18 @@
       <option name="project" value="LOCAL" />
       <updated>1582797045931</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="version from 2020-02-27">
+      <created>1592563328218</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1592563328220</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="749397000" />
+    <option name="totallyTimeSpent" value="789082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="-8" width="1865" height="1096" extended-state="6" />
@@ -914,7 +933,7 @@
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Designer" order="1" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.17955652" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.17955652" />
       <window_info id="Structure" order="3" weight="0.25" />
       <window_info id="Favorites" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
@@ -922,7 +941,7 @@
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3296146" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3184584" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3286004" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.3995943" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -986,21 +1005,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java" />
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/Users/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="e#265#266#0" expanded="true" />
-            <element signature="e#296#297#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/function/Predicate.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/stream/Stream.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactory.java" />
     <entry file="file://$PROJECT_DIR$/src/objects/DB/SQLDataBaseFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
@@ -1076,30 +1080,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="466" column="1" lean-forward="true" selection-start-line="466" selection-start-column="1" selection-end-line="466" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="485" column="18" lean-forward="true" selection-start-line="485" selection-start-column="18" selection-end-line="485" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Settings/employees/EmployeesSettings.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
@@ -1112,13 +1092,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1170,13 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Login/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="119" column="18" lean-forward="true" selection-start-line="119" selection-start-column="18" selection-end-line="119" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Settings/employees/EmployeesSettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1144">
@@ -1184,14 +1150,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettings.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1297,34 +1255,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/GUI/GUIData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2954">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1195#1196#0" expanded="true" />
-            <element signature="e#1238#1239#0" expanded="true" />
-            <element signature="e#1526#1527#0" expanded="true" />
-            <element signature="e#1577#1578#0" expanded="true" />
-            <element signature="e#2240#2241#0" expanded="true" />
-            <element signature="e#2270#2271#0" expanded="true" />
-            <element signature="e#2652#2653#0" expanded="true" />
-            <element signature="e#2680#2681#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2772">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/BL/Request.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1354,21 +1284,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/Technic/Technic.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/RequestHandle/RequestHandleWindow.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/RequestHandle/RequestHandleController.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/RequestHandle/SettingsPaneController.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="580">
+          <caret line="271" column="60" selection-start-line="271" selection-start-column="39" selection-end-line="271" selection-end-column="60" />
           <folding>
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Main/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="125" column="6" selection-start-line="125" selection-start-column="6" selection-end-line="125" selection-end-column="6" />
+        <state relative-caret-position="426">
+          <caret line="484" column="21" selection-start-line="484" selection-start-column="21" selection-end-line="484" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="477" column="34" lean-forward="true" selection-start-line="477" selection-start-column="34" selection-end-line="477" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-110">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettings.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="988">
+          <caret line="298" selection-start-line="298" selection-end-line="298" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1377,25 +1339,93 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsPaneController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        <state relative-caret-position="242">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/users/UsersSettingsController.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5962">
-          <caret line="271" column="60" selection-start-line="271" selection-start-column="60" selection-end-line="271" selection-end-column="60" />
+        <state relative-caret-position="570">
+          <caret line="306" column="37" selection-start-line="306" selection-start-column="37" selection-end-line="306" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="33" column="106" selection-start-line="32" selection-start-column="8" selection-end-line="33" selection-end-column="106" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Settings/SettingsController.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/Login/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5596">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="570">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/GUI/GUIData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="116" column="23" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1195#1196#0" expanded="true" />
+            <element signature="e#1238#1239#0" expanded="true" />
+            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#1577#1578#0" expanded="true" />
+            <element signature="e#2240#2241#0" expanded="true" />
+            <element signature="e#2270#2271#0" expanded="true" />
+            <element signature="e#2652#2653#0" expanded="true" />
+            <element signature="e#2680#2681#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Main/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="252" selection-start-line="252" selection-end-line="252" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8043#8044#0" expanded="true" />
+            <element signature="e#8080#8081#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/BL/Technic/Technic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+          <folding>
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#1915#1916#0" expanded="true" />
+            <element signature="e#1988#1989#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/BL/Employees/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-750">
+          <caret line="31" column="48" lean-forward="true" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#1381#1382#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

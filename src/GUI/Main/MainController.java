@@ -1,9 +1,12 @@
 package GUI.Main;
 
 import GUI.GUIController;
+import GUI.Request.RequestController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,6 +20,8 @@ import objects.BL.Request;
 import objects.BL.Technic.Technic;
 import objects.GUI.GUIData;
 import org.controlsfx.control.PopOver;
+
+import java.io.IOException;
 
 public class MainController extends GUIController {
 
@@ -85,7 +90,7 @@ public class MainController extends GUIController {
     @FXML
     private Button addRequestButton;
     @FXML
-    private Button editrequestButton;
+    private Button editRequestButton;
     @FXML
     private Button closeRequestButton;
     @FXML
@@ -107,6 +112,7 @@ public class MainController extends GUIController {
 
     private PopOver popOver;
     private Request selectedRecord;
+    private RequestController requestController;
 
     @FXML
     void initialize() {
@@ -228,9 +234,26 @@ public class MainController extends GUIController {
         informLabel.setText("Количество открытых заявок: " + getRequests().size());
     }
 
-    @FXML
-    void AddRequestButtonClick(ActionEvent event) {
+    public Request getActiveRequest(){
+        return selectedRecord;
+    }
 
+    @FXML
+    void AddOrEditRequestButtonClick(ActionEvent event) {
+
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+        try {
+            root = loader.load(getClass().getResource("../Request/RequestWindow.fxml").openStream());
+            GUIData.setOwner(((Node) event.getSource()).getScene().getWindow());
+            GUIData.openCustomWindow(event, root, 795, 525, Modality.APPLICATION_MODAL, false);
+            requestController = loader.getController();
+            requestController.setParentController(this);
+            Button sourceButton = (Button) event.getSource();
+            requestController.setData(sourceButton.getId().equals("editRequestButton"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

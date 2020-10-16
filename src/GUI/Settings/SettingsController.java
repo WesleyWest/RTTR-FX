@@ -57,7 +57,7 @@ public class SettingsController {
     private Tab divisionsTab;
     @FXML
     private Tab positionsTab;
-    @FXML
+     @FXML
     private Tab employeesTab;
     @FXML
     private Tab technicTab;
