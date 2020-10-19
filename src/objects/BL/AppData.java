@@ -78,6 +78,15 @@ public class AppData {
         return users;
     }
 
+    public static ObservableList<User> getUsersWithoutBuiltedIn() {
+        ObservableList<User> tmp = FXCollections.observableArrayList();
+        for (User user : users) {
+            if (!user.isUndeletable()) tmp.add(user);
+        }
+        return tmp;
+
+    }
+
     public static void setUsers(ObservableList<User> users) {
         AppData.users = users;
     }
@@ -103,7 +112,7 @@ public class AppData {
         return employees;
     }
 
-    public static ObservableList<Employee> getEmployeesWithoutEmptyObject() {
+    public static ObservableList<Employee>  getEmployeesWithoutEmptyObject() {
         ObservableList<Employee> tmp = FXCollections.observableArrayList();
         tmp.addAll(employees);
         tmp.remove(0);

@@ -192,7 +192,7 @@ public class MainController extends GUIController {
         Technic technic = selectedRecord.getTechnicAsObject();
         technicField.setText(technic.getType().getDescription() + " " + technic.getName());
 
-        requestOpenTimeField.setText(selectedRecord.getOpenDate());
+        requestOpenTimeField.setText(selectedRecord.getOpenDateAsString());
 
         Employee owner = selectedRecord.getTechnicAsObject().getOwner();
         ownerTextField.setText(owner.getShortDescription());

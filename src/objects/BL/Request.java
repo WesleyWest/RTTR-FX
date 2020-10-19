@@ -4,6 +4,8 @@ import objects.BL.Technic.Technic;
 import objects.BL.Users.User;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Request {
     private Integer ID;
@@ -50,9 +52,13 @@ public class Request {
         this.technic = technic;
     }
 
-    public String getOpenDate() {
+    public String getOpenDateAsString() {
         String openDateStr = openDate.toString();
         return openDateStr.substring(0, openDateStr.length() - 5);
+    }
+
+    public Timestamp getOpenDate() {
+        return openDate;
     }
 
     public void setOpenDate(Timestamp openDate) {

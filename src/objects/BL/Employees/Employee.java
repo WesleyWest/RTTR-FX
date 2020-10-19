@@ -51,10 +51,12 @@ public class Employee implements StandardBehavior {
             } else {
                 tmp = "";
             }
-            tmp = this.lastName + " "
-                + this.name.charAt(0) + ". "+tmp+", "
-                + this.position.getDescription() + ", "
-                + this.division.getCode();
+            tmp =
+                    "["+this.division.getCode()+ "], "
+                    + this.position.getDescription() + " "
+                    + this.lastName + " "
+                    + this.name.charAt(0) + ". "+tmp;
+
             return tmp;
         }
     }

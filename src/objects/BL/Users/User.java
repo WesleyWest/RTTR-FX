@@ -71,15 +71,6 @@ public class User implements StandardBehavior {
 
     @Override
     public String toString() {
-        return "User{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                ", status=" + status +
-                ", undeletable=" + undeletable +
-                ", employee=" + employee +
-                ", deleted=" + deleted +
-                '}';
+        return employee.getShortDescription();
     }
 }

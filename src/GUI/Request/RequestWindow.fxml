@@ -52,9 +52,9 @@
                   <Label layoutX="24.0" layoutY="57.0" text="Автор заявки" textFill="#376bc5" />
                   <TextField fx:id="authorTextField" editable="false" layoutX="23.0" layoutY="72.0" prefHeight="25.0" prefWidth="350.0" />
                   <TextField fx:id="problemDescriptionTextField" editable="false" layoutX="23.0" layoutY="282.0" prefHeight="53.0" prefWidth="350.0" />
-                  <ComboBox fx:id="technicComboBox" editable="true" layoutX="23.0" layoutY="199.0" prefHeight="25.0" prefWidth="350.0" />
-                  <ComboBox fx:id="repairerComboBox" editable="true" layoutX="23.0" layoutY="240.0" prefHeight="25.0" prefWidth="350.0" />
-                  <ComboBox fx:id="ownerComboBox" editable="true" layoutX="23.0" layoutY="158.0" prefHeight="25.0" prefWidth="350.0" />
+                  <ComboBox fx:id="technicComboBox" layoutX="23.0" layoutY="199.0" prefHeight="25.0" prefWidth="350.0" />
+                  <ComboBox fx:id="repairerComboBox" layoutX="23.0" layoutY="240.0" prefHeight="25.0" prefWidth="350.0" />
+                  <ComboBox fx:id="ownerComboBox" layoutX="23.0" layoutY="158.0" onAction="#filterTechnicByOwner" prefHeight="25.0" prefWidth="350.0" />
                </children>
             </AnchorPane>
             <CheckBox fx:id="closeRequestCheckBox" layoutX="32.0" layoutY="355.0" mnemonicParsing="false" onAction="#closeRequestCheckBoxFire" text="Немедленно завершить заявку" />

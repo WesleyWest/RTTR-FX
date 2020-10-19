@@ -13,6 +13,8 @@ import objects.BL.Request;
 import objects.BL.Technic.Technic;
 import objects.BL.Users.User;
 
+import java.util.ArrayList;
+
 public class RequestController {
 
 
@@ -42,6 +44,9 @@ public class RequestController {
     private TextField requestOpenTimeField;
 
     @FXML
+    private DatePicker requestOpenTimeDatePicker;
+
+    @FXML
     private TextField ownerTextField;
 
     @FXML
@@ -67,7 +72,7 @@ public class RequestController {
 
     private MainController parentController;
 
-    private static boolean isEditingMode=false;
+    private static boolean isEditingMode = false;
 
     private Request activeRequest;
 
@@ -78,6 +83,8 @@ public class RequestController {
     public MainController getParentController() {
         return parentController;
     }
+
+    private ArrayList<Technic> allTechnic = new ArrayList<>();
 
     @FXML
     void initialize() {
@@ -92,28 +99,56 @@ public class RequestController {
         mainAnchorPane.getStyleClass().add("anchor-pane-main");
     }
 
-    private void fillComboBoxes(){
-        technicComboBox.getItems().clear();
-        technicComboBox.setItems(AppData.getTechnic());
-
-        ownerComboBox.getItems().clear();
-        ownerComboBox.setItems(AppData.getEmployees());
-
-        repairerComboBox.getItems().clear();
-        repairerComboBox.setItems(AppData.getUsers());
-    }
 
     private void fillFieldsByMode() {
+        fillComboBoxes();
         if (isEditingMode) {
             activeRequest = parentController.getActiveRequest();
             idTextField.setText(activeRequest.getID().toString());
             authorTextField.setText(activeRequest.getAuthor().getEmployee().getShortDescription());
-            requestOpenTimeField.setText(activeRequest.getOpenDate());
-            fillComboBoxes();
+
+            requestOpenTimeField.setText(activeRequest.getOpenDateAsString());
+//            requestOpenTimeDatePicker.setValue(activeRequest.getOpenDate().toLocalDateTime().toLocalDate());
+            System.out.println(activeRequest.getOpenDate());
+            System.out.println(activeRequest.getOpenDate().toLocalDateTime());
+            System.out.println(activeRequest.getOpenDate().toLocalDateTime().toLocalDate());
+            ownerComboBox.getSelectionModel().select(activeRequest.getTechnicAsObject().getOwner());
+            repairerComboBox.getSelectionModel().select(activeRequest.getRepairer());
+            problemDescriptionTextField.setText(activeRequest.getProblemDescription());
         } else {
 
         }
 
+    }
+
+    private void fillComboBoxes() {
+        allTechnic.clear();
+        for (Technic technic : AppData.getListOfObjects(AppData.getTechnic(), false)) {
+            allTechnic.add(technic);
+        }
+        technicComboBox.getItems().clear();
+
+        ownerComboBox.getItems().clear();
+        ownerComboBox.setItems(Employee.sortEmployeeList(AppData.getListOfObjects(AppData.getEmployeesWithoutEmptyObject(), false)));
+
+        repairerComboBox.getItems().clear();
+        repairerComboBox.setItems(AppData.getListOfObjects(AppData.getUsersWithoutBuiltedIn(), false));
+    }
+
+    @FXML
+    void filterTechnicByOwner() {
+        ArrayList<Technic> res = new ArrayList();
+        Employee activeOwner = ownerComboBox.getSelectionModel().getSelectedItem();
+        for (Technic technic : allTechnic) {
+            if (technic.getOwner() == activeOwner) res.add(technic);
+        }
+        technicComboBox.getItems().clear();
+        technicComboBox.setItems(FXCollections.observableArrayList(res));
+        if (activeOwner != activeRequest.getTechnicAsObject().getOwner()) {
+            technicComboBox.getSelectionModel().select(0);
+        } else {
+            technicComboBox.getSelectionModel().select(activeRequest.getTechnicAsObject());
+        }
     }
 
     private void setApplyButtonByMode() {
@@ -122,11 +157,6 @@ public class RequestController {
         } else {
             applyButton.setText("Добавить");
         }
-    }
-
-    @FXML
-    void okButtonClick(ActionEvent event) {
-
     }
 
     @FXML
@@ -149,15 +179,21 @@ public class RequestController {
 
     @FXML
     void applyButtonClick(ActionEvent event) {
+        if (isEditingMode) {
 
+        } else {
+
+        }
     }
 
-    public void setData(boolean isEditing){
-        isEditingMode=isEditing;
+    public void setData(boolean isEditing) {
+        isEditingMode = isEditing;
         setApplyButtonByMode();
         fillFieldsByMode();
 
     }
+
+
 /**
  * Main Settings section
  */
