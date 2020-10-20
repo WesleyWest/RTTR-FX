@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -45,7 +46,7 @@
                   <TextField fx:id="idTextField" editable="false" layoutX="289.0" layoutY="29.0" prefHeight="25.0" prefWidth="84.0" />
                   <Label layoutX="24.0" layoutY="185.0" text="Техника на ремонт" textFill="#376bc5" />
                   <Label layoutX="24.0" layoutY="98.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
-                  <TextField fx:id="requestOpenTimeField" editable="false" layoutX="23.0" layoutY="113.0" prefHeight="25.0" prefWidth="350.0" />
+                  <TextField fx:id="requestOpenTimeField" editable="false" layoutX="217.0" layoutY="113.0" prefHeight="25.0" prefWidth="74.0" />
                   <Label layoutX="24.0" layoutY="141.0" text="Материально-ответственное лицо" textFill="#376bc5" />
                   <Label layoutX="23.0" layoutY="225.0" text="Ответственный за ремонт" textFill="#376bc5" />
                   <Label layoutX="24.0" layoutY="267.0" text="Описание проблемы" textFill="#376bc5" />
@@ -55,6 +56,8 @@
                   <ComboBox fx:id="technicComboBox" layoutX="23.0" layoutY="199.0" prefHeight="25.0" prefWidth="350.0" />
                   <ComboBox fx:id="repairerComboBox" layoutX="23.0" layoutY="240.0" prefHeight="25.0" prefWidth="350.0" />
                   <ComboBox fx:id="ownerComboBox" layoutX="23.0" layoutY="158.0" onAction="#filterTechnicByOwner" prefHeight="25.0" prefWidth="350.0" />
+                  <DatePicker fx:id="requestOpenDatePicker" layoutX="23.0" layoutY="113.0" prefHeight="25.0" prefWidth="187.0" />
+                  <Button layoutX="298.0" layoutY="113.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Сейчас" />
                </children>
             </AnchorPane>
             <CheckBox fx:id="closeRequestCheckBox" layoutX="32.0" layoutY="355.0" mnemonicParsing="false" onAction="#closeRequestCheckBoxFire" text="Немедленно завершить заявку" />

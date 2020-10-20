@@ -13,6 +13,7 @@ import objects.BL.Request;
 import objects.BL.Technic.Technic;
 import objects.BL.Users.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class RequestController {
@@ -22,8 +23,6 @@ public class RequestController {
     private Button exitButton;
     @FXML
     private Button applyButton;
-    @FXML
-    private Button OKButton;
     @FXML
     private AnchorPane mainAnchorPane;
     @FXML
@@ -36,45 +35,31 @@ public class RequestController {
     private Label headerLabelSmall;
     @FXML
     private CheckBox closeRequestCheckBox;
-
     @FXML
     private TextField idTextField;
-
     @FXML
     private TextField requestOpenTimeField;
-
     @FXML
-    private DatePicker requestOpenTimeDatePicker;
-
-    @FXML
-    private TextField ownerTextField;
-
+    private DatePicker requestOpenDatePicker;
     @FXML
     private TextField authorTextField;
-
     @FXML
     private TextField problemDescriptionTextField;
-
     @FXML
     private TextField requestCloseTimeField;
-
     @FXML
     private TextField worksDescriptionTextField;
-
     @FXML
     private ComboBox<Technic> technicComboBox;
-
     @FXML
     private ComboBox<Employee> ownerComboBox;
-
     @FXML
     private ComboBox<User> repairerComboBox;
 
     private MainController parentController;
-
     private static boolean isEditingMode = false;
-
     private Request activeRequest;
+
 
     public void setParentController(MainController parentController) {
         this.parentController = parentController;
@@ -107,11 +92,12 @@ public class RequestController {
             idTextField.setText(activeRequest.getID().toString());
             authorTextField.setText(activeRequest.getAuthor().getEmployee().getShortDescription());
 
-            requestOpenTimeField.setText(activeRequest.getOpenDateAsString());
-//            requestOpenTimeDatePicker.setValue(activeRequest.getOpenDate().toLocalDateTime().toLocalDate());
-            System.out.println(activeRequest.getOpenDate());
-            System.out.println(activeRequest.getOpenDate().toLocalDateTime());
-            System.out.println(activeRequest.getOpenDate().toLocalDateTime().toLocalDate());
+            LocalDateTime ldt = activeRequest.getOpenDate().toLocalDateTime();
+            requestOpenDatePicker.setValue(ldt.toLocalDate());
+            String requestTime = String.valueOf(ldt.getHour());
+            requestTime = requestTime +":"+ldt.getMinute();
+            requestOpenTimeField.setText(requestTime);
+
             ownerComboBox.getSelectionModel().select(activeRequest.getTechnicAsObject().getOwner());
             repairerComboBox.getSelectionModel().select(activeRequest.getRepairer());
             problemDescriptionTextField.setText(activeRequest.getProblemDescription());

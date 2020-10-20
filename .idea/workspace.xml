@@ -6,16 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2020-10-16">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2020-10-19">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Request/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/RequestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Settings/employees/EmployeesSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Settings/employees/EmployeesSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/AppData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/AppData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/Employees/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Employees/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/BL/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/BL/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,11 +67,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+            <state relative-caret-position="220">
+              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="581" column="17" selection-start-line="581" selection-start-column="17" selection-end-line="581" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -242,7 +246,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/forms/Login/LoginController.java" />
         <option value="$PROJECT_DIR$/src/forms/Main/MainController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/users/RemoveConfirmationController.java" />
         <option value="$PROJECT_DIR$/src/forms/Settings/users/UsersSettingsController.java" />
@@ -284,7 +287,6 @@
         <option value="$PROJECT_DIR$/src/GUI/RequestHandle/RequestController.java" />
         <option value="$PROJECT_DIR$/src/GUI/Login/LoginController.java" />
         <option value="$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css" />
-        <option value="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" />
         <option value="$PROJECT_DIR$/src/GUI/Settings/technic/TechnicSettingsController.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Technic/Technic.java" />
         <option value="$PROJECT_DIR$/src/GUI/Main/MainController.java" />
@@ -293,14 +295,16 @@
         <option value="$PROJECT_DIR$/src/objects/BL/AppData.java" />
         <option value="$PROJECT_DIR$/src/objects/BL/Request.java" />
         <option value="$PROJECT_DIR$/src/GUI/Request/RequestController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="63" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
-    <option name="width" value="1865" />
+    <option name="width" value="1936" />
     <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -328,38 +332,40 @@
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="libraries" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="objects" type="462c0819:PsiDirectoryNode" />
-              <item name="BL" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-              <item name="BL" type="462c0819:PsiDirectoryNode" />
-              <item name="Employees" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-              <item name="BL" type="462c0819:PsiDirectoryNode" />
-              <item name="Technic" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="DarkTheme" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RTTR-FX" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTTR-FX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-              <item name="BL" type="462c0819:PsiDirectoryNode" />
-              <item name="Users" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="DarkTheme" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -607,14 +613,7 @@
       <workItem from="1594353868189" duration="704000" />
       <workItem from="1602558675285" duration="5118000" />
       <workItem from="1602819365025" duration="11715000" />
-      <workItem from="1603083563201" duration="8709000" />
-    </task>
-    <task id="LOCAL-00008" summary="2019-10-09">
-      <created>1570688622644</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1570688622644</updated>
+      <workItem from="1603083563201" duration="17244000" />
     </task>
     <task id="LOCAL-00009" summary="2019-10-09">
       <created>1570704584233</created>
@@ -952,19 +951,26 @@
       <option name="project" value="LOCAL" />
       <updated>1602839027690</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="version from 2020-10-19">
+      <created>1603106020157</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1603106020158</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="800391000" />
+    <option name="totallyTimeSpent" value="808926000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="-8" width="1865" height="1096" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.17955652" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.6703755" visible="true" weight="0.17291667" />
       <window_info id="Structure" order="3" weight="0.25" />
       <window_info id="Favorites" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
@@ -1004,7 +1010,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/RTTR-FX" />
     </ignored-roots>
-    <MESSAGE value="version from 2019-10-18" />
     <MESSAGE value="version from 2019-10-21" />
     <MESSAGE value="version from 2019-10-23" />
     <MESSAGE value="version from 2019-10-25" />
@@ -1029,25 +1034,14 @@
     <MESSAGE value="version from 2020-02-21" />
     <MESSAGE value="version from 2020-02-27" />
     <MESSAGE value="version from 2020-10-16" />
-    <option name="LAST_COMMIT_MESSAGE" value="version from 2020-10-16" />
+    <MESSAGE value="version from 2020-10-19" />
+    <option name="LAST_COMMIT_MESSAGE" value="version from 2020-10-19" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-          <folding>
-            <element signature="e#10065#10066#0" expanded="true" />
-            <element signature="e#10148#10149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/BL/VirtualDeletable.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/src.zip!/java/util/Calendar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7920" />
@@ -1273,13 +1267,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="484" column="21" selection-start-line="484" selection-start-column="21" selection-end-line="484" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/themes/BlueTheme/bluetheme.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -1341,14 +1328,6 @@
             <element signature="e#2652#2653#0" expanded="true" />
             <element signature="e#2680#2681#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1443,6 +1422,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/src.zip!/java/sql/Timestamp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1032">
+          <caret line="570" column="25" selection-start-line="570" selection-start-column="25" selection-end-line="570" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/BL/Request.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -1459,10 +1445,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-836">
+          <caret line="1045" column="40" selection-start-line="1045" selection-start-column="40" selection-end-line="1045" selection-end-column="40" />
+          <folding>
+            <element signature="e#44628#44629#0" expanded="true" />
+            <element signature="e#44661#44662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestWindow.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Request/RequestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+        <state relative-caret-position="220">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/themes/DarkTheme/darktheme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="581" column="17" selection-start-line="581" selection-start-column="17" selection-end-line="581" selection-end-column="17" />
         </state>
       </provider>
     </entry>

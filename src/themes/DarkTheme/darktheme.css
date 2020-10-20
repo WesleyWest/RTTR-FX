@@ -467,7 +467,6 @@
 }
 
 .check-box {
-
     selected-box-color: #914949;
     box-color: #914949;
     mark-color: red;
@@ -546,3 +545,44 @@
 .arrow-down-button:focused {
     -fx-border-color: transparent;
 }
+
+/*.date-picker {*/
+    /*!*-fx-background-color: #4a4a4a;*!*/
+    /*!*-fx-background-insets: 1 1 1 1;*!*/
+    /*-fx-border-color: #9ea09f;*/
+    /*-fx-border-radius: 5 5 5 5;*/
+
+    /*-fx-background-radius: 5 5 5 5;*/
+/*}*/
+
+.date-picker {
+    -fx-background-insets: 1;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5 5 5 5;
+}
+.date-picker .text-field {
+    -fx-border-width: 1 0 1 1;
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-radius: 5 0 0 5;
+}
+.date-picker .arrow-button {
+    -fx-background-color: #6d6c6a,
+    linear-gradient(#6d6c6a, #90918f, #6d6c6a);
+    -fx-background-radius: 0 5 5 0;
+    -fx-border-color: #9ea09f;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 0 5 5 0;
+}
+.date-picker .arrow-button:pressed {
+    -fx-background-color: #6d6c6a,
+    linear-gradient(#90918f, #6d6c6a, #90918f);
+}
+.date-picker-popup {
+    -fx-background-color: #4a4a4a;
+    -fx-text-fill: #c4c5c2;
+}
+/*.combo-box-popup .list-view .list-cell:filled:hover {*/
+    /*-fx-background-color: #cd3838;*/
+    /*-fx-text-fill: -fx-text-inner-color;*/
+/*}*/
