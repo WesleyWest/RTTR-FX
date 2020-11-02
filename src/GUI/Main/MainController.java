@@ -114,6 +114,7 @@ public class MainController extends GUIController {
     private Request selectedRecord;
     private RequestController requestController;
 
+
     @FXML
     void initialize() {
         initListeners();
@@ -237,7 +238,6 @@ public class MainController extends GUIController {
     public Request getActiveRequest(){
         return selectedRecord;
     }
-
     @FXML
     void AddOrEditRequestButtonClick(ActionEvent event) {
 

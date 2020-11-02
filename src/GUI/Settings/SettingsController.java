@@ -57,7 +57,7 @@ public class SettingsController {
     private Tab divisionsTab;
     @FXML
     private Tab positionsTab;
-     @FXML
+    @FXML
     private Tab employeesTab;
     @FXML
     private Tab technicTab;
@@ -105,7 +105,7 @@ public class SettingsController {
 
         fillTabs();
         setActivePaneByCaller(caller);
-        setChooseComboBoxValues();
+        setChooseDBComboBoxValues();
         setThemesComboBoxValues();
 
         referenceDataHash = createHash();
@@ -124,12 +124,12 @@ public class SettingsController {
     }
 
     private void setActivePaneByCaller(String caller) {
-        String[] tmpCallers = { "settingsMenuItem",
-                                "usersMenuItem",
-                                "divisionsMenuItem",
-                                "positionsMenuItem",
-                                "employeesMenuItem",
-                                "technicMenuitem"};
+        String[] tmpCallers = {"settingsMenuItem",
+                "usersMenuItem",
+                "divisionsMenuItem",
+                "positionsMenuItem",
+                "employeesMenuItem",
+                "technicMenuitem"};
         ArrayList<String> callers = new ArrayList<>(Arrays.asList(tmpCallers));
         tabPane.getSelectionModel().select(callers.indexOf(caller));
         tabChanged();
@@ -147,17 +147,13 @@ public class SettingsController {
 
         if (tabIndex == 1) {
             usersPaneController.setInformation();
-        }
-        if (tabIndex == 2) {
+        } else if (tabIndex == 2) {
             divisionsPaneController.setInformation();
-        }
-        if (tabIndex == 3) {
+        } else if (tabIndex == 3) {
             positionPaneController.setInformation();
-        }
-        if (tabIndex == 4) {
+        } else if (tabIndex == 4) {
             employeesPaneController.setInformation();
-        }
-        if (tabIndex == 5) {
+        } else if (tabIndex == 5) {
             technicPaneController.setInformation();
         }
     }
@@ -323,7 +319,7 @@ public class SettingsController {
         );
     }
 
-    private void setChooseComboBoxValues() {
+    private void setChooseDBComboBoxValues() {
         dbTypesStr = new ArrayList<>();
 
         for (DBType type : GUIData.getDbTypes()) {

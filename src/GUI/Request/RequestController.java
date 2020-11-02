@@ -3,6 +3,7 @@ package GUI.Request;
 import GUI.Main.MainController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -38,16 +39,28 @@ public class RequestController {
     @FXML
     private TextField idTextField;
     @FXML
-    private TextField requestOpenTimeField;
+    private TextField requestOpenTimeHoursField;
+    @FXML
+    private TextField requestOpenTimeMinutesField;
     @FXML
     private DatePicker requestOpenDatePicker;
     @FXML
     private TextField authorTextField;
     @FXML
+    private TextField closerTextField;
+    @FXML
     private TextField problemDescriptionTextField;
     @FXML
-    private TextField requestCloseTimeField;
+    private Button setOpenTimeToNowButton;
     @FXML
+    private Button setCloseTimeToNowButton;
+    @FXML
+    private TextField requestCloseTimeHoursField;
+    @FXML
+    private TextField requestCloseTimeMinutesField;
+    @FXML
+    private DatePicker requestCloseDatePicker;
+
     private TextField worksDescriptionTextField;
     @FXML
     private ComboBox<Technic> technicComboBox;
@@ -59,7 +72,7 @@ public class RequestController {
     private MainController parentController;
     private static boolean isEditingMode = false;
     private Request activeRequest;
-
+    private int referenceDataHash;
 
     public void setParentController(MainController parentController) {
         this.parentController = parentController;
@@ -70,6 +83,43 @@ public class RequestController {
     }
 
     private ArrayList<Technic> allTechnic = new ArrayList<>();
+
+    int calculateCurrentHash() {
+
+        int tmpHash = 0;
+        try {
+            tmpHash = requestOpenDatePicker.getValue().hashCode()
+                    + requestOpenTimeHoursField.getText().hashCode()
+                    + requestOpenTimeMinutesField.getText().hashCode()
+                    + ownerComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
+                    + technicComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
+                    + repairerComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
+                    + problemDescriptionTextField.getText().hashCode();
+
+            if (handleRequestAnchorPane.isVisible()) {
+                tmpHash = tmpHash
+                        + closerTextField.getText().hashCode()
+                        + requestCloseDatePicker.getValue().hashCode()
+                        + requestCloseTimeHoursField.getText().hashCode()
+                        + requestCloseTimeMinutesField.getText().hashCode()
+                        + worksDescriptionTextField.getText().hashCode();
+            }
+        } catch (Exception e) {
+
+        }
+        return tmpHash;
+    }
+
+    @FXML
+    void checkChanges() {
+        int currentDataHash = calculateCurrentHash();
+        System.out.println("CDH: "+currentDataHash);
+        if (referenceDataHash != currentDataHash) {
+            applyButton.setDisable(false);
+        } else {
+            applyButton.setDisable(true);
+        }
+    }
 
     @FXML
     void initialize() {
@@ -84,19 +134,49 @@ public class RequestController {
         mainAnchorPane.getStyleClass().add("anchor-pane-main");
     }
 
+    public void setData(boolean isEditing) {
+        isEditingMode = isEditing;
+        setApplyButtonByMode();
+
+        EventHandler<ActionEvent> ownerHandler = ownerComboBox.getOnAction();
+        EventHandler<ActionEvent> repairerHandler = repairerComboBox.getOnAction();
+        EventHandler<ActionEvent> technicHandler = technicComboBox.getOnAction();
+
+        ownerComboBox.setOnAction(null);
+        repairerComboBox.setOnAction(null);
+        technicComboBox.setOnAction(null);
+
+        fillFieldsByMode();
+        filterTechnicByOwner();
+        ownerComboBox.setOnAction(ownerHandler);
+        repairerComboBox.setOnAction(repairerHandler);
+        technicComboBox.setOnAction(technicHandler);
+
+        referenceDataHash = calculateCurrentHash();
+
+        System.out.println("RDH: "+referenceDataHash);
+        checkChanges();
+    }
+
+    private void setApplyButtonByMode() {
+        if (isEditingMode) {
+            applyButton.setText("Применить");
+        } else {
+            applyButton.setText("Добавить");
+        }
+    }
 
     private void fillFieldsByMode() {
-        fillComboBoxes();
         if (isEditingMode) {
             activeRequest = parentController.getActiveRequest();
+            fillComboBoxes();
             idTextField.setText(activeRequest.getID().toString());
             authorTextField.setText(activeRequest.getAuthor().getEmployee().getShortDescription());
 
             LocalDateTime ldt = activeRequest.getOpenDate().toLocalDateTime();
             requestOpenDatePicker.setValue(ldt.toLocalDate());
-            String requestTime = String.valueOf(ldt.getHour());
-            requestTime = requestTime +":"+ldt.getMinute();
-            requestOpenTimeField.setText(requestTime);
+            requestOpenTimeHoursField.setText(String.valueOf(ldt.getHour()));
+            requestOpenTimeMinutesField.setText(String.valueOf(ldt.getMinute()));
 
             ownerComboBox.getSelectionModel().select(activeRequest.getTechnicAsObject().getOwner());
             repairerComboBox.getSelectionModel().select(activeRequest.getRepairer());
@@ -108,17 +188,15 @@ public class RequestController {
     }
 
     private void fillComboBoxes() {
+        ownerComboBox.getItems().clear();
+        ownerComboBox.setItems(Employee.sortEmployeeList(AppData.getListOfObjects(AppData.getEmployeesWithoutEmptyObject(), false)));
+        repairerComboBox.getItems().clear();
+        repairerComboBox.setItems(AppData.getListOfObjects(AppData.getUsersWithoutBuiltedIn(), false));
         allTechnic.clear();
         for (Technic technic : AppData.getListOfObjects(AppData.getTechnic(), false)) {
             allTechnic.add(technic);
         }
-        technicComboBox.getItems().clear();
 
-        ownerComboBox.getItems().clear();
-        ownerComboBox.setItems(Employee.sortEmployeeList(AppData.getListOfObjects(AppData.getEmployeesWithoutEmptyObject(), false)));
-
-        repairerComboBox.getItems().clear();
-        repairerComboBox.setItems(AppData.getListOfObjects(AppData.getUsersWithoutBuiltedIn(), false));
     }
 
     @FXML
@@ -126,8 +204,11 @@ public class RequestController {
         ArrayList<Technic> res = new ArrayList();
         Employee activeOwner = ownerComboBox.getSelectionModel().getSelectedItem();
         for (Technic technic : allTechnic) {
-            if (technic.getOwner() == activeOwner) res.add(technic);
+            if (technic.getOwner().equals(activeOwner)) res.add(technic);
         }
+
+        EventHandler<ActionEvent> technicHandler = technicComboBox.getOnAction();
+        technicComboBox.setOnAction(null);
         technicComboBox.getItems().clear();
         technicComboBox.setItems(FXCollections.observableArrayList(res));
         if (activeOwner != activeRequest.getTechnicAsObject().getOwner()) {
@@ -135,23 +216,35 @@ public class RequestController {
         } else {
             technicComboBox.getSelectionModel().select(activeRequest.getTechnicAsObject());
         }
+        technicComboBox.setOnAction(technicHandler);
+        checkChanges();
     }
 
-    private void setApplyButtonByMode() {
-        if (isEditingMode) {
-            applyButton.setText("Применить");
+    @FXML
+    void setTimeToNow(ActionEvent event) {
+        LocalDateTime now = LocalDateTime.now();
+        Button clickedButton = (Button) event.getSource();
+        if (clickedButton.getId().equals("setOpenTimeToNowButton")) {
+            requestOpenDatePicker.setValue(now.toLocalDate());
+            requestOpenTimeHoursField.setText(String.valueOf(now.getHour()));
+            requestOpenTimeMinutesField.setText(String.valueOf(now.getMinute()));
         } else {
-            applyButton.setText("Добавить");
+            requestCloseDatePicker.setValue(now.toLocalDate());
+            requestCloseTimeHoursField.setText(String.valueOf(now.getHour()));
+            requestCloseTimeMinutesField.setText(String.valueOf(now.getMinute()));
         }
+        checkChanges();
     }
 
     @FXML
     void closeRequestCheckBoxFire() {
         if (closeRequestCheckBox.isSelected()) {
             applyButton.setText("Завершить");
+            handleRequestAnchorPane.setDisable(false);
             handleRequestAnchorPane.setVisible(true);
         } else {
             setApplyButtonByMode();
+            handleRequestAnchorPane.setDisable(true);
             handleRequestAnchorPane.setVisible(false);
         }
 
@@ -172,23 +265,4 @@ public class RequestController {
         }
     }
 
-    public void setData(boolean isEditing) {
-        isEditingMode = isEditing;
-        setApplyButtonByMode();
-        fillFieldsByMode();
-
-    }
-
-
-/**
- * Main Settings section
- */
-
-    /*public GUIController getParentController() {
-        return parentController;
-    }
-
-    public void setParentController(GUIController parentController) {
-        this.parentController = parentController;
-    }*/
 }

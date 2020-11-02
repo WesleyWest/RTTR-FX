@@ -546,3 +546,45 @@
 .arrow-down-button:focused {
     -fx-border-color: transparent;
 }
+
+.date-picker {
+    -fx-background-insets: 1;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.date-picker .text-field {
+    -fx-border-width: 1 0 1 1;
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-radius: 5 0 0 5;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: linear-gradient(#a7d9f5, #eaf6fd, #a7d9f5);
+    -fx-border-color: #57a8d7;
+    -fx-background-radius: 0 5 5 0;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 0 5 5 0;
+}
+
+.date-picker .arrow-button:pressed {
+    -fx-background-color: linear-gradient(#eaf6fd,#a7d9f5, #eaf6fd);
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-border-width: 0 0 1 0;
+}
+
+.date-picker-popup .date-cell {
+    -fx-border-width: 1;
+}
+.date-picker-popup .date-cell:hover {
+    -fx-background-color: #a7d9f5;
+    -fx-text-fill: #c4c5c2;
+}
+.date-picker-popup .today {
+}
+
+.date-picker-popup .selected {
+}

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Request.RequestController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Request.RequestController">
    <children>
-      <AnchorPane fx:id="headerAnchorPane" minWidth="783.0" prefHeight="99.0" prefWidth="838.0">
+      <AnchorPane fx:id="headerAnchorPane" layoutX="1.0" minWidth="783.0" prefHeight="99.0" prefWidth="838.0">
          <children>
             <Pane layoutX="302.0" layoutY="19.0">
                <children>
@@ -27,15 +27,9 @@
             </Pane>
          </children>
       </AnchorPane>
-      <ButtonBar layoutX="504.0" layoutY="483.0" prefWidth="320.0">
-         <buttons>
-            <Button fx:id="applyButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#applyButtonClick" prefHeight="32.0" prefWidth="93.0" text="Завершить" />
-            <Button fx:id="exitButton" cancelButton="true" mnemonicParsing="false" onAction="#exitButtonClick" prefHeight="32.0" prefWidth="93.0" text="Отмена" />
-         </buttons>
-      </ButtonBar>
       <AnchorPane fx:id="mainAnchorPane" layoutX="1.0" layoutY="99.0" prefHeight="384.0" prefWidth="838.0">
          <children>
-            <AnchorPane layoutX="11.0" prefHeight="349.0" prefWidth="399.0">
+            <AnchorPane layoutX="11.0" prefHeight="384.0" prefWidth="399.0">
                <children>
                   <Label layoutX="153.0" layoutY="5.0" text="Детали заявки:" textFill="#376bc5">
                      <font>
@@ -44,39 +38,53 @@
                   </Label>
                   <Label layoutX="319.0" layoutY="14.0" text="№ заявки" textFill="#376bc5" />
                   <TextField fx:id="idTextField" editable="false" layoutX="289.0" layoutY="29.0" prefHeight="25.0" prefWidth="84.0" />
-                  <Label layoutX="24.0" layoutY="185.0" text="Техника на ремонт" textFill="#376bc5" />
-                  <Label layoutX="24.0" layoutY="98.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
-                  <TextField fx:id="requestOpenTimeField" editable="false" layoutX="217.0" layoutY="113.0" prefHeight="25.0" prefWidth="74.0" />
-                  <Label layoutX="24.0" layoutY="141.0" text="Материально-ответственное лицо" textFill="#376bc5" />
-                  <Label layoutX="23.0" layoutY="225.0" text="Ответственный за ремонт" textFill="#376bc5" />
-                  <Label layoutX="24.0" layoutY="267.0" text="Описание проблемы" textFill="#376bc5" />
                   <Label layoutX="24.0" layoutY="57.0" text="Автор заявки" textFill="#376bc5" />
-                  <TextField fx:id="authorTextField" editable="false" layoutX="23.0" layoutY="72.0" prefHeight="25.0" prefWidth="350.0" />
-                  <TextField fx:id="problemDescriptionTextField" editable="false" layoutX="23.0" layoutY="282.0" prefHeight="53.0" prefWidth="350.0" />
-                  <ComboBox fx:id="technicComboBox" layoutX="23.0" layoutY="199.0" prefHeight="25.0" prefWidth="350.0" />
-                  <ComboBox fx:id="repairerComboBox" layoutX="23.0" layoutY="240.0" prefHeight="25.0" prefWidth="350.0" />
-                  <ComboBox fx:id="ownerComboBox" layoutX="23.0" layoutY="158.0" onAction="#filterTechnicByOwner" prefHeight="25.0" prefWidth="350.0" />
-                  <DatePicker fx:id="requestOpenDatePicker" layoutX="23.0" layoutY="113.0" prefHeight="25.0" prefWidth="187.0" />
-                  <Button layoutX="298.0" layoutY="113.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Сейчас" />
+                  <TextField fx:id="authorTextField" editable="false" layoutX="23.0" layoutY="73.0" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="24.0" layoutY="98.0" text="Дата и время регистрации заявки" textFill="#376bc5" />
+                  <DatePicker fx:id="requestOpenDatePicker" layoutX="23.0" layoutY="115.0" onAction="#checkChanges" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="143.0" />
+                  <TextField fx:id="requestOpenTimeHoursField" layoutX="175.0" layoutY="115.0" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="35.0" />
+                  <Label layoutX="212.0" layoutY="120.0" text="час." textFill="#376bc5" />
+                  <TextField fx:id="requestOpenTimeMinutesField" layoutX="237.0" layoutY="115.0" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="35.0" />
+                  <Label layoutX="273.0" layoutY="120.0" text="мин." textFill="#376bc5" />
+                  <Button fx:id="setOpenTimeToNowButton" layoutX="299.0" layoutY="115.0" mnemonicParsing="false" onAction="#setTimeToNow" prefHeight="25.0" prefWidth="74.0" text="Сейчас" />
+                  <Label layoutX="24.0" layoutY="141.0" text="Материально-ответственное лицо" textFill="#376bc5" />
+                  <ComboBox fx:id="ownerComboBox" layoutX="23.0" layoutY="158.0" onAction="#filterTechnicByOwner" onKeyReleased="#checkChanges" onMouseReleased="#checkChanges" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="24.0" layoutY="185.0" text="Техника на ремонт" textFill="#376bc5" />
+                  <ComboBox fx:id="technicComboBox" layoutX="23.0" layoutY="199.0" onAction="#checkChanges" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="23.0" layoutY="225.0" text="Ответственный за ремонт" textFill="#376bc5" />
+                  <ComboBox fx:id="repairerComboBox" layoutX="23.0" layoutY="240.0" onAction="#checkChanges" prefHeight="25.0" prefWidth="350.0" />
+                  <Label layoutX="24.0" layoutY="267.0" text="Описание проблемы" textFill="#376bc5" />
+                  <TextField fx:id="problemDescriptionTextField" layoutX="23.0" layoutY="282.0" onKeyReleased="#checkChanges" onMouseReleased="#checkChanges" prefHeight="53.0" prefWidth="350.0" />
+                  <CheckBox fx:id="closeRequestCheckBox" layoutX="23.0" layoutY="353.0" mnemonicParsing="false" onAction="#closeRequestCheckBoxFire" text="Немедленно завершить заявку" />
                </children>
             </AnchorPane>
-            <CheckBox fx:id="closeRequestCheckBox" layoutX="32.0" layoutY="355.0" mnemonicParsing="false" onAction="#closeRequestCheckBoxFire" text="Немедленно завершить заявку" />
             <AnchorPane fx:id="handleRequestAnchorPane" layoutX="442.0" layoutY="-11.0" prefHeight="224.0" prefWidth="351.0">
                <children>
-                  <Label layoutX="1.0" layoutY="113.0" text="Дата и время закрытия заявки" textFill="#376bc5" />
-                  <TextField fx:id="requestCloseTimeField" editable="false" layoutY="128.0" prefHeight="25.0" prefWidth="350.0" />
-                  <Label layoutX="1.0" layoutY="155.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
-                  <Label layoutX="2.0" layoutY="71.0" text="Сотрудник, закрывший заявку" textFill="#376bc5" />
-                  <TextField fx:id="worksDescriptionTextField" editable="false" layoutY="170.0" prefHeight="53.0" prefWidth="350.0" />
-                  <ComboBox editable="true" layoutY="87.0" prefHeight="25.0" prefWidth="350.0" />
                   <Label layoutX="109.0" layoutY="20.0" text="Детали завершения:" textFill="#376bc5">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <Label layoutX="2.0" layoutY="66.0" text="Сотрудник, закрывший заявку" textFill="#376bc5" />
+                  <Label layoutX="1.0" layoutY="108.0" text="Дата и время закрытия заявки" textFill="#376bc5" />
+                  <DatePicker fx:id="requestCloseDatePicker" layoutX="1.0" layoutY="126.0" onAction="#checkChanges" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="143.0" />
+                  <TextField fx:id="requestCloseTimeHoursField" editable="false" layoutX="153.0" layoutY="126.0" prefHeight="25.0" prefWidth="35.0" />
+                  <Label layoutX="190.0" layoutY="131.0" text="час." textFill="#376bc5" />
+                  <TextField fx:id="requestCloseTimeMinutesField" editable="false" layoutX="215.0" layoutY="126.0" prefHeight="25.0" prefWidth="35.0" />
+                  <Label layoutX="250.0" layoutY="130.0" text="мин." textFill="#376bc5" />
+                  <Button fx:id="setCloseTimeToNowButton" layoutX="287.0" layoutY="126.0" mnemonicParsing="false" onAction="#setTimeToNow" prefHeight="25.0" prefWidth="63.0" text="Сейчас" />
+                  <Label layoutX="1.0" layoutY="152.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
+                  <TextField fx:id="worksDescriptionTextField" editable="false" layoutY="168.0" prefHeight="53.0" prefWidth="350.0" />
+                  <TextField fx:id="closerTextField" editable="false" layoutY="83.0" prefHeight="25.0" prefWidth="350.0" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
+      <ButtonBar layoutX="504.0" layoutY="483.0" prefWidth="320.0">
+         <buttons>
+            <Button fx:id="applyButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#applyButtonClick" prefHeight="32.0" prefWidth="93.0" text="Завершить" />
+            <Button fx:id="exitButton" cancelButton="true" mnemonicParsing="false" onAction="#exitButtonClick" prefHeight="32.0" prefWidth="93.0" text="Отмена" />
+         </buttons>
+      </ButtonBar>
    </children>
 </Pane>
