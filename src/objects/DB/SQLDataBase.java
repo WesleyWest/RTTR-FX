@@ -92,7 +92,7 @@ public abstract class SQLDataBase extends AppData {
 
     public boolean testConnection() {
         this.open();
-        ObservableList<User> tmp = this.readUsersFromDB();
+        ObservableList<Division> tmp = this.readDivisionsFromDB();
         this.close();
         return (tmp.size() > 0);
     }

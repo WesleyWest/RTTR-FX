@@ -84,7 +84,7 @@ public class RequestController {
 
     private ArrayList<Technic> allTechnic = new ArrayList<>();
 
-    int calculateCurrentHash() {
+    int calculateCurrentDataHash() {
 
         int tmpHash = 0;
         try {
@@ -112,9 +112,7 @@ public class RequestController {
 
     @FXML
     void checkChanges() {
-        int currentDataHash = calculateCurrentHash();
-        System.out.println("CDH: "+currentDataHash);
-        if (referenceDataHash != currentDataHash) {
+        if (referenceDataHash != calculateCurrentDataHash()) {
             applyButton.setDisable(false);
         } else {
             applyButton.setDisable(true);
@@ -152,9 +150,7 @@ public class RequestController {
         repairerComboBox.setOnAction(repairerHandler);
         technicComboBox.setOnAction(technicHandler);
 
-        referenceDataHash = calculateCurrentHash();
-
-        System.out.println("RDH: "+referenceDataHash);
+        referenceDataHash = calculateCurrentDataHash();
         checkChanges();
     }
 

@@ -153,9 +153,9 @@ public class MainController extends GUIController {
             if (event.getClickCount() == 1) {
                 mainTableViewKeyReleased(event);
             }
-//                if (event.getClickCount() == 2) {
-//                    mainEditButton.fire();
-//                }
+                if (event.getClickCount() == 2) {
+                    editRequestButton.fire();
+                }
 
         });
     }
@@ -238,6 +238,7 @@ public class MainController extends GUIController {
     public Request getActiveRequest(){
         return selectedRecord;
     }
+
     @FXML
     void AddOrEditRequestButtonClick(ActionEvent event) {
 
@@ -246,7 +247,7 @@ public class MainController extends GUIController {
         try {
             root = loader.load(getClass().getResource("../Request/RequestWindow.fxml").openStream());
             GUIData.setOwner(((Node) event.getSource()).getScene().getWindow());
-            GUIData.openCustomWindow(event, root, 840, 525, Modality.APPLICATION_MODAL, false);
+            GUIData.openCustomWindow(event, root, 766, 525, Modality.APPLICATION_MODAL, false);
             requestController = loader.getController();
             requestController.setParentController(this);
             Button sourceButton = (Button) event.getSource();
