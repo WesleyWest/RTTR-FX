@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Request.HandleRequestController">
+   <children>
+      <AnchorPane fx:id="headerAnchorPane" layoutX="1.0" minWidth="358.0" prefHeight="99.0" prefWidth="358.0">
+         <children>
+            <Pane layoutX="52.0" layoutY="19.0">
+               <children>
+                  <Label fx:id="headerLabelBig" layoutY="7.0" styleClass="header-label" text="RTTR-Master">
+                     <font>
+                        <Font name="Eras Bold ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="headerLabelSmall" layoutX="89.0" layoutY="44.0" prefHeight="18.0" prefWidth="161.0" styleClass="header-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+               </children>
+            </Pane>
+            <AnchorPane fx:id="handleRequestAnchorPane" layoutX="4.0" layoutY="73.0" prefHeight="226.0" prefWidth="351.0">
+               <children>
+                  <Label layoutX="112.0" layoutY="20.0" text="Детали завершения:" textFill="#376bc5">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="2.0" layoutY="66.0" text="Сотрудник, закрывший заявку" textFill="#376bc5" />
+                  <Label layoutX="1.0" layoutY="108.0" text="Дата и время закрытия заявки" textFill="#376bc5" />
+                  <DatePicker fx:id="requestCloseDatePicker" layoutX="1.0" layoutY="126.0" onAction="#checkChanges" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="143.0" />
+                  <TextField fx:id="requestCloseTimeHoursField" editable="false" layoutX="153.0" layoutY="126.0" prefHeight="25.0" prefWidth="35.0" />
+                  <Label layoutX="190.0" layoutY="131.0" text="час." textFill="#376bc5" />
+                  <TextField fx:id="requestCloseTimeMinutesField" editable="false" layoutX="215.0" layoutY="126.0" prefHeight="25.0" prefWidth="35.0" />
+                  <Label layoutX="250.0" layoutY="130.0" text="мин." textFill="#376bc5" />
+                  <Button fx:id="setCloseTimeToNowButton" layoutX="287.0" layoutY="126.0" mnemonicParsing="false" onAction="#setTimeToNow" prefHeight="25.0" prefWidth="63.0" text="Сейчас" />
+                  <Label layoutX="1.0" layoutY="152.0" text="Описание проведённых мероприятий" textFill="#376bc5" />
+                  <TextField fx:id="worksDescriptionTextField" editable="false" layoutY="168.0" prefHeight="53.0" prefWidth="350.0" />
+                  <TextField fx:id="closerTextField" editable="false" layoutY="83.0" prefHeight="25.0" prefWidth="350.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <ButtonBar layoutX="151.0" layoutY="306.0" prefHeight="32.0" prefWidth="201.0">
+         <buttons>
+            <Button fx:id="applyButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#applyButtonClick" prefHeight="32.0" prefWidth="93.0" text="Завершить" />
+            <Button fx:id="exitButton" cancelButton="true" mnemonicParsing="false" onAction="#exitButtonClick" prefHeight="32.0" prefWidth="93.0" text="Отмена" />
+         </buttons>
+      </ButtonBar>
+   </children>
+</Pane>

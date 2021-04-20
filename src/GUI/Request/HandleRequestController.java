@@ -17,7 +17,7 @@ import objects.BL.Users.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class RequestController {
+public class HandleRequestController {
 
 
     @FXML
@@ -169,7 +169,7 @@ public class RequestController {
             idTextField.setText(activeRequest.getID().toString());
             authorTextField.setText(activeRequest.getAuthor().getEmployee().getShortDescription());
 
-            LocalDateTime ldt = activeRequest.getOpenDate().toLocalDateTime();
+            LocalDateTime ldt = activeRequest.getOpenDateTime().toLocalDateTime();
             requestOpenDatePicker.setValue(ldt.toLocalDate());
             requestOpenTimeHoursField.setText(String.valueOf(ldt.getHour()));
             requestOpenTimeMinutesField.setText(String.valueOf(ldt.getMinute()));

@@ -57,7 +57,7 @@ public class Request {
         return openDateStr.substring(0, openDateStr.length() - 5);
     }
 
-    public Timestamp getOpenDate() {
+    public Timestamp getOpenDateTime() {
         return openDate;
     }
 
@@ -65,7 +65,7 @@ public class Request {
         this.openDate = openDate;
     }
 
-    public String getCloseDate() {
+    public String getCloseDateTime() {
         if (closeDate != null) {
             String closeDateStr = closeDate.toString();
             return closeDateStr.substring(0, closeDateStr.length() - 5);

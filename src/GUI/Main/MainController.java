@@ -1,7 +1,7 @@
 package GUI.Main;
 
 import GUI.GUIController;
-import GUI.Request.RequestController;
+import GUI.Request.AddEditRequestController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -112,7 +112,7 @@ public class MainController extends GUIController {
 
     private PopOver popOver;
     private Request selectedRecord;
-    private RequestController requestController;
+    private AddEditRequestController addEditRequestController;
 
 
     @FXML
@@ -138,7 +138,7 @@ public class MainController extends GUIController {
 
         idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
         technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
-        dateTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("openDate"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("openDateAsString"));
         descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("problemDescription"));
 
         mainTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -174,7 +174,7 @@ public class MainController extends GUIController {
         closedRequestsToggleButton.getStyleClass().add("toggle-button-closed");
     }
 
-    private void changeTableView(boolean isClosed) {
+    public void changeTableView(boolean isClosed) {
         setRequests(getDb().readRequestsFromDB(isClosed));
         mainTableView.setItems(getRequests());
         mainTableView.getSelectionModel().select(0);
@@ -206,7 +206,7 @@ public class MainController extends GUIController {
         if (selectedRecord.getStatus()) {
             Employee closer = getObjectByID(getEmployees(), selectedRecord.getCloser().getID());
             closerTextField.setText(closer.getShortDescription());
-            requestCloseTimeField.setText(selectedRecord.getCloseDate());
+            requestCloseTimeField.setText(selectedRecord.getCloseDateTime());
             worksDescriptionTextField.setText(selectedRecord.getDecisionDescription());
         }
     }
@@ -240,20 +240,20 @@ public class MainController extends GUIController {
     }
 
     @FXML
-    void AddOrEditRequestButtonClick(ActionEvent event) {
+    void AddEditRequestButtonClick(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         try {
-            root = loader.load(getClass().getResource("../Request/RequestWindow.fxml").openStream());
+            root = loader.load(getClass().getResource("../Request/AddEditRequestWindow.fxml").openStream());
             GUIData.setOwner(((Node) event.getSource()).getScene().getWindow());
-            GUIData.openCustomWindow(event, root, 766, 525, Modality.APPLICATION_MODAL, false);
-            requestController = loader.getController();
-            requestController.setParentController(this);
+            GUIData.openCustomWindow(event, root, 386, 522, Modality.APPLICATION_MODAL, false);
+            addEditRequestController = loader.getController();
+            addEditRequestController.setParentController(this);
             Button sourceButton = (Button) event.getSource();
-            requestController.setData(sourceButton.getId().equals("editRequestButton"));
+            addEditRequestController.setData(sourceButton.getId().equals("editRequestButton"));
         } catch (IOException e) {
-            e.printStackTrace();
+        e.printStackTrace();
         }
     }
 

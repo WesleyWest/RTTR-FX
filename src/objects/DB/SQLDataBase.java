@@ -552,6 +552,40 @@ public abstract class SQLDataBase extends AppData {
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
     }
 
+    public void addEditOpenedRequest(Request request, boolean isNew) {
+        int intStatus = (request.getStatus()) ? 1 : 0;
+        String query = "";
+        String report = "";
+        if (isNew) {
+            /*query =
+                    "INSERT INTO technic (technic_name, technic_description, technic_status_id," +
+                            " technic_type_id, technic_owner_id, technic_isdeleted)" +
+                            "VALUES ('" + technic.getName() + "', '"
+                            + technic.getDescription() + "', '"
+                            + technic.getStatus().getID()+ "', '"
+                            + technic.getType().getID() + "', '"
+                            + technic.getOwner().getID() + "', '"
+                            + intDeleted + "') ;";*/
+            report = "added";
+        } else {
+            query =
+                    "UPDATE requests SET "
+                            + "request_status = '" + intStatus + "', "
+                            + "request_technic_id = '" + request.getTechnicAsObject().getID() + "', "
+                            + "request_open_date = '" + request.getOpenDateTime() + "', "
+//                            + "request_close_date = '" + request.getCloseDateTime() + "', "
+                            + "request_problem_description = '" + request.getProblemDescription() + "', "
+                            + "request_author_id = '" + request.getAuthor().getID() + "', "
+                            + "request_repairer_id = '" + request.getRepairer().getID() + "' "
+//                            + "request_decision_description = '" + request.getDecisionDescription() + "', "
+//                            + "request_closer_id = '" + request.getCloser().getID() + "', "
+                            + "WHERE request_id = " + request.getID() + ";";
+            report = "edited";
+        }
+        System.out.println(query);
+        AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
+    }
+
     public void handleSimpleObject(SimpleObject object, boolean isNew, String type) {
         int intDeleted = (object.isDeleted()) ? 1 : 0;
         String tableName = (type.equals("type")) ? "technic_types" : "technic_statuses";
