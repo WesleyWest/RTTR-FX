@@ -2,6 +2,7 @@ package GUI.Main;
 
 import GUI.GUIController;
 import GUI.Request.AddEditRequestController;
+import GUI.Request.CloseRequestController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import objects.BL.AppData;
 import objects.BL.Employees.Employee;
 import objects.BL.Request;
 import objects.BL.Technic.Technic;
@@ -113,6 +115,7 @@ public class MainController extends GUIController {
     private PopOver popOver;
     private Request selectedRecord;
     private AddEditRequestController addEditRequestController;
+    private CloseRequestController closeRequestController;
 
 
     @FXML
@@ -120,6 +123,7 @@ public class MainController extends GUIController {
         initListeners();
 
         Employee emp = getObjectByID(getEmployees(), getUser().getEmployee().getID());
+
         Label lbl1 = new Label("\n   Логин: " + getUser().getName());
         Label lbl2 = new Label("\n   Роль : " + getUser().getRole());
         Label lbl3 = new Label("\n   Ф.И.О : " + emp.getLastName() + " " + emp.getName() + " " + emp.getMiddleName() + "   ");
@@ -143,9 +147,7 @@ public class MainController extends GUIController {
 
         mainTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        changeTableView(false);
-
-        informLabel.setText("Количество открытых заявок: " + getRequests().size());
+        changeTableView(false, 0);
     }
 
     private void initListeners() {
@@ -153,9 +155,9 @@ public class MainController extends GUIController {
             if (event.getClickCount() == 1) {
                 mainTableViewKeyReleased(event);
             }
-                if (event.getClickCount() == 2) {
-                    editRequestButton.fire();
-                }
+            if (event.getClickCount() == 2) {
+                editRequestButton.fire();
+            }
 
         });
     }
@@ -174,11 +176,13 @@ public class MainController extends GUIController {
         closedRequestsToggleButton.getStyleClass().add("toggle-button-closed");
     }
 
-    public void changeTableView(boolean isClosed) {
+    public void changeTableView(boolean isClosed, int row) {
         setRequests(getDb().readRequestsFromDB(isClosed));
         mainTableView.setItems(getRequests());
-        mainTableView.getSelectionModel().select(0);
+        mainTableView.getSelectionModel().select(row);
         setFieldsValues();
+        String text = (isClosed) ? "Количество закрытых заявок: " : "Количество открытых заявок: ";
+        informLabel.setText(text + getRequests().size());
         mainTableView.requestFocus();
     }
 
@@ -211,6 +215,7 @@ public class MainController extends GUIController {
         }
     }
 
+
     @FXML
     void closedRequestsToggleButtonClick(ActionEvent event) {
         if (!closedRequestsToggleButton.isSelected()) {
@@ -219,8 +224,7 @@ public class MainController extends GUIController {
         }
         closedRequestsAnchorPane.setVisible(true);
         mainTableView.getStyleClass().set(1, "table-view-closed");
-        changeTableView(true);
-        informLabel.setText("Количество закрытых заявок: " + getRequests().size());
+        changeTableView(true, 0);
     }
 
     @FXML
@@ -231,12 +235,19 @@ public class MainController extends GUIController {
         }
         closedRequestsAnchorPane.setVisible(false);
         mainTableView.getStyleClass().set(1, "table-view-active");
-        changeTableView(false);
-        informLabel.setText("Количество открытых заявок: " + getRequests().size());
+        changeTableView(false, 0);
     }
 
-    public Request getActiveRequest(){
+    public Request getActiveRequest() {
         return selectedRecord;
+    }
+
+    public Integer getActiveRequestsIndex() {
+        return mainTableView.getSelectionModel().getFocusedIndex();
+    }
+
+    public Integer getLastRequestsIndex() {
+        return mainTableView.getItems().size() - 1;
     }
 
     @FXML
@@ -253,7 +264,21 @@ public class MainController extends GUIController {
             Button sourceButton = (Button) event.getSource();
             addEditRequestController.setData(sourceButton.getId().equals("editRequestButton"));
         } catch (IOException e) {
-        e.printStackTrace();
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void CloseRequestButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+        try {
+            root = loader.load(getClass().getResource("../Request/CloseRequestWindow.fxml").openStream());
+            GUIData.setOwner(((Node) event.getSource()).getScene().getWindow());
+            GUIData.openCustomWindow(event, root, 365, 363, Modality.APPLICATION_MODAL, false);
+            closeRequestController = loader.getController();
+            closeRequestController.setParentController(this);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

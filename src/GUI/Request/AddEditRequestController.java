@@ -83,7 +83,8 @@ public class AddEditRequestController {
                     + ownerComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
                     + technicComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
                     + repairerComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
-                    + problemDescriptionTextField.getText().hashCode();
+                    + problemDescriptionTextField.getText().hashCode()
+                    + ((closeRequestCheckBox.isSelected())?1:0);
         } catch (Exception e) {
 
         }
@@ -164,7 +165,6 @@ public class AddEditRequestController {
             fillComboBoxes();
             repairerComboBox.getSelectionModel().select(AppData.getUser());
         }
-
     }
 
     private void fillComboBoxes() {
@@ -176,7 +176,6 @@ public class AddEditRequestController {
         for (Technic technic : AppData.getListOfObjects(AppData.getTechnic(), false)) {
             allTechnic.add(technic);
         }
-
     }
 
     @FXML
@@ -205,40 +204,35 @@ public class AddEditRequestController {
     @FXML
     void setTimeToNow(ActionEvent event) {
         LocalDateTime now = LocalDateTime.now();
-        Button clickedButton = (Button) event.getSource();
-        if (clickedButton.getId().equals("setOpenTimeToNowButton")) {
-            requestOpenDatePicker.setValue(now.toLocalDate());
-            requestOpenTimeHoursField.setText(String.valueOf(now.getHour()));
-            requestOpenTimeMinutesField.setText(String.valueOf(now.getMinute()));
-        } else {
-
-        }
+        requestOpenDatePicker.setValue(now.toLocalDate());
+        requestOpenTimeHoursField.setText(String.valueOf(now.getHour()));
+        requestOpenTimeMinutesField.setText(String.valueOf(now.getMinute()));
         checkChanges();
     }
 
     @FXML
     void applyButtonClick(ActionEvent event) {
-
+        int row;
         int id = Integer.parseInt(idTextField.getText());
         User author = AppData.getUser();
         Timestamp openTimestamp = getDateTime(requestOpenDatePicker.getValue(), requestOpenTimeHoursField.getText(), requestOpenTimeMinutesField.getText());
         Technic technic = technicComboBox.getSelectionModel().getSelectedItem();
         User repairer = repairerComboBox.getSelectionModel().getSelectedItem();
-        System.out.println(repairer.getEmployee().getShortDescription());
         String problemDescription = problemDescriptionTextField.getText();
         boolean status = (isEditingMode) ? activeRequest.getStatus() : false;
 
         Request handlingRequest = new Request(id, technic, openTimestamp, null,
-                                            problemDescription, "", status,repairer,author,null);
+                problemDescription, "", status, repairer, author, null);
 
         if (isEditingMode) {
-            AppData.getDb().addEditOpenedRequest(handlingRequest,false);
+            AppData.getDb().addEditOpenedRequest(handlingRequest, false);
+            row = parentController.getActiveRequestsIndex();
         } else {
-
+            AppData.getDb().addEditOpenedRequest(handlingRequest, true);
+            row = parentController.getLastRequestsIndex() + 1;
         }
         exitButton.fire();
-        parentController.changeTableView(false);
-
+        parentController.changeTableView(false, row);
     }
 
     private Timestamp getDateTime(LocalDate openDate, String stringHours, String stringMinutes) {
@@ -252,13 +246,12 @@ public class AddEditRequestController {
 
     @FXML
     void closeRequestCheckBoxFire() {
-        if (closeRequestCheckBox.isSelected()) {
-
-        }
+        checkChanges();
     }
 
     @FXML
     void exitButtonClick(ActionEvent event) {
+
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
         oldStage.close();
     }

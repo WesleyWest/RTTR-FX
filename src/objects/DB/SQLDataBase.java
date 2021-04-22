@@ -557,15 +557,15 @@ public abstract class SQLDataBase extends AppData {
         String query = "";
         String report = "";
         if (isNew) {
-            /*query =
-                    "INSERT INTO technic (technic_name, technic_description, technic_status_id," +
-                            " technic_type_id, technic_owner_id, technic_isdeleted)" +
-                            "VALUES ('" + technic.getName() + "', '"
-                            + technic.getDescription() + "', '"
-                            + technic.getStatus().getID()+ "', '"
-                            + technic.getType().getID() + "', '"
-                            + technic.getOwner().getID() + "', '"
-                            + intDeleted + "') ;";*/
+            query =
+                    "INSERT INTO requests (request_status, request_technic_id, request_open_date," +
+                            " request_problem_description, request_author_id, request_repairer_id)" +
+                            "VALUES ('" + 0 + "', '"
+                            + request.getTechnicAsObject().getID() + "', '"
+                            + request.getOpenDateTime()+ "', '"
+                            + request.getProblemDescription() + "', '"
+                            + request.getAuthor().getID()+ "', '"
+                            + request.getRepairer().getID()+ "') ;";
             report = "added";
         } else {
             query =
@@ -582,29 +582,32 @@ public abstract class SQLDataBase extends AppData {
                             + "WHERE request_id = " + request.getID() + ";";
             report = "edited";
         }
-        System.out.println(query);
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
+    }
+
+    public void closeOpenedRequest(Request request, boolean isNew) {
+
     }
 
     public void handleSimpleObject(SimpleObject object, boolean isNew, String type) {
         int intDeleted = (object.isDeleted()) ? 1 : 0;
         String tableName = (type.equals("type")) ? "technic_types" : "technic_statuses";
-        String fieldPreffix = (type.equals("type")) ? "technic_type" : "technic_status";
+        String fieldPrefix = (type.equals("type")) ? "technic_type" : "technic_status";
         String query = "";
         String report = "";
         if (isNew) {
             query =
-                    "INSERT INTO "+tableName+" ("+fieldPreffix+"_description, "
-                                                 +fieldPreffix+"_isdeleted)" +
+                    "INSERT INTO "+tableName+" ("+fieldPrefix+"_description, "
+                                                 +fieldPrefix+"_isdeleted)" +
                             "VALUES ('" + object.getDescription() + "', '"
                                         + intDeleted + "') ;";
             report = "added";
         } else {
             query =
                     "UPDATE "+tableName+" SET "
-                            + fieldPreffix+"_description = '" + object.getDescription() + "', "
-                            + fieldPreffix+"_isdeleted = '" + intDeleted + "' "
-                            + "WHERE "+fieldPreffix+"_id = " + object.getID() + ";";
+                            + fieldPrefix+"_description = '" + object.getDescription() + "', "
+                            + fieldPrefix+"_isdeleted = '" + intDeleted + "' "
+                            + "WHERE "+fieldPrefix+"_id = " + object.getID() + ";";
             report = "edited";
         }
         AppData.printInLog((executeUpdateDB(query)) ? "Record " + report + "..." : "Something wrong...");
