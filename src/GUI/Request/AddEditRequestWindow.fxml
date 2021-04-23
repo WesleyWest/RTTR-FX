@@ -13,21 +13,21 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Request.AddEditRequestController">
    <children>
-      <AnchorPane fx:id="headerAnchorPane" layoutX="1.0" minWidth="375.0" prefHeight="99.0" prefWidth="396.0">
+      <AnchorPane fx:id="headerAnchorPane" layoutY="1.0" minWidth="375.0" prefHeight="105.0" prefWidth="396.0">
          <children>
             <Pane layoutX="66.0" layoutY="19.0">
                <children>
-                  <Label fx:id="headerLabelBig" layoutY="7.0" styleClass="header-label" text="RTTR-Master">
+                  <Label fx:id="headerLabelBig" layoutY="-2.0" styleClass="header-label" text="RTTR-Master">
                      <font>
                         <Font name="Eras Bold ITC" size="38.0" />
                      </font>
                   </Label>
-                  <Label fx:id="headerLabelSmall" layoutX="89.0" layoutY="44.0" prefHeight="18.0" prefWidth="161.0" styleClass="header-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
+                  <Label fx:id="headerLabelSmall" layoutX="89.0" layoutY="35.0" prefHeight="18.0" prefWidth="161.0" styleClass="header-label" text="Requests To Technics Repair" textAlignment="CENTER" textFill="#57a8d7" />
                </children>
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="mainAnchorPane" layoutY="88.0" prefHeight="434.0" prefWidth="396.0">
+      <AnchorPane fx:id="mainAnchorPane" layoutY="106.0" prefHeight="420.0" prefWidth="396.0">
          <children>
             <Label layoutX="153.0" layoutY="5.0" text="Детали заявки:" textFill="#376bc5">
                <font>
@@ -54,7 +54,7 @@
             <Label layoutX="24.0" layoutY="267.0" text="Описание проблемы" textFill="#376bc5" />
             <TextField fx:id="problemDescriptionTextField" layoutX="23.0" layoutY="282.0" onKeyReleased="#checkChanges" onMouseReleased="#checkChanges" prefHeight="53.0" prefWidth="350.0" promptText="Введите описание проблемы" />
             <CheckBox fx:id="closeRequestCheckBox" layoutX="23.0" layoutY="353.0" mnemonicParsing="false" onAction="#closeRequestCheckBoxFire" text="Немедленно завершить заявку" />
-            <ButtonBar layoutX="153.0" layoutY="388.0" prefHeight="32.0" prefWidth="222.0">
+            <ButtonBar layoutX="153.0" layoutY="381.0" prefHeight="32.0" prefWidth="222.0">
                <buttons>
                   <Button fx:id="applyButton" cancelButton="true" disable="true" mnemonicParsing="false" onAction="#applyButtonClick" prefHeight="32.0" prefWidth="93.0" text="Завершить" />
                   <Button fx:id="exitButton" cancelButton="true" mnemonicParsing="false" onAction="#exitButtonClick" prefHeight="32.0" prefWidth="93.0" text="Отмена" />

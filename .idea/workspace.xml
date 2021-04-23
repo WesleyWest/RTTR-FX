@@ -6,15 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2021-04-20">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="version from 2021-04-22">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Main/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Request/AddEditRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/AddEditRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Request/HandleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/CloseRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Request/HandleRequestWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/CloseRequestWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/rttr-base.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/rttr-base.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/DB/SQLDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Request/AddEditRequestWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/AddEditRequestWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Request/CloseRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/CloseRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Request/CloseRequestWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Request/CloseRequestWindow.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,8 +91,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/Request/CloseRequestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="121" column="8" lean-forward="true" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
+            <state relative-caret-position="220">
+              <caret line="49" column="34" lean-forward="true" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -565,14 +564,7 @@
       <workItem from="1618391259821" duration="2822000" />
       <workItem from="1618486834327" duration="984000" />
       <workItem from="1618827323781" duration="15792000" />
-      <workItem from="1619081422903" duration="9546000" />
-    </task>
-    <task id="LOCAL-00011" summary="2019-10-09">
-      <created>1570704835565</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1570704835565</updated>
+      <workItem from="1619081422903" duration="13599000" />
     </task>
     <task id="LOCAL-00012" summary="2019-10-09">
       <created>1570764252367</created>
@@ -910,11 +902,18 @@
       <option name="project" value="LOCAL" />
       <updated>1618920036860</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="version from 2021-04-22">
+      <created>1619092091377</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1619092091378</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="888203000" />
+    <option name="totallyTimeSpent" value="892256000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="77" y="-8" width="1851" height="1096" extended-state="6" />
@@ -962,7 +961,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/RTTR-FX" />
     </ignored-roots>
-    <MESSAGE value="version from 2019-10-25" />
     <MESSAGE value="version from 2019-10-31" />
     <MESSAGE value="version from 2019-11-04" />
     <MESSAGE value="version from 2019-11-06" />
@@ -987,7 +985,8 @@
     <MESSAGE value="version from 2020-10-19" />
     <MESSAGE value="version from 2021-02-22" />
     <MESSAGE value="version from 2021-04-20" />
-    <option name="LAST_COMMIT_MESSAGE" value="version from 2021-04-20" />
+    <MESSAGE value="version from 2021-04-22" />
+    <option name="LAST_COMMIT_MESSAGE" value="version from 2021-04-22" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1368,8 +1367,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Request/CloseRequestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="121" column="8" lean-forward="true" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
+        <state relative-caret-position="220">
+          <caret line="49" column="34" lean-forward="true" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

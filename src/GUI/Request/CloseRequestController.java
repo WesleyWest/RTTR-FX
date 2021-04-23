@@ -109,10 +109,6 @@ public class CloseRequestController {
         }
     }
 
-    private void fillFieldsByMode() {
-
-    }
-
     @FXML
     void setTimeToNow(ActionEvent event) {
         LocalDateTime now = LocalDateTime.now();
