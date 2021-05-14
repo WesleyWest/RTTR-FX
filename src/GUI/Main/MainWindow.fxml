@@ -98,6 +98,17 @@
                   <TableColumn fx:id="dateTableColumn" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Дата&#10;регистрации&#10;заявки" />
                   <TableColumn fx:id="descriptionTableColumn" prefWidth="245.0" text="Описание проблемы" />
               </columns>
+               <contextMenu>
+                  <ContextMenu fx:id="contextMenu">
+                    <items>
+                      <MenuItem fx:id="closeRequestContextMenuItem" mnemonicParsing="false" onAction="#contextmenuClick" text="Провести заявку" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="editRequestContextMenuItem" mnemonicParsing="false" onAction="#contextmenuClick" text="Редактировать заявку" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="changeHistoryContextMenuItem" mnemonicParsing="false" onAction="#contextmenuClick" text="История изменений заявки" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
             <AnchorPane layoutX="664.0" layoutY="21.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="21.0">
                <children>
@@ -131,7 +142,7 @@
                      <children>
                         <Button fx:id="addRequestButton" defaultButton="true" layoutY="11.0" mnemonicParsing="false" onAction="#AddEditRequestButtonClick" prefHeight="33.0" prefWidth="170.0" text="Добавить заявку" />
                         <Button fx:id="editRequestButton" layoutX="179.0" layoutY="11.0" mnemonicParsing="false" onAction="#AddEditRequestButtonClick" prefHeight="33.0" prefWidth="172.0" text="Редактировать заявку" />
-                        <Button fx:id="closeRequestButton" layoutY="49.0" mnemonicParsing="false" onAction="#CloseRequestButtonClick" prefHeight="33.0" prefWidth="351.0" text="Провести заявку" />
+                        <Button fx:id="closeRequestButton" layoutY="49.0" mnemonicParsing="false" onAction="#closeRequestButtonClick" prefHeight="33.0" prefWidth="351.0" text="Провести заявку" />
                         <Button fx:id="exitButton" cancelButton="true" layoutX="178.0" layoutY="89.0" mnemonicParsing="false" onAction="#exitFromApp" prefHeight="33.0" prefWidth="173.0" text="Выход" />
                      </children>
                   </AnchorPane>

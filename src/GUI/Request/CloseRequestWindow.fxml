@@ -32,10 +32,10 @@
             </Label>
             <Label layoutX="15.0" layoutY="67.0" text="Сотрудник, закрывший заявку" textFill="#376bc5" />
             <Label layoutX="14.0" layoutY="109.0" text="Дата и время закрытия заявки" textFill="#376bc5" />
-            <DatePicker fx:id="requestCloseDatePicker" layoutX="14.0" layoutY="127.0" onAction="#checkChanges" onKeyReleased="#checkChanges" prefHeight="25.0" prefWidth="143.0" />
-            <TextField fx:id="requestCloseTimeHoursField" editable="false" layoutX="166.0" layoutY="127.0" prefHeight="25.0" prefWidth="35.0" />
+            <DatePicker fx:id="requestCloseDatePicker" layoutX="14.0" layoutY="127.0" prefHeight="25.0" prefWidth="143.0" />
+            <TextField fx:id="requestCloseTimeHoursField" layoutX="166.0" layoutY="127.0" prefHeight="25.0" prefWidth="35.0" />
             <Label layoutX="203.0" layoutY="132.0" text="час." textFill="#376bc5" />
-            <TextField fx:id="requestCloseTimeMinutesField" editable="false" layoutX="228.0" layoutY="127.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField fx:id="requestCloseTimeMinutesField" layoutX="228.0" layoutY="127.0" prefHeight="25.0" prefWidth="35.0" />
             <Label layoutX="263.0" layoutY="131.0" text="мин." textFill="#376bc5" />
             <Button fx:id="setCloseTimeToNowButton" layoutX="300.0" layoutY="127.0" mnemonicParsing="false" onAction="#setTimeToNow" prefHeight="25.0" prefWidth="63.0" text="Сейчас" />
             <Label layoutX="14.0" layoutY="153.0" text="Описание проведённых мероприятий" textFill="#376bc5" />

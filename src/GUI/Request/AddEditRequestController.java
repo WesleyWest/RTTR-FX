@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AddEditRequestController {
@@ -84,7 +85,7 @@ public class AddEditRequestController {
                     + technicComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
                     + repairerComboBox.getSelectionModel().getSelectedItem().toString().hashCode()
                     + problemDescriptionTextField.getText().hashCode()
-                    + ((closeRequestCheckBox.isSelected())?1:0);
+                    + ((closeRequestCheckBox.isSelected()) ? 1 : 0);
         } catch (Exception e) {
 
         }
@@ -132,6 +133,7 @@ public class AddEditRequestController {
         technicComboBox.setOnAction(technicHandler);
 
         referenceDataHash = calculateCurrentDataHash();
+        closeRequestCheckBox.setSelected(activeRequest.getStatus());
         checkChanges();
     }
 
@@ -220,9 +222,15 @@ public class AddEditRequestController {
         User repairer = repairerComboBox.getSelectionModel().getSelectedItem();
         String problemDescription = problemDescriptionTextField.getText();
         boolean status = (isEditingMode) ? activeRequest.getStatus() : false;
+        String previousHistory = (activeRequest.getChangeHistory() == null) ? "" : activeRequest.getChangeHistory();
+
+        String changeHistory = previousHistory + "" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ": " + author.getName() + "\n";
+        if (changeHistory.length() > 2048) {
+            changeHistory = changeHistory.substring(changeHistory.length() - 2048);
+        }
 
         Request handlingRequest = new Request(id, technic, openTimestamp, null,
-                problemDescription, "", status, repairer, author, null);
+                problemDescription, "", status, repairer, author, null, changeHistory);
 
         if (isEditingMode) {
             AppData.getDb().addEditOpenedRequest(handlingRequest, false);
@@ -232,7 +240,11 @@ public class AddEditRequestController {
             row = parentController.getLastRequestsIndex() + 1;
         }
         exitButton.fire();
-        parentController.changeTableView(false, row);
+        if (closeRequestCheckBox.isSelected()) {
+            parentController.closeRequestButtonClick(event);
+        } else {
+            parentController.changeTableView(false, row);
+        }
     }
 
     private Timestamp getDateTime(LocalDate openDate, String stringHours, String stringMinutes) {
@@ -251,7 +263,6 @@ public class AddEditRequestController {
 
     @FXML
     void exitButtonClick(ActionEvent event) {
-
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
         oldStage.close();
     }

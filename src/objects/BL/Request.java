@@ -18,8 +18,9 @@ public class Request {
     private User repairer;
     private User author;
     private User closer;
+    private String changeHistory;
 
-    public Request(Integer ID, Technic technic, Timestamp openDate, Timestamp closeDate, String problemDescription, String decisionDescription, boolean status, User repairer, User author, User closer) {
+    public Request(Integer ID, Technic technic, Timestamp openDate, Timestamp closeDate, String problemDescription, String decisionDescription, boolean status, User repairer, User author, User closer, String changeHistory) {
         this.ID = ID;
         this.technic = technic;
         this.openDate = openDate;
@@ -30,6 +31,15 @@ public class Request {
         this.repairer = repairer;
         this.author = author;
         this.closer = closer;
+        this.changeHistory = changeHistory;
+    }
+
+    public String getChangeHistory() {
+        return changeHistory;
+    }
+
+    public void setChangeHistory(String changeHistory) {
+        this.changeHistory = changeHistory;
     }
 
     public Integer getID() {

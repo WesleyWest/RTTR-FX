@@ -391,13 +391,14 @@ public abstract class SQLDataBase extends AppData {
                 int authorID = rs.getInt("request_author_id");
                 int closerID = rs.getInt("request_closer_id");
                 int repairerID = rs.getInt("request_repairer_id");
+                String changeHistory = rs.getString("request_change_history");
 
                 Technic technic = AppData.getObjectByID(AppData.getTechnic(), tecnicID);
                 User author = AppData.getObjectByID(AppData.getUsers(), authorID);
                 User closer = AppData.getObjectByID(AppData.getUsers(), closerID);
                 User repairer = AppData.getObjectByID(AppData.getUsers(), repairerID);
 
-                Request req = new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, repairer, author, closer);
+                Request req = new Request(id, technic, openTime, closeTime, problemDescription, decisionDescription, status, repairer, author, closer, changeHistory);
                 tmp.add(req);
             }
 
@@ -559,13 +560,14 @@ public abstract class SQLDataBase extends AppData {
         if (isNew) {
             query =
                     "INSERT INTO requests (request_status, request_technic_id, request_open_date," +
-                            " request_problem_description, request_author_id, request_repairer_id)" +
+                            " request_problem_description, request_author_id, request_repairer_id, request_change_history)" +
                             "VALUES ('" + 0 + "', '"
                             + request.getTechnicAsObject().getID() + "', '"
                             + request.getOpenDateTime()+ "', '"
                             + request.getProblemDescription() + "', '"
                             + request.getAuthor().getID()+ "', '"
-                            + request.getRepairer().getID()+ "') ;";
+                            + request.getRepairer().getID()+ "', '"
+                            + request.getChangeHistory()+ "') ;";
             report = "added";
         } else {
             query =
@@ -576,9 +578,10 @@ public abstract class SQLDataBase extends AppData {
 //                            + "request_close_date = '" + request.getCloseDateTime() + "', "
                             + "request_problem_description = '" + request.getProblemDescription() + "', "
                             + "request_author_id = '" + request.getAuthor().getID() + "', "
-                            + "request_repairer_id = '" + request.getRepairer().getID() + "' "
+                            + "request_repairer_id = '" + request.getRepairer().getID() + "', "
 //                            + "request_decision_description = '" + request.getDecisionDescription() + "', "
 //                            + "request_closer_id = '" + request.getCloser().getID() + "', "
+                            + "request_change_history = '" + request.getChangeHistory() + "' "
                             + "WHERE request_id = " + request.getID() + ";";
             report = "edited";
         }
@@ -633,7 +636,7 @@ public abstract class SQLDataBase extends AppData {
             statement.close();
             return true;
         } catch (SQLException e) {
-            GUIData.showAlert(e.getLocalizedMessage());
+            GUIData.showAlert(e.getLocalizedMessage()+" "+query);
             return false;
         }
     }

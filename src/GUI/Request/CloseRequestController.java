@@ -46,20 +46,62 @@ public class CloseRequestController {
     private TextField worksDescriptionTextField;
 
     private MainController parentController;
-    private static boolean isEditingMode = false;
-    private Request activeRequest;
     private int referenceDataHash;
+    private Request activeRequest;
 
     public void setParentController(MainController parentController) {
         this.parentController = parentController;
     }
-
     public MainController getParentController() {
         return parentController;
     }
 
-    private ArrayList<Technic> allTechnic = new ArrayList<>();
+    @FXML
+    void initialize() {
+        applyCSS();
+        closerTextField.setText(AppData.getUser().getEmployee().getShortDescription());
+        setTimeToNow(new ActionEvent());
 
+    }
+
+    public void setData() {
+        activeRequest = parentController.getActiveRequest();
+        if (activeRequest.getStatus()){
+            worksDescriptionTextField.setText(activeRequest.getDecisionDescription());
+            LocalDateTime ldt = activeRequest.getOpenDateTime().toLocalDateTime();
+            requestCloseDatePicker.setValue(ldt.toLocalDate());
+            requestCloseTimeHoursField.setText(String.valueOf(ldt.getHour()));
+            requestCloseTimeMinutesField.setText(String.valueOf(ldt.getMinute()));
+
+        }
+    }
+
+    void applyCSS() {
+        headerLabelBig.getStyleClass().set(0, "label-header-big");
+        headerLabelSmall.getStyleClass().set(0, "label-header-small");
+        headerAnchorPane.getStyleClass().add("anchor-pane-header");
+        mainAnchorPane.getStyleClass().add("anchor-pane-main");
+    }
+
+    @FXML
+    void setTimeToNow(ActionEvent event) {
+        LocalDateTime now = LocalDateTime.now();
+        requestCloseDatePicker.setValue(now.toLocalDate());
+        requestCloseTimeHoursField.setText(String.valueOf(now.getHour()));
+        requestCloseTimeMinutesField.setText(String.valueOf(now.getMinute()));
+    }
+
+
+    @FXML
+    void exitButtonClick(ActionEvent event) {
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
+    }
+
+    @FXML
+    void applyButtonClick(ActionEvent event) {
+
+    }
     int calculateCurrentDataHash() {
 
         int tmpHash = 0;
@@ -83,52 +125,6 @@ public class CloseRequestController {
         } else {
             applyButton.setDisable(true);
         }
-    }
-
-    @FXML
-    void initialize() {
-        applyCSS();
-        closerTextField.setText(AppData.getUser().getEmployee().getShortDescription());
-        setTimeToNow(new ActionEvent());
-
-    }
-
-    void applyCSS() {
-        headerLabelBig.getStyleClass().set(0, "label-header-big");
-        headerLabelSmall.getStyleClass().set(0, "label-header-small");
-        headerAnchorPane.getStyleClass().add("anchor-pane-header");
-        mainAnchorPane.getStyleClass().add("anchor-pane-main");
-    }
-
-
-    private void setApplyButtonByMode() {
-        if (isEditingMode) {
-            applyButton.setText("Применить");
-        } else {
-            applyButton.setText("Добавить");
-        }
-    }
-
-    @FXML
-    void setTimeToNow(ActionEvent event) {
-        LocalDateTime now = LocalDateTime.now();
-        requestCloseDatePicker.setValue(now.toLocalDate());
-        requestCloseTimeHoursField.setText(String.valueOf(now.getHour()));
-        requestCloseTimeMinutesField.setText(String.valueOf(now.getMinute()));
-
-//        checkChanges();
-    }
-
-
-    @FXML
-    void exitButtonClick(ActionEvent event) {
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
-    }
-
-    @FXML
-    void applyButtonClick(ActionEvent event) {
-
     }
 
 }

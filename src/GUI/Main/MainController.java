@@ -5,13 +5,19 @@ import GUI.Request.AddEditRequestController;
 import GUI.Request.CloseRequestController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -23,6 +29,7 @@ import objects.BL.Technic.Technic;
 import objects.GUI.GUIData;
 import org.controlsfx.control.PopOver;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class MainController extends GUIController {
@@ -53,6 +60,12 @@ public class MainController extends GUIController {
     private MenuItem helpMenuItem;
     @FXML
     private MenuItem aboutMenuItem;
+    @FXML
+    private MenuItem editRequestContextMenuItem;
+    @FXML
+    private MenuItem closeRequestContextMenuItem;
+    @FXML
+    private MenuItem changeHistoryContextMenuItem;
     @FXML
     private TableView<Request> mainTableView;
     @FXML
@@ -94,7 +107,7 @@ public class MainController extends GUIController {
     @FXML
     private Button editRequestButton;
     @FXML
-    private Button closeRequestButton;
+    public Button closeRequestButton;
     @FXML
     private Button exitButton;
     @FXML
@@ -111,6 +124,9 @@ public class MainController extends GUIController {
     private Label headerLabelBig;
     @FXML
     private Label headerLabelSmall;
+    @FXML
+    private ContextMenu contextMenu;
+
 
     private PopOver popOver;
     private Request selectedRecord;
@@ -121,9 +137,25 @@ public class MainController extends GUIController {
     @FXML
     void initialize() {
         initListeners();
+        closedRequestsAnchorPane.setVisible(false);
+        applyCSS();
 
-        Employee emp = getObjectByID(getEmployees(), getUser().getEmployee().getID());
+        Employee emp = getUser().getEmployee();
+        setPopOverUsersValues(emp);
 
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
+        technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("openDateAsString"));
+        descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("problemDescription"));
+
+        mainTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        changeTableView(false, 0);
+//        mainTableView.setContextMenu(contextMenu);
+
+    }
+
+    private void setPopOverUsersValues(Employee emp) {
         Label lbl1 = new Label("\n   Логин: " + getUser().getName());
         Label lbl2 = new Label("\n   Роль : " + getUser().getRole());
         Label lbl3 = new Label("\n   Ф.И.О : " + emp.getLastName() + " " + emp.getName() + " " + emp.getMiddleName() + "   ");
@@ -135,27 +167,24 @@ public class MainController extends GUIController {
 
         popOver = new PopOver(vBox);
         popOver.setArrowLocation(PopOver.ArrowLocation.TOP_RIGHT);
+    }
 
-        closedRequestsAnchorPane.setVisible(false);
 
-        applyCSS();
-
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<Request, Integer>("ID"));
-        technicTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("technic"));
-        dateTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("openDateAsString"));
-        descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<Request, String>("problemDescription"));
-
-        mainTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        changeTableView(false, 0);
+    private void setPopOverChangeHistoryValues() {
+        Label lbl1 = new Label(selectedRecord.getChangeHistory());
+        VBox vBox = new VBox(lbl1);
+        popOver = new PopOver(vBox);
+        popOver.setArrowLocation(PopOver.ArrowLocation.TOP_RIGHT);
     }
 
     private void initListeners() {
         mainTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) {
+                popOver.hide();
                 mainTableViewKeyReleased(event);
             }
             if (event.getClickCount() == 2) {
+                popOver.hide();
                 editRequestButton.fire();
             }
 
@@ -225,6 +254,7 @@ public class MainController extends GUIController {
         closedRequestsAnchorPane.setVisible(true);
         mainTableView.getStyleClass().set(1, "table-view-closed");
         changeTableView(true, 0);
+        closeRequestButton.setDisable(true);
     }
 
     @FXML
@@ -236,6 +266,7 @@ public class MainController extends GUIController {
         closedRequestsAnchorPane.setVisible(false);
         mainTableView.getStyleClass().set(1, "table-view-active");
         changeTableView(false, 0);
+        closeRequestButton.setDisable(false);
     }
 
     public Request getActiveRequest() {
@@ -252,7 +283,6 @@ public class MainController extends GUIController {
 
     @FXML
     void AddEditRequestButtonClick(ActionEvent event) {
-
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         try {
@@ -267,8 +297,9 @@ public class MainController extends GUIController {
             e.printStackTrace();
         }
     }
+
     @FXML
-    public void CloseRequestButtonClick(ActionEvent event) {
+    public void closeRequestButtonClick(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         try {
@@ -277,8 +308,28 @@ public class MainController extends GUIController {
             GUIData.openCustomWindow(event, root, 365, 363, Modality.APPLICATION_MODAL, false);
             closeRequestController = loader.getController();
             closeRequestController.setParentController(this);
+            closeRequestController.setData();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void contextmenuClick(ActionEvent event) {
+        MenuItem mItem = (MenuItem) event.getSource();
+        if (mItem.getId().equals("editRequestContextMenuItem")) {
+            editRequestButton.fire();
+        }
+        if (mItem.getId().equals("closeRequestContextMenuItem")) {
+            closeRequestButton.fire();
+        }
+        if (mItem.getId().equals("changeHistoryContextMenuItem")) {
+            if (!popOver.isShowing()) {
+                setPopOverChangeHistoryValues();
+                popOver.show(mainTableView, contextMenu.getAnchorX(),contextMenu.getAnchorY());
+            } else {
+                popOver.hide();
+            }
         }
     }
 
@@ -299,6 +350,8 @@ public class MainController extends GUIController {
     @FXML
     void userButtonClick(ActionEvent event) {
         if (!popOver.isShowing()) {
+            Employee emp = getUser().getEmployee();
+            setPopOverUsersValues(emp);
             popOver.show(userButton);
         } else {
             popOver.hide();
@@ -309,6 +362,7 @@ public class MainController extends GUIController {
     void settingMenuItemClick(ActionEvent event) {
         callSettingsWindow(event);
     }
+
 
     private void callSettingsWindow(ActionEvent event) {
         try {
